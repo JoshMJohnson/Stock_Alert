@@ -1,0 +1,51 @@
+Bugs:
+- 
+
+Feature Additions:
+    - Configure to be compatible with ios
+    - Private -> Public... GitHub repository when completed
+        - Delete private info such as the Twelve Data API code
+        - Complete the project README file for Stock Alert
+            - Add an info section at the top of the GitHub readme for Stock Alert about creating an account
+            for Twelve Data and inserting key from API into project code
+
+    
+Settings Page:
+    - Turn notifications on/off -> Radio buttons
+        - Starts/Terminates foreground service
+    - Notification Percentage Day Change Threshold -> Slider
+        - Displays the slider value below slider
+    - Select the number of reminders in a Day -> Dropdown box
+    - Select the time of day of each reminder -> TimePicker
+    - Clear Watchlist button
+    - Save button
+        - Display alert when saved
+
+Home Page:
+    - Be able to click on a stock ticker and it'll go to stock ticker page showing additional ticker info
+        - Stack Navigation
+    - Switch that can toggle on/off alerts for specific stock tickers attached to home page ticker display
+    - Sort options
+        - Alphabetically
+        - Stock Exchange (ex: NASDAQ)
+        - Ticker Price
+        - Percentage Day Change
+    - Add stocks to watchlist
+        - Display alert when api request failed
+            - More than 8 ticker requests within 1 minute
+            - Ticker already exists
+            - Ticker not found on stock market
+    - Remove stocks from watchlist
+
+Ticker Page:
+    - Ticker
+    - Company Name
+    - Company Description
+    - Ticker Price (since last api request)
+    - Day Dollar Change
+    - Day Percentage Change
+    - 52 Week High
+    - 52 Week Low
+
+To Do:
+    - 
