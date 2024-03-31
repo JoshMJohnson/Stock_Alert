@@ -24,6 +24,8 @@ Settings Page:
 Home Page:
     - Be able to click on a stock ticker and it'll go to stock ticker page showing additional ticker info
         - Stack Navigation
+    - Be able to click on a settings button and it'll go to the setting page
+        - Stack Navigation
     - Switch that can toggle on/off alerts for specific stock tickers attached to home page ticker display
     - Sort options
         - Alphabetically
@@ -31,11 +33,15 @@ Home Page:
         - Ticker Price
         - Percentage Day Change
     - Add stocks to watchlist
+        - Add ticker to Firebase table
+        - Refresh display of watchlist on home page to show added stock
         - Display alert when api request failed
             - More than 8 ticker requests within 1 minute
             - Ticker already exists
             - Ticker not found on stock market
     - Remove stocks from watchlist
+        - Remove ticker from Firebase table
+        - Refresh display of watchlist on home page to remove stock
 
 Ticker Page:
     - Ticker
