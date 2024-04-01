@@ -38,7 +38,7 @@ Home Page:
         - Add ticker to Firebase table
         - Refresh display of watchlist on home page to show added stock
         - Display alert when api request failed
-            - More than 8 ticker requests within 1 minute
+            - More than 8 ticker get requests within 1 minute
             - Ticker already exists
             - Ticker not found on stock market
     - Remove stocks from watchlist
