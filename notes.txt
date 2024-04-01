@@ -1,5 +1,8 @@
+To Do:
+    - 
+
 Bugs:
-- 
+    - 
 
 Feature Additions:
     - Configure to be compatible with ios
@@ -8,7 +11,6 @@ Feature Additions:
         - Complete the project README file for Stock Alert
             - Add an info section at the top of the GitHub readme for Stock Alert about creating an account
             for Twelve Data and inserting key from API into project code
-
     
 Settings Page:
     - Turn notifications on/off -> Radio buttons
@@ -52,6 +54,3 @@ Ticker Page:
     - Day Percentage Change
     - 52 Week High
     - 52 Week Low
-
-To Do:
-    - 
