@@ -6,7 +6,12 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: appBar(),
+    );
+  }
+
+  AppBar appBar() {
+    return AppBar(
         title: Text(
           'Stock Alert',
           style: TextStyle(
@@ -16,7 +21,16 @@ class HomePage extends StatelessWidget {
         ),
         centerTitle: true,
         backgroundColor: Colors.green[200],
-      ),
-    );
+        actions: [
+          GestureDetector(
+              onTap: () {},
+              child: Container(
+                  margin: const EdgeInsets.fromLTRB(0, 0, 15, 0),
+                  child: Icon(
+                    Icons.settings,
+                    size: 35,
+                    color: Colors.green[900],
+                  ))),
+        ]);
   }
 }
