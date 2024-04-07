@@ -6,6 +6,7 @@ Bugs:
 
 Feature Additions:
     - Configure to be compatible with ios
+    - Light/Dark modes
     - Private -> Public... GitHub repository when completed
         - Delete private info such as the Twelve Data API code
         - Complete the project README file for Stock Alert
