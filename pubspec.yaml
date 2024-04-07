@@ -74,6 +74,34 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
+  fonts:
+    - family: EBGaramond
+      fonts:
+        - asset: fonts/EB_Garamond/EBGaramond-ExtraBold.ttf
+          weight: 900
+          style: normal
+        - asset: fonts/EB_Garamond/EBGaramond-ExtraBoldItalic.ttf
+          weight: 900
+          style: italic
+        - asset: fonts/EB_Garamond/EBGaramond-Bold.ttf
+          weight: 700
+          style: normal
+        - asset: fonts/EB_Garamond/EBGaramond-BoldItalic.ttf
+          weight: 700
+          style: italic
+        - asset: fonts/EB_Garamond/EBGaramond-SemiBold.ttf
+          weight: 600
+          style: normal
+        - asset: fonts/EB_Garamond/EBGaramond-SemiBoldItalic.ttf
+          weight: 600
+          style: italic
+        - asset: fonts/EB_Garamond/EBGaramond-Regular.ttf
+          weight: 400
+          style: normal
+        - asset: fonts/EB_Garamond/EBGaramond-Italic.ttf
+          weight: 400
+          style: italic
+
   # fonts:
   #   - family: Schyler
   #     fonts:
