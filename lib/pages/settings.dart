@@ -53,9 +53,14 @@ class _SettingsPageState extends State<SettingsPage> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               const Padding(
-                padding: EdgeInsets.all(10),
-                child: Text('Notifications:'),
-              ),
+                  padding: EdgeInsets.all(10),
+                  child: Text(
+                    'Notifications:',
+                    style: TextStyle(
+                        color: Color(0xFF1B5E20),
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600),
+                  )),
               Row(
                 children: [
                   Padding(
