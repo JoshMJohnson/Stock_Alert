@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-/* displays notification toggling on/off within settings */
 class NotificationToggle extends StatefulWidget {
   const NotificationToggle({super.key});
 
@@ -8,16 +7,15 @@ class NotificationToggle extends StatefulWidget {
   State<NotificationToggle> createState() => _NotificationToggleState();
 }
 
-/* handles notification toggling on/off within settings */
 class _NotificationToggleState extends State<NotificationToggle> {
-  bool? notificationsOn = false;
+  bool? notificationsActive = false;
   List<bool> notificationsOnOptions = [true, false];
 
-  /* handles a toggle in notifications active */ // todo save updated value to async storage
-  void _toggleNotificationsOn(bool? currentValue) {
+  /* handles a toggle in notifications is_active */ // todo save updated value to async storage
+  void _toggleNotificationsActive(bool? currentValue) {
     setState(() {
-      notificationsOn = currentValue;
-      print("notificationsOn: $notificationsOn");
+      notificationsActive = currentValue;
+      print("notificationsOn: $notificationsActive");
     });
   }
 
@@ -45,13 +43,13 @@ class _NotificationToggleState extends State<NotificationToggle> {
                     children: [
                       Radio(
                         value: notificationsOnOptions[0],
-                        groupValue: notificationsOn,
+                        groupValue: notificationsActive,
                         fillColor: MaterialStateProperty.resolveWith<Color>(
                             (Set<MaterialState> states) {
                           return const Color(0xFF1B5E20);
                         }),
                         onChanged: (value) {
-                          _toggleNotificationsOn(value);
+                          _toggleNotificationsActive(value);
                         },
                       ),
                       const Padding(
@@ -72,13 +70,13 @@ class _NotificationToggleState extends State<NotificationToggle> {
                     children: [
                       Radio(
                         value: notificationsOnOptions[1],
-                        groupValue: notificationsOn,
+                        groupValue: notificationsActive,
                         fillColor: MaterialStateProperty.resolveWith<Color>(
                             (Set<MaterialState> states) {
                           return const Color(0xFF1B5E20);
                         }),
                         onChanged: (value) {
-                          _toggleNotificationsOn(value);
+                          _toggleNotificationsActive(value);
                         },
                       ),
                       const Padding(

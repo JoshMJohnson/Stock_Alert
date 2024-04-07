@@ -7,7 +7,6 @@ class PriceChangeThreshold extends StatefulWidget {
   State<PriceChangeThreshold> createState() => _PriceChangeThresholdState();
 }
 
-/* handles notification  within settings */
 class _PriceChangeThresholdState extends State<PriceChangeThreshold> {
   double _currentValue = 5;
 
