@@ -14,67 +14,11 @@ class _SettingsPageState extends State<SettingsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: header(context),
-      body: Column(
-        children: [
-          Container(
-            margin: const EdgeInsets.fromLTRB(10, 10, 10, 5),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                const Padding(
-                  padding: EdgeInsets.all(10),
-                  child: Text('Notifications:'),
-                ),
-                Row(
-                  children: [
-                    Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Row(
-                          children: [
-                            Radio(
-                              value: 'On',
-                              groupValue: notificationsOn,
-                              onChanged: (value) {
-                                setState(() {
-                                  notificationsOn = !notificationsOn;
-                                });
-                              },
-                            ),
-                            const Padding(
-                              padding: EdgeInsets.all(10),
-                              child: Text('On'),
-                            ),
-                          ],
-                        )),
-                    Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Row(
-                          children: [
-                            Radio(
-                              value: 'On',
-                              groupValue: notificationsOn,
-                              onChanged: (value) {
-                                setState(() {
-                                  notificationsOn = !notificationsOn;
-                                });
-                              },
-                            ),
-                            const Padding(
-                              padding: EdgeInsets.all(10),
-                              child: Text('Off'),
-                            ),
-                          ],
-                        ))
-                  ],
-                )
-              ],
-            ),
-          )
-        ],
-      ),
+      body: body(),
     );
   }
 
+  /* header widget of settings page */
   AppBar header(BuildContext context) {
     return AppBar(
       title: Text(
@@ -96,6 +40,68 @@ class _SettingsPageState extends State<SettingsPage> {
           color: Colors.green[900],
         ),
       ),
+    );
+  }
+
+  /* body widget of settings page */
+  Column body() {
+    return Column(
+      children: [
+        Container(
+          margin: const EdgeInsets.fromLTRB(10, 10, 10, 5),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              const Padding(
+                padding: EdgeInsets.all(10),
+                child: Text('Notifications:'),
+              ),
+              Row(
+                children: [
+                  Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: Row(
+                        children: [
+                          Radio(
+                            value: 'On',
+                            groupValue: notificationsOn,
+                            onChanged: (value) {
+                              setState(() {
+                                notificationsOn = !notificationsOn;
+                              });
+                            },
+                          ),
+                          const Padding(
+                            padding: EdgeInsets.all(10),
+                            child: Text('On'),
+                          ),
+                        ],
+                      )),
+                  Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: Row(
+                        children: [
+                          Radio(
+                            value: 'On',
+                            groupValue: notificationsOn,
+                            onChanged: (value) {
+                              setState(() {
+                                notificationsOn = !notificationsOn;
+                              });
+                            },
+                          ),
+                          const Padding(
+                            padding: EdgeInsets.all(10),
+                            child: Text('Off'),
+                          ),
+                        ],
+                      ))
+                ],
+              )
+            ],
+          ),
+        )
+      ],
     );
   }
 }
