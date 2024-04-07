@@ -12,9 +12,10 @@ class HomePage extends StatelessWidget {
           style: TextStyle(
               color: Colors.green[900],
               fontSize: 24,
-              fontWeight: FontWeight.bold),
+              fontWeight: FontWeight.w900),
         ),
         centerTitle: true,
+        backgroundColor: Colors.green[200],
       ),
     );
   }
