@@ -24,7 +24,7 @@ class _NotificationToggleState extends State<NotificationToggle> {
     return Container(
       margin: const EdgeInsets.fromLTRB(10, 10, 10, 5),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           const Padding(
               padding: EdgeInsets.all(10),

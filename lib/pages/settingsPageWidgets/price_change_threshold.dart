@@ -25,7 +25,7 @@ class _PriceChangeThresholdState extends State<PriceChangeThreshold> {
     return Container(
       margin: const EdgeInsets.fromLTRB(10, 5, 10, 5),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           const Padding(
               padding: EdgeInsets.all(10),
