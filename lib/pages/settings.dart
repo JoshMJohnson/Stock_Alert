@@ -8,7 +8,16 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  bool notificationsOn = false;
+  bool? notificationsOn = false;
+  List<bool> notificationsOnOptions = [true, false];
+
+  /* handles a toggle in notifications active */ // todo save updated value to async storage
+  void _toggleNotificationsOn(bool? currentValue) {
+    setState(() {
+      notificationsOn = currentValue;
+      print("notificationsOn: $notificationsOn");
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -68,17 +77,23 @@ class _SettingsPageState extends State<SettingsPage> {
                       child: Row(
                         children: [
                           Radio(
-                            value: 'On',
+                            value: notificationsOnOptions[0],
                             groupValue: notificationsOn,
                             onChanged: (value) {
                               setState(() {
-                                notificationsOn = !notificationsOn;
+                                _toggleNotificationsOn(value);
                               });
                             },
                           ),
                           const Padding(
                             padding: EdgeInsets.all(10),
-                            child: Text('On'),
+                            child: Text(
+                              'On',
+                              style: TextStyle(
+                                  color: Color(0xFF1B5E20),
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.normal),
+                            ),
                           ),
                         ],
                       )),
@@ -87,17 +102,23 @@ class _SettingsPageState extends State<SettingsPage> {
                       child: Row(
                         children: [
                           Radio(
-                            value: 'On',
+                            value: notificationsOnOptions[1],
                             groupValue: notificationsOn,
                             onChanged: (value) {
                               setState(() {
-                                notificationsOn = !notificationsOn;
+                                _toggleNotificationsOn(value);
                               });
                             },
                           ),
                           const Padding(
                             padding: EdgeInsets.all(10),
-                            child: Text('Off'),
+                            child: Text(
+                              'Off',
+                              style: TextStyle(
+                                  color: Color(0xFF1B5E20),
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.normal),
+                            ),
                           ),
                         ],
                       ))
