@@ -1,12 +1,39 @@
 import 'package:flutter/material.dart';
 
-class SettingsPage extends StatelessWidget {
+class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
+
+  @override
+  State<SettingsPage> createState() => _SettingsPageState();
+}
+
+class _SettingsPageState extends State<SettingsPage> {
+  bool notificationsOn = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: header(context),
+      body: Column(
+        children: [
+          Container(
+            margin: const EdgeInsets.fromLTRB(10, 10, 10, 5),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Padding(
+                  padding: EdgeInsets.all(10),
+                  child: Text('Notifications'),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(10),
+                  child: Text('Yessir'),
+                )
+              ],
+            ),
+          )
+        ],
+      ),
     );
   }
 
