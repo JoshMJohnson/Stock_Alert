@@ -12,9 +12,11 @@ class _PriceChangeThresholdState extends State<PriceChangeThreshold> {
 
   /* handles the slider value changing */ // todo save updated value to async storage
   void sliderActionHandler(double currentSliderValue) {
+    String roundedSliderValueString = currentSliderValue.toStringAsFixed(2);
+    double roundedSliderValueDouble = double.parse(roundedSliderValueString);
+
     setState(() {
-      _currentValue = currentSliderValue;
-      print("slider value changed!... currentSliderValue: $currentSliderValue");
+      _currentValue = roundedSliderValueDouble;
     });
   }
 
