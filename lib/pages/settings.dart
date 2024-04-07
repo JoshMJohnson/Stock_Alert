@@ -21,13 +21,51 @@ class _SettingsPageState extends State<SettingsPage> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Padding(
+                const Padding(
                   padding: EdgeInsets.all(10),
-                  child: Text('Notifications'),
+                  child: Text('Notifications:'),
                 ),
-                Padding(
-                  padding: EdgeInsets.all(10),
-                  child: Text('Yessir'),
+                Row(
+                  children: [
+                    Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Row(
+                          children: [
+                            Radio(
+                              value: 'On',
+                              groupValue: notificationsOn,
+                              onChanged: (value) {
+                                setState(() {
+                                  notificationsOn = !notificationsOn;
+                                });
+                              },
+                            ),
+                            const Padding(
+                              padding: EdgeInsets.all(10),
+                              child: Text('On'),
+                            ),
+                          ],
+                        )),
+                    Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Row(
+                          children: [
+                            Radio(
+                              value: 'On',
+                              groupValue: notificationsOn,
+                              onChanged: (value) {
+                                setState(() {
+                                  notificationsOn = !notificationsOn;
+                                });
+                              },
+                            ),
+                            const Padding(
+                              padding: EdgeInsets.all(10),
+                              child: Text('Off'),
+                            ),
+                          ],
+                        ))
+                  ],
                 )
               ],
             ),
