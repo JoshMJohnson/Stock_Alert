@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 
-class NotificationChangeThreshold extends StatefulWidget {
-  const NotificationChangeThreshold({super.key});
+class PriceChangeThreshold extends StatefulWidget {
+  const PriceChangeThreshold({super.key});
 
   @override
-  State<NotificationChangeThreshold> createState() =>
-      _NotificationChangeThresholdState();
+  State<PriceChangeThreshold> createState() => _PriceChangeThresholdState();
 }
 
-class _NotificationChangeThresholdState
-    extends State<NotificationChangeThreshold> {
+/* handles notification  within settings */
+class _PriceChangeThresholdState extends State<PriceChangeThreshold> {
   double _currentValue = 5;
 
   /* handles the slider value changing */ // todo save updated value to async storage
