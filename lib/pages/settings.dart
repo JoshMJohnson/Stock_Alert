@@ -79,6 +79,10 @@ class _SettingsPageState extends State<SettingsPage> {
                           Radio(
                             value: notificationsOnOptions[0],
                             groupValue: notificationsOn,
+                            fillColor: MaterialStateProperty.resolveWith<Color>(
+                                (Set<MaterialState> states) {
+                              return const Color(0xFF1B5E20);
+                            }),
                             onChanged: (value) {
                               setState(() {
                                 _toggleNotificationsOn(value);
@@ -104,6 +108,10 @@ class _SettingsPageState extends State<SettingsPage> {
                           Radio(
                             value: notificationsOnOptions[1],
                             groupValue: notificationsOn,
+                            fillColor: MaterialStateProperty.resolveWith<Color>(
+                                (Set<MaterialState> states) {
+                              return const Color(0xFF1B5E20);
+                            }),
                             onChanged: (value) {
                               setState(() {
                                 _toggleNotificationsOn(value);
