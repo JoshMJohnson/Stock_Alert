@@ -19,7 +19,7 @@ class SettingsPage extends StatelessWidget {
             fontSize: 28,
             fontWeight: FontWeight.w900),
       ),
-      centerTitle: true,
+      centerTitle: false,
       backgroundColor: Colors.green[200],
       leading: GestureDetector(
         onTap: () {
