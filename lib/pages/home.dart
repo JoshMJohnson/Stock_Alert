@@ -6,11 +6,12 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBar(),
+      appBar: header(),
     );
   }
 
-  AppBar appBar() {
+  /* header */
+  AppBar header() {
     return AppBar(
         title: Text(
           'Stock Alert',
