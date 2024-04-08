@@ -15,6 +15,8 @@ class _PriceChangeThresholdState extends State<PriceChangeThreshold> {
     String roundedSliderValueString = currentSliderValue.toStringAsFixed(2);
     double roundedSliderValueDouble = double.parse(roundedSliderValueString);
 
+    print("Slider updated value: $roundedSliderValueDouble");
+
     setState(() {
       _currentValue = roundedSliderValueDouble;
     });
@@ -30,7 +32,7 @@ class _PriceChangeThresholdState extends State<PriceChangeThreshold> {
           const Padding(
               padding: EdgeInsets.all(10),
               child: Text(
-                'Day Change Threshold:',
+                'Day Change\nThreshold:',
                 style: TextStyle(
                     color: Color(0xFF1B5E20),
                     fontSize: 20,
