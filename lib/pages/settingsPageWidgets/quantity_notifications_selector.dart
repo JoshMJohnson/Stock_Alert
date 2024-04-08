@@ -24,42 +24,38 @@ class _QuantityNotificationsSelectorState
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.fromLTRB(10, 10, 10, 5),
+      margin: const EdgeInsets.fromLTRB(20, 10, 20, 10),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const Padding(
-              padding: EdgeInsets.all(10),
-              child: Text(
-                'Quantity of\nDaily Notifications:',
-                style: TextStyle(
-                    color: Color(0xFF1B5E20),
-                    fontSize: 20,
-                    fontWeight: FontWeight.w600),
-              )),
-          Padding(
-              padding: const EdgeInsets.all(10),
-              child: DropdownButton(
-                items: dropdownOptions.map((String option) {
-                  return DropdownMenuItem(
-                      value: option,
-                      child: Text(
-                        option,
-                        style: const TextStyle(
-                            color: Color(0xFF1B5E20),
-                            fontSize: 20,
-                            fontWeight: FontWeight.normal),
-                      ));
-                }).toList(),
-                onChanged: (String? selectedValue) {
-                  _dropdownHandler(selectedValue);
-                },
-                value: currentOption,
-                dropdownColor: const Color(0xFFA5D6A7),
-                iconDisabledColor: const Color(0xFF1B5E20),
-                iconEnabledColor: const Color(0xFF1B5E20),
-                borderRadius: BorderRadius.circular(40),
-              )),
+          const Text(
+            'Quantity of\nDaily Notifications:',
+            style: TextStyle(
+                color: Color(0xFF1B5E20),
+                fontSize: 20,
+                fontWeight: FontWeight.w600),
+          ),
+          DropdownButton(
+            items: dropdownOptions.map((String option) {
+              return DropdownMenuItem(
+                  value: option,
+                  child: Text(
+                    option,
+                    style: const TextStyle(
+                        color: Color(0xFF1B5E20),
+                        fontSize: 20,
+                        fontWeight: FontWeight.normal),
+                  ));
+            }).toList(),
+            onChanged: (String? selectedValue) {
+              _dropdownHandler(selectedValue);
+            },
+            value: currentOption,
+            dropdownColor: const Color(0xFFA5D6A7),
+            iconDisabledColor: const Color(0xFF1B5E20),
+            iconEnabledColor: const Color(0xFF1B5E20),
+            borderRadius: BorderRadius.circular(40),
+          ),
         ],
       ),
     );

@@ -25,19 +25,17 @@ class _PriceChangeThresholdState extends State<PriceChangeThreshold> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+      margin: const EdgeInsets.fromLTRB(20, 10, 20, 10),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const Padding(
-              padding: EdgeInsets.all(10),
-              child: Text(
-                'Day Change\nThreshold:',
-                style: TextStyle(
-                    color: Color(0xFF1B5E20),
-                    fontSize: 20,
-                    fontWeight: FontWeight.w600),
-              )),
+          const Text(
+            'Day Change\nThreshold:',
+            style: TextStyle(
+                color: Color(0xFF1B5E20),
+                fontSize: 20,
+                fontWeight: FontWeight.w600),
+          ),
           Slider(
               value: _currentValue,
               max: 10,
