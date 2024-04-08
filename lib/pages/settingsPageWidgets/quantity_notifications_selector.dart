@@ -31,7 +31,7 @@ class _QuantityNotificationsSelectorState
           const Padding(
               padding: EdgeInsets.all(10),
               child: Text(
-                'Quantitiy of\nDaily Notifications:',
+                'Quantity of\nDaily Notifications:',
                 style: TextStyle(
                     color: Color(0xFF1B5E20),
                     fontSize: 20,
