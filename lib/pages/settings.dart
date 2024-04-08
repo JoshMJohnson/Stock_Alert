@@ -15,7 +15,7 @@ class _SettingsPageState extends State<SettingsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: header(context),
-      body: body(),
+      body: settingsBody(),
     );
   }
 
@@ -45,7 +45,7 @@ class _SettingsPageState extends State<SettingsPage> {
   }
 
   /* body widget of settings page */
-  Container body() {
+  Container settingsBody() {
     return Container(
         decoration: const BoxDecoration(
             gradient: LinearGradient(

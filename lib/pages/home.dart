@@ -8,6 +8,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: header(context),
+      body: homeBody(),
     );
   }
 
@@ -42,4 +43,13 @@ class HomePage extends StatelessWidget {
   }
 }
 
-/* settings button action */
+/* body widget of settings page */
+Container homeBody() {
+  return Container(
+    decoration: const BoxDecoration(
+        gradient: LinearGradient(
+            colors: [Color(0XAA006400), Color(0xFFA5D6A7)],
+            begin: Alignment.bottomCenter,
+            end: Alignment.topCenter)),
+  );
+}
