@@ -45,13 +45,19 @@ class _SettingsPageState extends State<SettingsPage> {
   }
 
   /* body widget of settings page */
-  Column body() {
-    return const Column(
-      children: [
-        NotificationToggle(),
-        PriceChangeThreshold(),
-        QuantityNotificationsSelector()
-      ],
-    );
+  Container body() {
+    return Container(
+        decoration: const BoxDecoration(
+            gradient: LinearGradient(
+                colors: [Color(0XAA006400), Color(0xFFA5D6A7)],
+                begin: Alignment.bottomCenter,
+                end: Alignment.topCenter)),
+        child: const Column(
+          children: [
+            NotificationToggle(),
+            PriceChangeThreshold(),
+            QuantityNotificationsSelector()
+          ],
+        ));
   }
 }
