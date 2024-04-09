@@ -143,7 +143,7 @@ class _TODRemindersState extends State<TODReminders> {
     late int todMinutes;
 
     /* military -> standard variables */
-    bool isAMPM = false;
+    bool isAM = true;
     late String todTimeUpdated;
 
     if (todID == 0) {
@@ -161,12 +161,12 @@ class _TODRemindersState extends State<TODReminders> {
     }
 
     /* military -> standard time */
-    if (todHours > 12) {
+    if (todHours > 11) {
       todHours -= 12;
-      isAMPM = true;
+      isAM = false;
     }
 
-    if (isAMPM) {
+    if (isAM) {
       todTimeUpdated = '$todHours:$todMinutes am';
     } else {
       todTimeUpdated = '$todHours:$todMinutes pm';
