@@ -160,6 +160,8 @@ class _TODRemindersState extends State<TODReminders> {
       todMinutes = tod3.minute;
     }
 
+    print('todMinutes: $todMinutes');
+
     /* military -> standard time */
     if (todHours > 11) {
       todHours -= 12;
@@ -168,6 +170,7 @@ class _TODRemindersState extends State<TODReminders> {
 
     todHours == 0 ? todHours = 12 : todHours;
 
+    /* prepares string statement that displays the chosen time */
     if (isAM) {
       todTimeUpdated = '$todHours:$todMinutes am';
     } else {
