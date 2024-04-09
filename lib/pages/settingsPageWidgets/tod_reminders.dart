@@ -17,66 +17,72 @@ class _TODRemindersState extends State<TODReminders> {
     return Container(
         margin: const EdgeInsets.fromLTRB(0, 20, 0, 20),
         child: Column(children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Text(
-                'Daily Notification 1:',
-                style: TextStyle(
-                    color: Color(0xFF1B5E20),
-                    fontSize: 20,
-                    fontWeight: FontWeight.w600),
-              ),
-              ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFFA5D6A7),
-                      foregroundColor: const Color(0xFFFF0000)),
-                  onPressed: () async {
-                    changeTODHandler(0);
-                  },
-                  child: getCurrentTOD(0))
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Text(
-                'Daily Notification 2:',
-                style: TextStyle(
-                    color: Color(0xFF1B5E20),
-                    fontSize: 20,
-                    fontWeight: FontWeight.w600),
-              ),
-              ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFFA5D6A7),
-                      foregroundColor: const Color(0xFFFF0000)),
-                  onPressed: () async {
-                    changeTODHandler(1);
-                  },
-                  child: getCurrentTOD(1))
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Text(
-                'Daily Notification 3:',
-                style: TextStyle(
-                    color: Color(0xFF1B5E20),
-                    fontSize: 20,
-                    fontWeight: FontWeight.w600),
-              ),
-              ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFFA5D6A7),
-                      foregroundColor: const Color(0xFFFF0000)),
-                  onPressed: () async {
-                    changeTODHandler(2);
-                  },
-                  child: getCurrentTOD(2))
-            ],
-          )
+          Padding(
+              padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    'Daily Notification 1:',
+                    style: TextStyle(
+                        color: Color(0xFF1B5E20),
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600),
+                  ),
+                  ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(0xFFA5D6A7),
+                          foregroundColor: const Color(0xFFFF0000)),
+                      onPressed: () async {
+                        changeTODHandler(0);
+                      },
+                      child: getCurrentTOD(0))
+                ],
+              )),
+          Padding(
+              padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    'Daily Notification 2:',
+                    style: TextStyle(
+                        color: Color(0xFF1B5E20),
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600),
+                  ),
+                  ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(0xFFA5D6A7),
+                          foregroundColor: const Color(0xFFFF0000)),
+                      onPressed: () async {
+                        changeTODHandler(1);
+                      },
+                      child: getCurrentTOD(1))
+                ],
+              )),
+          Padding(
+              padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    'Daily Notification 3:',
+                    style: TextStyle(
+                        color: Color(0xFF1B5E20),
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600),
+                  ),
+                  ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(0xFFA5D6A7),
+                          foregroundColor: const Color(0xFFFF0000)),
+                      onPressed: () async {
+                        changeTODHandler(2);
+                      },
+                      child: getCurrentTOD(2))
+                ],
+              ))
         ]));
   }
 
