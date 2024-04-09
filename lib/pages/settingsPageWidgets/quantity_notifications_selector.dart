@@ -11,11 +11,11 @@ class QuantityNotificationsSelector extends StatefulWidget {
 
 class _QuantityNotificationsSelectorState
     extends State<QuantityNotificationsSelector> {
-  List<String> dropdownOptions = ['One', 'Two', 'Three'];
-  String? currentOption = 'Three';
+  List<int> dropdownOptions = const [1, 2, 3];
+  int? currentOption = 3;
 
   /* handles a change in dropdown box selection */
-  void _dropdownHandler(String? selectedValue) {
+  void _dropdownHandler(int? selectedValue) {
     setState(() {
       currentOption = selectedValue;
       debugPrint("currentOption: $currentOption");
@@ -38,23 +38,27 @@ class _QuantityNotificationsSelectorState
                     fontWeight: FontWeight.w600),
               ),
               DropdownButton(
-                items: dropdownOptions.map((String option) {
-                  return DropdownMenuItem(
+                items: dropdownOptions.map((int option) {
+                  return DropdownMenuItem<int>(
                       value: option,
                       child: Text(
-                        option,
+                        option.toString(),
                         style: const TextStyle(
                             color: Color(0xFF1B5E20),
                             fontSize: 20,
                             fontWeight: FontWeight.normal),
                       ));
                 }).toList(),
-                onChanged: (String? selectedValue) {
+                onChanged: (int? selectedValue) {
                   _dropdownHandler(selectedValue);
                 },
                 value: currentOption,
+                underline: Container(
+                  width: 200,
+                  height: 1,
+                  color: const Color(0xFFFF0000),
+                ),
                 dropdownColor: const Color(0xFFA5D6A7),
-                iconDisabledColor: const Color(0xFF1B5E20),
                 iconEnabledColor: const Color(0xFF1B5E20),
                 borderRadius: BorderRadius.circular(40),
               ),
