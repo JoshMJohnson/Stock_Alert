@@ -12,7 +12,7 @@ class QuantityNotificationsSelector extends StatefulWidget {
 class _QuantityNotificationsSelectorState
     extends State<QuantityNotificationsSelector> {
   List<String> dropdownOptions = ['One', 'Two', 'Three'];
-  String? currentOption = 'One';
+  String? currentOption = 'Three';
 
   /* handles a change in dropdown box selection */
   void _dropdownHandler(String? selectedValue) {
