@@ -36,15 +36,26 @@ class _PriceChangeThresholdState extends State<PriceChangeThreshold> {
                 fontSize: 20,
                 fontWeight: FontWeight.w600),
           ),
-          Slider(
-              value: _currentValue,
-              max: 10,
-              min: 2,
-              activeColor: const Color(0xFF1B5E20),
-              inactiveColor: const Color(0xFFFF0000),
-              onChanged: (value) {
-                sliderActionHandler(value);
-              })
+          Column(
+            children: [
+              Slider(
+                  value: _currentValue,
+                  max: 10,
+                  min: 2,
+                  activeColor: const Color(0xFF1B5E20),
+                  inactiveColor: const Color(0xFFFF0000),
+                  onChanged: (value) {
+                    sliderActionHandler(value);
+                  }),
+              Text(
+                '$_currentValue',
+                style: const TextStyle(
+                    color: Color(0xFF1B5E20),
+                    fontSize: 20,
+                    fontWeight: FontWeight.normal),
+              )
+            ],
+          )
         ],
       ),
     );
