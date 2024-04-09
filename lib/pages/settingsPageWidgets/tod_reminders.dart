@@ -142,6 +142,10 @@ class _TODRemindersState extends State<TODReminders> {
     late int todHours;
     late int todMinutes;
 
+    /* military -> standard variables */
+    bool isAMPM = false;
+    late String todTimeUpdated;
+
     if (todID == 0) {
       // todo get async value of TOD1 from storage
       todHours = tod1.hour;
@@ -156,7 +160,18 @@ class _TODRemindersState extends State<TODReminders> {
       todMinutes = tod3.minute;
     }
 
-    String todTimeUpdated = '$todHours:$todMinutes';
+    /* military time -> standard time */
+    if (todHours > 12) {
+      todHours -= 12;
+      isAMPM = true;
+    }
+
+    if (isAMPM) {
+      todTimeUpdated = '$todHours:$todMinutes am';
+    } else {
+      todTimeUpdated = '$todHours:$todMinutes pm';
+    }
+
     Text displayedTime = Text(
       todTimeUpdated,
       style: const TextStyle(
