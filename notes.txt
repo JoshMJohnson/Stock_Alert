@@ -1,7 +1,8 @@
 To Do:
     - Create a themes file holding color constants
     - Have a green linear gradiant background
-
+    - font scaling
+    
 Bugs:
     - 
 
