@@ -34,7 +34,7 @@ class _TODRemindersState extends State<TODReminders> {
                           backgroundColor: const Color(0xFFA5D6A7),
                           foregroundColor: const Color(0xFFFF0000)),
                       onPressed: () async {
-                        changeTODHandler(0);
+                        changeTOD1Handler();
                       },
                       child: getCurrentTOD(0))
                 ],
@@ -56,7 +56,7 @@ class _TODRemindersState extends State<TODReminders> {
                           backgroundColor: const Color(0xFFA5D6A7),
                           foregroundColor: const Color(0xFFFF0000)),
                       onPressed: () async {
-                        changeTODHandler(1);
+                        changeTOD2Handler();
                       },
                       child: getCurrentTOD(1))
                 ],
@@ -78,7 +78,7 @@ class _TODRemindersState extends State<TODReminders> {
                           backgroundColor: const Color(0xFFA5D6A7),
                           foregroundColor: const Color(0xFFFF0000)),
                       onPressed: () async {
-                        changeTODHandler(2);
+                        changeTOD3Handler();
                       },
                       child: getCurrentTOD(2))
                 ],
@@ -86,36 +86,55 @@ class _TODRemindersState extends State<TODReminders> {
         ]));
   }
 
-  changeTODHandler(int todID) async {
-    final TimeOfDay? todUpdated = await showTimePicker(
+  /* adjusts and saves updated time of day 1 reminder */
+  changeTOD1Handler() async {
+    final TimeOfDay? tod1Updated = await showTimePicker(
         context: context,
-        initialTime: TimeOfDay.now()); // ! get saved time as initialTime
+        initialTime:
+            tod1); // ! get saved time of TOD1 from storage as initialTime
 
     /* if no updated time was selected; cancel was pressed from within the selector */
-    if (todUpdated == null) {
+    if (tod1Updated == null) {
       return;
     }
 
-    /* determines which daily reminder is being changed */
-    if (todID == 0) {
-      // todo save TOD1 to storage
+    setState(() {
+      tod1 = tod1Updated;
+    });
+  }
 
-      setState(() {
-        tod1 = todUpdated;
-      });
-    } else if (todID == 1) {
-      // todo save TOD2 to storage
+  /* adjusts and saves updated time of day 2 reminder */
+  changeTOD2Handler() async {
+    final TimeOfDay? tod2Updated = await showTimePicker(
+        context: context,
+        initialTime:
+            tod2); // ! get saved time of TOD2 from storage as initialTime
 
-      setState(() {
-        tod2 = todUpdated;
-      });
-    } else {
-      // todo save TOD3 to storage
-
-      setState(() {
-        tod3 = todUpdated;
-      });
+    /* if no updated time was selected; cancel was pressed from within the selector */
+    if (tod2Updated == null) {
+      return;
     }
+
+    setState(() {
+      tod2 = tod2Updated;
+    });
+  }
+
+  /* adjusts and saves updated time of day 3 reminder */
+  changeTOD3Handler() async {
+    final TimeOfDay? tod3Updated = await showTimePicker(
+        context: context,
+        initialTime:
+            tod3); // ! get saved time of TOD3 from storage as initialTime
+
+    /* if no updated time was selected; cancel was pressed from within the selector */
+    if (tod3Updated == null) {
+      return;
+    }
+
+    setState(() {
+      tod3 = tod3Updated;
+    });
   }
 
   /* retrieve tod1 from storage */
