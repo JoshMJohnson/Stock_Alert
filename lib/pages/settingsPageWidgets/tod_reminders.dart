@@ -19,88 +19,87 @@ class _TODRemindersState extends State<TODReminders> {
         child: Column(children: [
           Padding(
               padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text(
-                    'Daily Notification 1:',
-                    style: TextStyle(
-                        color: Color(0xFF1B5E20),
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600),
-                  ),
-                  ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFFA5D6A7),
-                          foregroundColor: const Color(0xFFFF0000)),
-                      onPressed: () async {
-                        changeTOD1Handler();
-                      },
-                      child: getCurrentTOD(0))
-                ],
-              )),
+              child: todInstance(0)),
           Padding(
               padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text(
-                    'Daily Notification 2:',
-                    style: TextStyle(
-                        color: Color(0xFF1B5E20),
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600),
-                  ),
-                  ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFFA5D6A7),
-                          foregroundColor: const Color(0xFFFF0000)),
-                      onPressed: () async {
-                        changeTOD2Handler();
-                      },
-                      child: getCurrentTOD(1))
-                ],
-              )),
+              child: todInstance(1)),
           Padding(
               padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text(
-                    'Daily Notification 3:',
-                    style: TextStyle(
-                        color: Color(0xFF1B5E20),
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600),
-                  ),
-                  ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFFA5D6A7),
-                          foregroundColor: const Color(0xFFFF0000)),
-                      onPressed: () async {
-                        changeTOD3Handler();
-                      },
-                      child: getCurrentTOD(2))
-                ],
-              ))
+              child: todInstance(2))
         ]));
   }
 
+  /* creates an intance of a daily notification display */
+  Row todInstance(todID) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        const Text(
+          'Daily Notification 1:',
+          style: TextStyle(
+              color: Color(0xFF1B5E20),
+              fontSize: 20,
+              fontWeight: FontWeight.w600),
+        ),
+        ElevatedButton(
+            style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFFA5D6A7),
+                foregroundColor: const Color(0xFFFF0000)),
+            onPressed: () async {
+              changeTODHandler(todID);
+            },
+            child: getCurrentTOD(todID))
+      ],
+    );
+  }
+
   /* adjusts and saves updated time of day 1 reminder */
-  changeTOD1Handler() async {
-    final TimeOfDay? tod1Updated = await showTimePicker(
-        context: context,
-        initialTime:
-            tod1); // ! get saved time of TOD1 from storage as initialTime
+  changeTODHandler(int todID) async {
+    late final TimeOfDay? todUpdated;
 
-    /* if no updated time was selected; cancel was pressed from within the selector */
-    if (tod1Updated == null) {
-      return;
+    if (todID == 0) {
+      todUpdated = await showTimePicker(
+          context: context,
+          initialTime:
+              tod1); // ! get saved time of TOD1 from storage as initialTime
+
+      /* if no updated time was selected; cancel was pressed from within the selector */
+      if (todUpdated == null) {
+        return;
+      }
+
+      setState(() {
+        tod1 = todUpdated!;
+      });
+    } else if (todID == 1) {
+      todUpdated = await showTimePicker(
+          context: context,
+          initialTime:
+              tod2); // ! get saved time of TOD2 from storage as initialTime
+
+      /* if no updated time was selected; cancel was pressed from within the selector */
+      if (todUpdated == null) {
+        return;
+      }
+
+      setState(() {
+        tod2 = todUpdated!;
+      });
+    } else {
+      todUpdated = await showTimePicker(
+          context: context,
+          initialTime:
+              tod3); // ! get saved time of TOD3 from storage as initialTime
+
+      /* if no updated time was selected; cancel was pressed from within the selector */
+      if (todUpdated == null) {
+        return;
+      }
+
+      setState(() {
+        tod3 = todUpdated!;
+      });
     }
-
-    setState(() {
-      tod1 = tod1Updated;
-    });
   }
 
   /* adjusts and saves updated time of day 2 reminder */
