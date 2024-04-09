@@ -140,6 +140,7 @@ class _TODRemindersState extends State<TODReminders> {
   Text getCurrentTOD(int todID) {
     late int todHours;
     late int todMinutes;
+    late String todMinutes2Digits;
 
     /* military -> standard variables */
     bool isAM = true;
@@ -159,8 +160,7 @@ class _TODRemindersState extends State<TODReminders> {
       todMinutes = tod3.minute;
     }
 
-    print(
-        'todMinutes: $todMinutes'); // ! runs through all 3 notificaions when changing 1
+    todMinutes2Digits = todMinutes.toString().padLeft(2, '0');
 
     /* military -> standard time */
     if (todHours > 11) {
@@ -172,9 +172,9 @@ class _TODRemindersState extends State<TODReminders> {
 
     /* prepares string statement that displays the chosen time */
     if (isAM) {
-      todTimeUpdated = '$todHours:$todMinutes am';
+      todTimeUpdated = '$todHours:$todMinutes2Digits am';
     } else {
-      todTimeUpdated = '$todHours:$todMinutes pm';
+      todTimeUpdated = '$todHours:$todMinutes2Digits pm';
     }
 
     Text displayedTime = Text(
