@@ -50,21 +50,18 @@ class _TODRemindersState extends State<TODReminders> {
     /* determines which daily reminder is being changed */
     if (todID == 0) {
       // todo save TOD1 to storage
-      // todo update display for TOD1 on button
 
       setState(() {
         tod1 = todUpdated;
       });
     } else if (todID == 1) {
       // todo save TOD2 to storage
-      // todo update display for TOD2 on button
 
       setState(() {
         tod2 = todUpdated;
       });
     } else {
       // todo save TOD3 to storage
-      // todo update display for TOD3 on button
 
       setState(() {
         tod3 = todUpdated;
