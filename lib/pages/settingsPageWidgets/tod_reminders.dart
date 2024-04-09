@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 
 class TODReminders extends StatefulWidget {
@@ -10,34 +8,76 @@ class TODReminders extends StatefulWidget {
 }
 
 class _TODRemindersState extends State<TODReminders> {
-  TimeOfDay tod1 = TimeOfDay.now();
-  TimeOfDay tod2 = TimeOfDay.now();
-  TimeOfDay tod3 = TimeOfDay.now();
+  TimeOfDay tod1 = const TimeOfDay(hour: 8, minute: 45);
+  TimeOfDay tod2 = const TimeOfDay(hour: 12, minute: 0);
+  TimeOfDay tod3 = const TimeOfDay(hour: 14, minute: 45);
 
   @override
   Widget build(BuildContext context) {
     return Container(
         margin: const EdgeInsets.fromLTRB(0, 20, 0, 20),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const Text(
-              'Daily Notification 1:',
-              style: TextStyle(
-                  color: Color(0xFF1B5E20),
-                  fontSize: 20,
-                  fontWeight: FontWeight.w600),
-            ),
-            ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFFA5D6A7),
-                    foregroundColor: const Color(0xFFFF0000)),
-                onPressed: () async {
-                  changeTODHandler(0);
-                },
-                child: getCurrentTOD(0))
-          ],
-        ));
+        child: Column(children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text(
+                'Daily Notification 1:',
+                style: TextStyle(
+                    color: Color(0xFF1B5E20),
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600),
+              ),
+              ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFFA5D6A7),
+                      foregroundColor: const Color(0xFFFF0000)),
+                  onPressed: () async {
+                    changeTODHandler(0);
+                  },
+                  child: getCurrentTOD(0))
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text(
+                'Daily Notification 2:',
+                style: TextStyle(
+                    color: Color(0xFF1B5E20),
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600),
+              ),
+              ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFFA5D6A7),
+                      foregroundColor: const Color(0xFFFF0000)),
+                  onPressed: () async {
+                    changeTODHandler(1);
+                  },
+                  child: getCurrentTOD(1))
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text(
+                'Daily Notification 3:',
+                style: TextStyle(
+                    color: Color(0xFF1B5E20),
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600),
+              ),
+              ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFFA5D6A7),
+                      foregroundColor: const Color(0xFFFF0000)),
+                  onPressed: () async {
+                    changeTODHandler(2);
+                  },
+                  child: getCurrentTOD(2))
+            ],
+          )
+        ]));
   }
 
   changeTODHandler(int todID) async {
