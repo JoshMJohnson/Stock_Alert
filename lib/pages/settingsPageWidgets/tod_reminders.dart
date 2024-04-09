@@ -35,7 +35,7 @@ class _TODRemindersState extends State<TODReminders> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         const Text(
-          'Daily Notification 1:',
+          'Daily Notification:',
           style: TextStyle(
               color: Color(0xFF1B5E20),
               fontSize: 20,
