@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:stock_alert/pages/settingsPageWidgets/notification_toggling.dart';
 import 'package:stock_alert/pages/settingsPageWidgets/price_change_threshold.dart';
 import 'package:stock_alert/pages/settingsPageWidgets/quantity_notifications_selector.dart';
+import 'package:stock_alert/pages/settingsPageWidgets/save_button.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -56,7 +57,8 @@ class _SettingsPageState extends State<SettingsPage> {
           children: [
             NotificationToggle(),
             PriceChangeThreshold(),
-            QuantityNotificationsSelector()
+            QuantityNotificationsSelector(),
+            // SaveButton()
           ],
         ));
   }
