@@ -35,7 +35,7 @@ class _TODRemindersState extends State<TODReminders> {
                 onPressed: () async {
                   changeTODHandler(0);
                 },
-                child: getCurrentTOD1())
+                child: getCurrentTOD(0))
           ],
         ));
   }
@@ -72,35 +72,33 @@ class _TODRemindersState extends State<TODReminders> {
     }
   }
 
-  /* retrieve tod1 from storage */ // todo get async value of TOD1 from storage
-  Text getCurrentTOD1() {
-    int todHours = tod1.hour;
-    int todMinutes = tod1.minute;
+  /* retrieve tod1 from storage */
+  Text getCurrentTOD(int todID) {
+    late int todHours;
+    late int todMinutes;
 
-    String tod1Time = '$todHours:$todMinutes';
+    if (todID == 0) {
+      // todo get async value of TOD1 from storage
+      todHours = tod1.hour;
+      todMinutes = tod1.minute;
+    } else if (todID == 1) {
+      // todo get async value of TOD2 from storage
+      todHours = tod2.hour;
+      todMinutes = tod2.minute;
+    } else {
+      // todo get async value of TOD3 from storage
+      todHours = tod3.hour;
+      todMinutes = tod3.minute;
+    }
+
+    String todTimeUpdated = '$todHours:$todMinutes';
     Text displayedTime = Text(
-      tod1Time,
+      todTimeUpdated,
       style: const TextStyle(
           color: Color(0xFF1B5E20),
           fontSize: 20,
           fontWeight: FontWeight.normal),
     );
-
-    return displayedTime;
-  }
-
-  /* retrieve tod1 from storage */ // todo get async value of TOD1 from storage
-  Text getCurrentTOD2() {
-    String tod2Time = 'temp2:temp2';
-    Text displayedTime = Text(tod2Time);
-
-    return displayedTime;
-  }
-
-  /* retrieve tod1 from storage */ // todo get async value of TOD1 from storage
-  Text getCurrentTOD3() {
-    String tod3Time = 'temp3:temp3';
-    Text displayedTime = Text(tod3Time);
 
     return displayedTime;
   }
