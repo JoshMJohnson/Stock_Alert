@@ -102,40 +102,6 @@ class _TODRemindersState extends State<TODReminders> {
     }
   }
 
-  /* adjusts and saves updated time of day 2 reminder */
-  changeTOD2Handler() async {
-    final TimeOfDay? tod2Updated = await showTimePicker(
-        context: context,
-        initialTime:
-            tod2); // ! get saved time of TOD2 from storage as initialTime
-
-    /* if no updated time was selected; cancel was pressed from within the selector */
-    if (tod2Updated == null) {
-      return;
-    }
-
-    setState(() {
-      tod2 = tod2Updated;
-    });
-  }
-
-  /* adjusts and saves updated time of day 3 reminder */
-  changeTOD3Handler() async {
-    final TimeOfDay? tod3Updated = await showTimePicker(
-        context: context,
-        initialTime:
-            tod3); // ! get saved time of TOD3 from storage as initialTime
-
-    /* if no updated time was selected; cancel was pressed from within the selector */
-    if (tod3Updated == null) {
-      return;
-    }
-
-    setState(() {
-      tod3 = tod3Updated;
-    });
-  }
-
   /* retrieves TODs from storage and adjusts for display */
   Text getCurrentTOD(int todID) {
     late int todHours;
@@ -176,6 +142,8 @@ class _TODRemindersState extends State<TODReminders> {
     } else {
       todTimeUpdated = '$todHours:$todMinutes2Digits pm';
     }
+
+    debugPrint('todTimeUpdated: $todTimeUpdated');
 
     Text displayedTime = Text(
       todTimeUpdated,

@@ -15,7 +15,7 @@ class _NotificationToggleState extends State<NotificationToggle> {
   void _toggleNotificationsActive(bool? currentValue) {
     setState(() {
       notificationsActive = currentValue;
-      print("notificationsOn: $notificationsActive");
+      debugPrint("notificationsOn: $notificationsActive");
     });
   }
 
