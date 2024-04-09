@@ -29,6 +29,9 @@ class _TODRemindersState extends State<TODReminders> {
                   fontWeight: FontWeight.w600),
             ),
             ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFFA5D6A7),
+                    foregroundColor: const Color(0xFFFF0000)),
                 onPressed: () async {
                   changeTODHandler(0);
                 },
@@ -75,7 +78,13 @@ class _TODRemindersState extends State<TODReminders> {
     int todMinutes = tod1.minute;
 
     String tod1Time = '$todHours:$todMinutes';
-    Text displayedTime = Text(tod1Time);
+    Text displayedTime = Text(
+      tod1Time,
+      style: const TextStyle(
+          color: Color(0xFF1B5E20),
+          fontSize: 20,
+          fontWeight: FontWeight.normal),
+    );
 
     return displayedTime;
   }
