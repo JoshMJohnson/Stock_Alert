@@ -166,6 +166,8 @@ class _TODRemindersState extends State<TODReminders> {
       isAM = false;
     }
 
+    todHours == 0 ? todHours = 12 : todHours;
+
     if (isAM) {
       todTimeUpdated = '$todHours:$todMinutes am';
     } else {
