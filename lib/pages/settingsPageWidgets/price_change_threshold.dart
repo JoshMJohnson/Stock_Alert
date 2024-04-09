@@ -15,8 +15,6 @@ class _PriceChangeThresholdState extends State<PriceChangeThreshold> {
     String roundedSliderValueString = currentSliderValue.toStringAsFixed(2);
     double roundedSliderValueDouble = double.parse(roundedSliderValueString);
 
-    debugPrint("Slider updated value: $roundedSliderValueDouble");
-
     setState(() {
       _currentValue = roundedSliderValueDouble;
     });
