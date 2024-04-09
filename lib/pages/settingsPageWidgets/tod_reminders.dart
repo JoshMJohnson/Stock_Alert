@@ -10,7 +10,7 @@ class TODReminders extends StatefulWidget {
 class _TODRemindersState extends State<TODReminders> {
   TimeOfDay tod1 = const TimeOfDay(hour: 8, minute: 45);
   TimeOfDay tod2 = const TimeOfDay(hour: 12, minute: 0);
-  TimeOfDay tod3 = const TimeOfDay(hour: 14, minute: 45);
+  TimeOfDay tod3 = const TimeOfDay(hour: 14, minute: 15);
 
   @override
   Widget build(BuildContext context) {
