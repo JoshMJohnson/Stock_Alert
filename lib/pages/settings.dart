@@ -53,13 +53,16 @@ class _SettingsPageState extends State<SettingsPage> {
                 colors: [Color(0XAA006400), Color(0xFFA5D6A7)],
                 begin: Alignment.bottomCenter,
                 end: Alignment.topCenter)),
-        child: const Column(
-          children: [
-            NotificationToggle(),
-            PriceChangeThreshold(),
-            QuantityNotificationsSelector(),
-            // SaveButton()
-          ],
-        ));
+        child: const SingleChildScrollView(
+            child: Padding(
+                padding: EdgeInsets.all(20),
+                child: Column(
+                  children: [
+                    NotificationToggle(),
+                    PriceChangeThreshold(),
+                    QuantityNotificationsSelector(),
+                    SaveButton()
+                  ],
+                ))));
   }
 }

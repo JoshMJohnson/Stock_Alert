@@ -22,7 +22,7 @@ class _NotificationToggleState extends State<NotificationToggle> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.fromLTRB(20, 20, 20, 10),
+      margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
