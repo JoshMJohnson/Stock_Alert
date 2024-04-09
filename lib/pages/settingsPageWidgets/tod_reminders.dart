@@ -160,7 +160,8 @@ class _TODRemindersState extends State<TODReminders> {
       todMinutes = tod3.minute;
     }
 
-    print('todMinutes: $todMinutes');
+    print(
+        'todMinutes: $todMinutes'); // ! runs through all 3 notificaions when changing 1
 
     /* military -> standard time */
     if (todHours > 11) {
