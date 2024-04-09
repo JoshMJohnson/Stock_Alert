@@ -137,7 +137,7 @@ class _TODRemindersState extends State<TODReminders> {
     });
   }
 
-  /* retrieve tod1 from storage */
+  /* retrieves TODs from storage and adjusts for display */
   Text getCurrentTOD(int todID) {
     late int todHours;
     late int todMinutes;
@@ -160,7 +160,7 @@ class _TODRemindersState extends State<TODReminders> {
       todMinutes = tod3.minute;
     }
 
-    /* military time -> standard time */
+    /* military -> standard time */
     if (todHours > 12) {
       todHours -= 12;
       isAMPM = true;
