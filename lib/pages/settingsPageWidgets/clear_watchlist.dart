@@ -16,7 +16,8 @@ class _ClearWatchlistState extends State<ClearWatchlist> {
       },
       style: ElevatedButton.styleFrom(backgroundColor: const Color(0xFFFF0000)),
       child: const Text(
-        'Clear',
+        'Clear\nWatchlist',
+        textAlign: TextAlign.center,
         style: TextStyle(
             color: Color(0xFFA5D6A7),
             fontSize: 20,

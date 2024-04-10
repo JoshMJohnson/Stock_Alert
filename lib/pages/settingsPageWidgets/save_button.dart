@@ -16,7 +16,8 @@ class _SaveButtonState extends State<SaveButton> {
       },
       style: ElevatedButton.styleFrom(backgroundColor: const Color(0xFFA5D6A7)),
       child: const Text(
-        'Save',
+        'Save\nSettings',
+        textAlign: TextAlign.center,
         style: TextStyle(
             color: Color(0xFF1B5E20),
             fontSize: 20,
