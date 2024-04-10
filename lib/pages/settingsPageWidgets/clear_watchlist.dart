@@ -14,7 +14,9 @@ class _ClearWatchlistState extends State<ClearWatchlist> {
       onPressed: () async {
         clearWatchlistHandler();
       },
-      style: ElevatedButton.styleFrom(backgroundColor: const Color(0xFFFF0000)),
+      style: ElevatedButton.styleFrom(
+          backgroundColor: const Color(0xFFFF0000),
+          foregroundColor: const Color(0xFF800000)),
       child: const Text(
         'Clear\nWatchlist',
         textAlign: TextAlign.center,

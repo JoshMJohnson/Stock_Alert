@@ -14,7 +14,9 @@ class _SaveButtonState extends State<SaveButton> {
       onPressed: () async {
         saveButtonHandler();
       },
-      style: ElevatedButton.styleFrom(backgroundColor: const Color(0xFFA5D6A7)),
+      style: ElevatedButton.styleFrom(
+          backgroundColor: const Color(0xFFA5D6A7),
+          foregroundColor: const Color(0xFF228B22)),
       child: const Text(
         'Save\nSettings',
         textAlign: TextAlign.center,
