@@ -53,7 +53,7 @@ class _TODRemindersState extends State<TODReminders> {
     );
   }
 
-  /* adjusts and saves updated time of day 1 reminder */
+  /* adjusts and saves updated time of day reminders */
   changeTODHandler(int todID) async {
     late final TimeOfDay? todUpdated;
 

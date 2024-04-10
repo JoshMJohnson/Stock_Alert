@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:stock_alert/pages/settingsPageWidgets/notification_toggling.dart';
 import 'package:stock_alert/pages/settingsPageWidgets/price_change_threshold.dart';
 import 'package:stock_alert/pages/settingsPageWidgets/quantity_notifications_selector.dart';
-import 'package:stock_alert/pages/settingsPageWidgets/save_button.dart';
+import 'package:stock_alert/pages/settingsPageWidgets/button_group.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -48,6 +48,8 @@ class _SettingsPageState extends State<SettingsPage> {
   /* body widget of settings page */
   Container settingsBody() {
     return Container(
+        width: double.infinity,
+        height: double.infinity,
         decoration: const BoxDecoration(
             gradient: LinearGradient(
                 colors: [Color(0XAA006400), Color(0xFFA5D6A7)],
@@ -61,7 +63,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     NotificationToggle(),
                     PriceChangeThreshold(),
                     QuantityNotificationsSelector(),
-                    SaveButton()
+                    ButtonGroup()
                   ],
                 ))));
   }
