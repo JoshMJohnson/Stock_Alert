@@ -44,7 +44,7 @@ class _TODRemindersState extends State<TODReminders> {
         ElevatedButton(
             style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xFFA5D6A7),
-                foregroundColor: const Color(0xFFFF0000)),
+                foregroundColor: const Color(0xFF228B22)),
             onPressed: () async {
               changeTODHandler(todID);
             },
