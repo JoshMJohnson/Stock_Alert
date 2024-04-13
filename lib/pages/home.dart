@@ -22,6 +22,7 @@ class HomePage extends StatelessWidget {
               fontSize: 28,
               fontWeight: FontWeight.w900),
         ),
+        leading: Image.asset('assets/bull.png'),
         centerTitle: true,
         backgroundColor: Colors.green[200],
         actions: [
