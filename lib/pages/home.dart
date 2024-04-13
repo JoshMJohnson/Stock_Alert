@@ -46,10 +46,24 @@ class HomePage extends StatelessWidget {
 /* body widget of settings page */
 Container homeBody() {
   return Container(
-    decoration: const BoxDecoration(
-        gradient: LinearGradient(
-            colors: [Color(0XAA006400), Color(0xFFA5D6A7)],
-            begin: Alignment.bottomCenter,
-            end: Alignment.topCenter)),
-  );
+      width: double.infinity,
+      height: double.infinity,
+      decoration: const BoxDecoration(
+          gradient: LinearGradient(
+              colors: [Color(0XAA006400), Color(0xFFA5D6A7)],
+              begin: Alignment.bottomCenter,
+              end: Alignment.topCenter)),
+      child: SingleChildScrollView(
+          child: Padding(
+              padding: const EdgeInsets.all(20),
+              child: Column(
+                children: [
+                  Image.asset(
+                    'assets/bear_bull_fighting.png',
+                    width: double.infinity,
+                    height: 200,
+                    fit: BoxFit.fill,
+                  )
+                ],
+              ))));
 }
