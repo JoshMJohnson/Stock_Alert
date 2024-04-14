@@ -25,7 +25,8 @@ class _InsertFieldsState extends State<InsertFields> {
 /* text field for entering a stock ticker for entry or removal */
 SizedBox tickerTextBox() {
   return const SizedBox(
-    width: 100,
+    width: 150,
+    height: 50,
     child: TextField(
       decoration: InputDecoration(
           border: OutlineInputBorder(), hintText: 'Enter a stock ticker'),
