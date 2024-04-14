@@ -10,14 +10,9 @@ class InsertFields extends StatefulWidget {
 class _InsertFieldsState extends State<InsertFields> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        border: Border.all(color: const Color(0xFFFF0000)),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [tickerTextBox(), addTickerButton(), removeTickerButton()],
-      ),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [tickerTextBox(), addTickerButton(), removeTickerButton()],
     );
   }
 }
