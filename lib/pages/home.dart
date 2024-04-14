@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:stock_alert/pages/settings.dart';
-import 'package:stock_alert/pages/homePageWidgets/insertFields.dart';
+import 'package:stock_alert/pages/homePageWidgets/insert_fields.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
