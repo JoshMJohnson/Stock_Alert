@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:stock_alert/pages/settingsPageWidgets/notification_toggling.dart';
 import 'package:stock_alert/pages/settingsPageWidgets/price_change_threshold.dart';
 import 'package:stock_alert/pages/settingsPageWidgets/quantity_notifications_selector.dart';

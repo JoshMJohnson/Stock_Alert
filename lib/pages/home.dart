@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+
 import 'package:stock_alert/pages/settings.dart';
+import 'package:stock_alert/pages/homePageWidgets/insertFields.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -64,6 +66,10 @@ Container homeBody() {
                     width: double.infinity,
                     height: 200,
                     fit: BoxFit.fill,
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
+                    child: InsertFields(),
                   )
                 ],
               ))));
