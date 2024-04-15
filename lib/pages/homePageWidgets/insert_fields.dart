@@ -29,7 +29,14 @@ SizedBox tickerTextBox() {
     height: 50,
     child: TextField(
       decoration: InputDecoration(
-          border: OutlineInputBorder(), hintText: 'Enter a stock ticker'),
+          enabledBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: Color(0xFFFF0000)),
+          ),
+          hintText: 'Enter stock ticker...',
+          hintStyle: TextStyle(
+              color: Color(0xFF1B5E20),
+              fontSize: 18,
+              fontWeight: FontWeight.normal)),
     ),
   );
 }
@@ -48,7 +55,7 @@ Icon removeTickerButton() {
   return const Icon(
     Icons.playlist_remove,
     size: 35,
-    color: Color(0xFF1B5E20),
+    color: Color(0xFFFF0000),
   );
 }
 
