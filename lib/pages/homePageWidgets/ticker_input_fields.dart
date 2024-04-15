@@ -16,7 +16,6 @@ class _TickerInsertFieldsState extends State<TickerInsertFields> {
         tickerTextBox(),
         addTickerButton(),
         removeTickerButton(),
-        watchlistSorter()
       ],
     );
   }
@@ -25,9 +24,10 @@ class _TickerInsertFieldsState extends State<TickerInsertFields> {
 /* text field for entering a stock ticker for entry or removal */
 SizedBox tickerTextBox() {
   return const SizedBox(
-    width: 140,
+    width: 120,
     height: 50,
     child: TextField(
+      textAlign: TextAlign.center,
       autocorrect: false,
       enableSuggestions: false,
       style: TextStyle(
@@ -42,7 +42,7 @@ SizedBox tickerTextBox() {
         focusedBorder: UnderlineInputBorder(
           borderSide: BorderSide(color: Color(0xFFAA0000)),
         ),
-        hintText: 'Enter ticker...',
+        hintText: 'Stock Ticker',
         hintStyle: TextStyle(
             color: Color(0xFF1B5E20),
             fontSize: 20,
@@ -78,18 +78,6 @@ GestureDetector removeTickerButton() {
       ));
 }
 
-GestureDetector watchlistSorter() {
-  return GestureDetector(
-      onTap: () {
-        sortHandler();
-      },
-      child: const Icon(
-        Icons.sort,
-        size: 35,
-        color: Color(0xFF1B5E20),
-      ));
-}
-
 /* saves the new stock ticker to the watchlist if valid */ // todo
 saveTickerHandler() {
   debugPrint('Add stock ticker button was pressed');
@@ -98,9 +86,4 @@ saveTickerHandler() {
 removeTickerHandler() {
   // todo
   debugPrint('Remove stock ticker button was pressed');
-}
-
-/* handles the filter button pressed */ // todo
-sortHandler() {
-  debugPrint('Sort button pressed');
 }

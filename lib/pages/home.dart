@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:stock_alert/pages/settings.dart';
 import 'package:stock_alert/pages/homePageWidgets/ticker_input_fields.dart';
+import 'package:stock_alert/pages/homePageWidgets/sort_input_fields.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -69,8 +70,12 @@ Container homeBody() {
                     fit: BoxFit.fill,
                   ),
                   const Padding(
-                    padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
+                    padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
                     child: TickerInsertFields(),
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                    child: SortInputFields(),
                   )
                 ],
               ))));
