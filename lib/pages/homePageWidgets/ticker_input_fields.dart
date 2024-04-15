@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class InsertFields extends StatefulWidget {
-  const InsertFields({super.key});
+class TickerInsertFields extends StatefulWidget {
+  const TickerInsertFields({super.key});
 
   @override
-  State<InsertFields> createState() => _InsertFieldsState();
+  State<TickerInsertFields> createState() => _TickerInsertFieldsState();
 }
 
-class _InsertFieldsState extends State<InsertFields> {
+class _TickerInsertFieldsState extends State<TickerInsertFields> {
   @override
   Widget build(BuildContext context) {
     return Row(
