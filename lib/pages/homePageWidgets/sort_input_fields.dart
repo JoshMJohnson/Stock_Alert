@@ -35,21 +35,6 @@ class _SortInputFieldsState extends State<SortInputFields> {
   }
 }
 
-/* assigns the value of the text display for current sort method selected */
-sortMethodFinder() {
-  // setState(() {
-  if (savedSortValue == SortOptions.alphabetically.index) {
-    displayedSortText = 'Alphabetically';
-  } else if (savedSortValue == SortOptions.tickerPrice.index) {
-    displayedSortText = 'Ticker Price';
-  } else if (savedSortValue == SortOptions.dayChange.index) {
-    displayedSortText = 'Day Change (%)';
-  } else {
-    displayedSortText = 'Stock Exchange';
-  }
-  // });
-}
-
 /* displays the currently selected sort method */
 Text selectedSortDisplay() {
   sortMethodFinder();
@@ -70,4 +55,17 @@ sortHandler() {
   }
 
   sortMethodFinder();
+}
+
+/* assigns the value of the text display for current sort method selected */
+sortMethodFinder() {
+  if (savedSortValue == SortOptions.alphabetically.index) {
+    displayedSortText = 'Alphabetically';
+  } else if (savedSortValue == SortOptions.tickerPrice.index) {
+    displayedSortText = 'Ticker Price';
+  } else if (savedSortValue == SortOptions.dayChange.index) {
+    displayedSortText = 'Day Change (%)';
+  } else {
+    displayedSortText = 'Stock Exchange';
+  }
 }
