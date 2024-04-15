@@ -41,6 +41,7 @@ Text selectedSortDisplay() {
           fontWeight: FontWeight.normal));
 }
 
+/* displays the sort button */
 GestureDetector watchlistSorter() {
   return GestureDetector(
       onTap: () {
@@ -53,7 +54,7 @@ GestureDetector watchlistSorter() {
       ));
 }
 
-/* handles the filter button pressed */ // todo
+/* handles the sort button pressed */ // todo
 sortHandler() {
   debugPrint('Sort button pressed');
 }
