@@ -28,18 +28,26 @@ SizedBox tickerTextBox() {
     width: 140,
     height: 50,
     child: TextField(
+      autocorrect: false,
+      enableSuggestions: false,
+      style: TextStyle(
+          color: Color(0xFF1B5E20),
+          fontSize: 20,
+          fontWeight: FontWeight.normal),
       decoration: InputDecoration(
-          enabledBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: Color(0xFFFF0000)),
-          ),
-          focusedBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: Color(0xFFAA0000)),
-          ),
-          hintText: 'Enter ticker...',
-          hintStyle: TextStyle(
-              color: Color(0xFF1B5E20),
-              fontSize: 20,
-              fontWeight: FontWeight.normal)),
+        border: InputBorder.none,
+        enabledBorder: UnderlineInputBorder(
+          borderSide: BorderSide(color: Color(0xFFFF0000)),
+        ),
+        focusedBorder: UnderlineInputBorder(
+          borderSide: BorderSide(color: Color(0xFFAA0000)),
+        ),
+        hintText: 'Enter ticker...',
+        hintStyle: TextStyle(
+            color: Color(0xFF1B5E20),
+            fontSize: 20,
+            fontWeight: FontWeight.normal),
+      ),
     ),
   );
 }
