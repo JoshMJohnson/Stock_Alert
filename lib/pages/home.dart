@@ -4,9 +4,14 @@ import 'package:stock_alert/pages/settings.dart';
 import 'package:stock_alert/pages/homePageWidgets/ticker_input_fields.dart';
 import 'package:stock_alert/pages/homePageWidgets/sort_input_fields.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
