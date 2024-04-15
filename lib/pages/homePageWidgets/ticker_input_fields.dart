@@ -31,9 +31,10 @@ SizedBox tickerTextBox() {
       autocorrect: false,
       enableSuggestions: false,
       style: TextStyle(
-          color: Color(0xFF1B5E20),
-          fontSize: 22,
-          fontWeight: FontWeight.normal),
+        color: Color(0xFF1B5E20),
+        fontSize: 22,
+        fontWeight: FontWeight.w600,
+      ),
       decoration: InputDecoration(
         border: InputBorder.none,
         enabledBorder: UnderlineInputBorder(

@@ -36,9 +36,7 @@ Text selectedSortDisplay() {
 
   return Text(displayedSortText,
       style: const TextStyle(
-          color: Color(0xFFFF0000),
-          fontSize: 22,
-          fontWeight: FontWeight.normal));
+          color: Color(0xFFFF0000), fontSize: 22, fontWeight: FontWeight.w600));
 }
 
 /* displays the sort button */
