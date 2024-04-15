@@ -11,12 +11,8 @@ class _TickerInsertFieldsState extends State<TickerInsertFields> {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        tickerTextBox(),
-        addTickerButton(),
-        removeTickerButton(),
-      ],
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [tickerTextBox(), buttonGrouping()],
     );
   }
 }
@@ -53,17 +49,29 @@ SizedBox tickerTextBox() {
   );
 }
 
+Row buttonGrouping() {
+  return Row(
+    children: [
+      addTickerButton(),
+      removeTickerButton(),
+    ],
+  );
+}
+
 /* button to add a stock ticker to the watchlist */
-GestureDetector addTickerButton() {
-  return GestureDetector(
-      onTap: () {
-        saveTickerHandler();
-      },
-      child: const Icon(
-        Icons.playlist_add,
-        size: 40,
-        color: Color(0xFF1B5E20),
-      ));
+Padding addTickerButton() {
+  return Padding(
+    padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
+    child: GestureDetector(
+        onTap: () {
+          saveTickerHandler();
+        },
+        child: const Icon(
+          Icons.playlist_add,
+          size: 45,
+          color: Color(0xFF1B5E20),
+        )),
+  );
 }
 
 /* button to remove a stock ticker from the watchlist */
@@ -74,7 +82,7 @@ GestureDetector removeTickerButton() {
       },
       child: const Icon(
         Icons.playlist_remove,
-        size: 40,
+        size: 45,
         color: Color(0xFFFF0000),
       ));
 }

@@ -16,7 +16,7 @@ class _SortInputFieldsState extends State<SortInputFields> {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         selectedSortDisplay(),
         GestureDetector(
@@ -25,10 +25,13 @@ class _SortInputFieldsState extends State<SortInputFields> {
                 sortHandler();
               });
             },
-            child: const Icon(
-              Icons.sort,
-              size: 35,
-              color: Color(0xFF1B5E20),
+            child: const Padding(
+              padding: EdgeInsets.only(right: 10),
+              child: Icon(
+                Icons.sort,
+                size: 40,
+                color: Color(0xFF1B5E20),
+              ),
             ))
       ],
     );
