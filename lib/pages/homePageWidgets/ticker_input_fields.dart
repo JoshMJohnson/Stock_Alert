@@ -32,7 +32,7 @@ SizedBox tickerTextBox() {
       enableSuggestions: false,
       style: TextStyle(
           color: Color(0xFF1B5E20),
-          fontSize: 20,
+          fontSize: 22,
           fontWeight: FontWeight.normal),
       decoration: InputDecoration(
         border: InputBorder.none,
@@ -45,7 +45,7 @@ SizedBox tickerTextBox() {
         hintText: 'Stock Ticker',
         hintStyle: TextStyle(
             color: Color(0xFF1B5E20),
-            fontSize: 20,
+            fontSize: 22,
             fontWeight: FontWeight.normal),
       ),
     ),
@@ -60,7 +60,7 @@ GestureDetector addTickerButton() {
       },
       child: const Icon(
         Icons.playlist_add,
-        size: 35,
+        size: 40,
         color: Color(0xFF1B5E20),
       ));
 }
@@ -73,7 +73,7 @@ GestureDetector removeTickerButton() {
       },
       child: const Icon(
         Icons.playlist_remove,
-        size: 35,
+        size: 40,
         color: Color(0xFFFF0000),
       ));
 }
