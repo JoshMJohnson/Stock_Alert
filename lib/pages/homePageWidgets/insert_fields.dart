@@ -12,7 +12,12 @@ class _InsertFieldsState extends State<InsertFields> {
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [tickerTextBox(), addTickerButton(), removeTickerButton()],
+      children: [
+        tickerTextBox(),
+        addTickerButton(),
+        removeTickerButton(),
+        watchlistSorter()
+      ],
     );
   }
 }
@@ -30,14 +35,29 @@ SizedBox tickerTextBox() {
 }
 
 /* button to add a stock ticker to the watchlist */
-ElevatedButton addTickerButton() {
-  return ElevatedButton(onPressed: saveTickerHandler(), child: const Text('+'));
+Icon addTickerButton() {
+  return const Icon(
+    Icons.add_box_outlined,
+    size: 35,
+    color: Color(0xFF1B5E20),
+  );
 }
 
 /* button to remove a stock ticker from the watchlist */
-ElevatedButton removeTickerButton() {
-  return ElevatedButton(
-      onPressed: removeTickerHandler(), child: const Text('-'));
+Icon removeTickerButton() {
+  return const Icon(
+    Icons.highlight_remove,
+    size: 35,
+    color: Color(0xFF1B5E20),
+  );
+}
+
+Icon watchlistSorter() {
+  return const Icon(
+    Icons.sort,
+    size: 35,
+    color: Color(0xFF1B5E20),
+  );
 }
 
 /* saves the new stock ticker to the watchlist if valid */ // todo
@@ -48,4 +68,9 @@ saveTickerHandler() {
 removeTickerHandler() {
   // todo
   debugPrint('Remove stock ticker button was pressed');
+}
+
+/* handles the filter button pressed */ // todo
+sortHandler() {
+  debugPrint('Filter button pressed');
 }
