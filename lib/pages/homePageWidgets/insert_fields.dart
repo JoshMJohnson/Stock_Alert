@@ -37,7 +37,7 @@ SizedBox tickerTextBox() {
 /* button to add a stock ticker to the watchlist */
 Icon addTickerButton() {
   return const Icon(
-    Icons.add_box_outlined,
+    Icons.playlist_add,
     size: 35,
     color: Color(0xFF1B5E20),
   );
@@ -46,7 +46,7 @@ Icon addTickerButton() {
 /* button to remove a stock ticker from the watchlist */
 Icon removeTickerButton() {
   return const Icon(
-    Icons.highlight_remove,
+    Icons.playlist_remove,
     size: 35,
     color: Color(0xFF1B5E20),
   );
