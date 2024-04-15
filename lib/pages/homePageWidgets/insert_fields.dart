@@ -58,13 +58,11 @@ GestureDetector addTickerButton() {
       onTap: () {
         saveTickerHandler();
       },
-      child: Container(
-          margin: const EdgeInsets.fromLTRB(0, 0, 15, 0),
-          child: const Icon(
-            Icons.playlist_add,
-            size: 35,
-            color: Color(0xFF1B5E20),
-          )));
+      child: const Icon(
+        Icons.playlist_add,
+        size: 35,
+        color: Color(0xFF1B5E20),
+      ));
 }
 
 /* button to remove a stock ticker from the watchlist */
@@ -73,13 +71,11 @@ GestureDetector removeTickerButton() {
       onTap: () {
         removeTickerHandler();
       },
-      child: Container(
-          margin: const EdgeInsets.fromLTRB(0, 0, 15, 0),
-          child: const Icon(
-            Icons.playlist_remove,
-            size: 35,
-            color: Color(0xFFFF0000),
-          )));
+      child: const Icon(
+        Icons.playlist_remove,
+        size: 35,
+        color: Color(0xFFFF0000),
+      ));
 }
 
 GestureDetector watchlistSorter() {
@@ -87,13 +83,11 @@ GestureDetector watchlistSorter() {
       onTap: () {
         sortHandler();
       },
-      child: Container(
-          margin: const EdgeInsets.fromLTRB(0, 0, 15, 0),
-          child: const Icon(
-            Icons.sort,
-            size: 35,
-            color: Color(0xFF1B5E20),
-          )));
+      child: const Icon(
+        Icons.sort,
+        size: 35,
+        color: Color(0xFF1B5E20),
+      ));
 }
 
 /* saves the new stock ticker to the watchlist if valid */ // todo
