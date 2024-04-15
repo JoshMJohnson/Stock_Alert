@@ -17,6 +17,7 @@ class HomePage extends StatelessWidget {
   /* header widget */
   AppBar header(BuildContext context) {
     return AppBar(
+        leadingWidth: 110,
         title: Text(
           'Stock Alert',
           style: TextStyle(
@@ -36,10 +37,10 @@ class HomePage extends StatelessWidget {
                         builder: (context) => const SettingsPage()));
               },
               child: Container(
-                  margin: const EdgeInsets.fromLTRB(0, 0, 15, 0),
+                  margin: const EdgeInsets.fromLTRB(0, 0, 35, 0),
                   child: Icon(
                     Icons.settings,
-                    size: 35,
+                    size: 40,
                     color: Colors.green[900],
                   ))),
         ]);
