@@ -53,29 +53,47 @@ SizedBox tickerTextBox() {
 }
 
 /* button to add a stock ticker to the watchlist */
-Icon addTickerButton() {
-  return const Icon(
-    Icons.playlist_add,
-    size: 35,
-    color: Color(0xFF1B5E20),
-  );
+GestureDetector addTickerButton() {
+  return GestureDetector(
+      onTap: () {
+        saveTickerHandler();
+      },
+      child: Container(
+          margin: const EdgeInsets.fromLTRB(0, 0, 15, 0),
+          child: const Icon(
+            Icons.playlist_add,
+            size: 35,
+            color: Color(0xFF1B5E20),
+          )));
 }
 
 /* button to remove a stock ticker from the watchlist */
-Icon removeTickerButton() {
-  return const Icon(
-    Icons.playlist_remove,
-    size: 35,
-    color: Color(0xFFFF0000),
-  );
+GestureDetector removeTickerButton() {
+  return GestureDetector(
+      onTap: () {
+        removeTickerHandler();
+      },
+      child: Container(
+          margin: const EdgeInsets.fromLTRB(0, 0, 15, 0),
+          child: const Icon(
+            Icons.playlist_remove,
+            size: 35,
+            color: Color(0xFFFF0000),
+          )));
 }
 
-Icon watchlistSorter() {
-  return const Icon(
-    Icons.sort,
-    size: 35,
-    color: Color(0xFF1B5E20),
-  );
+GestureDetector watchlistSorter() {
+  return GestureDetector(
+      onTap: () {
+        sortHandler();
+      },
+      child: Container(
+          margin: const EdgeInsets.fromLTRB(0, 0, 15, 0),
+          child: const Icon(
+            Icons.sort,
+            size: 35,
+            color: Color(0xFF1B5E20),
+          )));
 }
 
 /* saves the new stock ticker to the watchlist if valid */ // todo
@@ -90,5 +108,5 @@ removeTickerHandler() {
 
 /* handles the filter button pressed */ // todo
 sortHandler() {
-  debugPrint('Filter button pressed');
+  debugPrint('Sort button pressed');
 }
