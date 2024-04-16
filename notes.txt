@@ -2,6 +2,7 @@ To Do:
     - Create a themes file holding color constants
     - Have a green linear gradiant background
     - font scaling
+    - watchlist entire stock details red/green based on negative/positive
     
 Bugs:
     - 
