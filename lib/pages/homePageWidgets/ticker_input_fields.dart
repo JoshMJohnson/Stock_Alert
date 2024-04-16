@@ -20,7 +20,7 @@ class _TickerInsertFieldsState extends State<TickerInsertFields> {
 /* text field for entering a stock ticker for entry or removal */
 SizedBox tickerTextBox() {
   return const SizedBox(
-    width: 120,
+    width: 150,
     height: 50,
     child: TextField(
       cursorColor: Color(0xFFFF0000),

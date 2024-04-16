@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 import 'package:stock_alert/pages/settings.dart';
 import 'package:stock_alert/pages/homePageWidgets/ticker_input_fields.dart';
@@ -63,25 +64,34 @@ Container homeBody() {
               colors: [Color(0XAA006400), Color(0xFFA5D6A7)],
               begin: Alignment.bottomCenter,
               end: Alignment.topCenter)),
-      child: SingleChildScrollView(
-          child: Padding(
-              padding: const EdgeInsets.all(20),
-              child: Column(
-                children: [
-                  Image.asset(
-                    'assets/bear_bull_fighting.png',
-                    width: double.infinity,
-                    height: 200,
-                    fit: BoxFit.fill,
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
-                    child: TickerInsertFields(),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
-                    child: SortInputFields(),
-                  )
-                ],
-              ))));
+      child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            children: [
+              Image.asset(
+                'assets/bear_bull_fighting.png',
+                width: double.infinity,
+                height: 200,
+                fit: BoxFit.fill,
+              ),
+              const Padding(
+                padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                child: TickerInsertFields(),
+              ),
+              const Padding(
+                padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                child: SortInputFields(),
+              ),
+              Expanded(
+                  child: ListView.separated(
+                itemCount: 20,
+                itemBuilder: (context, index) {
+                  return ListTile(title: Text('Stock Ticker $index'));
+                },
+                separatorBuilder: (context, index) {
+                  return const Divider();
+                },
+              ))
+            ],
+          )));
 }
