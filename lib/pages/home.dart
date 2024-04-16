@@ -83,15 +83,18 @@ Container homeBody() {
                 child: SortInputFields(),
               ),
               Expanded(
-                  child: ListView.separated(
-                itemCount: 20,
-                itemBuilder: (context, index) {
-                  return ListTile(title: Text('Stock Ticker $index'));
-                },
-                separatorBuilder: (context, index) {
-                  return const Divider();
-                },
-              ))
+                  child: Container(
+                      decoration: BoxDecoration(
+                          border: Border.all(color: const Color(0xFFFF0000))),
+                      child: ListView.separated(
+                        itemCount: 20,
+                        itemBuilder: (context, index) {
+                          return ListTile(title: Text('Stock Ticker $index'));
+                        },
+                        separatorBuilder: (context, index) {
+                          return const Divider();
+                        },
+                      )))
             ],
           )));
 }
