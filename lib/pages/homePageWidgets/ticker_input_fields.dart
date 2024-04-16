@@ -23,6 +23,7 @@ SizedBox tickerTextBox() {
     width: 120,
     height: 50,
     child: TextField(
+      cursorColor: Color(0xFFFF0000),
       textAlign: TextAlign.center,
       autocorrect: false,
       enableSuggestions: false,
