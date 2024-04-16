@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:stock_alert/helperClasses/helper_functions.dart';
 
 import 'package:stock_alert/pages/settings.dart';
 import 'package:stock_alert/pages/homePageWidgets/ticker_input_fields.dart';
@@ -56,9 +57,11 @@ class _HomePageState extends State<HomePage> {
 
 /* body widget of settings page */
 Container homeBody() {
+  final HelperFunctions helperFunctions = HelperFunctions();
+
   TimeOfDay? lastUpdatedTime = TimeOfDay.now();
   String lastUpdatedTimeDisplay =
-      '${lastUpdatedTime.hour}:${lastUpdatedTime.minute}';
+      helperFunctions.standardTimeConvertionHandler(lastUpdatedTime);
 
   return Container(
       width: double.infinity,
