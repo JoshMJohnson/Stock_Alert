@@ -87,9 +87,17 @@ Container homeBody() {
                       decoration: BoxDecoration(
                           border: Border.all(color: const Color(0xFFFF0000))),
                       child: ListView.separated(
+                        padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
                         itemCount: 20,
                         itemBuilder: (context, index) {
-                          return ListTile(title: Text('Stock Ticker $index'));
+                          return ListTile(
+                              title: Text(
+                            'Stock Ticker $index',
+                            style: const TextStyle(
+                                color: Color(0xFF1B5E20),
+                                fontSize: 20,
+                                fontWeight: FontWeight.w600),
+                          ));
                         },
                         separatorBuilder: (context, index) {
                           return const Divider();
