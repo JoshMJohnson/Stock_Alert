@@ -112,7 +112,10 @@ Container homeBody() {
                       ))),
               Text(
                 'Last Updated: $lastUpdatedTimeDisplay',
-                style: const TextStyle(color: Color(0xFFFF0000), fontSize: 16),
+                style: const TextStyle(
+                    color: Color(0xFFFF0000),
+                    fontSize: 16,
+                    fontWeight: FontWeight.normal),
               )
             ],
           )));
