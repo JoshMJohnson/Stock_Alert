@@ -72,7 +72,7 @@ Container homeBody() {
               begin: Alignment.bottomCenter,
               end: Alignment.topCenter)),
       child: Padding(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
           child: Column(
             children: [
               Image.asset(
@@ -110,7 +110,10 @@ Container homeBody() {
                           return const Divider();
                         },
                       ))),
-              Text('Last Updated: $lastUpdatedTimeDisplay')
+              Text(
+                'Last Updated: $lastUpdatedTimeDisplay',
+                style: TextStyle(color: const Color(0xFFFF0000), fontSize: 16),
+              )
             ],
           )));
 }
