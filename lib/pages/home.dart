@@ -56,6 +56,10 @@ class _HomePageState extends State<HomePage> {
 
 /* body widget of settings page */
 Container homeBody() {
+  TimeOfDay? lastUpdatedTime = TimeOfDay.now();
+  String lastUpdatedTimeDisplay =
+      '${lastUpdatedTime.hour}:${lastUpdatedTime.minute}';
+
   return Container(
       width: double.infinity,
       height: double.infinity,
@@ -102,7 +106,8 @@ Container homeBody() {
                         separatorBuilder: (context, index) {
                           return const Divider();
                         },
-                      )))
+                      ))),
+              Text('Last Updated: $lastUpdatedTimeDisplay')
             ],
           )));
 }

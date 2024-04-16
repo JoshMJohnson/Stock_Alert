@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:stock_alert/helperClasses/helper_functions.dart';
 
 class TODReminders extends StatefulWidget {
   const TODReminders({super.key});
@@ -104,49 +105,21 @@ class _TODRemindersState extends State<TODReminders> {
 
   /* retrieves TODs from storage and adjusts for display */
   Text getCurrentTOD(int todID) {
-    late int todHours;
-    late int todMinutes;
-    late String todMinutes2Digits;
-
-    /* military -> standard variables */
-    bool isAM = true;
-    late String todTimeUpdated;
+    final HelperFunctions helperFunctions = HelperFunctions();
+    late String standardTime;
 
     if (todID == 0) {
-      // todo get async value of TOD1 from storage
-      todHours = tod1.hour;
-      todMinutes = tod1.minute;
+      standardTime = helperFunctions.standardTimeConvertionHandler(tod1);
     } else if (todID == 1) {
-      // todo get async value of TOD2 from storage
-      todHours = tod2.hour;
-      todMinutes = tod2.minute;
+      standardTime = helperFunctions.standardTimeConvertionHandler(tod2);
     } else {
-      // todo get async value of TOD3 from storage
-      todHours = tod3.hour;
-      todMinutes = tod3.minute;
+      standardTime = helperFunctions.standardTimeConvertionHandler(tod3);
     }
 
-    todMinutes2Digits = todMinutes.toString().padLeft(2, '0');
-
-    /* military -> standard time */
-    if (todHours > 11) {
-      todHours -= 12;
-      isAM = false;
-    }
-
-    todHours == 0 ? todHours = 12 : todHours;
-
-    /* prepares string statement that displays the chosen time */
-    if (isAM) {
-      todTimeUpdated = '$todHours:$todMinutes2Digits am';
-    } else {
-      todTimeUpdated = '$todHours:$todMinutes2Digits pm';
-    }
-
-    debugPrint('todTimeUpdated: $todTimeUpdated');
+    debugPrint('standardTime: $standardTime');
 
     Text displayedTime = Text(
-      todTimeUpdated,
+      standardTime,
       style: const TextStyle(
           color: Color(0xFF1B5E20),
           fontSize: 20,
