@@ -1,7 +1,4 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:stock_alert/helperClasses/helper_functions.dart';
 
 import 'package:stock_alert/pages/settings.dart';
