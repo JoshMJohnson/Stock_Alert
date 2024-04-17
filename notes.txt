@@ -3,6 +3,8 @@ To Do:
     - Have a green linear gradiant background
     - font scaling
     - watchlist entire stock details red/green based on negative/positive
+    - add an first time app use intro directions
+        - use flutter name: IntroductionScreen
     
 Bugs:
     - 
