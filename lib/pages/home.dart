@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:stock_alert/helperClasses/helper_functions.dart';
@@ -91,11 +93,16 @@ Container homeBody() {
               ),
               Expanded(
                   child: Container(
-                      decoration: BoxDecoration(
-                          border: Border.all(color: const Color(0xFFFF0000))),
+                      decoration: const BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.centerRight,
+                          end: Alignment.centerLeft,
+                          colors: [Color(0x33FF0000), Color(0x335AEB00)],
+                        ),
+                      ),
                       child: ListView.separated(
                         padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-                        itemCount: 20,
+                        itemCount: 3,
                         itemBuilder: (context, index) {
                           return ListTile(
                               title: Text(
