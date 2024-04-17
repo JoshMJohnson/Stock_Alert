@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:stock_alert/helperClasses/helper_functions.dart';
 
+import 'package:stock_alert/helperClasses/helper_functions.dart';
+import 'package:stock_alert/pages/homePageWidgets/stock_watchlist.dart';
 import 'package:stock_alert/pages/settings.dart';
 import 'package:stock_alert/pages/homePageWidgets/ticker_input_fields.dart';
 import 'package:stock_alert/pages/homePageWidgets/sort_input_fields.dart';
@@ -88,32 +89,7 @@ Container homeBody() {
                 padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
                 child: SortInputFields(),
               ),
-              Expanded(
-                  child: Container(
-                      decoration: const BoxDecoration(
-                        gradient: LinearGradient(
-                          begin: Alignment.centerRight,
-                          end: Alignment.centerLeft,
-                          colors: [Color(0x33FF0000), Color(0x33A5D6A7)],
-                        ),
-                      ),
-                      child: ListView.separated(
-                        padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-                        itemCount: 10,
-                        itemBuilder: (context, index) {
-                          return ListTile(
-                              title: Text(
-                            'Stock Ticker $index',
-                            style: const TextStyle(
-                                color: Color(0xFF006400),
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600),
-                          ));
-                        },
-                        separatorBuilder: (context, index) {
-                          return const Divider();
-                        },
-                      ))),
+              const Expanded(child: StockWatchlist()),
               Text(
                 'Last Updated: $lastUpdatedTimeDisplay',
                 style: const TextStyle(
