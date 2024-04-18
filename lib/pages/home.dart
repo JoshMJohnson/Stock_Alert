@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:stock_alert/helperClasses/helper_functions.dart';
+import 'package:stock_alert/helper_functions.dart';
 import 'package:stock_alert/pages/homePageWidgets/stock_watchlist.dart';
 import 'package:stock_alert/pages/settings.dart';
 import 'package:stock_alert/pages/homePageWidgets/ticker_input_fields.dart';
