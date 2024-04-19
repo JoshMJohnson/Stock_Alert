@@ -41,7 +41,7 @@ class _PriceChangeThresholdState extends State<PriceChangeThreshold> {
                   max: 10,
                   min: 2,
                   activeColor: const Color(0xFF1B5E20),
-                  inactiveColor: const Color(0xFFFF0000),
+                  inactiveColor: const Color(0xFFCC0000),
                   onChanged: (value) {
                     sliderActionHandler(value);
                   }),

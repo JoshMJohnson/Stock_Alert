@@ -80,8 +80,10 @@ class _StockWatchlistState extends State<StockWatchlist> {
             return ListTile(
                 title: Text(
               testingList[index].ticker,
-              style: const TextStyle(
-                  color: Color(0xFF006400),
+              style: TextStyle(
+                  color: testingList[index].dayChangeDollars > 0
+                      ? const Color(0xFF7FFF00)
+                      : const Color(0xFFFF0000),
                   fontSize: 20,
                   fontWeight: FontWeight.w600),
             ));

@@ -23,7 +23,7 @@ SizedBox tickerTextBox() {
     width: 150,
     height: 50,
     child: TextField(
-      cursorColor: Color(0xFFFF0000),
+      cursorColor: Color(0xFFCC0000),
       textAlign: TextAlign.center,
       autocorrect: false,
       enableSuggestions: false,
@@ -84,7 +84,7 @@ GestureDetector removeTickerButton() {
       child: const Icon(
         Icons.playlist_remove,
         size: 45,
-        color: Color(0xFFFF0000),
+        color: Color(0xFFCC0000),
       ));
 }
 
