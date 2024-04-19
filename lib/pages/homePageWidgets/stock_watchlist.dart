@@ -38,7 +38,21 @@ StockEntity stock5 = StockEntity(
     dayChangeDollars: 4.90,
     dayChangePercentage: 4.90);
 
-List<StockEntity> testingList = [stock1, stock2, stock3, stock4, stock5];
+StockEntity stock6 = StockEntity(
+    ticker: 'ADBE',
+    companyName: 'Adobe',
+    tickerPrice: 120.20,
+    dayChangeDollars: 10.10,
+    dayChangePercentage: 10.10);
+
+List<StockEntity> testingList = [
+  stock1,
+  stock2,
+  stock3,
+  stock4,
+  stock5,
+  stock6
+];
 // ! end of testing code
 
 class StockWatchlist extends StatefulWidget {
@@ -61,11 +75,11 @@ class _StockWatchlistState extends State<StockWatchlist> {
         ),
         child: ListView.separated(
           padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-          itemCount: 10,
+          itemCount: testingList.length,
           itemBuilder: (context, index) {
             return ListTile(
                 title: Text(
-              'Stock Ticker $index',
+              testingList[index].ticker,
               style: const TextStyle(
                   color: Color(0xFF006400),
                   fontSize: 20,
