@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:stock_alert/stock_entity.dart';
+import 'package:stock_alert/pages/homePageWidgets/stock_entity.dart';
 
 // ! begin of testing code
 StockEntity stock1 = StockEntity(
