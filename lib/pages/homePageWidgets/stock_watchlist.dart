@@ -7,14 +7,16 @@ StockEntity stock1 = StockEntity(
     companyName: 'Apple Inc.',
     tickerPrice: 168.8,
     dayChangeDollars: -1.8,
-    dayChangePercentage: -0.8);
+    dayChangePercentage: -0.8,
+    exchange: 'NASDAQ');
 
 StockEntity stock2 = StockEntity(
     ticker: 'MSFTF',
     companyName: 'Microsoft Corp.',
     tickerPrice: 411.08,
     dayChangeDollars: -2.08,
-    dayChangePercentage: -0.08);
+    dayChangePercentage: -0.08,
+    exchange: 'NYSE');
 
 StockEntity stock3 = StockEntity(
     ticker: 'SNDL',
@@ -22,28 +24,32 @@ StockEntity stock3 = StockEntity(
         'This is the Sundile company timeplate for the name of the company which is very long here you got yaa fam you know swap',
     tickerPrice: 189.00,
     dayChangeDollars: 43.00,
-    dayChangePercentage: 10.00);
+    dayChangePercentage: 10.00,
+    exchange: 'NASDAQ');
 
 StockEntity stock4 = StockEntity(
     ticker: 'SPOT',
     companyName: 'Spotify',
     tickerPrice: 4,
     dayChangeDollars: -17,
-    dayChangePercentage: -13);
+    dayChangePercentage: -13,
+    exchange: 'NASDAQ');
 
 StockEntity stock5 = StockEntity(
     ticker: 'OGI',
     companyName: 'Organic Company',
     tickerPrice: 4.90,
     dayChangeDollars: 4.90,
-    dayChangePercentage: 4.90);
+    dayChangePercentage: 4.90,
+    exchange: 'NYSE');
 
 StockEntity stock6 = StockEntity(
     ticker: 'ADBE',
     companyName: 'Adobe',
     tickerPrice: 120.20,
     dayChangeDollars: 10.10,
-    dayChangePercentage: 10.10);
+    dayChangePercentage: 10.10,
+    exchange: 'NYSE');
 
 List<StockEntity> testingList = [
   stock1,
