@@ -86,6 +86,7 @@ class _StockWatchlistState extends State<StockWatchlist> {
                 width: 100,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       testingList[index].exchange,
