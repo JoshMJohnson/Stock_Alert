@@ -74,19 +74,42 @@ class _StockWatchlistState extends State<StockWatchlist> {
           ),
         ),
         child: ListView.separated(
-          padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
           itemCount: testingList.length,
           itemBuilder: (context, index) {
             return ListTile(
-                title: Text(
-              testingList[index].ticker,
-              style: TextStyle(
-                  color: testingList[index].dayChangeDollars > 0
-                      ? const Color(0xFF7FFF00)
-                      : const Color(0xFFFF0000),
-                  fontSize: 20,
-                  fontWeight: FontWeight.w600),
-            ));
+              title: Text(
+                testingList[index].ticker,
+                style: TextStyle(
+                    color: testingList[index].dayChangeDollars > 0
+                        ? const Color(0xFF7FFF00)
+                        : const Color(0xFFFF0000),
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600),
+              ),
+              trailing: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    testingList[index].dayChangePercentage.toString(),
+                    style: TextStyle(
+                        color: testingList[index].dayChangePercentage > 0
+                            ? const Color(0xFF7FFF00)
+                            : const Color(0xFFFF0000),
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600),
+                  ),
+                  Text(
+                    testingList[index].dayChangeDollars.toString(),
+                    style: TextStyle(
+                        color: testingList[index].dayChangeDollars > 0
+                            ? const Color(0xFF7FFF00)
+                            : const Color(0xFFFF0000),
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600),
+                  ),
+                ],
+              ),
+            );
           },
           separatorBuilder: (context, index) {
             return const Divider(
