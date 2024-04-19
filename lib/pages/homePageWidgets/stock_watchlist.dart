@@ -82,28 +82,32 @@ class _StockWatchlistState extends State<StockWatchlist> {
           itemCount: testingList.length,
           itemBuilder: (context, index) {
             return ListTile(
-              leading: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    testingList[index].exchange,
-                    style: TextStyle(
-                        color: testingList[index].dayChangePercentage > 0
-                            ? const Color(0xFF7FFF00)
-                            : const Color(0xFFFF0000),
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600),
-                  ),
-                  Text(
-                    testingList[index].companyName,
-                    style: TextStyle(
-                        color: testingList[index].dayChangeDollars > 0
-                            ? const Color(0xFF7FFF00)
-                            : const Color(0xFFFF0000),
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600),
-                  ),
-                ],
+              leading: SizedBox(
+                width: 100,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      testingList[index].exchange,
+                      style: TextStyle(
+                          color: testingList[index].dayChangePercentage > 0
+                              ? const Color(0xFF7FFF00)
+                              : const Color(0xFFFF0000),
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600),
+                    ),
+                    Text(
+                      testingList[index].companyName,
+                      style: TextStyle(
+                          overflow: TextOverflow.ellipsis,
+                          color: testingList[index].dayChangeDollars > 0
+                              ? const Color(0xFF7FFF00)
+                              : const Color(0xFFFF0000),
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600),
+                    ),
+                  ],
+                ),
               ),
               title: Text(
                 testingList[index].ticker,
