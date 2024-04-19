@@ -20,8 +20,7 @@ StockEntity stock2 = StockEntity(
 
 StockEntity stock3 = StockEntity(
     ticker: 'SNDL',
-    companyName:
-        'This is the Sundile company timeplate for the name of the company which is very long here you got yaa fam you know swap',
+    companyName: 'This is the Sundile company',
     tickerPrice: 189.00,
     dayChangeDollars: 43.00,
     dayChangePercentage: 10.00,
@@ -83,6 +82,29 @@ class _StockWatchlistState extends State<StockWatchlist> {
           itemCount: testingList.length,
           itemBuilder: (context, index) {
             return ListTile(
+              leading: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    testingList[index].exchange,
+                    style: TextStyle(
+                        color: testingList[index].dayChangePercentage > 0
+                            ? const Color(0xFF7FFF00)
+                            : const Color(0xFFFF0000),
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600),
+                  ),
+                  Text(
+                    testingList[index].companyName,
+                    style: TextStyle(
+                        color: testingList[index].dayChangeDollars > 0
+                            ? const Color(0xFF7FFF00)
+                            : const Color(0xFFFF0000),
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600),
+                  ),
+                ],
+              ),
               title: Text(
                 testingList[index].ticker,
                 style: TextStyle(
