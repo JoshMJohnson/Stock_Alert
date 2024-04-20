@@ -5,7 +5,7 @@ import 'package:stock_alert/pages/homePageWidgets/stock_entity.dart';
 StockEntity stock1 = StockEntity(
     ticker: 'AAPL',
     companyName: 'Apple Inc.',
-    tickerPrice: 168.8,
+    tickerPrice: 9999.8,
     dayChangeDollars: -1.8,
     dayChangePercentage: -0.8,
     exchange: 'NASDAQ');
@@ -83,7 +83,7 @@ class _StockWatchlistState extends State<StockWatchlist> {
           itemBuilder: (context, index) {
             return ListTile(
               leading: SizedBox(
-                width: 80,
+                width: 90,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -94,7 +94,7 @@ class _StockWatchlistState extends State<StockWatchlist> {
                           color: testingList[index].dayChangePercentage > 0
                               ? const Color(0xFF7FFF00)
                               : const Color(0xFFFF0000),
-                          fontSize: 14,
+                          fontSize: 16,
                           fontWeight: FontWeight.w600),
                     ),
                     Text(
@@ -104,7 +104,7 @@ class _StockWatchlistState extends State<StockWatchlist> {
                           color: testingList[index].dayChangeDollars > 0
                               ? const Color(0xFF7FFF00)
                               : const Color(0xFFFF0000),
-                          fontSize: 14,
+                          fontSize: 16,
                           fontWeight: FontWeight.w600),
                     ),
                   ],
