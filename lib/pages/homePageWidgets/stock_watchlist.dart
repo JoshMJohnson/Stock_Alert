@@ -83,7 +83,7 @@ class _StockWatchlistState extends State<StockWatchlist> {
           itemBuilder: (context, index) {
             return ListTile(
               leading: SizedBox(
-                width: 100,
+                width: 80,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -110,37 +110,54 @@ class _StockWatchlistState extends State<StockWatchlist> {
                   ],
                 ),
               ),
-              title: Text(
-                testingList[index].ticker,
-                style: TextStyle(
-                    color: testingList[index].dayChangeDollars > 0
-                        ? const Color(0xFF7FFF00)
-                        : const Color(0xFFFF0000),
-                    fontSize: 20,
-                    fontWeight: FontWeight.w600),
-              ),
-              trailing: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+              title: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    testingList[index].dayChangePercentage.toString(),
-                    style: TextStyle(
-                        color: testingList[index].dayChangePercentage > 0
-                            ? const Color(0xFF7FFF00)
-                            : const Color(0xFFFF0000),
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600),
-                  ),
-                  Text(
-                    testingList[index].dayChangeDollars.toString(),
+                    testingList[index].ticker,
                     style: TextStyle(
                         color: testingList[index].dayChangeDollars > 0
                             ? const Color(0xFF7FFF00)
                             : const Color(0xFFFF0000),
-                        fontSize: 16,
+                        fontSize: 20,
                         fontWeight: FontWeight.w600),
                   ),
+                  Text(
+                    testingList[index].tickerPrice.toString(),
+                    style: TextStyle(
+                        color: testingList[index].dayChangeDollars > 0
+                            ? const Color(0xFF7FFF00)
+                            : const Color(0xFFFF0000),
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600),
+                  )
                 ],
+              ),
+              trailing: SizedBox(
+                width: 50,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      testingList[index].dayChangePercentage.toString(),
+                      style: TextStyle(
+                          color: testingList[index].dayChangePercentage > 0
+                              ? const Color(0xFF7FFF00)
+                              : const Color(0xFFFF0000),
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600),
+                    ),
+                    Text(
+                      testingList[index].dayChangeDollars.toString(),
+                      style: TextStyle(
+                          color: testingList[index].dayChangeDollars > 0
+                              ? const Color(0xFF7FFF00)
+                              : const Color(0xFFFF0000),
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600),
+                    ),
+                  ],
+                ),
               ),
             );
           },

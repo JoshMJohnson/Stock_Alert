@@ -72,7 +72,7 @@ Container homeBody() {
               begin: Alignment.bottomCenter,
               end: Alignment.topCenter)),
       child: Padding(
-          padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+          padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
           child: Column(
             children: [
               Image.asset(
