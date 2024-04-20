@@ -137,6 +137,7 @@ class _StockWatchlistState extends State<StockWatchlist> {
                 width: 50,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Text(
                       testingList[index].dayChangePercentage.toString(),
