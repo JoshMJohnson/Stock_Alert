@@ -104,7 +104,7 @@ class _StockWatchlistState extends State<StockWatchlist> {
                           color: testingList[index].dayChangeDollars > 0
                               ? const Color(0xFF7FFF00)
                               : const Color(0xFFFF0000),
-                          fontSize: 16,
+                          fontSize: 14,
                           fontWeight: FontWeight.w600),
                     ),
                   ],
@@ -119,7 +119,7 @@ class _StockWatchlistState extends State<StockWatchlist> {
                         color: testingList[index].dayChangeDollars > 0
                             ? const Color(0xFF7FFF00)
                             : const Color(0xFFFF0000),
-                        fontSize: 20,
+                        fontSize: 22,
                         fontWeight: FontWeight.w600),
                   ),
                   Text(
@@ -128,7 +128,7 @@ class _StockWatchlistState extends State<StockWatchlist> {
                         color: testingList[index].dayChangeDollars > 0
                             ? const Color(0xFF7FFF00)
                             : const Color(0xFFFF0000),
-                        fontSize: 20,
+                        fontSize: 22,
                         fontWeight: FontWeight.w600),
                   )
                 ],
