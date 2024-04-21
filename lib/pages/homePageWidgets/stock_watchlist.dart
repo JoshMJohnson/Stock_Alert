@@ -3,7 +3,7 @@ import 'package:stock_alert/pages/homePageWidgets/stock_entity.dart';
 
 // ! begin of testing code
 StockEntity stock1 = StockEntity(
-    ticker: 'AAPL',
+    ticker: 'AAPLL',
     companyName: 'Apple Inc.',
     tickerPrice: 9999.8,
     dayChangeDollars: -1.8,
@@ -123,7 +123,7 @@ class _StockWatchlistState extends State<StockWatchlist> {
                         fontWeight: FontWeight.w600),
                   ),
                   Text(
-                    testingList[index].tickerPrice.toString(),
+                    testingList[index].tickerPrice.toStringAsFixed(2),
                     style: TextStyle(
                         color: testingList[index].dayChangeDollars > 0
                             ? const Color(0xFF7FFF00)
@@ -149,7 +149,7 @@ class _StockWatchlistState extends State<StockWatchlist> {
                           fontWeight: FontWeight.w600),
                     ),
                     Text(
-                      testingList[index].dayChangeDollars.toString(),
+                      testingList[index].dayChangeDollars.toStringAsFixed(2),
                       style: TextStyle(
                           color: testingList[index].dayChangeDollars > 0
                               ? const Color(0xFF7FFF00)
