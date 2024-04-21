@@ -109,6 +109,7 @@ class _StockWatchlistState extends State<StockWatchlist> {
           itemCount: testingList.length,
           itemBuilder: (context, index) {
             return ListTile(
+              contentPadding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
               dense: true,
               leading: SizedBox(
                 width: 90,
