@@ -13,8 +13,8 @@ StockEntity stock1 = StockEntity(
 StockEntity stock2 = StockEntity(
     ticker: 'MSFTF',
     companyName: 'Microsoft Corp.',
-    tickerPrice: 411.08,
-    dayChangeDollars: -2.08,
+    tickerPrice: 411.38,
+    dayChangeDollars: -2.68,
     dayChangePercentage: -0.08,
     exchange: 'NYSE');
 
@@ -163,7 +163,7 @@ class _StockWatchlistState extends State<StockWatchlist> {
                 ],
               ),
               trailing: SizedBox(
-                width: 70,
+                width: 75,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.end,
@@ -178,7 +178,7 @@ class _StockWatchlistState extends State<StockWatchlist> {
                           fontWeight: FontWeight.w600),
                     ),
                     Text(
-                      '${testingList[index].dayChangeDollars.toStringAsFixed(2)} (\$)',
+                      '${testingList[index].dayChangeDollars.toStringAsFixed(2)}  (\$)',
                       style: TextStyle(
                           color: testingList[index].dayChangeDollars > 0
                               ? const Color(0xFF7FFF00)
