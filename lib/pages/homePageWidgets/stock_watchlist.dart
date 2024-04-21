@@ -140,7 +140,7 @@ class _StockWatchlistState extends State<StockWatchlist> {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Text(
-                      testingList[index].dayChangePercentage.toString(),
+                      '${testingList[index].dayChangePercentage}%',
                       style: TextStyle(
                           color: testingList[index].dayChangePercentage > 0
                               ? const Color(0xFF7FFF00)
