@@ -48,7 +48,31 @@ StockEntity stock6 = StockEntity(
     tickerPrice: 120.20,
     dayChangeDollars: 10.10,
     dayChangePercentage: 10.10,
+    exchange: 'NASDAQ');
+
+StockEntity stock7 = StockEntity(
+    ticker: 'BA',
+    companyName: 'Boeing Co',
+    tickerPrice: 170.42,
+    dayChangeDollars: .2,
+    dayChangePercentage: .11,
     exchange: 'NYSE');
+
+StockEntity stock8 = StockEntity(
+    ticker: 'BE',
+    companyName: 'Bloom Energy Corp',
+    tickerPrice: 9.52,
+    dayChangeDollars: -.22,
+    dayChangePercentage: -2.25,
+    exchange: 'NYSE');
+
+StockEntity stock9 = StockEntity(
+    ticker: 'DIS',
+    companyName: 'Walt Disney Co',
+    tickerPrice: 112.31,
+    dayChangeDollars: -.11,
+    dayChangePercentage: -.09,
+    exchange: 'NASDAQ');
 
 List<StockEntity> testingList = [
   stock1,
@@ -56,7 +80,10 @@ List<StockEntity> testingList = [
   stock3,
   stock4,
   stock5,
-  stock6
+  stock6,
+  stock7,
+  stock8,
+  stock9
 ];
 // ! end of testing code
 
@@ -82,6 +109,7 @@ class _StockWatchlistState extends State<StockWatchlist> {
           itemCount: testingList.length,
           itemBuilder: (context, index) {
             return ListTile(
+              dense: true,
               leading: SizedBox(
                 width: 90,
                 child: Column(
@@ -134,13 +162,13 @@ class _StockWatchlistState extends State<StockWatchlist> {
                 ],
               ),
               trailing: SizedBox(
-                width: 50,
+                width: 70,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Text(
-                      '${testingList[index].dayChangePercentage}%',
+                      '${testingList[index].dayChangePercentage} (%)',
                       style: TextStyle(
                           color: testingList[index].dayChangePercentage > 0
                               ? const Color(0xFF7FFF00)
@@ -149,7 +177,7 @@ class _StockWatchlistState extends State<StockWatchlist> {
                           fontWeight: FontWeight.w600),
                     ),
                     Text(
-                      testingList[index].dayChangeDollars.toStringAsFixed(2),
+                      '${testingList[index].dayChangeDollars.toStringAsFixed(2)} (\$)',
                       style: TextStyle(
                           color: testingList[index].dayChangeDollars > 0
                               ? const Color(0xFF7FFF00)
