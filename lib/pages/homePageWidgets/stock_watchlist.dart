@@ -6,8 +6,8 @@ StockEntity stock1 = StockEntity(
     ticker: 'AAPLL',
     companyName: 'Apple Inc.',
     tickerPrice: 9999.8,
-    dayChangeDollars: -1.8,
-    dayChangePercentage: -0.8,
+    dayChangeDollars: -111.80,
+    dayChangePercentage: -10.80,
     exchange: 'NASDAQ');
 
 StockEntity stock2 = StockEntity(
@@ -123,7 +123,7 @@ class _StockWatchlistState extends State<StockWatchlist> {
                           color: testingList[index].dayChangePercentage > 0
                               ? const Color(0xFF7FFF00)
                               : const Color(0xFFFF0000),
-                          fontSize: 16,
+                          fontSize: 14,
                           fontWeight: FontWeight.w600),
                     ),
                     Text(
@@ -148,7 +148,7 @@ class _StockWatchlistState extends State<StockWatchlist> {
                         color: testingList[index].dayChangeDollars > 0
                             ? const Color(0xFF7FFF00)
                             : const Color(0xFFFF0000),
-                        fontSize: 22,
+                        fontSize: 20,
                         fontWeight: FontWeight.w600),
                   ),
                   Text(
@@ -157,7 +157,7 @@ class _StockWatchlistState extends State<StockWatchlist> {
                         color: testingList[index].dayChangeDollars > 0
                             ? const Color(0xFF7FFF00)
                             : const Color(0xFFFF0000),
-                        fontSize: 22,
+                        fontSize: 20,
                         fontWeight: FontWeight.w600),
                   )
                 ],
@@ -174,7 +174,7 @@ class _StockWatchlistState extends State<StockWatchlist> {
                           color: testingList[index].dayChangePercentage > 0
                               ? const Color(0xFF7FFF00)
                               : const Color(0xFFFF0000),
-                          fontSize: 16,
+                          fontSize: 14,
                           fontWeight: FontWeight.w600),
                     ),
                     Text(
@@ -183,7 +183,7 @@ class _StockWatchlistState extends State<StockWatchlist> {
                           color: testingList[index].dayChangeDollars > 0
                               ? const Color(0xFF7FFF00)
                               : const Color(0xFFFF0000),
-                          fontSize: 16,
+                          fontSize: 14,
                           fontWeight: FontWeight.w600),
                     ),
                   ],
