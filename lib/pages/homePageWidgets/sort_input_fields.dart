@@ -1,55 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-String displaySortText = ''; // todo change to late rather than initializing
-
 class SortInputFields extends StatefulWidget {
-  const SortInputFields({super.key});
+  String displaySortText;
+  SortInputFields({super.key, required this.displaySortText});
 
   @override
-  State<SortInputFields> createState() => _SortInputFieldsState();
+  State<SortInputFields> createState() =>
+      _SortInputFieldsState(displaySortText);
 }
 
 class _SortInputFieldsState extends State<SortInputFields> {
-  /* called on application open */
-  @override
-  void initState() {
-    super.initState();
-    /* loads the initial sorting algorithm */
-    onLoadSortMethod() async {
-      final SharedPreferences prefs = await SharedPreferences.getInstance();
-      final String? sortString = prefs.getString('watchlistSort');
-
-      setState(() {
-        if (sortString == 'Alpha') {
-          displaySortText = 'Alphabetically';
-        } else if (sortString == 'Price') {
-          displaySortText = 'Ticker Price';
-        } else if (sortString == 'Percentage') {
-          displaySortText = 'Day Change (%)';
-        } else {
-          displaySortText = 'Stock Exchange';
-        }
-      });
-    }
-
-    onLoadSortMethod();
-
-    // WidgetsBinding.instance.addPostFrameCallback((_) {
-    // onLoadSortMethod();
-    // });
-  }
+  String displaySortText;
+  _SortInputFieldsState(this.displaySortText);
 
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        selectedSortDisplay(),
+        selectedSortDisplay(displaySortText),
         GestureDetector(
             onTap: () {
               setState(() {
-                sortHandler();
+                sortHandler(displaySortText);
               });
             },
             child: const Padding(
@@ -66,14 +40,14 @@ class _SortInputFieldsState extends State<SortInputFields> {
 }
 
 /* displays the currently selected sort method */
-Text selectedSortDisplay() {
+Text selectedSortDisplay(String displaySortText) {
   return Text(displaySortText,
       style: const TextStyle(
           color: Color(0xFFCC0000), fontSize: 22, fontWeight: FontWeight.w600));
 }
 
 /* sort button pressed handler */
-sortHandler() async {
+sortHandler(String displaySortText) async {
   final SharedPreferences prefs = await SharedPreferences.getInstance();
   final String? sortString = prefs.getString('watchlistSort');
 
