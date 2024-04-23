@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-String displaySortText = 'ALPHA onLoad';
+String displaySortText = ''; // todo change to late rather than initializing
 
 class SortInputFields extends StatefulWidget {
   const SortInputFields({super.key});
