@@ -33,9 +33,11 @@ class _SortInputFieldsState extends State<SortInputFields> {
       });
     }
 
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      onLoadSortMethod();
-    });
+    onLoadSortMethod();
+
+    // WidgetsBinding.instance.addPostFrameCallback((_) {
+    // onLoadSortMethod();
+    // });
   }
 
   @override
