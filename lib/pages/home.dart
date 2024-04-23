@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:stock_alert/helper_functions.dart';
 import 'package:stock_alert/pages/homePageWidgets/stock_watchlist.dart';
@@ -15,44 +14,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  String displaySortText =
-      'YOO FROM HOME'; // todo change to late rather than initializing
-
-  /* called on application open */
-  @override
-  void initState() {
-    super.initState();
-
-    /* loads the initial sorting algorithm */ // todo also load all setting values here
-    onLoadSortMethod() async {
-      final SharedPreferences prefs = await SharedPreferences.getInstance();
-      final String? sortString = prefs.getString('watchlistSort');
-
-      setState(() {
-        if (sortString == 'Alpha') {
-          displaySortText = 'Alphabetically';
-        } else if (sortString == 'Price') {
-          displaySortText = 'Ticker Price';
-        } else if (sortString == 'Percentage') {
-          displaySortText = 'Day Change (%)';
-        } else {
-          displaySortText = 'Stock Exchange';
-        }
-      });
-    }
-
-    onLoadSortMethod();
-
-    // WidgetsBinding.instance.addPostFrameCallback((_) {
-    // onLoadSortMethod();
-    // });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: header(context),
-      body: homeBody(displaySortText),
+      body: homeBody(),
     );
   }
 
@@ -90,7 +56,7 @@ class _HomePageState extends State<HomePage> {
 }
 
 /* body widget of settings page */
-Container homeBody(String displaySortText) {
+Container homeBody() {
   final HelperFunctions helperFunctions = HelperFunctions();
 
   TimeOfDay? lastUpdatedTime = TimeOfDay.now();
@@ -119,9 +85,9 @@ Container homeBody(String displaySortText) {
                 padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
                 child: TickerInsertFields(),
               ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-                child: SortInputFields(displaySortText: displaySortText),
+              const Padding(
+                padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                child: SortInputFields(),
               ),
               const Expanded(child: StockWatchlist()),
               Text(
