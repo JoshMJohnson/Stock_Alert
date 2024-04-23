@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-enum SortOptions { alphabetically, tickerPrice, dayChange, stockExchange }
-
-late String displayedSortText;
-int savedSortValue = 0; // todo get value from async storage
+String displaySortText = 'ALPHA onLoad';
 
 class SortInputFields extends StatefulWidget {
   const SortInputFields({super.key});
@@ -13,6 +11,33 @@ class SortInputFields extends StatefulWidget {
 }
 
 class _SortInputFieldsState extends State<SortInputFields> {
+  /* called on application open */
+  @override
+  void initState() {
+    super.initState();
+    /* loads the initial sorting algorithm */
+    onLoadSortMethod() async {
+      final SharedPreferences prefs = await SharedPreferences.getInstance();
+      final String? sortString = prefs.getString('watchlistSort');
+
+      setState(() {
+        if (sortString == 'Alpha') {
+          displaySortText = 'Alphabetically';
+        } else if (sortString == 'Price') {
+          displaySortText = 'Ticker Price';
+        } else if (sortString == 'Percentage') {
+          displaySortText = 'Day Change (%)';
+        } else {
+          displaySortText = 'Stock Exchange';
+        }
+      });
+    }
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      onLoadSortMethod();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -40,35 +65,27 @@ class _SortInputFieldsState extends State<SortInputFields> {
 
 /* displays the currently selected sort method */
 Text selectedSortDisplay() {
-  sortMethodFinder();
-
-  return Text(displayedSortText,
+  return Text(displaySortText,
       style: const TextStyle(
           color: Color(0xFFCC0000), fontSize: 22, fontWeight: FontWeight.w600));
 }
 
-/* sort button pressed handler */ // todo
-sortHandler() {
-  debugPrint('Sort button pressed... savedSortValue: $savedSortValue');
+/* sort button pressed handler */
+sortHandler() async {
+  final SharedPreferences prefs = await SharedPreferences.getInstance();
+  final String? sortString = prefs.getString('watchlistSort');
 
-  if (savedSortValue == 3) {
-    savedSortValue = 0;
+  if (sortString == 'Alpha') {
+    displaySortText = 'Ticker Price';
+    await prefs.setString('watchlistSort', 'Price');
+  } else if (sortString == 'Price') {
+    displaySortText = 'Day Change (%)';
+    await prefs.setString('watchlistSort', 'Percentage');
+  } else if (sortString == 'Percentage') {
+    displaySortText = 'Stock Exchange';
+    await prefs.setString('watchlistSort', 'Exchange');
   } else {
-    savedSortValue++;
-  }
-
-  sortMethodFinder();
-}
-
-/* assigns the value of the text display for current sort method selected */
-sortMethodFinder() {
-  if (savedSortValue == SortOptions.alphabetically.index) {
-    displayedSortText = 'Alphabetically';
-  } else if (savedSortValue == SortOptions.tickerPrice.index) {
-    displayedSortText = 'Ticker Price';
-  } else if (savedSortValue == SortOptions.dayChange.index) {
-    displayedSortText = 'Day Change (%)';
-  } else {
-    displayedSortText = 'Stock Exchange';
+    displaySortText = 'Alphabetically';
+    await prefs.setString('watchlistSort', 'Alpha');
   }
 }
