@@ -27,11 +27,11 @@ class _SortInputFieldsState extends State<SortInputFields> {
     final String? sortString = prefs.getString('watchlistSort');
 
     setState(() {
-      if (sortString == 'Alpha') {
+      if (sortString == 'Alphabetically') {
         displaySortText = 'Alphabetically';
-      } else if (sortString == 'Price') {
+      } else if (sortString == 'Ticker Price') {
         displaySortText = 'Ticker Price';
-      } else if (sortString == 'Percentage') {
+      } else if (sortString == 'Day Change (%)') {
         displaySortText = 'Day Change (%)';
       } else {
         displaySortText = 'Stock Exchange';
@@ -76,17 +76,17 @@ sortHandler() async {
   final SharedPreferences prefs = await SharedPreferences.getInstance();
   final String? sortString = prefs.getString('watchlistSort');
 
-  if (sortString == 'Alpha') {
+  if (sortString == 'Alphabetically') {
     displaySortText = 'Ticker Price';
-    await prefs.setString('watchlistSort', 'Price');
-  } else if (sortString == 'Price') {
+    await prefs.setString('watchlistSort', 'Ticker Price');
+  } else if (sortString == 'Ticker Price') {
     displaySortText = 'Day Change (%)';
-    await prefs.setString('watchlistSort', 'Percentage');
-  } else if (sortString == 'Percentage') {
+    await prefs.setString('watchlistSort', 'Day Change (%)');
+  } else if (sortString == 'Day Change (%)') {
     displaySortText = 'Stock Exchange';
-    await prefs.setString('watchlistSort', 'Exchange');
+    await prefs.setString('watchlistSort', 'Stock Exchange');
   } else {
     displaySortText = 'Alphabetically';
-    await prefs.setString('watchlistSort', 'Alpha');
+    await prefs.setString('watchlistSort', 'Alphabetically');
   }
 }
