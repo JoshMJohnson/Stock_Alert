@@ -21,7 +21,7 @@ class _SortInputFieldsState extends State<SortInputFields> {
     });
   }
 
-/* loads the initial sorting algorithm */
+  /* loads the initial sorting algorithm */
   onLoadSortMethod() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final String? sortString = prefs.getString('watchlistSort');
