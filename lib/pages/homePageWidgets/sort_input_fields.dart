@@ -15,26 +15,27 @@ class _SortInputFieldsState extends State<SortInputFields> {
   @override
   void initState() {
     super.initState();
-    /* loads the initial sorting algorithm */
-    onLoadSortMethod() async {
-      final SharedPreferences prefs = await SharedPreferences.getInstance();
-      final String? sortString = prefs.getString('watchlistSort');
-
-      setState(() {
-        if (sortString == 'Alpha') {
-          displaySortText = 'Alphabetically';
-        } else if (sortString == 'Price') {
-          displaySortText = 'Ticker Price';
-        } else if (sortString == 'Percentage') {
-          displaySortText = 'Day Change (%)';
-        } else {
-          displaySortText = 'Stock Exchange';
-        }
-      });
-    }
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       onLoadSortMethod();
+    });
+  }
+
+/* loads the initial sorting algorithm */
+  onLoadSortMethod() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final String? sortString = prefs.getString('watchlistSort');
+
+    setState(() {
+      if (sortString == 'Alpha') {
+        displaySortText = 'Alphabetically';
+      } else if (sortString == 'Price') {
+        displaySortText = 'Ticker Price';
+      } else if (sortString == 'Percentage') {
+        displaySortText = 'Day Change (%)';
+      } else {
+        displaySortText = 'Stock Exchange';
+      }
     });
   }
 
