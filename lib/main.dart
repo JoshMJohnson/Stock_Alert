@@ -6,6 +6,8 @@ import 'pages/home.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences prefs = await SharedPreferences.getInstance();
+
+  /* loads settings from device preferences */
   String? sortAlgorithm = prefs.getString('watchlistSort') ?? 'Alphabetically';
 
   runApp(MyApp(sortAlgorithm: sortAlgorithm));
