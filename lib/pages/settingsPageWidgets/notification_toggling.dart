@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 // ignore: must_be_immutable
 class NotificationToggle extends StatefulWidget {
@@ -12,17 +13,18 @@ class NotificationToggle extends StatefulWidget {
 }
 
 class _NotificationToggleState extends State<NotificationToggle> {
-  bool? notificationsActive = false;
-  List<bool> notificationsOnOptions = [true, false];
-
-  _NotificationToggleState(notificationToggledOn);
+  bool notificationToggledOn;
+  _NotificationToggleState(this.notificationToggledOn);
 
   /* handles a toggle in notifications is_active */ // todo save updated value to async storage
-  void _toggleNotificationsActive(bool? currentValue) {
-    setState(() {
-      notificationsActive = currentValue;
-      debugPrint("notificationsOn: $notificationsActive");
-    });
+  bool _savePrefs(bool currentValue) {
+    updateNotificationTogglePreferences(currentValue);
+    return currentValue;
+  }
+
+  updateNotificationTogglePreferences(bool currentValue) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setBool('notificationToggle', currentValue);
   }
 
   @override
@@ -43,14 +45,16 @@ class _NotificationToggleState extends State<NotificationToggle> {
             Row(
               children: [
                 Radio(
-                  value: notificationsOnOptions[0],
-                  groupValue: notificationsActive,
+                  value: true,
+                  groupValue: notificationToggledOn,
                   fillColor: MaterialStateProperty.resolveWith<Color>(
                       (Set<MaterialState> states) {
                     return const Color(0xFF1B5E20);
                   }),
                   onChanged: (value) {
-                    _toggleNotificationsActive(value);
+                    setState(() {
+                      notificationToggledOn = _savePrefs(value!);
+                    });
                   },
                 ),
                 const Text(
@@ -67,14 +71,16 @@ class _NotificationToggleState extends State<NotificationToggle> {
                 child: Row(
                   children: [
                     Radio(
-                      value: notificationsOnOptions[1],
-                      groupValue: notificationsActive,
+                      value: false,
+                      groupValue: notificationToggledOn,
                       fillColor: MaterialStateProperty.resolveWith<Color>(
                           (Set<MaterialState> states) {
                         return const Color(0xFF1B5E20);
                       }),
                       onChanged: (value) {
-                        _toggleNotificationsActive(value);
+                        setState(() {
+                          notificationToggledOn = _savePrefs(value!);
+                        });
                       },
                     ),
                     const Text(
