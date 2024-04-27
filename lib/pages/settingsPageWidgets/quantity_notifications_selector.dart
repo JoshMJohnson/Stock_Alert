@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:stock_alert/pages/settingsPageWidgets/tod_reminders.dart';
 
 class QuantityNotificationsSelector extends StatefulWidget {
-  const QuantityNotificationsSelector({super.key});
+  const QuantityNotificationsSelector(notificationQuantity, {super.key});
 
   @override
   State<QuantityNotificationsSelector> createState() =>

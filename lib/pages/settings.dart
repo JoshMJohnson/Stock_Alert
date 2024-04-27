@@ -54,7 +54,8 @@ class _SettingsPageState extends State<SettingsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: header(context),
-      body: settingsBody(),
+      body: settingsBody(notificationToggledOn, thresholdValue,
+          notificationQuantity, notification1, notification2, notification3),
     );
   }
 
@@ -85,7 +86,8 @@ class _SettingsPageState extends State<SettingsPage> {
   }
 
   /* body widget of settings page */
-  Container settingsBody() {
+  Container settingsBody(notificationToggledOn, thresholdValue,
+      notificationQuantity, notification1, notification2, notification3) {
     return Container(
         width: double.infinity,
         height: double.infinity,
@@ -94,15 +96,15 @@ class _SettingsPageState extends State<SettingsPage> {
                 colors: [Color(0XAA006400), Color(0xFFA5D6A7)],
                 begin: Alignment.bottomCenter,
                 end: Alignment.topCenter)),
-        child: const SingleChildScrollView(
+        child: SingleChildScrollView(
             child: Padding(
-                padding: EdgeInsets.all(20),
+                padding: const EdgeInsets.all(20),
                 child: Column(
                   children: [
-                    NotificationToggle(),
-                    PriceChangeThreshold(),
-                    QuantityNotificationsSelector(),
-                    ButtonGroup()
+                    NotificationToggle(notificationToggledOn),
+                    PriceChangeThreshold(thresholdValue),
+                    QuantityNotificationsSelector(notificationQuantity),
+                    ButtonGroup(notification1, notification2, notification3)
                   ],
                 ))));
   }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class PriceChangeThreshold extends StatefulWidget {
-  const PriceChangeThreshold({super.key});
+  const PriceChangeThreshold(thresholdValue, {super.key});
 
   @override
   State<PriceChangeThreshold> createState() => _PriceChangeThresholdState();

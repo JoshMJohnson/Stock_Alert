@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class NotificationToggle extends StatefulWidget {
-  const NotificationToggle({super.key});
+  const NotificationToggle(notificationToggledOn, {super.key});
 
   @override
   State<NotificationToggle> createState() => _NotificationToggleState();
