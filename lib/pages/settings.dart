@@ -101,10 +101,15 @@ class _SettingsPageState extends State<SettingsPage> {
                 padding: const EdgeInsets.all(20),
                 child: Column(
                   children: [
-                    NotificationToggle(notificationToggledOn),
-                    PriceChangeThreshold(thresholdValue),
-                    QuantityNotificationsSelector(notificationQuantity),
-                    ButtonGroup(notification1, notification2, notification3)
+                    NotificationToggle(
+                        notificationToggledOn: notificationToggledOn),
+                    PriceChangeThreshold(thresholdValue: thresholdValue),
+                    QuantityNotificationsSelector(
+                        notificationQuantity: notificationQuantity),
+                    ButtonGroup(
+                        notification1: notification1,
+                        notification2: notification2,
+                        notification3: notification3)
                   ],
                 ))));
   }

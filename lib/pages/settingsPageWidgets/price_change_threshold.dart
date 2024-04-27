@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class PriceChangeThreshold extends StatefulWidget {
-  const PriceChangeThreshold(thresholdValue, {super.key});
+  double thresholdValue;
+  PriceChangeThreshold({super.key, required this.thresholdValue});
 
   @override
   State<PriceChangeThreshold> createState() => _PriceChangeThresholdState();

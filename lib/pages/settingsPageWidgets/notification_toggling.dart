@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class NotificationToggle extends StatefulWidget {
-  const NotificationToggle(notificationToggledOn, {super.key});
+  bool notificationToggledOn;
+  NotificationToggle({super.key, required this.notificationToggledOn});
 
   @override
-  State<NotificationToggle> createState() => _NotificationToggleState();
+  State<NotificationToggle> createState() =>
+      // ignore: no_logic_in_create_state
+      _NotificationToggleState(notificationToggledOn);
 }
 
 class _NotificationToggleState extends State<NotificationToggle> {
   bool? notificationsActive = false;
   List<bool> notificationsOnOptions = [true, false];
+
+  _NotificationToggleState(notificationToggledOn);
 
   /* handles a toggle in notifications is_active */ // todo save updated value to async storage
   void _toggleNotificationsActive(bool? currentValue) {

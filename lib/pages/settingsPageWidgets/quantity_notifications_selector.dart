@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:stock_alert/pages/settingsPageWidgets/tod_reminders.dart';
 
+// ignore: must_be_immutable
 class QuantityNotificationsSelector extends StatefulWidget {
-  const QuantityNotificationsSelector(notificationQuantity, {super.key});
+  int notificationQuantity;
+  QuantityNotificationsSelector(
+      {super.key, required this.notificationQuantity});
 
   @override
   State<QuantityNotificationsSelector> createState() =>
