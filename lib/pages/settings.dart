@@ -5,14 +5,51 @@ import 'package:stock_alert/pages/settingsPageWidgets/price_change_threshold.dar
 import 'package:stock_alert/pages/settingsPageWidgets/quantity_notifications_selector.dart';
 import 'package:stock_alert/pages/settingsPageWidgets/button_group.dart';
 
+// ignore: must_be_immutable
 class SettingsPage extends StatefulWidget {
-  const SettingsPage({super.key});
+  bool notificationToggledOn;
+  double thresholdValue;
+  int notificationQuantity;
+  TimeOfDay notification1;
+  TimeOfDay notification2;
+  TimeOfDay notification3;
+
+  SettingsPage(
+      {super.key,
+      required this.notificationToggledOn,
+      required this.thresholdValue,
+      required this.notificationQuantity,
+      required this.notification1,
+      required this.notification2,
+      required this.notification3});
 
   @override
-  State<SettingsPage> createState() => _SettingsPageState();
+  // ignore: no_logic_in_create_state
+  State<SettingsPage> createState() => _SettingsPageState(
+      notificationToggledOn,
+      thresholdValue,
+      notificationQuantity,
+      notification1,
+      notification2,
+      notification3);
 }
 
 class _SettingsPageState extends State<SettingsPage> {
+  bool notificationToggledOn;
+  double thresholdValue;
+  int notificationQuantity;
+  TimeOfDay notification1;
+  TimeOfDay notification2;
+  TimeOfDay notification3;
+
+  _SettingsPageState(
+      this.notificationToggledOn,
+      this.thresholdValue,
+      this.notificationQuantity,
+      this.notification1,
+      this.notification2,
+      this.notification3);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

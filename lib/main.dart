@@ -30,13 +30,35 @@ Future<void> main() async {
   notification2 = TimeOfDay(hour: tod2Hours, minute: tod2Minutes);
   notification3 = TimeOfDay(hour: tod3Hours, minute: tod3Minutes);
 
-  runApp(MyApp(sortAlgorithm: sortAlgorithm));
+  runApp(MyApp(
+      sortAlgorithm: sortAlgorithm,
+      notificationToggledOn: notificationToggledOn,
+      thresholdValue: thresholdValue,
+      notificationQuantity: notificationQuantity,
+      notification1: notification1,
+      notification2: notification2,
+      notification3: notification3));
 }
 
 // ignore: must_be_immutable
 class MyApp extends StatelessWidget {
   String sortAlgorithm;
-  MyApp({super.key, required this.sortAlgorithm});
+  bool notificationToggledOn;
+  double thresholdValue;
+  int notificationQuantity;
+  TimeOfDay notification1;
+  TimeOfDay notification2;
+  TimeOfDay notification3;
+
+  MyApp(
+      {super.key,
+      required this.sortAlgorithm,
+      required this.notificationToggledOn,
+      required this.thresholdValue,
+      required this.notificationQuantity,
+      required this.notification1,
+      required this.notification2,
+      required this.notification3});
 
   // This widget is the root of your application.
   @override
@@ -44,6 +66,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(fontFamily: 'EBGaramond'),
-        home: HomePage(sortAlgorithm: sortAlgorithm));
+        home: HomePage(
+            sortAlgorithm: sortAlgorithm,
+            notificationToggledOn: notificationToggledOn,
+            thresholdValue: thresholdValue,
+            notificationQuantity: notificationQuantity,
+            notification1: notification1,
+            notification2: notification2,
+            notification3: notification3));
   }
 }

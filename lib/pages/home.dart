@@ -9,27 +9,71 @@ import 'package:stock_alert/pages/homePageWidgets/sort_input_fields.dart';
 // ignore: must_be_immutable
 class HomePage extends StatefulWidget {
   String sortAlgorithm;
-  HomePage({super.key, required this.sortAlgorithm});
+  bool notificationToggledOn;
+  double thresholdValue;
+  int notificationQuantity;
+  TimeOfDay notification1;
+  TimeOfDay notification2;
+  TimeOfDay notification3;
+
+  HomePage(
+      {super.key,
+      required this.sortAlgorithm,
+      required this.notificationToggledOn,
+      required this.thresholdValue,
+      required this.notificationQuantity,
+      required this.notification1,
+      required this.notification2,
+      required this.notification3});
 
   @override
   // ignore: no_logic_in_create_state
-  State<HomePage> createState() => _HomePageState(sortAlgorithm);
+  State<HomePage> createState() => _HomePageState(
+      sortAlgorithm,
+      notificationToggledOn,
+      thresholdValue,
+      notificationQuantity,
+      notification1,
+      notification2,
+      notification3);
 }
 
 class _HomePageState extends State<HomePage> {
   String sortAlgorithm;
-  _HomePageState(this.sortAlgorithm);
+  bool notificationToggledOn;
+  double thresholdValue;
+  int notificationQuantity;
+  TimeOfDay notification1;
+  TimeOfDay notification2;
+  TimeOfDay notification3;
+
+  _HomePageState(
+      this.sortAlgorithm,
+      this.notificationToggledOn,
+      this.thresholdValue,
+      this.notificationQuantity,
+      this.notification1,
+      this.notification2,
+      this.notification3);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: header(context),
+      appBar: header(context, notificationToggledOn, thresholdValue,
+          notificationQuantity, notification1, notification2, notification3),
       body: homeBody(sortAlgorithm),
     );
   }
 
   /* header widget */
-  AppBar header(BuildContext context) {
+  AppBar header(
+      BuildContext context,
+      bool notificationToggledOn,
+      double thresholdValue,
+      int notificationQuantity,
+      TimeOfDay notification1,
+      TimeOfDay notification2,
+      TimeOfDay notification3) {
     return AppBar(
         leadingWidth: 110,
         title: Text(
@@ -48,7 +92,13 @@ class _HomePageState extends State<HomePage> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const SettingsPage()));
+                        builder: (context) => SettingsPage(
+                            notificationToggledOn: notificationToggledOn,
+                            thresholdValue: thresholdValue,
+                            notificationQuantity: notificationQuantity,
+                            notification1: notification1,
+                            notification2: notification2,
+                            notification3: notification3)));
               },
               child: Container(
                   margin: const EdgeInsets.fromLTRB(0, 0, 35, 0),
