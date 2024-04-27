@@ -1,54 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-String displaySortText = ''; // todo change to late rather than initializing
-
 class SortInputFields extends StatefulWidget {
-  const SortInputFields({super.key});
+  String sortAlgorithm;
+  SortInputFields({super.key, required this.sortAlgorithm});
 
   @override
-  State<SortInputFields> createState() => _SortInputFieldsState();
+  State<SortInputFields> createState() => _SortInputFieldsState(sortAlgorithm);
 }
 
 class _SortInputFieldsState extends State<SortInputFields> {
-  /* called on application open */
-  @override
-  void initState() {
-    super.initState();
-
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      onLoadSortMethod();
-    });
-  }
-
-  /* loads the initial sorting algorithm for the watchlist */
-  onLoadSortMethod() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    final String? sortString = prefs.getString('watchlistSort');
-
-    setState(() {
-      if (sortString == 'Alphabetically') {
-        displaySortText = 'Alphabetically';
-      } else if (sortString == 'Ticker Price') {
-        displaySortText = 'Ticker Price';
-      } else if (sortString == 'Day Change (%)') {
-        displaySortText = 'Day Change (%)';
-      } else {
-        displaySortText = 'Stock Exchange';
-      }
-    });
-  }
+  String sortAlgorithm;
+  _SortInputFieldsState(this.sortAlgorithm);
 
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        selectedSortDisplay(),
+        selectedSortDisplay(sortAlgorithm),
         GestureDetector(
             onTap: () {
               setState(() {
-                sortHandler();
+                sortAlgorithm = sortHandler(sortAlgorithm);
               });
             },
             child: const Padding(
@@ -65,28 +39,30 @@ class _SortInputFieldsState extends State<SortInputFields> {
 }
 
 /* displays the currently selected sort method */
-Text selectedSortDisplay() {
-  return Text(displaySortText,
+Text selectedSortDisplay(String sortAlgorithm) {
+  return Text(sortAlgorithm,
       style: const TextStyle(
           color: Color(0xFFCC0000), fontSize: 22, fontWeight: FontWeight.w600));
 }
 
 /* sort button pressed handler */
-sortHandler() async {
-  final SharedPreferences prefs = await SharedPreferences.getInstance();
-  final String? sortString = prefs.getString('watchlistSort');
-
-  if (sortString == 'Alphabetically') {
-    displaySortText = 'Ticker Price';
-    await prefs.setString('watchlistSort', 'Ticker Price');
-  } else if (sortString == 'Ticker Price') {
-    displaySortText = 'Day Change (%)';
-    await prefs.setString('watchlistSort', 'Day Change (%)');
-  } else if (sortString == 'Day Change (%)') {
-    displaySortText = 'Stock Exchange';
-    await prefs.setString('watchlistSort', 'Stock Exchange');
+String sortHandler(String sortAlgorithm) {
+  if (sortAlgorithm == 'Alphabetically') {
+    sortAlgorithm = 'Ticker Price';
+  } else if (sortAlgorithm == 'Ticker Price') {
+    sortAlgorithm = 'Day Change (%)';
+  } else if (sortAlgorithm == 'Day Change (%)') {
+    sortAlgorithm = 'Stock Exchange';
   } else {
-    displaySortText = 'Alphabetically';
-    await prefs.setString('watchlistSort', 'Alphabetically');
+    sortAlgorithm = 'Alphabetically';
   }
+
+  updateSortPreferences(sortAlgorithm);
+
+  return sortAlgorithm;
+}
+
+updateSortPreferences(String sortAlgorithm) async {
+  final SharedPreferences prefs = await SharedPreferences.getInstance();
+  await prefs.setString('watchlistSort', sortAlgorithm);
 }

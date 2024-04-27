@@ -7,18 +7,22 @@ import 'package:stock_alert/pages/homePageWidgets/ticker_input_fields.dart';
 import 'package:stock_alert/pages/homePageWidgets/sort_input_fields.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  String sortAlgorithm;
+  HomePage({super.key, required this.sortAlgorithm});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<HomePage> createState() => _HomePageState(sortAlgorithm);
 }
 
 class _HomePageState extends State<HomePage> {
+  String sortAlgorithm;
+  _HomePageState(this.sortAlgorithm);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: header(context),
-      body: homeBody(),
+      body: homeBody(sortAlgorithm),
     );
   }
 
@@ -56,7 +60,7 @@ class _HomePageState extends State<HomePage> {
 }
 
 /* body widget of settings page */
-Container homeBody() {
+Container homeBody(String sortAlgorithm) {
   final HelperFunctions helperFunctions = HelperFunctions();
 
   TimeOfDay? lastUpdatedTime = TimeOfDay.now();
@@ -85,11 +89,11 @@ Container homeBody() {
                 padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
                 child: TickerInsertFields(),
               ),
-              const Padding(
-                padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
-                child: SortInputFields(),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                child: SortInputFields(sortAlgorithm: sortAlgorithm),
               ),
-              const Expanded(child: StockWatchlist()),
+              Expanded(child: StockWatchlist(sortAlgorithm: sortAlgorithm)),
               Text(
                 'Last Updated: $lastUpdatedTimeDisplay',
                 style: const TextStyle(

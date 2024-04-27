@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 import 'pages/home.dart';
 
-void main() {
-  runApp(const MyApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  String? sortAlgorithm = prefs.getString('watchlistSort') ?? 'Alphabetically';
+
+  runApp(MyApp(sortAlgorithm: sortAlgorithm));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  String sortAlgorithm;
+  MyApp({super.key, required this.sortAlgorithm});
 
   // This widget is the root of your application.
   @override
@@ -14,6 +21,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(fontFamily: 'EBGaramond'),
-        home: const HomePage());
+        home: HomePage(sortAlgorithm: sortAlgorithm));
   }
 }

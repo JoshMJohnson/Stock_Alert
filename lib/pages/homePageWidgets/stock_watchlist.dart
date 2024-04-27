@@ -88,13 +88,17 @@ List<StockEntity> testingList = [
 // ! end of testing code
 
 class StockWatchlist extends StatefulWidget {
-  const StockWatchlist({super.key});
+  String sortAlgorithm;
+  StockWatchlist({super.key, required this.sortAlgorithm});
 
   @override
-  State<StockWatchlist> createState() => _StockWatchlistState();
+  State<StockWatchlist> createState() => _StockWatchlistState(sortAlgorithm);
 }
 
 class _StockWatchlistState extends State<StockWatchlist> {
+  String sortAlgorithm;
+  _StockWatchlistState(this.sortAlgorithm);
+
   @override
   Widget build(BuildContext context) {
     return Container(
