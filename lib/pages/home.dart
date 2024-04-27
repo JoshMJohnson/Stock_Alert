@@ -6,11 +6,13 @@ import 'package:stock_alert/pages/settings.dart';
 import 'package:stock_alert/pages/homePageWidgets/ticker_input_fields.dart';
 import 'package:stock_alert/pages/homePageWidgets/sort_input_fields.dart';
 
+// ignore: must_be_immutable
 class HomePage extends StatefulWidget {
   String sortAlgorithm;
   HomePage({super.key, required this.sortAlgorithm});
 
   @override
+  // ignore: no_logic_in_create_state
   State<HomePage> createState() => _HomePageState(sortAlgorithm);
 }
 

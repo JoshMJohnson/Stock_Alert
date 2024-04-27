@@ -87,11 +87,13 @@ List<StockEntity> testingList = [
 ];
 // ! end of testing code
 
+// ignore: must_be_immutable
 class StockWatchlist extends StatefulWidget {
   String sortAlgorithm;
   StockWatchlist({super.key, required this.sortAlgorithm});
 
   @override
+  // ignore: no_logic_in_create_state
   State<StockWatchlist> createState() => _StockWatchlistState(sortAlgorithm);
 }
 

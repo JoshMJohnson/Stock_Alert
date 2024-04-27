@@ -11,6 +11,7 @@ Future<void> main() async {
   runApp(MyApp(sortAlgorithm: sortAlgorithm));
 }
 
+// ignore: must_be_immutable
 class MyApp extends StatelessWidget {
   String sortAlgorithm;
   MyApp({super.key, required this.sortAlgorithm});

@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+// ignore: must_be_immutable
 class SortInputFields extends StatefulWidget {
   String sortAlgorithm;
   SortInputFields({super.key, required this.sortAlgorithm});
 
   @override
+  // ignore: no_logic_in_create_state
   State<SortInputFields> createState() => _SortInputFieldsState(sortAlgorithm);
 }
 
