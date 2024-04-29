@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 // ignore: must_be_immutable
 class NotificationToggle extends StatefulWidget {
@@ -15,17 +14,6 @@ class NotificationToggle extends StatefulWidget {
 class _NotificationToggleState extends State<NotificationToggle> {
   bool notificationToggledOn;
   _NotificationToggleState(this.notificationToggledOn);
-
-  /* handles a toggle in notifications is_active */ // todo save updated value to async storage
-  bool _savePrefs(bool currentValue) {
-    updateNotificationTogglePreferences(currentValue);
-    return currentValue;
-  }
-
-  updateNotificationTogglePreferences(bool currentValue) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setBool('notificationToggle', currentValue);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +41,7 @@ class _NotificationToggleState extends State<NotificationToggle> {
                   }),
                   onChanged: (value) {
                     setState(() {
-                      notificationToggledOn = _savePrefs(value!);
+                      notificationToggledOn = value!;
                     });
                   },
                 ),
@@ -79,7 +67,7 @@ class _NotificationToggleState extends State<NotificationToggle> {
                       }),
                       onChanged: (value) {
                         setState(() {
-                          notificationToggledOn = _savePrefs(value!);
+                          notificationToggledOn = value!;
                         });
                       },
                     ),
