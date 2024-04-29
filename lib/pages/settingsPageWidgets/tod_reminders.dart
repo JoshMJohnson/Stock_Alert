@@ -116,8 +116,6 @@ class _TODRemindersState extends State<TODReminders> {
       standardTime = helperFunctions.standardTimeConvertionHandler(tod3);
     }
 
-    debugPrint('standardTime: $standardTime');
-
     Text displayedTime = Text(
       standardTime,
       style: const TextStyle(

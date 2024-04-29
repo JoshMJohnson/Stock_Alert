@@ -21,7 +21,6 @@ class _QuantityNotificationsSelectorState
   void _dropdownHandler(int? selectedValue) {
     setState(() {
       currentOption = selectedValue;
-      debugPrint("currentOption: $currentOption");
     });
   }
 
