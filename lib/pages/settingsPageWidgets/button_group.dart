@@ -4,26 +4,25 @@ import 'package:stock_alert/pages/settingsPageWidgets/save_button.dart';
 
 // ignore: must_be_immutable
 class ButtonGroup extends StatefulWidget {
-  TimeOfDay notification1;
-  TimeOfDay notification2;
-  TimeOfDay notification3;
-
-  ButtonGroup(
-      {super.key,
-      required this.notification1,
-      required this.notification2,
-      required this.notification3});
+  Function saveButtonHandler;
+  ButtonGroup({super.key, required this.saveButtonHandler});
 
   @override
-  State<ButtonGroup> createState() => _ButtonGroupState();
+  State<ButtonGroup> createState() => _ButtonGroupState(saveButtonHandler);
 }
 
 class _ButtonGroupState extends State<ButtonGroup> {
+  Function saveButtonHandler;
+  _ButtonGroupState(this.saveButtonHandler);
+
   @override
   Widget build(BuildContext context) {
-    return const Row(
+    return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [ClearWatchlist(), SaveButton()],
+      children: [
+        ClearWatchlist(),
+        SaveButton(saveButtonHandler: saveButtonHandler)
+      ],
     );
   }
 }

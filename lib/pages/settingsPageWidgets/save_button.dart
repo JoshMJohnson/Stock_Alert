@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 
 class SaveButton extends StatefulWidget {
-  const SaveButton({super.key});
+  Function saveButtonHandler;
+  SaveButton({super.key, required this.saveButtonHandler});
 
   @override
-  State<SaveButton> createState() => _SaveButtonState();
+  State<SaveButton> createState() => _SaveButtonState(saveButtonHandler);
 }
 
 class _SaveButtonState extends State<SaveButton> {
+  Function saveButtonHandler;
+  _SaveButtonState(this.saveButtonHandler);
+
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
@@ -26,9 +30,5 @@ class _SaveButtonState extends State<SaveButton> {
             fontWeight: FontWeight.w600),
       ),
     );
-  }
-
-  saveButtonHandler() async {
-    debugPrint('Save button pressed');
   }
 }

@@ -56,6 +56,12 @@ class _HomePageState extends State<HomePage> {
       this.notification2,
       this.notification3);
 
+  refreshSettingsData(updatedValues) {
+    setState(() {
+      notificationToggledOn = updatedValues;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -88,8 +94,8 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.green[200],
         actions: [
           GestureDetector(
-              onTap: () {
-                Navigator.push(
+              onTap: () async {
+                bool updatedNotificationsValue = await Navigator.push(
                     context,
                     MaterialPageRoute(
                         builder: (context) => SettingsPage(
@@ -99,6 +105,11 @@ class _HomePageState extends State<HomePage> {
                             notification1: notification1,
                             notification2: notification2,
                             notification3: notification3)));
+
+                debugPrint(
+                    '************************************ updatedNotificationsValue: $updatedNotificationsValue******************************************');
+
+                refreshSettingsData(updatedNotificationsValue);
               },
               child: Container(
                   margin: const EdgeInsets.fromLTRB(0, 0, 35, 0),

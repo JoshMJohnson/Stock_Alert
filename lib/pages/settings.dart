@@ -50,6 +50,10 @@ class _SettingsPageState extends State<SettingsPage> {
       this.notification2,
       this.notification3);
 
+  saveButtonHandler() async {
+    debugPrint('!!!!!!!Save button pressed!!!!!!!');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,7 +78,9 @@ class _SettingsPageState extends State<SettingsPage> {
       backgroundColor: Colors.green[200],
       leading: GestureDetector(
         onTap: () {
-          Navigator.pop(context);
+          debugPrint(
+              'SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSnotificationToggledOn: $notificationToggledOn SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS');
+          Navigator.pop(context, notificationToggledOn);
         },
         child: Icon(
           Icons.arrow_back,
@@ -106,10 +112,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     PriceChangeThreshold(thresholdValue: thresholdValue),
                     QuantityNotificationsSelector(
                         notificationQuantity: notificationQuantity),
-                    ButtonGroup(
-                        notification1: notification1,
-                        notification2: notification2,
-                        notification3: notification3)
+                    ButtonGroup(saveButtonHandler: saveButtonHandler)
                   ],
                 ))));
   }
