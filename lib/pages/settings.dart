@@ -50,6 +50,7 @@ class _SettingsPageState extends State<SettingsPage> {
       this.notification2,
       this.notification3);
 
+  /* updates/creates daily notifications */ // todo
   saveButtonHandler() async {
     debugPrint('!!!!!!!Save button pressed!!!!!!!');
   }
