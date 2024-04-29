@@ -30,6 +30,6 @@ class _ClearWatchlistState extends State<ClearWatchlist> {
 
   /* clears the watchlist of stocks */ // todo
   clearWatchlistHandler() async {
-    debugPrint('Clear button pressed');
+    debugPrint('????????Clear button pressed????????');
   }
 }

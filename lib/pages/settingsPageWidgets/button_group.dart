@@ -8,6 +8,7 @@ class ButtonGroup extends StatefulWidget {
   ButtonGroup({super.key, required this.saveButtonHandler});
 
   @override
+  // ignore: no_logic_in_create_state
   State<ButtonGroup> createState() => _ButtonGroupState(saveButtonHandler);
 }
 
@@ -20,7 +21,7 @@ class _ButtonGroupState extends State<ButtonGroup> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        ClearWatchlist(),
+        const ClearWatchlist(),
         SaveButton(saveButtonHandler: saveButtonHandler)
       ],
     );
