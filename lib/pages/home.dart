@@ -6,80 +6,29 @@ import 'package:stock_alert/pages/settings.dart';
 import 'package:stock_alert/pages/homePageWidgets/ticker_input_fields.dart';
 import 'package:stock_alert/pages/homePageWidgets/sort_input_fields.dart';
 
-// ignore: must_be_immutable
 class HomePage extends StatefulWidget {
-  String sortAlgorithm;
-  bool notificationToggledOn;
-  double thresholdValue;
-  int notificationQuantity;
-  TimeOfDay notification1;
-  TimeOfDay notification2;
-  TimeOfDay notification3;
-
-  HomePage(
-      {super.key,
-      required this.sortAlgorithm,
-      required this.notificationToggledOn,
-      required this.thresholdValue,
-      required this.notificationQuantity,
-      required this.notification1,
-      required this.notification2,
-      required this.notification3});
+  final String sortAlgorithm;
+  const HomePage(this.sortAlgorithm, {super.key});
 
   @override
   // ignore: no_logic_in_create_state
-  State<HomePage> createState() => _HomePageState(
-      sortAlgorithm,
-      notificationToggledOn,
-      thresholdValue,
-      notificationQuantity,
-      notification1,
-      notification2,
-      notification3);
+  State<HomePage> createState() => _HomePageState(sortAlgorithm);
 }
 
 class _HomePageState extends State<HomePage> {
   String sortAlgorithm;
-  bool notificationToggledOn;
-  double thresholdValue;
-  int notificationQuantity;
-  TimeOfDay notification1;
-  TimeOfDay notification2;
-  TimeOfDay notification3;
-
-  _HomePageState(
-      this.sortAlgorithm,
-      this.notificationToggledOn,
-      this.thresholdValue,
-      this.notificationQuantity,
-      this.notification1,
-      this.notification2,
-      this.notification3);
-
-  refreshSettingsData(updatedValues) {
-    setState(() {
-      notificationToggledOn = updatedValues;
-    });
-  }
+  _HomePageState(this.sortAlgorithm);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: header(context, notificationToggledOn, thresholdValue,
-          notificationQuantity, notification1, notification2, notification3),
+      appBar: header(context),
       body: homeBody(sortAlgorithm),
     );
   }
 
   /* header widget */
-  AppBar header(
-      BuildContext context,
-      bool notificationToggledOn,
-      double thresholdValue,
-      int notificationQuantity,
-      TimeOfDay notification1,
-      TimeOfDay notification2,
-      TimeOfDay notification3) {
+  AppBar header(BuildContext context) {
     return AppBar(
         leadingWidth: 110,
         title: Text(
@@ -98,18 +47,10 @@ class _HomePageState extends State<HomePage> {
                 bool updatedNotificationsValue = await Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => SettingsPage(
-                            notificationToggledOn: notificationToggledOn,
-                            thresholdValue: thresholdValue,
-                            notificationQuantity: notificationQuantity,
-                            notification1: notification1,
-                            notification2: notification2,
-                            notification3: notification3)));
+                        builder: (context) => const SettingsPage()));
 
                 debugPrint(
                     '************************************ updatedNotificationsValue: $updatedNotificationsValue******************************************');
-
-                refreshSettingsData(updatedNotificationsValue);
               },
               child: Container(
                   margin: const EdgeInsets.fromLTRB(0, 0, 35, 0),

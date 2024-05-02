@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:stock_alert/helper_functions.dart';
 
-class TODReminders extends StatefulWidget {
-  const TODReminders({super.key});
-
-  @override
-  State<TODReminders> createState() => _TODRemindersState();
-}
-
-class _TODRemindersState extends State<TODReminders> {
-  TimeOfDay tod1 = const TimeOfDay(hour: 8, minute: 45);
-  TimeOfDay tod2 = const TimeOfDay(hour: 12, minute: 0);
-  TimeOfDay tod3 = const TimeOfDay(hour: 14, minute: 15);
+class TODReminders extends StatelessWidget {
+  final Function(int) changeTODHandler;
+  final TimeOfDay tod1;
+  final TimeOfDay tod2;
+  final TimeOfDay tod3;
+  const TODReminders(
+      {super.key,
+      required this.changeTODHandler,
+      required this.tod1,
+      required this.tod2,
+      required this.tod3});
 
   @override
   Widget build(BuildContext context) {
@@ -52,55 +52,6 @@ class _TODRemindersState extends State<TODReminders> {
             child: getCurrentTOD(todID))
       ],
     );
-  }
-
-  /* adjusts and saves updated time of day reminders */
-  changeTODHandler(int todID) async {
-    late final TimeOfDay? todUpdated;
-
-    if (todID == 0) {
-      todUpdated = await showTimePicker(
-          context: context,
-          initialTime:
-              tod1); // ! get saved time of TOD1 from storage as initialTime
-
-      /* if no updated time was selected; cancel was pressed from within the selector */
-      if (todUpdated == null) {
-        return;
-      }
-
-      setState(() {
-        tod1 = todUpdated!;
-      });
-    } else if (todID == 1) {
-      todUpdated = await showTimePicker(
-          context: context,
-          initialTime:
-              tod2); // ! get saved time of TOD2 from storage as initialTime
-
-      /* if no updated time was selected; cancel was pressed from within the selector */
-      if (todUpdated == null) {
-        return;
-      }
-
-      setState(() {
-        tod2 = todUpdated!;
-      });
-    } else {
-      todUpdated = await showTimePicker(
-          context: context,
-          initialTime:
-              tod3); // ! get saved time of TOD3 from storage as initialTime
-
-      /* if no updated time was selected; cancel was pressed from within the selector */
-      if (todUpdated == null) {
-        return;
-      }
-
-      setState(() {
-        tod3 = todUpdated!;
-      });
-    }
   }
 
   /* retrieves TODs from storage and adjusts for display */

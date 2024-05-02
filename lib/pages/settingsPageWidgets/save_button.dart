@@ -1,18 +1,8 @@
 import 'package:flutter/material.dart';
 
-// ignore: must_be_immutable
-class SaveButton extends StatefulWidget {
-  Function saveButtonHandler;
-  SaveButton({super.key, required this.saveButtonHandler});
-
-  @override
-  // ignore: no_logic_in_create_state
-  State<SaveButton> createState() => _SaveButtonState(saveButtonHandler);
-}
-
-class _SaveButtonState extends State<SaveButton> {
-  Function saveButtonHandler;
-  _SaveButtonState(this.saveButtonHandler);
+class SaveButton extends StatelessWidget {
+  final Function saveButtonHandler;
+  const SaveButton({super.key, required this.saveButtonHandler});
 
   @override
   Widget build(BuildContext context) {

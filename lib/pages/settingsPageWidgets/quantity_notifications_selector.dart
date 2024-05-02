@@ -1,28 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:stock_alert/pages/settingsPageWidgets/tod_reminders.dart';
 
-// ignore: must_be_immutable
-class QuantityNotificationsSelector extends StatefulWidget {
-  int notificationQuantity;
-  QuantityNotificationsSelector(
-      {super.key, required this.notificationQuantity});
+class QuantityNotificationsSelector extends StatelessWidget {
+  final List<int> dropdownOptions = const [1, 2, 3];
+  final int? currentOption;
+  final TimeOfDay notification1;
+  final TimeOfDay notification2;
+  final TimeOfDay notification3;
+  final Function(int) changeTODHandler;
 
-  @override
-  State<QuantityNotificationsSelector> createState() =>
-      _QuantityNotificationsSelectorState();
-}
-
-class _QuantityNotificationsSelectorState
-    extends State<QuantityNotificationsSelector> {
-  List<int> dropdownOptions = const [1, 2, 3];
-  int? currentOption = 3;
+  const QuantityNotificationsSelector(
+      {super.key,
+      required this.changeTODHandler,
+      this.currentOption,
+      required this.notification1,
+      required this.notification2,
+      required this.notification3});
 
   /* handles a change in dropdown box selection */
-  void _dropdownHandler(int? selectedValue) {
-    setState(() {
-      currentOption = selectedValue;
-    });
-  }
+  void _dropdownHandler(int? selectedValue) {}
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +62,11 @@ class _QuantityNotificationsSelectorState
               ),
             ],
           ),
-          const TODReminders()
+          TODReminders(
+              changeTODHandler: changeTODHandler,
+              tod1: notification1,
+              tod2: notification2,
+              tod3: notification3)
         ]));
   }
 }

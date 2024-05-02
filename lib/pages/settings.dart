@@ -1,55 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:stock_alert/pages/settingsPageWidgets/notification_toggling.dart';
 import 'package:stock_alert/pages/settingsPageWidgets/price_change_threshold.dart';
 import 'package:stock_alert/pages/settingsPageWidgets/quantity_notifications_selector.dart';
 import 'package:stock_alert/pages/settingsPageWidgets/button_group.dart';
 
-// ignore: must_be_immutable
 class SettingsPage extends StatefulWidget {
-  bool notificationToggledOn;
-  double thresholdValue;
-  int notificationQuantity;
-  TimeOfDay notification1;
-  TimeOfDay notification2;
-  TimeOfDay notification3;
-
-  SettingsPage(
-      {super.key,
-      required this.notificationToggledOn,
-      required this.thresholdValue,
-      required this.notificationQuantity,
-      required this.notification1,
-      required this.notification2,
-      required this.notification3});
+  const SettingsPage({super.key});
 
   @override
-  // ignore: no_logic_in_create_state
-  State<SettingsPage> createState() => _SettingsPageState(
-      notificationToggledOn,
-      thresholdValue,
-      notificationQuantity,
-      notification1,
-      notification2,
-      notification3);
+  State<SettingsPage> createState() => _SettingsPageState();
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  bool notificationToggledOn;
-  double thresholdValue;
-  int notificationQuantity;
-  TimeOfDay notification1;
-  TimeOfDay notification2;
-  TimeOfDay notification3;
-
-  _SettingsPageState(
-      this.notificationToggledOn,
-      this.thresholdValue,
-      this.notificationQuantity,
-      this.notification1,
-      this.notification2,
-      this.notification3);
+  bool notificationToggledOn = false;
+  double thresholdValue = 5.0;
+  int notificationQuantity = 3;
+  TimeOfDay notification1 = const TimeOfDay(hour: 11, minute: 11);
+  TimeOfDay notification2 = const TimeOfDay(hour: 11, minute: 12);
+  TimeOfDay notification3 = const TimeOfDay(hour: 11, minute: 13);
 
   /* updates/creates daily notifications */ // todo
   saveButtonHandler() async {
@@ -57,8 +27,94 @@ class _SettingsPageState extends State<SettingsPage> {
         '!!!!!!!Save button pressed... notificationToggledOn: $notificationToggledOn');
 
     /* updates async storage of all settings on the device */
-    SharedPreferences prefs = await SharedPreferences.getInstance();
+    // SharedPreferences prefs = await SharedPreferences.getInstance();
     // prefs.setBool('notificationToggle', notificationToggledOn);
+  }
+
+  /* loads all settings values */ // todo
+  // @override
+  // void initState() async {
+  //   // TODO: implement initState
+  //   super.initState();
+
+  /* loads settings from device preferences */
+  // SharedPreferences prefs = await SharedPreferences.getInstance();
+
+  // notificationToggledOn = prefs.getBool('notificationToggle') ?? false;
+  // thresholdValue = prefs.getDouble('thresholdValue') ?? 5.0;
+  // notificationQuantity = prefs.getInt('notificationQuantity') ?? 3;
+
+  // /* loads daily reminder settings */
+  // int tod1Hours = prefs.getInt('tod1Hours') ?? 8;
+  // int tod2Hours = prefs.getInt('tod2Hours') ?? 12;
+  // int tod3Hours = prefs.getInt('tod3Hours') ?? 14;
+
+  // int tod1Minutes = prefs.getInt('tod1Minutes') ?? 45;
+  // int tod2Minutes = prefs.getInt('tod2Minutes') ?? 0;
+  // int tod3Minutes = prefs.getInt('tod3Minutes') ?? 15;
+
+  // notification1 = TimeOfDay(hour: tod1Hours, minute: tod1Minutes);
+  // notification2 = TimeOfDay(hour: tod2Hours, minute: tod2Minutes);
+  // notification3 = TimeOfDay(hour: tod3Hours, minute: tod3Minutes);
+  // }
+
+  /* adjusts and saves updated time of day reminders */
+  changeTODHandler(int todID) async {
+    late final TimeOfDay? todUpdated;
+
+    if (todID == 0) {
+      todUpdated = await showTimePicker(
+          context: context,
+          initialTime:
+              notification1); // ! get saved time of TOD1 from storage as initialTime
+
+      /* if no updated time was selected; cancel was pressed from within the selector */
+      if (todUpdated == null) {
+        return;
+      }
+
+      setState(() {
+        notification1 = todUpdated!;
+      });
+    } else if (todID == 1) {
+      todUpdated = await showTimePicker(
+          context: context,
+          initialTime:
+              notification2); // ! get saved time of TOD2 from storage as initialTime
+
+      /* if no updated time was selected; cancel was pressed from within the selector */
+      if (todUpdated == null) {
+        return;
+      }
+
+      setState(() {
+        notification2 = todUpdated!;
+      });
+    } else {
+      todUpdated = await showTimePicker(
+          context: context,
+          initialTime:
+              notification3); // ! get saved time of TOD3 from storage as initialTime
+
+      /* if no updated time was selected; cancel was pressed from within the selector */
+      if (todUpdated == null) {
+        return;
+      }
+
+      setState(() {
+        notification3 = todUpdated!;
+      });
+    }
+  }
+
+  /* handles the slider value changing */ // todo save updated value to async storage
+  void sliderActionHandler(double currentSliderValue) {
+    String roundedSliderValueString = currentSliderValue.toStringAsFixed(2);
+    double roundedSliderValueDouble = double.parse(roundedSliderValueString);
+
+    setState(() {
+      thresholdValue = roundedSliderValueDouble;
+    });
   }
 
   @override
@@ -116,9 +172,15 @@ class _SettingsPageState extends State<SettingsPage> {
                   children: [
                     NotificationToggle(
                         notificationToggledOn: notificationToggledOn),
-                    PriceChangeThreshold(thresholdValue: thresholdValue),
+                    PriceChangeThreshold(
+                        sliderActionHandler: sliderActionHandler,
+                        thresholdValue: thresholdValue),
                     QuantityNotificationsSelector(
-                        notificationQuantity: notificationQuantity),
+                        changeTODHandler: changeTODHandler,
+                        currentOption: notificationQuantity,
+                        notification1: notification1,
+                        notification2: notification2,
+                        notification3: notification3),
                     ButtonGroup(saveButtonHandler: saveButtonHandler)
                   ],
                 ))));
