@@ -32,7 +32,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   /* header widget */
-  AppBar header(BuildContext context, bool startupNotificationToggledOn) {
+  AppBar header(BuildContext context, bool notificationToggledOn) {
     return AppBar(
         leadingWidth: 110,
         title: Text(
