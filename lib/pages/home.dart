@@ -44,13 +44,10 @@ class _HomePageState extends State<HomePage> {
         actions: [
           GestureDetector(
               onTap: () async {
-                bool updatedNotificationsValue = await Navigator.push(
+                Navigator.push(
                     context,
                     MaterialPageRoute(
                         builder: (context) => const SettingsPage()));
-
-                debugPrint(
-                    '************************************ updatedNotificationsValue: $updatedNotificationsValue******************************************');
               },
               child: Container(
                   margin: const EdgeInsets.fromLTRB(0, 0, 35, 0),

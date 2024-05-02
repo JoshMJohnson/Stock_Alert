@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-// import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:stock_alert/pages/settingsPageWidgets/notification_toggling.dart';
 import 'package:stock_alert/pages/settingsPageWidgets/price_change_threshold.dart';
@@ -27,8 +27,8 @@ class _SettingsPageState extends State<SettingsPage> {
         '!!!!!!!Save button pressed... notificationToggledOn: $notificationToggledOn');
 
     /* updates async storage of all settings on the device */
-    // SharedPreferences prefs = await SharedPreferences.getInstance();
-    // prefs.setBool('notificationToggle', notificationToggledOn);
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setBool('notificationToggle', notificationToggledOn);
   }
 
   /* loads all settings values */ // todo
@@ -155,7 +155,7 @@ class _SettingsPageState extends State<SettingsPage> {
       backgroundColor: Colors.green[200],
       leading: GestureDetector(
         onTap: () {
-          Navigator.pop(context, notificationToggledOn);
+          Navigator.pop(context);
         },
         child: Icon(
           Icons.arrow_back,
