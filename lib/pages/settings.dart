@@ -58,9 +58,17 @@ class _SettingsPageState extends State<SettingsPage> {
   // notification3 = TimeOfDay(hour: tod3Hours, minute: tod3Minutes);
   // }
 
+  /* updates the notification on/off toggle */
   updateNotificationToggle(bool isToggledOn) {
     setState(() {
       notificationToggledOn = isToggledOn;
+    });
+  }
+
+  /* handles a change in dropdown box selection for quantity of notifications */
+  void quantityNotificationDropdown(int selectedValue) {
+    setState(() {
+      notificationQuantity = selectedValue;
     });
   }
 
@@ -113,7 +121,7 @@ class _SettingsPageState extends State<SettingsPage> {
     }
   }
 
-  /* handles the slider value changing */ // todo save updated value to async storage
+  /* handles the slider value changing */
   void sliderActionHandler(double currentSliderValue) {
     String roundedSliderValueString = currentSliderValue.toStringAsFixed(2);
     double roundedSliderValueDouble = double.parse(roundedSliderValueString);
@@ -183,6 +191,8 @@ class _SettingsPageState extends State<SettingsPage> {
                         sliderActionHandler: sliderActionHandler,
                         thresholdValue: thresholdValue),
                     QuantityNotificationsSelector(
+                        quantityNotificationDropdown:
+                            quantityNotificationDropdown,
                         changeTODHandler: changeTODHandler,
                         currentOption: notificationQuantity,
                         notification1: notification1,

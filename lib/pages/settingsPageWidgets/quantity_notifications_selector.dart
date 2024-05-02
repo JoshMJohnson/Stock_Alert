@@ -2,23 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:stock_alert/pages/settingsPageWidgets/tod_reminders.dart';
 
 class QuantityNotificationsSelector extends StatelessWidget {
+  final Function(int) changeTODHandler;
+  final Function(int) quantityNotificationDropdown;
   final List<int> dropdownOptions = const [1, 2, 3];
   final int? currentOption;
   final TimeOfDay notification1;
   final TimeOfDay notification2;
   final TimeOfDay notification3;
-  final Function(int) changeTODHandler;
 
   const QuantityNotificationsSelector(
       {super.key,
       required this.changeTODHandler,
+      required this.quantityNotificationDropdown,
       this.currentOption,
       required this.notification1,
       required this.notification2,
       required this.notification3});
-
-  /* handles a change in dropdown box selection */
-  void _dropdownHandler(int? selectedValue) {}
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +47,7 @@ class QuantityNotificationsSelector extends StatelessWidget {
                       ));
                 }).toList(),
                 onChanged: (int? selectedValue) {
-                  _dropdownHandler(selectedValue);
+                  quantityNotificationDropdown(selectedValue!);
                 },
                 value: currentOption,
                 underline: Container(
