@@ -7,12 +7,12 @@ import 'package:stock_alert/pages/homePageWidgets/ticker_input_fields.dart';
 import 'package:stock_alert/pages/homePageWidgets/sort_input_fields.dart';
 
 class HomePage extends StatefulWidget {
-  final String sortAlgorithm;
-  const HomePage(this.sortAlgorithm, {super.key});
+  final String startupSortAlgorithm;
+  const HomePage(this.startupSortAlgorithm, {super.key});
 
   @override
   // ignore: no_logic_in_create_state
-  State<HomePage> createState() => _HomePageState(sortAlgorithm);
+  State<HomePage> createState() => _HomePageState(startupSortAlgorithm);
 }
 
 class _HomePageState extends State<HomePage> {
