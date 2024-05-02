@@ -24,7 +24,7 @@ class _SettingsPageState extends State<SettingsPage> {
   /* updates/creates daily notifications */ // todo
   saveButtonHandler() async {
     debugPrint(
-        '!!!!!!!Save button pressed... notificationToggledOn: $notificationToggledOn');
+        'Save button pressed... notificationToggledOn: $notificationToggledOn');
 
     /* updates async storage of all settings on the device */
     SharedPreferences prefs = await SharedPreferences.getInstance();
