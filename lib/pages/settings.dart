@@ -58,6 +58,12 @@ class _SettingsPageState extends State<SettingsPage> {
   // notification3 = TimeOfDay(hour: tod3Hours, minute: tod3Minutes);
   // }
 
+  updateNotificationToggle(bool isToggledOn) {
+    setState(() {
+      notificationToggledOn = isToggledOn;
+    });
+  }
+
   /* adjusts and saves updated time of day reminders */
   changeTODHandler(int todID) async {
     late final TimeOfDay? todUpdated;
@@ -171,6 +177,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 child: Column(
                   children: [
                     NotificationToggle(
+                        updateNotificationToggle: updateNotificationToggle,
                         notificationToggledOn: notificationToggledOn),
                     PriceChangeThreshold(
                         sliderActionHandler: sliderActionHandler,

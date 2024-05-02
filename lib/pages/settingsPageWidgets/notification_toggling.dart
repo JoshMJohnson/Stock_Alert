@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 
 class NotificationToggle extends StatelessWidget {
+  final Function(bool) updateNotificationToggle;
   final bool? notificationToggledOn;
-  const NotificationToggle({super.key, this.notificationToggledOn});
+  const NotificationToggle(
+      {super.key,
+      required this.updateNotificationToggle,
+      this.notificationToggledOn});
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +32,9 @@ class NotificationToggle extends StatelessWidget {
                       (Set<MaterialState> states) {
                     return const Color(0xFF1B5E20);
                   }),
-                  onChanged: (value) {},
+                  onChanged: (isToggledOn) {
+                    updateNotificationToggle(isToggledOn!);
+                  },
                 ),
                 const Text(
                   'On',
@@ -50,7 +56,9 @@ class NotificationToggle extends StatelessWidget {
                           (Set<MaterialState> states) {
                         return const Color(0xFF1B5E20);
                       }),
-                      onChanged: (value) {},
+                      onChanged: (isToggledOn) {
+                        updateNotificationToggle(isToggledOn!);
+                      },
                     ),
                     const Text(
                       'Off',
