@@ -15,10 +15,6 @@ Future<void> main() async {
   int notificationQuantity = prefs.getInt('notificationQuantity') ?? 3;
 
   /* loads daily reminder settings */
-  late TimeOfDay notification1;
-  late TimeOfDay notification2;
-  late TimeOfDay notification3;
-
   int tod1Hours = prefs.getInt('tod1Hours') ?? 8;
   int tod2Hours = prefs.getInt('tod2Hours') ?? 12;
   int tod3Hours = prefs.getInt('tod3Hours') ?? 14;
@@ -27,18 +23,12 @@ Future<void> main() async {
   int tod2Minutes = prefs.getInt('tod2Minutes') ?? 0;
   int tod3Minutes = prefs.getInt('tod3Minutes') ?? 15;
 
-  notification1 = TimeOfDay(hour: tod1Hours, minute: tod1Minutes);
-  notification2 = TimeOfDay(hour: tod2Hours, minute: tod2Minutes);
-  notification3 = TimeOfDay(hour: tod3Hours, minute: tod3Minutes);
+  TimeOfDay notification1 = TimeOfDay(hour: tod1Hours, minute: tod1Minutes);
+  TimeOfDay notification2 = TimeOfDay(hour: tod2Hours, minute: tod2Minutes);
+  TimeOfDay notification3 = TimeOfDay(hour: tod3Hours, minute: tod3Minutes);
 
-  runApp(MyApp(
-      sortAlgorithm: sortAlgorithm,
-      notificationToggledOn: notificationToggledOn,
-      thresholdValue: thresholdValue,
-      notificationQuantity: notificationQuantity,
-      notification1: notification1,
-      notification2: notification2,
-      notification3: notification3));
+  runApp(MyApp(sortAlgorithm, notificationToggledOn, thresholdValue,
+      notificationQuantity, notification1, notification2, notification3));
 }
 
 // ignore: must_be_immutable
@@ -52,14 +42,14 @@ class MyApp extends StatelessWidget {
   TimeOfDay notification3;
 
   MyApp(
-      {super.key,
-      required this.sortAlgorithm,
-      required this.notificationToggledOn,
-      required this.thresholdValue,
-      required this.notificationQuantity,
-      required this.notification1,
-      required this.notification2,
-      required this.notification3});
+      this.sortAlgorithm,
+      this.notificationToggledOn,
+      this.thresholdValue,
+      this.notificationQuantity,
+      this.notification1,
+      this.notification2,
+      this.notification3,
+      {super.key});
 
   // This widget is the root of your application.
   @override
