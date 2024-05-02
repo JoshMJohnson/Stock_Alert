@@ -10,7 +10,7 @@ Future<void> main() async {
   final String startupSortAlgorithm =
       prefs.getString('watchlistSort') ?? 'Alphabetically';
 
-  final bool notificationToggledOn =
+  final bool startupNotificationToggledOn =
       prefs.getBool('notificationToggle') ?? false;
   // final double thresholdValue = prefs.getDouble('thresholdValue') ?? 5.0;
   // final int notificationQuantity = prefs.getInt('notificationQuantity') ?? 3;
@@ -31,12 +31,14 @@ Future<void> main() async {
   // final TimeOfDay notification3 =
   //     TimeOfDay(hour: tod3Hours, minute: tod3Minutes);
 
-  runApp(MyApp(startupSortAlgorithm));
+  runApp(MyApp(startupSortAlgorithm, startupNotificationToggledOn));
 }
 
 class MyApp extends StatelessWidget {
   final String startupSortAlgorithm;
-  const MyApp(this.startupSortAlgorithm, {super.key});
+  final bool startupNotificationToggledOn;
+  const MyApp(this.startupSortAlgorithm, this.startupNotificationToggledOn,
+      {super.key});
 
   // This widget is the root of your application.
   @override
@@ -44,6 +46,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(fontFamily: 'EBGaramond'),
-        home: HomePage(startupSortAlgorithm));
+        home: HomePage(startupSortAlgorithm, startupNotificationToggledOn));
   }
 }

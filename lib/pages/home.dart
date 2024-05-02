@@ -8,27 +8,31 @@ import 'package:stock_alert/pages/homePageWidgets/sort_input_fields.dart';
 
 class HomePage extends StatefulWidget {
   final String startupSortAlgorithm;
-  const HomePage(this.startupSortAlgorithm, {super.key});
+  final bool startupNotificationToggledOn;
+  const HomePage(this.startupSortAlgorithm, this.startupNotificationToggledOn,
+      {super.key});
 
   @override
-  // ignore: no_logic_in_create_state
-  State<HomePage> createState() => _HomePageState(startupSortAlgorithm);
+  State<HomePage> createState() =>
+      // ignore: no_logic_in_create_state
+      _HomePageState(startupSortAlgorithm, startupNotificationToggledOn);
 }
 
 class _HomePageState extends State<HomePage> {
   String sortAlgorithm;
-  _HomePageState(this.sortAlgorithm);
+  bool notificationToggledOn;
+  _HomePageState(this.sortAlgorithm, this.notificationToggledOn);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: header(context),
+      appBar: header(context, notificationToggledOn),
       body: homeBody(sortAlgorithm),
     );
   }
 
   /* header widget */
-  AppBar header(BuildContext context) {
+  AppBar header(BuildContext context, bool startupNotificationToggledOn) {
     return AppBar(
         leadingWidth: 110,
         title: Text(
@@ -47,7 +51,8 @@ class _HomePageState extends State<HomePage> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const SettingsPage()));
+                        builder: (context) =>
+                            SettingsPage(notificationToggledOn)));
               },
               child: Container(
                   margin: const EdgeInsets.fromLTRB(0, 0, 35, 0),
