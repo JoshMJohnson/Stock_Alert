@@ -10,10 +10,7 @@ class ButtonGroup extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        const ClearWatchlist(),
-        SaveButton(saveButtonHandler: saveButtonHandler)
-      ],
+      children: [const ClearWatchlist(), SaveButton(saveButtonHandler)],
     );
   }
 }
