@@ -3,6 +3,11 @@ import 'package:flutter/material.dart';
 class ClearWatchlist extends StatelessWidget {
   const ClearWatchlist({super.key});
 
+  /* clears the watchlist of stocks */ // todo
+  clearWatchlistHandler() async {
+    debugPrint('????????Clear button pressed????????');
+  }
+
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
@@ -21,10 +26,5 @@ class ClearWatchlist extends StatelessWidget {
             fontWeight: FontWeight.w600),
       ),
     );
-  }
-
-  /* clears the watchlist of stocks */ // todo
-  clearWatchlistHandler() async {
-    debugPrint('????????Clear button pressed????????');
   }
 }

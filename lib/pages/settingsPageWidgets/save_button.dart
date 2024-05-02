@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class SaveButton extends StatelessWidget {
   final Function saveButtonHandler;
-  const SaveButton({super.key, required this.saveButtonHandler});
+  const SaveButton(this.saveButtonHandler, {super.key});
 
   @override
   Widget build(BuildContext context) {

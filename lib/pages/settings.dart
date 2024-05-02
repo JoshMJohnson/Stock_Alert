@@ -121,7 +121,7 @@ class _SettingsPageState extends State<SettingsPage> {
     }
   }
 
-  /* handles the slider value changing */
+  /* handles the slider value changing for notification threshold */
   void sliderActionHandler(double currentSliderValue) {
     String roundedSliderValueString = currentSliderValue.toStringAsFixed(2);
     double roundedSliderValueDouble = double.parse(roundedSliderValueString);
@@ -155,8 +155,6 @@ class _SettingsPageState extends State<SettingsPage> {
       backgroundColor: Colors.green[200],
       leading: GestureDetector(
         onTap: () {
-          debugPrint(
-              'SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSnotificationToggledOn: $notificationToggledOn SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS');
           Navigator.pop(context, notificationToggledOn);
         },
         child: Icon(
