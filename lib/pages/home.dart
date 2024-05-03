@@ -47,12 +47,15 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.green[200],
         actions: [
           GestureDetector(
-              onTap: () async {
+              onTap: () {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
                         builder: (context) =>
-                            SettingsPage(notificationToggledOn)));
+                            SettingsPage(notificationToggledOn))).then(
+                    (value) => {
+                          debugPrint('HOME!!!!! value: $value')
+                        } /* todo update async storage*/);
               },
               child: Container(
                   margin: const EdgeInsets.fromLTRB(0, 0, 35, 0),
