@@ -75,10 +75,8 @@ class _SettingsPageState extends State<SettingsPage> {
     late final TimeOfDay? todUpdated;
 
     if (todID == 0) {
-      todUpdated = await showTimePicker(
-          context: context,
-          initialTime:
-              notification1); // ! get saved time of TOD1 from storage as initialTime
+      todUpdated =
+          await showTimePicker(context: context, initialTime: notification1);
 
       /* if no updated time was selected; cancel was pressed from within the selector */
       if (todUpdated == null) {
@@ -89,10 +87,8 @@ class _SettingsPageState extends State<SettingsPage> {
         notification1 = todUpdated!;
       });
     } else if (todID == 1) {
-      todUpdated = await showTimePicker(
-          context: context,
-          initialTime:
-              notification2); // ! get saved time of TOD2 from storage as initialTime
+      todUpdated =
+          await showTimePicker(context: context, initialTime: notification2);
 
       /* if no updated time was selected; cancel was pressed from within the selector */
       if (todUpdated == null) {
@@ -103,10 +99,8 @@ class _SettingsPageState extends State<SettingsPage> {
         notification2 = todUpdated!;
       });
     } else {
-      todUpdated = await showTimePicker(
-          context: context,
-          initialTime:
-              notification3); // ! get saved time of TOD3 from storage as initialTime
+      todUpdated =
+          await showTimePicker(context: context, initialTime: notification3);
 
       /* if no updated time was selected; cancel was pressed from within the selector */
       if (todUpdated == null) {
