@@ -46,7 +46,7 @@ class _SettingsPageState extends State<SettingsPage> {
       this.notification2,
       this.notification3);
 
-  /* updates/creates daily notifications */ // todo
+  /* updates/creates daily notifications */
   saveButtonHandler() async {
     debugPrint(
         'Save button pressed... notificationToggledOn: $notificationToggledOn');
@@ -54,6 +54,7 @@ class _SettingsPageState extends State<SettingsPage> {
     /* updates async storage of all settings on the device */
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setBool('notificationToggle', notificationToggledOn);
+    // todo save all other settings variables to shared preferences
   }
 
   /* updates the notification on/off toggle */
@@ -147,7 +148,7 @@ class _SettingsPageState extends State<SettingsPage> {
       backgroundColor: Colors.green[200],
       leading: GestureDetector(
         onTap: () {
-          Navigator.pop(context, true);
+          Navigator.pop(context);
         },
         child: Icon(
           Icons.arrow_back,

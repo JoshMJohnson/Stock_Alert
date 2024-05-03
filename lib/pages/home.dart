@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:stock_alert/helper_functions.dart';
 import 'package:stock_alert/pages/homePageWidgets/stock_watchlist.dart';
@@ -89,6 +90,7 @@ class _HomePageState extends State<HomePage> {
         actions: [
           GestureDetector(
               onTap: () {
+                SharedPreferences prefs;
                 Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -98,9 +100,11 @@ class _HomePageState extends State<HomePage> {
                             notificationQuantity,
                             notification1,
                             notification2,
-                            notification3))).then((value) => {
-                      debugPrint('HOME!!!!! value: $value')
-                    } /* todo update async storage*/);
+                            notification3))).then((value) async => {
+                      prefs = await SharedPreferences.getInstance(),
+                      notificationToggledOn =
+                          prefs.getBool('notificationToggle')!
+                    }); // todo update async storage
               },
               child: Container(
                   margin: const EdgeInsets.fromLTRB(0, 0, 35, 0),
