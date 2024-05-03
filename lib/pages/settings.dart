@@ -8,23 +8,43 @@ import 'package:stock_alert/pages/settingsPageWidgets/button_group.dart';
 
 class SettingsPage extends StatefulWidget {
   final bool notificationToggledOn;
-  const SettingsPage(this.notificationToggledOn, {super.key});
+  final double thresholdValue;
+  final int notificationQuantity;
+  final TimeOfDay notification1;
+  final TimeOfDay notification2;
+  final TimeOfDay notification3;
+
+  const SettingsPage(
+      this.notificationToggledOn,
+      this.thresholdValue,
+      this.notificationQuantity,
+      this.notification1,
+      this.notification2,
+      this.notification3,
+      {super.key});
 
   @override
   State<SettingsPage> createState() =>
       // ignore: no_logic_in_create_state
-      _SettingsPageState(notificationToggledOn);
+      _SettingsPageState(notificationToggledOn, thresholdValue,
+          notificationQuantity, notification1, notification2, notification3);
 }
 
 class _SettingsPageState extends State<SettingsPage> {
   bool notificationToggledOn;
-  double thresholdValue = 5.0;
-  int notificationQuantity = 3;
-  TimeOfDay notification1 = const TimeOfDay(hour: 11, minute: 11);
-  TimeOfDay notification2 = const TimeOfDay(hour: 11, minute: 12);
-  TimeOfDay notification3 = const TimeOfDay(hour: 11, minute: 13);
+  double thresholdValue;
+  int notificationQuantity;
+  TimeOfDay notification1;
+  TimeOfDay notification2;
+  TimeOfDay notification3;
 
-  _SettingsPageState(this.notificationToggledOn);
+  _SettingsPageState(
+      this.notificationToggledOn,
+      this.thresholdValue,
+      this.notificationQuantity,
+      this.notification1,
+      this.notification2,
+      this.notification3);
 
   /* updates/creates daily notifications */ // todo
   saveButtonHandler() async {
