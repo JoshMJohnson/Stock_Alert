@@ -46,36 +46,20 @@ class _SettingsPageState extends State<SettingsPage> {
       this.notification2,
       this.notification3);
 
-  /* updates/creates daily notifications */
-  saveButtonHandler() async {
-    /* updates async storage of all settings on the device */
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setBool('notificationToggle', notificationToggledOn);
-    prefs.setDouble('thresholdValue', thresholdValue);
-    prefs.setInt('notificationQuantity', notificationQuantity);
-
-    /* time of day preference variables */
-    final int tod1Hours = notification1.hour;
-    final int tod2Hours = notification2.hour;
-    final int tod3Hours = notification3.hour;
-
-    final int tod1Minutes = notification1.minute;
-    final int tod2Minutes = notification2.minute;
-    final int tod3Minutes = notification3.minute;
-
-    prefs.setInt('tod1Hours', tod1Hours);
-    prefs.setInt('tod2Hours', tod2Hours);
-    prefs.setInt('tod3Hours', tod3Hours);
-
-    prefs.setInt('tod1Minutes', tod1Minutes);
-    prefs.setInt('tod2Minutes', tod2Minutes);
-    prefs.setInt('tod3Minutes', tod3Minutes);
-  }
-
   /* updates the notification on/off toggle */
   updateNotificationToggle(bool isToggledOn) {
     setState(() {
       notificationToggledOn = isToggledOn;
+    });
+  }
+
+  /* handles the slider value changing for notification threshold */
+  void sliderActionHandler(double currentSliderValue) {
+    String roundedSliderValueString = currentSliderValue.toStringAsFixed(2);
+    double roundedSliderValueDouble = double.parse(roundedSliderValueString);
+
+    setState(() {
+      thresholdValue = roundedSliderValueDouble;
     });
   }
 
@@ -129,15 +113,39 @@ class _SettingsPageState extends State<SettingsPage> {
     }
   }
 
-  /* handles the slider value changing for notification threshold */
-  void sliderActionHandler(double currentSliderValue) {
-    String roundedSliderValueString = currentSliderValue.toStringAsFixed(2);
-    double roundedSliderValueDouble = double.parse(roundedSliderValueString);
-
-    setState(() {
-      thresholdValue = roundedSliderValueDouble;
-    });
+  /* updates/creates daily notifications */
+  saveButtonHandler() async {
+    savePreferences();
+    updateNotificationSettings();
   }
+
+  /* saves all current settings into device preferences; async storage */
+  savePreferences() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setBool('notificationToggle', notificationToggledOn);
+    prefs.setDouble('thresholdValue', thresholdValue);
+    prefs.setInt('notificationQuantity', notificationQuantity);
+
+    /* time of day preference variables */
+    final int tod1Hours = notification1.hour;
+    final int tod2Hours = notification2.hour;
+    final int tod3Hours = notification3.hour;
+
+    final int tod1Minutes = notification1.minute;
+    final int tod2Minutes = notification2.minute;
+    final int tod3Minutes = notification3.minute;
+
+    prefs.setInt('tod1Hours', tod1Hours);
+    prefs.setInt('tod2Hours', tod2Hours);
+    prefs.setInt('tod3Hours', tod3Hours);
+
+    prefs.setInt('tod1Minutes', tod1Minutes);
+    prefs.setInt('tod2Minutes', tod2Minutes);
+    prefs.setInt('tod3Minutes', tod3Minutes);
+  }
+
+  /* updates the notification settings */ // todo
+  updateNotificationSettings() {}
 
   @override
   Widget build(BuildContext context) {
