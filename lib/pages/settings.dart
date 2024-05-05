@@ -54,7 +54,28 @@ class _SettingsPageState extends State<SettingsPage> {
     /* updates async storage of all settings on the device */
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setBool('notificationToggle', notificationToggledOn);
+
     // todo save all other settings variables to shared preferences
+
+    prefs.setDouble('thresholdValue', thresholdValue);
+    prefs.setInt('notificationQuantity', notificationQuantity);
+
+    /* time of day preference variables */
+    final int tod1Hours = notification1.hour;
+    final int tod2Hours = notification2.hour;
+    final int tod3Hours = notification3.hour;
+
+    final int tod1Minutes = notification1.minute;
+    final int tod2Minutes = notification2.minute;
+    final int tod3Minutes = notification3.minute;
+
+    prefs.setInt('tod1Hours', tod1Hours);
+    prefs.setInt('tod2Hours', tod2Hours);
+    prefs.setInt('tod3Hours', tod3Hours);
+
+    prefs.setInt('tod1Minutes', tod1Minutes);
+    prefs.setInt('tod2Minutes', tod2Minutes);
+    prefs.setInt('tod3Minutes', tod3Minutes);
   }
 
   /* updates the notification on/off toggle */

@@ -75,6 +75,18 @@ class _HomePageState extends State<HomePage> {
       TimeOfDay notification1,
       TimeOfDay notification2,
       TimeOfDay notification3) {
+    /* executes when navigator pops Settings -> Home; updates preference variables */ // todo
+    settingsToHomeHandler() async {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+
+      notificationToggledOn = prefs.getBool('notificationToggle')!;
+      thresholdValue = prefs.getDouble('thresholdValue')!;
+      notificationQuantity = prefs.getInt('notificationQuantity')!;
+
+      debugPrint(
+          '***settingsToHomeHandler***... notificationToggledOn: $notificationToggledOn');
+    }
+
     return AppBar(
         leadingWidth: 110,
         title: Text(
@@ -90,21 +102,17 @@ class _HomePageState extends State<HomePage> {
         actions: [
           GestureDetector(
               onTap: () {
-                SharedPreferences prefs;
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => SettingsPage(
-                            notificationToggledOn,
-                            thresholdValue,
-                            notificationQuantity,
-                            notification1,
-                            notification2,
-                            notification3))).then((value) async => {
-                      prefs = await SharedPreferences.getInstance(),
-                      notificationToggledOn =
-                          prefs.getBool('notificationToggle')!
-                    }); // todo update async storage
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => SettingsPage(
+                                notificationToggledOn,
+                                thresholdValue,
+                                notificationQuantity,
+                                notification1,
+                                notification2,
+                                notification3)))
+                    .then((_) => settingsToHomeHandler());
               },
               child: Container(
                   margin: const EdgeInsets.fromLTRB(0, 0, 35, 0),
