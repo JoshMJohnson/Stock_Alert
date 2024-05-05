@@ -75,7 +75,7 @@ class _HomePageState extends State<HomePage> {
       TimeOfDay notification1,
       TimeOfDay notification2,
       TimeOfDay notification3) {
-    /* executes when navigator pops Settings -> Home; updates preference variables */ // todo
+    /* executes when navigator pops Settings -> Home; updates preference variables */
     settingsToHomeHandler() async {
       SharedPreferences prefs = await SharedPreferences.getInstance();
 
@@ -83,8 +83,7 @@ class _HomePageState extends State<HomePage> {
       thresholdValue = prefs.getDouble('thresholdValue')!;
       notificationQuantity = prefs.getInt('notificationQuantity')!;
 
-      debugPrint(
-          '***settingsToHomeHandler***... notificationToggledOn: $notificationToggledOn');
+      /* time of day preference variables */ // todo
     }
 
     return AppBar(
