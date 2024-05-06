@@ -163,7 +163,7 @@ Container homeBody(String sortAlgorithm) {
               ),
               const Padding(
                 padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
-                child: TickerInsertFields(),
+                child: TickerInputFields(),
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
