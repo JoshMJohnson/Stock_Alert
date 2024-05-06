@@ -100,21 +100,13 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: header(context, notificationToggledOn, thresholdValue,
-          notificationQuantity, notification1, notification2, notification3),
-      body: homeBody(sortAlgorithm),
+      appBar: header(context),
+      body: homeBody(),
     );
   }
 
   /* header widget */
-  AppBar header(
-      BuildContext context,
-      bool notificationToggledOn,
-      double thresholdValue,
-      int notificationQuantity,
-      TimeOfDay notification1,
-      TimeOfDay notification2,
-      TimeOfDay notification3) {
+  AppBar header(BuildContext context) {
     return AppBar(
         leadingWidth: 110,
         title: Text(
@@ -153,7 +145,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   /* body widget of settings page */
-  Container homeBody(String sortAlgorithm) {
+  Container homeBody() {
     final HelperFunctions helperFunctions = HelperFunctions();
 
     TimeOfDay? lastUpdatedTime =
@@ -187,7 +179,7 @@ class _HomePageState extends State<HomePage> {
                   padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
                   child: SortInputFields(sortChangeHandler, sortAlgorithm),
                 ),
-                Expanded(child: StockWatchlist(sortAlgorithm: sortAlgorithm)),
+                Expanded(child: StockWatchlist(sortAlgorithm)),
                 Text(
                   'Last Updated: $lastUpdatedTimeDisplay',
                   style: const TextStyle(

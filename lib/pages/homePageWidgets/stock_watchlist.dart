@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:stock_alert/pages/homePageWidgets/stock_entity.dart';
 
 // ! begin of testing code
-StockEntity stock1 = StockEntity(
+final StockEntity stock1 = StockEntity(
     ticker: 'AAPLL',
     companyName: 'Apple Inc.',
     tickerPrice: 9999.8,
@@ -10,7 +10,7 @@ StockEntity stock1 = StockEntity(
     dayChangePercentage: -10.80,
     exchange: 'NASDAQ');
 
-StockEntity stock2 = StockEntity(
+final StockEntity stock2 = StockEntity(
     ticker: 'MSFTF',
     companyName: 'Microsoft Corp.',
     tickerPrice: 411.38,
@@ -18,7 +18,7 @@ StockEntity stock2 = StockEntity(
     dayChangePercentage: -0.08,
     exchange: 'NYSE');
 
-StockEntity stock3 = StockEntity(
+final StockEntity stock3 = StockEntity(
     ticker: 'SNDL',
     companyName: 'This is the Sundile company',
     tickerPrice: 189.00,
@@ -26,7 +26,7 @@ StockEntity stock3 = StockEntity(
     dayChangePercentage: 10.00,
     exchange: 'NASDAQ');
 
-StockEntity stock4 = StockEntity(
+final StockEntity stock4 = StockEntity(
     ticker: 'SPOT',
     companyName: 'Spotify',
     tickerPrice: 4,
@@ -34,7 +34,7 @@ StockEntity stock4 = StockEntity(
     dayChangePercentage: -13,
     exchange: 'NASDAQ');
 
-StockEntity stock5 = StockEntity(
+final StockEntity stock5 = StockEntity(
     ticker: 'OGI',
     companyName: 'Organic Company',
     tickerPrice: 4.90,
@@ -42,7 +42,7 @@ StockEntity stock5 = StockEntity(
     dayChangePercentage: 4.90,
     exchange: 'NYSE');
 
-StockEntity stock6 = StockEntity(
+final StockEntity stock6 = StockEntity(
     ticker: 'ADBE',
     companyName: 'Adobe',
     tickerPrice: 120.20,
@@ -50,7 +50,7 @@ StockEntity stock6 = StockEntity(
     dayChangePercentage: 10.10,
     exchange: 'NASDAQ');
 
-StockEntity stock7 = StockEntity(
+final StockEntity stock7 = StockEntity(
     ticker: 'BA',
     companyName: 'Boeing Co',
     tickerPrice: 170.42,
@@ -58,7 +58,7 @@ StockEntity stock7 = StockEntity(
     dayChangePercentage: .11,
     exchange: 'NYSE');
 
-StockEntity stock8 = StockEntity(
+final StockEntity stock8 = StockEntity(
     ticker: 'BE',
     companyName: 'Bloom Energy Corp',
     tickerPrice: 9.52,
@@ -66,7 +66,7 @@ StockEntity stock8 = StockEntity(
     dayChangePercentage: -2.25,
     exchange: 'NYSE');
 
-StockEntity stock9 = StockEntity(
+final StockEntity stock9 = StockEntity(
     ticker: 'DIS',
     companyName: 'Walt Disney Co',
     tickerPrice: 112.31,
@@ -74,7 +74,7 @@ StockEntity stock9 = StockEntity(
     dayChangePercentage: -.09,
     exchange: 'NASDAQ');
 
-List<StockEntity> testingList = [
+final List<StockEntity> testingList = [
   stock1,
   stock2,
   stock3,
@@ -87,10 +87,9 @@ List<StockEntity> testingList = [
 ];
 // ! end of testing code
 
-// ignore: must_be_immutable
 class StockWatchlist extends StatefulWidget {
   String sortAlgorithm;
-  StockWatchlist({super.key, required this.sortAlgorithm});
+  StockWatchlist(this.sortAlgorithm, {super.key});
 
   @override
   // ignore: no_logic_in_create_state

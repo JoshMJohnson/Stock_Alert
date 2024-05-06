@@ -151,8 +151,7 @@ class _SettingsPageState extends State<SettingsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: header(context),
-      body: settingsBody(notificationToggledOn, thresholdValue,
-          notificationQuantity, notification1, notification2, notification3),
+      body: settingsBody(),
     );
   }
 
@@ -183,8 +182,7 @@ class _SettingsPageState extends State<SettingsPage> {
   }
 
   /* body widget of settings page */
-  Container settingsBody(notificationToggledOn, thresholdValue,
-      notificationQuantity, notification1, notification2, notification3) {
+  Container settingsBody() {
     return Container(
         width: double.infinity,
         height: double.infinity,
