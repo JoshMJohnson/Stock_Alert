@@ -245,7 +245,7 @@ class _HomePageState extends State<HomePage> {
         height: double.infinity,
         decoration: const BoxDecoration(
             gradient: LinearGradient(
-                colors: [Color(0XAA006400), Color(0xFFA5D6A7)],
+                colors: [Color(0xAA006400), Color(0xFFA5D6A7)],
                 begin: Alignment.bottomCenter,
                 end: Alignment.topCenter)),
         child: Padding(
@@ -258,8 +258,8 @@ class _HomePageState extends State<HomePage> {
                   height: 200,
                   fit: BoxFit.fill,
                 ),
-                const Padding(
-                  padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
                   child: TickerInputFields(),
                 ),
                 Padding(

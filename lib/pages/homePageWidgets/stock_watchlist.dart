@@ -115,7 +115,7 @@ class _StockWatchlistState extends State<StockWatchlist> {
           },
           separatorBuilder: (context, index) {
             return const Divider(
-              color: Colors.transparent,
+              color: Color(0xFF1B5E20),
             );
           },
         ));
