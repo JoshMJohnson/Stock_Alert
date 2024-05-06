@@ -1,41 +1,27 @@
-To Do:
-    - Create a themes file holding color constants
-    - Have a green linear gradiant background
-    - font scaling
-    - watchlist entire stock details red/green based on negative/positive
-    - add an first time app use intro directions
-        - use flutter name: IntroductionScreen
-    
 Bugs:
-    - 
+- 
 
-Feature Additions:
-    - Configure to be compatible with ios
-    - Light/Dark modes
-    - Last updated time value on home page just about list view of stocks
-    - Private -> Public... GitHub repository when completed
-        - Delete private info such as the Twelve Data API code
-        - Complete the project README file for Stock Alert
-            - Add an info section at the top of the GitHub readme for Stock Alert about creating an account
-            for Twelve Data and inserting key from API into project code
+To Do:
+- Turn off battery optimization for foreground service delay prevention
+- Create a themes file holding color delarations
+- Handle font scaling
+- Implement an first time app use intro directions
+    - use flutter name: IntroductionScreen
     
-Settings Page:
-    - Turn notifications on/off -> Radio buttons
-        - Starts/Terminates foreground service
-    - Notification Percentage Day Change Threshold -> Slider
-        - Displays the slider value below slider
-    - Select the number of reminders in a Day -> Dropdown box
-    - Select the time of day of each reminder -> TimePicker
-    - Clear Watchlist button
-    - Save button
-        - Display alert when saved
-
+Feature Additions:
+- Configure to be compatible with ios
+- Light/Dark modes
+- Last updated time value on home page just about list view of stocks
+- Switch that can toggle on/off alerts for specific stock tickers on watchlist
+- Private -> Public... GitHub repository when completed
+    - Delete private info such as the Twelve Data API code
+    - Complete the project README file for Stock Alert
+        - Add an info section at the top of the GitHub readme for Stock Alert about creating an account
+        for Twelve Data and inserting key from API into project code
+    
 Home Page:
-    - Be able to click on a stock ticker and it'll go to stock ticker page showing additional ticker info
-        - Stack Navigation
-    - Be able to click on a settings button and it'll go to the setting page
-        - Stack Navigation
-    - Switch that can toggle on/off alerts for specific stock tickers attached to home page ticker display
+- Stock Watchlist
+    - Clickable stock entities that use Stack Navigator to go to Ticker Page
     - Sort options
         - Alphabetically
         - Stock Exchange (ex: NASDAQ)
@@ -53,11 +39,23 @@ Home Page:
         - Refresh display of watchlist on home page to remove stock
 
 Ticker Page:
-    - Ticker
-    - Company Name
-    - Company Description
-    - Ticker Price (since last api request)
-    - Day Dollar Change
-    - Day Percentage Change
-    - 52 Week High
-    - 52 Week Low
+- Ticker
+- Company Name
+- Company Description
+- Ticker Price (since last api request)
+- Day Dollar Change
+- Day Percentage Change
+- 52 Week High
+- 52 Week Low
+
+Settings Page:
+- Display/Hide 'Daily Notification' based on quantity selected
+- Clear button functionality
+    - Clear Firebase stock watchlist
+    - Refresh Home page stock watchlist
+- Activate/Update/Terminate notification settings on saved button pressed
+    - Activate/Terminate foreground service with notification toggling
+    - Update threshold value for stocks included within notifications
+    - Create 1-3 repeating notifications running on foreground service
+        - Only notify on stock market being open
+        - Set to notify at specific times of the day
