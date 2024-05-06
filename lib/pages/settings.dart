@@ -46,107 +46,6 @@ class _SettingsPageState extends State<SettingsPage> {
       this.notification2,
       this.notification3);
 
-  /* updates the notification on/off toggle */
-  void updateNotificationToggle(bool isToggledOn) {
-    setState(() {
-      notificationToggledOn = isToggledOn;
-    });
-  }
-
-  /* handles the slider value changing for notification threshold */
-  void sliderActionHandler(double currentSliderValue) {
-    String roundedSliderValueString = currentSliderValue.toStringAsFixed(2);
-    double roundedSliderValueDouble = double.parse(roundedSliderValueString);
-
-    setState(() {
-      thresholdValue = roundedSliderValueDouble;
-    });
-  }
-
-  /* handles a change in dropdown box selection for quantity of notifications */
-  void quantityNotificationDropdown(int selectedValue) {
-    setState(() {
-      notificationQuantity = selectedValue;
-    });
-  }
-
-  /* adjusts and saves updated time of day reminders */
-  changeTODHandler(int todID) async {
-    late final TimeOfDay? todUpdated;
-
-    if (todID == 0) {
-      todUpdated =
-          await showTimePicker(context: context, initialTime: notification1);
-
-      /* if no updated time was selected; cancel was pressed from within the selector */
-      if (todUpdated == null) {
-        return;
-      }
-
-      setState(() {
-        notification1 = todUpdated!;
-      });
-    } else if (todID == 1) {
-      todUpdated =
-          await showTimePicker(context: context, initialTime: notification2);
-
-      /* if no updated time was selected; cancel was pressed from within the selector */
-      if (todUpdated == null) {
-        return;
-      }
-
-      setState(() {
-        notification2 = todUpdated!;
-      });
-    } else {
-      todUpdated =
-          await showTimePicker(context: context, initialTime: notification3);
-
-      /* if no updated time was selected; cancel was pressed from within the selector */
-      if (todUpdated == null) {
-        return;
-      }
-
-      setState(() {
-        notification3 = todUpdated!;
-      });
-    }
-  }
-
-  /* updates/creates daily notifications */
-  saveButtonHandler() {
-    savePreferences();
-    updateNotificationSettings();
-  }
-
-  /* saves all current settings into device preferences; async storage */
-  savePreferences() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setBool('notificationToggle', notificationToggledOn);
-    prefs.setDouble('thresholdValue', thresholdValue);
-    prefs.setInt('notificationQuantity', notificationQuantity);
-
-    /* time of day preference variables */
-    final int tod1Hours = notification1.hour;
-    final int tod2Hours = notification2.hour;
-    final int tod3Hours = notification3.hour;
-
-    final int tod1Minutes = notification1.minute;
-    final int tod2Minutes = notification2.minute;
-    final int tod3Minutes = notification3.minute;
-
-    prefs.setInt('tod1Hours', tod1Hours);
-    prefs.setInt('tod2Hours', tod2Hours);
-    prefs.setInt('tod3Hours', tod3Hours);
-
-    prefs.setInt('tod1Minutes', tod1Minutes);
-    prefs.setInt('tod2Minutes', tod2Minutes);
-    prefs.setInt('tod3Minutes', tod3Minutes);
-  }
-
-  /* updates the notification settings */ // todo
-  updateNotificationSettings() {}
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -183,6 +82,107 @@ class _SettingsPageState extends State<SettingsPage> {
 
   /* body widget of settings page */
   Container settingsBody() {
+    /* updates the notification on/off toggle */
+    void updateNotificationToggle(bool isToggledOn) {
+      setState(() {
+        notificationToggledOn = isToggledOn;
+      });
+    }
+
+    /* handles the slider value changing for notification threshold */
+    void sliderActionHandler(double currentSliderValue) {
+      String roundedSliderValueString = currentSliderValue.toStringAsFixed(2);
+      double roundedSliderValueDouble = double.parse(roundedSliderValueString);
+
+      setState(() {
+        thresholdValue = roundedSliderValueDouble;
+      });
+    }
+
+    /* handles a change in dropdown box selection for quantity of notifications */
+    void quantityNotificationDropdown(int selectedValue) {
+      setState(() {
+        notificationQuantity = selectedValue;
+      });
+    }
+
+    /* adjusts and saves updated time of day reminders */
+    changeTODHandler(int todID) async {
+      late final TimeOfDay? todUpdated;
+
+      if (todID == 0) {
+        todUpdated =
+            await showTimePicker(context: context, initialTime: notification1);
+
+        /* if no updated time was selected; cancel was pressed from within the selector */
+        if (todUpdated == null) {
+          return;
+        }
+
+        setState(() {
+          notification1 = todUpdated!;
+        });
+      } else if (todID == 1) {
+        todUpdated =
+            await showTimePicker(context: context, initialTime: notification2);
+
+        /* if no updated time was selected; cancel was pressed from within the selector */
+        if (todUpdated == null) {
+          return;
+        }
+
+        setState(() {
+          notification2 = todUpdated!;
+        });
+      } else {
+        todUpdated =
+            await showTimePicker(context: context, initialTime: notification3);
+
+        /* if no updated time was selected; cancel was pressed from within the selector */
+        if (todUpdated == null) {
+          return;
+        }
+
+        setState(() {
+          notification3 = todUpdated!;
+        });
+      }
+    }
+
+    /* saves all current settings into device preferences; async storage */
+    savePreferences() async {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setBool('notificationToggle', notificationToggledOn);
+      prefs.setDouble('thresholdValue', thresholdValue);
+      prefs.setInt('notificationQuantity', notificationQuantity);
+
+      /* time of day preference variables */
+      final int tod1Hours = notification1.hour;
+      final int tod2Hours = notification2.hour;
+      final int tod3Hours = notification3.hour;
+
+      final int tod1Minutes = notification1.minute;
+      final int tod2Minutes = notification2.minute;
+      final int tod3Minutes = notification3.minute;
+
+      prefs.setInt('tod1Hours', tod1Hours);
+      prefs.setInt('tod2Hours', tod2Hours);
+      prefs.setInt('tod3Hours', tod3Hours);
+
+      prefs.setInt('tod1Minutes', tod1Minutes);
+      prefs.setInt('tod2Minutes', tod2Minutes);
+      prefs.setInt('tod3Minutes', tod3Minutes);
+    }
+
+    /* updates the notification settings */ // todo
+    updateNotificationSettings() {}
+
+    /* updates/creates daily notifications */
+    saveButtonHandler() {
+      savePreferences();
+      updateNotificationSettings();
+    }
+
     return Container(
         width: double.infinity,
         height: double.infinity,
