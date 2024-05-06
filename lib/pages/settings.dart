@@ -47,7 +47,7 @@ class _SettingsPageState extends State<SettingsPage> {
       this.notification3);
 
   /* updates the notification on/off toggle */
-  updateNotificationToggle(bool isToggledOn) {
+  void updateNotificationToggle(bool isToggledOn) {
     setState(() {
       notificationToggledOn = isToggledOn;
     });
@@ -114,7 +114,7 @@ class _SettingsPageState extends State<SettingsPage> {
   }
 
   /* updates/creates daily notifications */
-  saveButtonHandler() async {
+  saveButtonHandler() {
     savePreferences();
     updateNotificationSettings();
   }

@@ -57,6 +57,24 @@ class _HomePageState extends State<HomePage> {
       this.notification2,
       this.notification3);
 
+  /* handles the change in sort algorithm for stock watchlist */
+  void sortChangeHandler() async {
+    setState(() {
+      if (sortAlgorithm == 'Alphabetically') {
+        sortAlgorithm = 'Ticker Price';
+      } else if (sortAlgorithm == 'Ticker Price') {
+        sortAlgorithm = 'Day Change (%)';
+      } else if (sortAlgorithm == 'Day Change (%)') {
+        sortAlgorithm = 'Stock Exchange';
+      } else {
+        sortAlgorithm = 'Alphabetically';
+      }
+    });
+
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('watchlistSort', sortAlgorithm);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -133,50 +151,51 @@ class _HomePageState extends State<HomePage> {
                   ))),
         ]);
   }
-}
 
-/* body widget of settings page */
-Container homeBody(String sortAlgorithm) {
-  final HelperFunctions helperFunctions = HelperFunctions();
+  /* body widget of settings page */
+  Container homeBody(String sortAlgorithm) {
+    final HelperFunctions helperFunctions = HelperFunctions();
 
-  TimeOfDay? lastUpdatedTime = TimeOfDay.now();
-  String lastUpdatedTimeDisplay =
-      helperFunctions.standardTimeConvertionHandler(lastUpdatedTime);
+    TimeOfDay? lastUpdatedTime =
+        TimeOfDay.now(); // ! get last updated time rather than current time
+    String lastUpdatedTimeDisplay =
+        helperFunctions.standardTimeConvertionHandler(lastUpdatedTime);
 
-  return Container(
-      width: double.infinity,
-      height: double.infinity,
-      decoration: const BoxDecoration(
-          gradient: LinearGradient(
-              colors: [Color(0XAA006400), Color(0xFFA5D6A7)],
-              begin: Alignment.bottomCenter,
-              end: Alignment.topCenter)),
-      child: Padding(
-          padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-          child: Column(
-            children: [
-              Image.asset(
-                'assets/bear_bull_fighting.png',
-                width: double.infinity,
-                height: 200,
-                fit: BoxFit.fill,
-              ),
-              const Padding(
-                padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
-                child: TickerInputFields(),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-                child: SortInputFields(sortAlgorithm: sortAlgorithm),
-              ),
-              Expanded(child: StockWatchlist(sortAlgorithm: sortAlgorithm)),
-              Text(
-                'Last Updated: $lastUpdatedTimeDisplay',
-                style: const TextStyle(
-                    color: Color(0xFFCC0000),
-                    fontSize: 16,
-                    fontWeight: FontWeight.normal),
-              )
-            ],
-          )));
+    return Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: const BoxDecoration(
+            gradient: LinearGradient(
+                colors: [Color(0XAA006400), Color(0xFFA5D6A7)],
+                begin: Alignment.bottomCenter,
+                end: Alignment.topCenter)),
+        child: Padding(
+            padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+            child: Column(
+              children: [
+                Image.asset(
+                  'assets/bear_bull_fighting.png',
+                  width: double.infinity,
+                  height: 200,
+                  fit: BoxFit.fill,
+                ),
+                const Padding(
+                  padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                  child: TickerInputFields(),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                  child: SortInputFields(sortChangeHandler, sortAlgorithm),
+                ),
+                Expanded(child: StockWatchlist(sortAlgorithm: sortAlgorithm)),
+                Text(
+                  'Last Updated: $lastUpdatedTimeDisplay',
+                  style: const TextStyle(
+                      color: Color(0xFFCC0000),
+                      fontSize: 16,
+                      fontWeight: FontWeight.normal),
+                )
+              ],
+            )));
+  }
 }
