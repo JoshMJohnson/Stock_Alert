@@ -1,104 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:stock_alert/pages/homePageWidgets/stock_entity.dart';
 
-// ! begin of testing code
-final StockEntity stock1 = StockEntity(
-    ticker: 'AAPLL',
-    companyName: 'Apple Inc.',
-    tickerPrice: 9999.8,
-    dayChangeDollars: -111.80,
-    dayChangePercentage: -10.80,
-    exchange: 'NASDAQ');
-
-final StockEntity stock2 = StockEntity(
-    ticker: 'MSFTF',
-    companyName: 'Microsoft Corp.',
-    tickerPrice: 411.38,
-    dayChangeDollars: -2.68,
-    dayChangePercentage: -0.08,
-    exchange: 'NYSE');
-
-final StockEntity stock3 = StockEntity(
-    ticker: 'SNDL',
-    companyName: 'This is the Sundile company',
-    tickerPrice: 189.00,
-    dayChangeDollars: 43.00,
-    dayChangePercentage: 10.00,
-    exchange: 'NASDAQ');
-
-final StockEntity stock4 = StockEntity(
-    ticker: 'SPOT',
-    companyName: 'Spotify',
-    tickerPrice: 4,
-    dayChangeDollars: -17,
-    dayChangePercentage: -13,
-    exchange: 'NASDAQ');
-
-final StockEntity stock5 = StockEntity(
-    ticker: 'OGI',
-    companyName: 'Organic Company',
-    tickerPrice: 4.90,
-    dayChangeDollars: 4.90,
-    dayChangePercentage: 4.90,
-    exchange: 'NYSE');
-
-final StockEntity stock6 = StockEntity(
-    ticker: 'ADBE',
-    companyName: 'Adobe',
-    tickerPrice: 120.20,
-    dayChangeDollars: 10.10,
-    dayChangePercentage: 10.10,
-    exchange: 'NASDAQ');
-
-final StockEntity stock7 = StockEntity(
-    ticker: 'BA',
-    companyName: 'Boeing Co',
-    tickerPrice: 170.42,
-    dayChangeDollars: .2,
-    dayChangePercentage: .11,
-    exchange: 'NYSE');
-
-final StockEntity stock8 = StockEntity(
-    ticker: 'BE',
-    companyName: 'Bloom Energy Corp',
-    tickerPrice: 9.52,
-    dayChangeDollars: -.22,
-    dayChangePercentage: -2.25,
-    exchange: 'NYSE');
-
-final StockEntity stock9 = StockEntity(
-    ticker: 'DIS',
-    companyName: 'Walt Disney Co',
-    tickerPrice: 112.31,
-    dayChangeDollars: -.11,
-    dayChangePercentage: -.09,
-    exchange: 'NASDAQ');
-
-final List<StockEntity> testingList = [
-  stock1,
-  stock2,
-  stock3,
-  stock4,
-  stock5,
-  stock6,
-  stock7,
-  stock8,
-  stock9
-];
-// ! end of testing code
-
 class StockWatchlist extends StatefulWidget {
-  String sortAlgorithm;
-  StockWatchlist(this.sortAlgorithm, {super.key});
+  final String sortAlgorithm;
+  final List<StockEntity> watchlist;
+  const StockWatchlist(this.sortAlgorithm, this.watchlist, {super.key});
 
   @override
-  // ignore: no_logic_in_create_state
-  State<StockWatchlist> createState() => _StockWatchlistState(sortAlgorithm);
+  State<StockWatchlist> createState() =>
+      // ignore: no_logic_in_create_state
+      _StockWatchlistState(sortAlgorithm, watchlist);
 }
 
 class _StockWatchlistState extends State<StockWatchlist> {
-  String sortAlgorithm;
-  _StockWatchlistState(this.sortAlgorithm);
+  final String sortAlgorithm;
+  final List<StockEntity> watchlist;
+  _StockWatchlistState(this.sortAlgorithm, this.watchlist);
 
   @override
   Widget build(BuildContext context) {
@@ -111,7 +28,7 @@ class _StockWatchlistState extends State<StockWatchlist> {
           ),
         ),
         child: ListView.separated(
-          itemCount: testingList.length,
+          itemCount: watchlist.length,
           itemBuilder: (context, index) {
             return ListTile(
               contentPadding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
@@ -123,19 +40,19 @@ class _StockWatchlistState extends State<StockWatchlist> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      testingList[index].exchange,
+                      watchlist[index].exchange,
                       style: TextStyle(
-                          color: testingList[index].dayChangePercentage > 0
+                          color: watchlist[index].dayChangePercentage > 0
                               ? const Color(0xFF7FFF00)
                               : const Color(0xFFFF0000),
                           fontSize: 14,
                           fontWeight: FontWeight.w600),
                     ),
                     Text(
-                      testingList[index].companyName,
+                      watchlist[index].companyName,
                       style: TextStyle(
                           overflow: TextOverflow.ellipsis,
-                          color: testingList[index].dayChangeDollars > 0
+                          color: watchlist[index].dayChangeDollars > 0
                               ? const Color(0xFF7FFF00)
                               : const Color(0xFFFF0000),
                           fontSize: 14,
@@ -148,18 +65,18 @@ class _StockWatchlistState extends State<StockWatchlist> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    testingList[index].ticker,
+                    watchlist[index].ticker,
                     style: TextStyle(
-                        color: testingList[index].dayChangeDollars > 0
+                        color: watchlist[index].dayChangeDollars > 0
                             ? const Color(0xFF7FFF00)
                             : const Color(0xFFFF0000),
                         fontSize: 20,
                         fontWeight: FontWeight.w600),
                   ),
                   Text(
-                    testingList[index].tickerPrice.toStringAsFixed(2),
+                    watchlist[index].tickerPrice.toStringAsFixed(2),
                     style: TextStyle(
-                        color: testingList[index].dayChangeDollars > 0
+                        color: watchlist[index].dayChangeDollars > 0
                             ? const Color(0xFF7FFF00)
                             : const Color(0xFFFF0000),
                         fontSize: 20,
@@ -174,18 +91,18 @@ class _StockWatchlistState extends State<StockWatchlist> {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Text(
-                      '${testingList[index].dayChangePercentage} (%)',
+                      '${watchlist[index].dayChangePercentage} (%)',
                       style: TextStyle(
-                          color: testingList[index].dayChangePercentage > 0
+                          color: watchlist[index].dayChangePercentage > 0
                               ? const Color(0xFF7FFF00)
                               : const Color(0xFFFF0000),
                           fontSize: 14,
                           fontWeight: FontWeight.w600),
                     ),
                     Text(
-                      '${testingList[index].dayChangeDollars.toStringAsFixed(2)}  (\$)',
+                      '${watchlist[index].dayChangeDollars.toStringAsFixed(2)}  (\$)',
                       style: TextStyle(
-                          color: testingList[index].dayChangeDollars > 0
+                          color: watchlist[index].dayChangeDollars > 0
                               ? const Color(0xFF7FFF00)
                               : const Color(0xFFFF0000),
                           fontSize: 14,

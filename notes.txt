@@ -1,5 +1,5 @@
 Bugs:
-- 
+- Class constructor warning for.... // ignore: no_logic_in_create_state
 
 To Do:
 - Turn off battery optimization for foreground service delay prevention
