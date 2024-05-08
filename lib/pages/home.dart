@@ -248,9 +248,6 @@ class _HomePageState extends State<HomePage> {
       setState(() {
         currentTicker = updatedTickerValue;
       });
-
-      debugPrint(
-          'tickerFieldHandler... currentTicker: $currentTicker | updatedTickerValue: $updatedTickerValue');
     }
 
     /* handles adding ticker from text field to watchlist */ // todo
