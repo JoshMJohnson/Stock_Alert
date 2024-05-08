@@ -144,6 +144,82 @@ class _HomePageState extends State<HomePage> {
       this.notification2,
       this.notification3);
 
+  /* changes the device setting for light/dark mode being active */
+  lightDarkModeHandler() async {
+    setState(() {
+      lightMode = !lightMode;
+    });
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setBool('lightMode', lightMode);
+  }
+
+  /* executes when navigator pops Settings -> Home; updates preference variables */
+  settingsToHomeHandler() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    notificationToggledOn = prefs.getBool('notificationToggle')!;
+    thresholdValue = prefs.getDouble('thresholdValue')!;
+    notificationQuantity = prefs.getInt('notificationQuantity')!;
+
+    /* time of day preference variables */
+    final int tod1Hours = prefs.getInt('tod1Hours')!;
+    final int tod2Hours = prefs.getInt('tod2Hours')!;
+    final int tod3Hours = prefs.getInt('tod3Hours')!;
+
+    final int tod1Minutes = prefs.getInt('tod1Minutes')!;
+    final int tod2Minutes = prefs.getInt('tod2Minutes')!;
+    final int tod3Minutes = prefs.getInt('tod3Minutes')!;
+
+    notification1 = TimeOfDay(hour: tod1Hours, minute: tod1Minutes);
+    notification2 = TimeOfDay(hour: tod2Hours, minute: tod2Minutes);
+    notification3 = TimeOfDay(hour: tod3Hours, minute: tod3Minutes);
+  }
+
+  /* handles stock ticker text field change in value */
+  void tickerFieldHandler(String updatedTickerValue) {
+    setState(() {
+      currentTicker = updatedTickerValue;
+    });
+  }
+
+  /* handles adding ticker from text field to watchlist */ // todo
+  void addTicker() {
+    debugPrint(
+        'Add stock ticker button pressed... currentTicker: $currentTicker');
+  }
+
+  /* handles removing ticker from text field to watchlist */ // todo
+  void removeTicker() {
+    debugPrint(
+        'Remove stock ticker button pressed... currentTicker: $currentTicker');
+  }
+
+  /* handles the change in sort algorithm for stock watchlist */
+  void sortChangeHandler() async {
+    setState(() {
+      if (sortAlgorithm == 'Alphabetically') {
+        sortAlgorithm = 'Ticker Price';
+      } else if (sortAlgorithm == 'Ticker Price') {
+        sortAlgorithm = 'Day Change (%)';
+      } else if (sortAlgorithm == 'Day Change (%)') {
+        sortAlgorithm = 'Stock Exchange';
+      } else {
+        sortAlgorithm = 'Alphabetically';
+      }
+    });
+
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('watchlistSort', sortAlgorithm);
+
+    // todo change watchlist display to be connected with sort algorithm
+  }
+
+  void updateWatchlistDisplaySortAlgorithm() {
+    // todo
+    debugPrint('*********************Updating sort algorithm!');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -154,37 +230,6 @@ class _HomePageState extends State<HomePage> {
 
   /* header widget */
   AppBar header(BuildContext context) {
-    lightDarkModeHandler() async {
-      setState(() {
-        lightMode = !lightMode;
-      });
-
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      prefs.setBool('lightMode', lightMode);
-    }
-
-    /* executes when navigator pops Settings -> Home; updates preference variables */
-    settingsToHomeHandler() async {
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-
-      notificationToggledOn = prefs.getBool('notificationToggle')!;
-      thresholdValue = prefs.getDouble('thresholdValue')!;
-      notificationQuantity = prefs.getInt('notificationQuantity')!;
-
-      /* time of day preference variables */
-      final int tod1Hours = prefs.getInt('tod1Hours')!;
-      final int tod2Hours = prefs.getInt('tod2Hours')!;
-      final int tod3Hours = prefs.getInt('tod3Hours')!;
-
-      final int tod1Minutes = prefs.getInt('tod1Minutes')!;
-      final int tod2Minutes = prefs.getInt('tod2Minutes')!;
-      final int tod3Minutes = prefs.getInt('tod3Minutes')!;
-
-      notification1 = TimeOfDay(hour: tod1Hours, minute: tod1Minutes);
-      notification2 = TimeOfDay(hour: tod2Hours, minute: tod2Minutes);
-      notification3 = TimeOfDay(hour: tod3Hours, minute: tod3Minutes);
-    }
-
     return AppBar(
         leadingWidth: 110,
         title: Text(
@@ -249,42 +294,8 @@ class _HomePageState extends State<HomePage> {
     String lastUpdatedTimeDisplay =
         helperFunctions.standardTimeConvertionHandler(lastUpdatedTime);
 
-    /* handles stock ticker text field change in value */
-    void tickerFieldHandler(String updatedTickerValue) {
-      setState(() {
-        currentTicker = updatedTickerValue;
-      });
-    }
-
-    /* handles adding ticker from text field to watchlist */ // todo
-    void addTicker() {
-      debugPrint(
-          'Add stock ticker button pressed... currentTicker: $currentTicker');
-    }
-
-    /* handles removing ticker from text field to watchlist */ // todo
-    void removeTicker() {
-      debugPrint(
-          'Remove stock ticker button pressed... currentTicker: $currentTicker');
-    }
-
-    /* handles the change in sort algorithm for stock watchlist */
-    void sortChangeHandler() async {
-      setState(() {
-        if (sortAlgorithm == 'Alphabetically') {
-          sortAlgorithm = 'Ticker Price';
-        } else if (sortAlgorithm == 'Ticker Price') {
-          sortAlgorithm = 'Day Change (%)';
-        } else if (sortAlgorithm == 'Day Change (%)') {
-          sortAlgorithm = 'Stock Exchange';
-        } else {
-          sortAlgorithm = 'Alphabetically';
-        }
-      });
-
-      final SharedPreferences prefs = await SharedPreferences.getInstance();
-      await prefs.setString('watchlistSort', sortAlgorithm);
-    }
+    // todo sort list for onLoad initial sort algorithm
+    updateWatchlistDisplaySortAlgorithm();
 
     return Container(
         width: double.infinity,
@@ -313,7 +324,7 @@ class _HomePageState extends State<HomePage> {
                   padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
                   child: SortInputFields(sortChangeHandler, sortAlgorithm),
                 ),
-                Expanded(child: StockWatchlist(sortAlgorithm, testingList)),
+                Expanded(child: StockWatchlist(testingList)),
                 Text(
                   'Last Updated: $lastUpdatedTimeDisplay',
                   style: const TextStyle(

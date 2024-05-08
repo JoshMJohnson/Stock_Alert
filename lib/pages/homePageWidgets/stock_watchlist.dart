@@ -4,9 +4,8 @@ import 'package:stock_alert/pages/homePageWidgets/stock_entity.dart';
 import '../ticker.dart';
 
 class StockWatchlist extends StatelessWidget {
-  final String sortAlgorithm;
   final List<StockEntity> watchlist;
-  const StockWatchlist(this.sortAlgorithm, this.watchlist, {super.key});
+  const StockWatchlist(this.watchlist, {super.key});
 
   @override
   Widget build(BuildContext context) {
