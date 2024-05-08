@@ -9,6 +9,9 @@ To Do:
     - use flutter name: IntroductionScreen
     
 Feature Additions:
+- Animated headline bar moving from right to left of the NASDAQ and other markets
+updated on market open and close (ex: NASDAQ, NYSE)
+    - Ability to turn on/off notifications for open/close market status
 - Configure to be compatible with ios
 - Light/Dark modes
 - Last updated time value on home page just about list view of stocks
