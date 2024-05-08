@@ -3,21 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:stock_alert/pages/homePageWidgets/stock_entity.dart';
 import '../ticker.dart';
 
-class StockWatchlist extends StatefulWidget {
+class StockWatchlist extends StatelessWidget {
   final String sortAlgorithm;
   final List<StockEntity> watchlist;
   const StockWatchlist(this.sortAlgorithm, this.watchlist, {super.key});
-
-  @override
-  State<StockWatchlist> createState() =>
-      // ignore: no_logic_in_create_state
-      _StockWatchlistState(sortAlgorithm, watchlist);
-}
-
-class _StockWatchlistState extends State<StockWatchlist> {
-  final String sortAlgorithm;
-  final List<StockEntity> watchlist;
-  _StockWatchlistState(this.sortAlgorithm, this.watchlist);
 
   @override
   Widget build(BuildContext context) {

@@ -45,11 +45,10 @@ class TickerPage extends StatelessWidget {
                 colors: [Color(0XAA006400), Color(0xFFA5D6A7)],
                 begin: Alignment.bottomCenter,
                 end: Alignment.topCenter)),
-        child: const SingleChildScrollView(
-            child: Padding(
-                padding: EdgeInsets.all(20),
-                child: Column(
-                  children: [],
-                ))));
+        child: const Padding(
+            padding: EdgeInsets.all(20),
+            child: Column(
+              children: [],
+            )));
   }
 }

@@ -9,6 +9,7 @@ import 'package:stock_alert/pages/homePageWidgets/sort_input_fields.dart';
 import 'package:stock_alert/pages/homePageWidgets/stock_entity.dart';
 
 class HomePage extends StatefulWidget {
+  final bool startupLightMode;
   final String startupSortAlgorithm;
   final bool startupNotificationToggledOn;
   final double startupThresholdValue;
@@ -18,6 +19,7 @@ class HomePage extends StatefulWidget {
   final TimeOfDay startupNotification3;
 
   const HomePage(
+      this.startupLightMode,
       this.startupSortAlgorithm,
       this.startupNotificationToggledOn,
       this.startupThresholdValue,
@@ -31,6 +33,7 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() =>
       // ignore: no_logic_in_create_state
       _HomePageState(
+          startupLightMode,
           startupSortAlgorithm,
           startupNotificationToggledOn,
           startupThresholdValue,
@@ -41,6 +44,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  bool lightMode;
   String sortAlgorithm;
   bool notificationToggledOn;
   double thresholdValue;
@@ -50,6 +54,7 @@ class _HomePageState extends State<HomePage> {
   TimeOfDay notification3;
 
   _HomePageState(
+      this.lightMode,
       this.sortAlgorithm,
       this.notificationToggledOn,
       this.thresholdValue,
