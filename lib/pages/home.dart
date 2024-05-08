@@ -52,6 +52,7 @@ class _HomePageState extends State<HomePage> {
   TimeOfDay notification1;
   TimeOfDay notification2;
   TimeOfDay notification3;
+  String currentTicker = '';
 
   _HomePageState(
       this.lightMode,
@@ -242,6 +243,28 @@ class _HomePageState extends State<HomePage> {
     String lastUpdatedTimeDisplay =
         helperFunctions.standardTimeConvertionHandler(lastUpdatedTime);
 
+    /* handles stock ticker text field change in value */
+    void tickerFieldHandler(String updatedTickerValue) {
+      setState(() {
+        currentTicker = updatedTickerValue;
+      });
+
+      debugPrint(
+          'tickerFieldHandler... currentTicker: $currentTicker | updatedTickerValue: $updatedTickerValue');
+    }
+
+    /* handles adding ticker from text field to watchlist */ // todo
+    void addTicker() {
+      debugPrint(
+          'Add stock ticker button pressed... currentTicker: $currentTicker');
+    }
+
+    /* handles removing ticker from text field to watchlist */ // todo
+    void removeTicker() {
+      debugPrint(
+          'Remove stock ticker button pressed... currentTicker: $currentTicker');
+    }
+
     /* handles the change in sort algorithm for stock watchlist */
     void sortChangeHandler() async {
       setState(() {
@@ -280,7 +303,8 @@ class _HomePageState extends State<HomePage> {
                 ),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-                  child: TickerInputFields(),
+                  child: TickerInputFields(tickerFieldHandler, addTicker,
+                      removeTicker, currentTicker),
                 ),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
