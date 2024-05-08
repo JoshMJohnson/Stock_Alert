@@ -57,7 +57,6 @@ class _SettingsPageState extends State<SettingsPage> {
   /* header widget of settings page */
   AppBar header(BuildContext context) {
     return AppBar(
-      actions: [Image.asset('assets/bear.png')],
       title: Text(
         'Settings',
         style: TextStyle(

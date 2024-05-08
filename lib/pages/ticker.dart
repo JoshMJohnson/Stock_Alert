@@ -20,7 +20,6 @@ class TickerPage extends StatelessWidget {
             fontSize: 28,
             fontWeight: FontWeight.w900),
       ),
-      centerTitle: true,
       backgroundColor: Colors.green[200],
       leading: GestureDetector(
         onTap: () {
@@ -32,6 +31,11 @@ class TickerPage extends StatelessWidget {
           color: Colors.green[900],
         ),
       ),
+      actions: [
+        stock.dayChangeDollars >= 0
+            ? Image.asset('assets/bull.png')
+            : Image.asset('assets/bear.png')
+      ],
     );
   }
 
