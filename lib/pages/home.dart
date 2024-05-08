@@ -211,8 +211,6 @@ class _HomePageState extends State<HomePage> {
 
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString('watchlistSort', sortAlgorithm);
-
-    // todo change watchlist display to be connected with sort algorithm
   }
 
   void updateWatchlistDisplaySortAlgorithm() {
@@ -294,7 +292,6 @@ class _HomePageState extends State<HomePage> {
     String lastUpdatedTimeDisplay =
         helperFunctions.standardTimeConvertionHandler(lastUpdatedTime);
 
-    // todo sort list for onLoad initial sort algorithm
     updateWatchlistDisplaySortAlgorithm();
 
     return Container(
