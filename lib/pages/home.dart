@@ -65,7 +65,7 @@ class _HomePageState extends State<HomePage> {
       tickerPrice: 9999.8,
       dayChangeDollars: -111.80,
       dayChangePercentage: -10.80,
-      exchange: 'NASDAQ');
+      exchange: 'ABC');
 
   final StockEntity stock2 = StockEntity(
       ticker: 'MSFTF',
@@ -81,7 +81,7 @@ class _HomePageState extends State<HomePage> {
       tickerPrice: 189.00,
       dayChangeDollars: 43.00,
       dayChangePercentage: 10.00,
-      exchange: 'NASDAQ');
+      exchange: 'CBA');
 
   final StockEntity stock4 = StockEntity(
       ticker: 'SPOT',
@@ -213,9 +213,20 @@ class _HomePageState extends State<HomePage> {
     await prefs.setString('watchlistSort', sortAlgorithm);
   }
 
+  /* refreshes the stock watchlist display based on sort algorithm selected */ // todo
   void updateWatchlistDisplaySortAlgorithm() {
-    // todo
     debugPrint('*********************Updating sort algorithm!');
+
+    if (sortAlgorithm == 'Alphabetically') {
+      testingList.sort((a, b) => a.ticker.compareTo(b.ticker));
+    } else if (sortAlgorithm == 'Ticker Price') {
+      testingList.sort((a, b) => b.tickerPrice.compareTo(a.tickerPrice));
+    } else if (sortAlgorithm == 'Day Change (%)') {
+      testingList.sort(
+          (a, b) => b.dayChangePercentage.compareTo(a.dayChangePercentage));
+    } else {
+      testingList.sort((a, b) => a.exchange.compareTo(b.exchange));
+    }
   }
 
   @override
