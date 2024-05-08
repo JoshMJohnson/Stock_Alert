@@ -44,7 +44,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  /* home page variables */
   bool lightMode;
+  String currentTicker = '';
+  late List<StockEntity> watchlist; // todo load from Firebase
+
+  /* settings variables used for quick load time for settings page */
   String sortAlgorithm;
   bool notificationToggledOn;
   double thresholdValue;
@@ -52,7 +57,82 @@ class _HomePageState extends State<HomePage> {
   TimeOfDay notification1;
   TimeOfDay notification2;
   TimeOfDay notification3;
-  String currentTicker = '';
+
+  // ! begin of testing code
+  final StockEntity stock1 = StockEntity(
+      ticker: 'AAPLL',
+      companyName: 'Apple Inc.',
+      tickerPrice: 9999.8,
+      dayChangeDollars: -111.80,
+      dayChangePercentage: -10.80,
+      exchange: 'NASDAQ');
+
+  final StockEntity stock2 = StockEntity(
+      ticker: 'MSFTF',
+      companyName: 'Microsoft Corp.',
+      tickerPrice: 411.38,
+      dayChangeDollars: -2.68,
+      dayChangePercentage: -0.08,
+      exchange: 'NYSE');
+
+  final StockEntity stock3 = StockEntity(
+      ticker: 'SNDL',
+      companyName: 'This is the Sundile company',
+      tickerPrice: 189.00,
+      dayChangeDollars: 43.00,
+      dayChangePercentage: 10.00,
+      exchange: 'NASDAQ');
+
+  final StockEntity stock4 = StockEntity(
+      ticker: 'SPOT',
+      companyName: 'Spotify',
+      tickerPrice: 4,
+      dayChangeDollars: -17,
+      dayChangePercentage: -13,
+      exchange: 'NASDAQ');
+
+  final StockEntity stock5 = StockEntity(
+      ticker: 'OGI',
+      companyName: 'Organic Company',
+      tickerPrice: 4.90,
+      dayChangeDollars: 4.90,
+      dayChangePercentage: 4.90,
+      exchange: 'NYSE');
+
+  final StockEntity stock6 = StockEntity(
+      ticker: 'ADBE',
+      companyName: 'Adobe',
+      tickerPrice: 120.20,
+      dayChangeDollars: 10.10,
+      dayChangePercentage: 10.10,
+      exchange: 'NASDAQ');
+
+  final StockEntity stock7 = StockEntity(
+      ticker: 'BA',
+      companyName: 'Boeing Co',
+      tickerPrice: 170.42,
+      dayChangeDollars: .2,
+      dayChangePercentage: .11,
+      exchange: 'NYSE');
+
+  final StockEntity stock8 = StockEntity(
+      ticker: 'BE',
+      companyName: 'Bloom Energy Corp',
+      tickerPrice: 9.52,
+      dayChangeDollars: -.22,
+      dayChangePercentage: -2.25,
+      exchange: 'NYSE');
+
+  final StockEntity stock9 = StockEntity(
+      ticker: 'DIS',
+      companyName: 'Walt Disney Co',
+      tickerPrice: 112.31,
+      dayChangeDollars: -.11,
+      dayChangePercentage: -.09,
+      exchange: 'NASDAQ');
+
+  List<StockEntity> testingList = [];
+  // ! end of testing code
 
   _HomePageState(
       this.lightMode,
@@ -150,80 +230,7 @@ class _HomePageState extends State<HomePage> {
 
   /* body widget of settings page */
   Container homeBody() {
-    // ! begin of testing code
-    final StockEntity stock1 = StockEntity(
-        ticker: 'AAPLL',
-        companyName: 'Apple Inc.',
-        tickerPrice: 9999.8,
-        dayChangeDollars: -111.80,
-        dayChangePercentage: -10.80,
-        exchange: 'NASDAQ');
-
-    final StockEntity stock2 = StockEntity(
-        ticker: 'MSFTF',
-        companyName: 'Microsoft Corp.',
-        tickerPrice: 411.38,
-        dayChangeDollars: -2.68,
-        dayChangePercentage: -0.08,
-        exchange: 'NYSE');
-
-    final StockEntity stock3 = StockEntity(
-        ticker: 'SNDL',
-        companyName: 'This is the Sundile company',
-        tickerPrice: 189.00,
-        dayChangeDollars: 43.00,
-        dayChangePercentage: 10.00,
-        exchange: 'NASDAQ');
-
-    final StockEntity stock4 = StockEntity(
-        ticker: 'SPOT',
-        companyName: 'Spotify',
-        tickerPrice: 4,
-        dayChangeDollars: -17,
-        dayChangePercentage: -13,
-        exchange: 'NASDAQ');
-
-    final StockEntity stock5 = StockEntity(
-        ticker: 'OGI',
-        companyName: 'Organic Company',
-        tickerPrice: 4.90,
-        dayChangeDollars: 4.90,
-        dayChangePercentage: 4.90,
-        exchange: 'NYSE');
-
-    final StockEntity stock6 = StockEntity(
-        ticker: 'ADBE',
-        companyName: 'Adobe',
-        tickerPrice: 120.20,
-        dayChangeDollars: 10.10,
-        dayChangePercentage: 10.10,
-        exchange: 'NASDAQ');
-
-    final StockEntity stock7 = StockEntity(
-        ticker: 'BA',
-        companyName: 'Boeing Co',
-        tickerPrice: 170.42,
-        dayChangeDollars: .2,
-        dayChangePercentage: .11,
-        exchange: 'NYSE');
-
-    final StockEntity stock8 = StockEntity(
-        ticker: 'BE',
-        companyName: 'Bloom Energy Corp',
-        tickerPrice: 9.52,
-        dayChangeDollars: -.22,
-        dayChangePercentage: -2.25,
-        exchange: 'NYSE');
-
-    final StockEntity stock9 = StockEntity(
-        ticker: 'DIS',
-        companyName: 'Walt Disney Co',
-        tickerPrice: 112.31,
-        dayChangeDollars: -.11,
-        dayChangePercentage: -.09,
-        exchange: 'NASDAQ');
-
-    List<StockEntity> testingList = [
+    testingList = [
       stock1,
       stock2,
       stock3,
@@ -234,7 +241,6 @@ class _HomePageState extends State<HomePage> {
       stock8,
       stock9
     ];
-    // ! end of testing code
 
     final HelperFunctions helperFunctions = HelperFunctions();
 
