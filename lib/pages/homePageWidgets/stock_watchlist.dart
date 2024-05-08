@@ -36,8 +36,10 @@ class _StockWatchlistState extends State<StockWatchlist> {
               contentPadding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
               dense: true,
               onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => TickerPage()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const TickerPage()));
               },
               leading: SizedBox(
                 width: 90,
