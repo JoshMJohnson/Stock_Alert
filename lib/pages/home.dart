@@ -73,6 +73,15 @@ class _HomePageState extends State<HomePage> {
 
   /* header widget */
   AppBar header(BuildContext context) {
+    lightDarkModeHandler() async {
+      setState(() {
+        lightMode = !lightMode;
+      });
+
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setBool('lightMode', lightMode);
+    }
+
     /* executes when navigator pops Settings -> Home; updates preference variables */
     settingsToHomeHandler() async {
       SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -104,7 +113,13 @@ class _HomePageState extends State<HomePage> {
               fontSize: 28,
               fontWeight: FontWeight.w900),
         ),
-        leading: Image.asset('assets/bull.png'),
+        leading: GestureDetector(
+            onTap: lightDarkModeHandler,
+            child: lightMode
+                ? const Icon(Icons.dark_mode,
+                    size: 40, color: Color(0xFFCC0000))
+                : const Icon(Icons.light_mode,
+                    size: 40, color: Color(0xFF7FFF00))),
         centerTitle: true,
         backgroundColor: Colors.green[200],
         actions: [
