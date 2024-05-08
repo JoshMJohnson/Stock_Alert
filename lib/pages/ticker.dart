@@ -10,7 +10,7 @@ class TickerPage extends StatelessWidget {
     return Scaffold(appBar: header(context), body: tickerBody());
   }
 
-  /* header of the Ticker page */ // todo
+  /* header of the Ticker page */
   AppBar header(BuildContext context) {
     return AppBar(
       title: Text(
@@ -39,7 +39,7 @@ class TickerPage extends StatelessWidget {
     );
   }
 
-  /* body of the ticker page */ // todo
+  /* body of the ticker page */
   Container tickerBody() {
     return Container(
         width: double.infinity,
