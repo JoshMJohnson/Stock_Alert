@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+
 import 'package:stock_alert/pages/homePageWidgets/stock_entity.dart';
+import '../ticker.dart';
 
 class StockWatchlist extends StatefulWidget {
   final String sortAlgorithm;
@@ -33,6 +35,10 @@ class _StockWatchlistState extends State<StockWatchlist> {
             return ListTile(
               contentPadding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
               dense: true,
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => TickerPage()));
+              },
               leading: SizedBox(
                 width: 90,
                 child: Column(
