@@ -20,6 +20,16 @@ class TickerPage extends StatelessWidget {
       ),
       centerTitle: true,
       backgroundColor: Colors.green[200],
+      leading: GestureDetector(
+        onTap: () {
+          Navigator.pop(context);
+        },
+        child: Icon(
+          Icons.arrow_back,
+          size: 35,
+          color: Colors.green[900],
+        ),
+      ),
     );
   }
 
