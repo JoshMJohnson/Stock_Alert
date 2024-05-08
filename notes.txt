@@ -2,6 +2,7 @@ Bugs:
 - Class constructor warning for.... // ignore: no_logic_in_create_state
 
 To Do:
+- Add a small note somewhere in app stating the only 8 stock requests per min
 - Turn off battery optimization for foreground service delay prevention
 - Create a themes file holding color delarations
 - Handle font scaling
