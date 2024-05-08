@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:stock_alert/pages/homePageWidgets/stock_entity.dart';
 
 class TickerPage extends StatelessWidget {
-  const TickerPage({super.key});
+  final StockEntity stock;
+  const TickerPage(this.stock, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +14,7 @@ class TickerPage extends StatelessWidget {
   AppBar header(BuildContext context) {
     return AppBar(
       title: Text(
-        'Ticker Page',
+        stock.ticker,
         style: TextStyle(
             color: Colors.green[900],
             fontSize: 28,

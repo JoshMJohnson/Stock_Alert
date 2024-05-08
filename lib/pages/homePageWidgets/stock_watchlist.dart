@@ -39,7 +39,7 @@ class _StockWatchlistState extends State<StockWatchlist> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const TickerPage()));
+                        builder: (context) => TickerPage(watchlist[index])));
               },
               leading: SizedBox(
                 width: 90,
