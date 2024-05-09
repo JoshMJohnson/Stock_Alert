@@ -35,6 +35,15 @@ class StockWatchlist extends StatelessWidget {
                 activeTrackColor: const Color(0xFF1B5E20),
                 inactiveThumbColor: const Color(0xFFF44336),
                 inactiveTrackColor: const Color(0xFFB71C1C),
+                trackOutlineColor: MaterialStateProperty.resolveWith(
+                  (final Set<MaterialState> states) {
+                    if (states.contains(MaterialState.selected)) {
+                      return const Color(0xFF388E3C);
+                    }
+
+                    return const Color(0xFFD32F2F);
+                  },
+                ),
                 value: watchlist[index].activeTracking,
                 onChanged: (bool updatedSwitchValue) =>
                     updateActiveTracking(updatedSwitchValue, watchlist[index]),
