@@ -31,6 +31,10 @@ class StockWatchlist extends StatelessWidget {
                         builder: (context) => TickerPage(watchlist[index])));
               },
               leading: Switch(
+                activeColor: const Color(0xFFA5D6A7),
+                activeTrackColor: const Color(0xFF1B5E20),
+                inactiveThumbColor: const Color(0xFFF44336),
+                inactiveTrackColor: const Color(0xFFB71C1C),
                 value: watchlist[index].activeTracking,
                 onChanged: (bool updatedSwitchValue) =>
                     updateActiveTracking(updatedSwitchValue, watchlist[index]),
