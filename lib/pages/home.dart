@@ -310,7 +310,7 @@ class _HomePageState extends State<HomePage> {
       stock9
     ];
 
-    updateWatchlistDisplaySortAlgorithm();
+    updateWatchlistDisplaySortAlgorithm(); // ! seems like the wrong location; called on text field typing
 
     return Container(
         width: double.infinity,

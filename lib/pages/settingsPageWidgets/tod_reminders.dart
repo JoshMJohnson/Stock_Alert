@@ -34,8 +34,6 @@ class TODReminders extends StatelessWidget {
 
   /* creates an intance of a daily notification display */
   Visibility todInstance(todID) {
-    debugPrint('todID: $todID ... notificationQuantity: $notificationQuantity');
-
     return Visibility(
         visible: notificationQuantity! >= todID ? true : false,
         child: Row(
