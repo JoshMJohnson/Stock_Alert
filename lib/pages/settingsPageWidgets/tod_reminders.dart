@@ -35,7 +35,7 @@ class TODReminders extends StatelessWidget {
   /* creates an intance of a daily notification display */
   Visibility todInstance(todID) {
     return Visibility(
-        visible: notificationQuantity! >= (todID - 1) ? true : false,
+        visible: notificationQuantity! >= (todID + 1) ? true : false,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
