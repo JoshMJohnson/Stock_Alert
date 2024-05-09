@@ -190,6 +190,11 @@ class _HomePageState extends State<HomePage> {
     notification3 = TimeOfDay(hour: tod3Hours, minute: tod3Minutes);
   }
 
+  /* updates active tracking toggle for stock entity */ // todo
+  updateActiveTracking(bool updatedActiveTracking, StockEntity stock) {
+    debugPrint('yessir... stock: ${stock.ticker}');
+  }
+
   /* handles stock ticker text field change in value */
   void tickerFieldHandler(String updatedTickerValue) {
     setState(() {
@@ -335,7 +340,8 @@ class _HomePageState extends State<HomePage> {
                   padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
                   child: SortInputFields(sortChangeHandler, sortAlgorithm),
                 ),
-                Expanded(child: StockWatchlist(testingList)),
+                Expanded(
+                    child: StockWatchlist(updateActiveTracking, testingList)),
                 Text(
                   'Last Updated: $lastUpdatedTimeDisplay',
                   style: const TextStyle(

@@ -4,8 +4,9 @@ import 'package:stock_alert/pages/homePageWidgets/stock_entity.dart';
 import '../ticker.dart';
 
 class StockWatchlist extends StatelessWidget {
+  final Function(bool, StockEntity) updateActiveTracking;
   final List<StockEntity> watchlist;
-  const StockWatchlist(this.watchlist, {super.key});
+  const StockWatchlist(this.updateActiveTracking, this.watchlist, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,44 +31,43 @@ class StockWatchlist extends StatelessWidget {
                         builder: (context) => TickerPage(watchlist[index])));
               },
               leading: SizedBox(
-                width: 90,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      watchlist[index].exchange,
-                      style: TextStyle(
-                          color: watchlist[index].dayChangePercentage >= 0
-                              ? const Color(0xFF7FFF00)
-                              : const Color(0xFFFF0000),
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600),
-                    ),
-                    Text(
-                      watchlist[index].companyName,
-                      style: TextStyle(
-                          overflow: TextOverflow.ellipsis,
-                          color: watchlist[index].dayChangeDollars >= 0
-                              ? const Color(0xFF7FFF00)
-                              : const Color(0xFFFF0000),
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600),
-                    ),
-                  ],
+                width: 50,
+                child: Switch(
+                  value: false,
+                  onChanged: (bool updatedSwitchValue) => updateActiveTracking(
+                      updatedSwitchValue, watchlist[index]),
                 ),
               ),
               title: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    watchlist[index].ticker,
-                    style: TextStyle(
-                        color: watchlist[index].dayChangeDollars >= 0
-                            ? const Color(0xFF7FFF00)
-                            : const Color(0xFFFF0000),
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600),
+                  SizedBox(
+                    width: 115,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          watchlist[index].ticker,
+                          style: TextStyle(
+                              color: watchlist[index].dayChangePercentage >= 0
+                                  ? const Color(0xFF7FFF00)
+                                  : const Color(0xFFFF0000),
+                              fontSize: 20,
+                              fontWeight: FontWeight.w600),
+                        ),
+                        Text(
+                          watchlist[index].companyName,
+                          style: TextStyle(
+                              overflow: TextOverflow.ellipsis,
+                              color: watchlist[index].dayChangeDollars >= 0
+                                  ? const Color(0xFF7FFF00)
+                                  : const Color(0xFFFF0000),
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600),
+                        ),
+                      ],
+                    ),
                   ),
                   Text(
                     watchlist[index].tickerPrice.toStringAsFixed(2),
