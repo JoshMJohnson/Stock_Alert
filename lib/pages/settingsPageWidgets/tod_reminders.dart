@@ -22,20 +22,20 @@ class TODReminders extends StatelessWidget {
         child: Column(children: [
           Padding(
               padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-              child: todInstance(1)),
+              child: todInstance(0)),
           Padding(
               padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-              child: todInstance(2)),
+              child: todInstance(1)),
           Padding(
               padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-              child: todInstance(3))
+              child: todInstance(2))
         ]));
   }
 
   /* creates an intance of a daily notification display */
   Visibility todInstance(todID) {
     return Visibility(
-        visible: notificationQuantity! >= todID ? true : false,
+        visible: notificationQuantity! >= (todID - 1) ? true : false,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
