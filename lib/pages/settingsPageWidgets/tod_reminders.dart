@@ -22,38 +22,42 @@ class TODReminders extends StatelessWidget {
         child: Column(children: [
           Padding(
               padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-              child: todInstance(0)),
-          Padding(
-              padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
               child: todInstance(1)),
           Padding(
+              padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+              child: todInstance(2)),
+          Padding(
               padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-              child: todInstance(2))
+              child: todInstance(3))
         ]));
   }
 
   /* creates an intance of a daily notification display */
-  Row todInstance(todID) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        const Text(
-          'Daily Notification:',
-          style: TextStyle(
-              color: Color(0xFF1B5E20),
-              fontSize: 20,
-              fontWeight: FontWeight.w600),
-        ),
-        ElevatedButton(
-            style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFFA5D6A7),
-                foregroundColor: const Color(0xFF228B22)),
-            onPressed: () async {
-              changeTODHandler(todID);
-            },
-            child: getCurrentTOD(todID))
-      ],
-    );
+  Visibility todInstance(todID) {
+    debugPrint('todID: $todID ... notificationQuantity: $notificationQuantity');
+
+    return Visibility(
+        visible: notificationQuantity! >= todID ? true : false,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const Text(
+              'Daily Notification:',
+              style: TextStyle(
+                  color: Color(0xFF1B5E20),
+                  fontSize: 20,
+                  fontWeight: FontWeight.w600),
+            ),
+            ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFFA5D6A7),
+                    foregroundColor: const Color(0xFF228B22)),
+                onPressed: () async {
+                  changeTODHandler(todID);
+                },
+                child: getCurrentTOD(todID))
+          ],
+        ));
   }
 
   /* retrieves TODs from storage and adjusts for display */
