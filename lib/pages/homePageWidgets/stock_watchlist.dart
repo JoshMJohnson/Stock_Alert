@@ -30,13 +30,10 @@ class StockWatchlist extends StatelessWidget {
                     MaterialPageRoute(
                         builder: (context) => TickerPage(watchlist[index])));
               },
-              leading: SizedBox(
-                width: 50,
-                child: Switch(
-                  value: false,
-                  onChanged: (bool updatedSwitchValue) => updateActiveTracking(
-                      updatedSwitchValue, watchlist[index]),
-                ),
+              leading: Switch(
+                value: false,
+                onChanged: (bool updatedSwitchValue) =>
+                    updateActiveTracking(updatedSwitchValue, watchlist[index]),
               ),
               title: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
