@@ -190,15 +190,19 @@ class _HomePageState extends State<HomePage> {
     notification3 = TimeOfDay(hour: tod3Hours, minute: tod3Minutes);
   }
 
-  /* updates active tracking toggle for stock entity */ // todo
-  updateActiveTracking(bool updatedActiveTracking, StockEntity stock) {
-    debugPrint('yessir... stock: ${stock.ticker}');
-  }
-
   /* handles stock ticker text field change in value */
   void tickerFieldHandler(String updatedTickerValue) {
     setState(() {
       currentTicker = updatedTickerValue;
+    });
+  }
+
+  /* updates active tracking toggle for stock entity */ // todo
+  updateActiveTracking(bool updatedActiveTracking, StockEntity stock) {
+    debugPrint('yessir... stock: ${stock.ticker}');
+
+    setState(() {
+      stock.activeTracking = updatedActiveTracking;
     });
   }
 

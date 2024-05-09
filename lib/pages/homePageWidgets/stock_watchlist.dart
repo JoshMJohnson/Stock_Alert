@@ -31,7 +31,7 @@ class StockWatchlist extends StatelessWidget {
                         builder: (context) => TickerPage(watchlist[index])));
               },
               leading: Switch(
-                value: false,
+                value: watchlist[index].activeTracking,
                 onChanged: (bool updatedSwitchValue) =>
                     updateActiveTracking(updatedSwitchValue, watchlist[index]),
               ),
