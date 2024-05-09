@@ -216,8 +216,6 @@ class _HomePageState extends State<HomePage> {
         sortAlgorithm = 'Ticker Price';
       } else if (sortAlgorithm == 'Ticker Price') {
         sortAlgorithm = 'Day Change (%)';
-      } else if (sortAlgorithm == 'Day Change (%)') {
-        sortAlgorithm = 'Stock Exchange';
       } else {
         sortAlgorithm = 'Alphabetically';
       }
@@ -235,11 +233,9 @@ class _HomePageState extends State<HomePage> {
       testingList.sort((a, b) => a.ticker.compareTo(b.ticker));
     } else if (sortAlgorithm == 'Ticker Price') {
       testingList.sort((a, b) => b.tickerPrice.compareTo(a.tickerPrice));
-    } else if (sortAlgorithm == 'Day Change (%)') {
+    } else {
       testingList.sort(
           (a, b) => b.dayChangePercentage.compareTo(a.dayChangePercentage));
-    } else {
-      testingList.sort((a, b) => a.exchange.compareTo(b.exchange));
     }
   }
 

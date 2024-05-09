@@ -43,14 +43,14 @@ Home Page:
         - Refresh display of watchlist on home page to remove stock
 
 Ticker Page:
-- Ticker
-- Company Name
-- Company Description
-- Ticker Price (since last api request)
-- Day Dollar Change
-- Day Percentage Change
-- 52 Week High
-- 52 Week Low
+- x | Ticker
+-  | Company Name
+-  | Company Description
+-  | Ticker Price (since last api request)
+-  | Day Dollar Change
+-  | Day Percentage Change
+-  | 52 Week High
+-  | 52 Week Low
 
 Settings Page:
 - Display/Hide 'Daily Notification' based on quantity selected

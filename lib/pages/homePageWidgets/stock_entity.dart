@@ -5,6 +5,7 @@ class StockEntity {
   double dayChangeDollars;
   double dayChangePercentage;
   String exchange;
+  bool activeTracking = true;
 
   StockEntity(
       {required this.ticker,
