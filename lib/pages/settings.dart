@@ -205,7 +205,7 @@ class _SettingsPageState extends State<SettingsPage> {
                         quantityNotificationDropdown:
                             quantityNotificationDropdown,
                         changeTODHandler: changeTODHandler,
-                        currentOption: notificationQuantity,
+                        notificationQuantity: notificationQuantity,
                         notification1: notification1,
                         notification2: notification2,
                         notification3: notification3),

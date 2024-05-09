@@ -5,7 +5,7 @@ class QuantityNotificationsSelector extends StatelessWidget {
   final Function(int) changeTODHandler;
   final Function(int) quantityNotificationDropdown;
   final List<int> dropdownOptions = const [1, 2, 3];
-  final int? currentOption;
+  final int? notificationQuantity;
   final TimeOfDay notification1;
   final TimeOfDay notification2;
   final TimeOfDay notification3;
@@ -14,7 +14,7 @@ class QuantityNotificationsSelector extends StatelessWidget {
       {super.key,
       required this.changeTODHandler,
       required this.quantityNotificationDropdown,
-      this.currentOption,
+      this.notificationQuantity,
       required this.notification1,
       required this.notification2,
       required this.notification3});
@@ -49,7 +49,7 @@ class QuantityNotificationsSelector extends StatelessWidget {
                 onChanged: (int? selectedValue) {
                   quantityNotificationDropdown(selectedValue!);
                 },
-                value: currentOption,
+                value: notificationQuantity,
                 underline: Container(
                   width: 200,
                   height: 1,
@@ -63,6 +63,7 @@ class QuantityNotificationsSelector extends StatelessWidget {
           ),
           TODReminders(
               changeTODHandler: changeTODHandler,
+              notificationQuantity: notificationQuantity,
               tod1: notification1,
               tod2: notification2,
               tod3: notification3)

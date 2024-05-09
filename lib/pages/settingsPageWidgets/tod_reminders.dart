@@ -3,12 +3,14 @@ import 'package:stock_alert/helper_functions.dart';
 
 class TODReminders extends StatelessWidget {
   final Function(int) changeTODHandler;
+  final int? notificationQuantity;
   final TimeOfDay tod1;
   final TimeOfDay tod2;
   final TimeOfDay tod3;
   const TODReminders(
       {super.key,
       required this.changeTODHandler,
+      required this.notificationQuantity,
       required this.tod1,
       required this.tod2,
       required this.tod3});
