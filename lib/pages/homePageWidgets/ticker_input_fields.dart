@@ -27,6 +27,7 @@ class TickerInputFields extends StatelessWidget {
             tickerFieldHandler(updatedTickerValue),
         cursorColor: const Color(0xFFCC0000),
         textAlign: TextAlign.center,
+        maxLength: 5,
         autocorrect: false,
         enableSuggestions: false,
         style: const TextStyle(
@@ -35,6 +36,7 @@ class TickerInputFields extends StatelessWidget {
           fontWeight: FontWeight.w600,
         ),
         decoration: const InputDecoration(
+          counterText: '',
           border: InputBorder.none,
           enabledBorder: UnderlineInputBorder(
             borderSide: BorderSide(color: Color(0xFFFF0000)),
