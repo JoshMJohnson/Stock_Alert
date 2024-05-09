@@ -31,11 +31,7 @@ class TickerPage extends StatelessWidget {
           color: Colors.green[900],
         ),
       ),
-      actions: [
-        stock.dayChangeDollars >= 0
-            ? Image.asset('assets/bull.png')
-            : Image.asset('assets/bear.png')
-      ],
+      actions: const [Icon(Icons.delete)],
     );
   }
 

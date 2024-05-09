@@ -167,6 +167,7 @@ class _SettingsPageState extends State<SettingsPage> {
       ),
       centerTitle: false,
       backgroundColor: Colors.green[200],
+      actions: [Image.asset('assets/bear.png'), Image.asset('assets/bull.png')],
       leading: GestureDetector(
         onTap: () {
           Navigator.pop(context);
