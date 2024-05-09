@@ -197,7 +197,7 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  /* updates active tracking toggle for stock entity */ // todo
+  /* updates active tracking toggle for stock entity */ // todo update database
   updateActiveTracking(bool updatedActiveTracking, StockEntity stock) {
     debugPrint('yessir... stock: ${stock.ticker}');
 
