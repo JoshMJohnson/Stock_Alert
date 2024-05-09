@@ -58,6 +58,20 @@ class _HomePageState extends State<HomePage> {
   TimeOfDay notification2;
   TimeOfDay notification3;
 
+  final HelperFunctions helperFunctions = HelperFunctions();
+
+  TimeOfDay lastUpdatedTime =
+      TimeOfDay.now(); // ! get last updated time rather than current time
+  String lastUpdatedTimeDisplay = '';
+
+  @override
+  void initState() {
+    lastUpdatedTimeDisplay =
+        helperFunctions.standardTimeConvertionHandler(lastUpdatedTime);
+
+    super.initState();
+  }
+
   // ! begin of testing code
   final StockEntity stock1 = StockEntity(
       ticker: 'AAPLL',
@@ -295,13 +309,6 @@ class _HomePageState extends State<HomePage> {
       stock8,
       stock9
     ];
-
-    final HelperFunctions helperFunctions = HelperFunctions();
-
-    TimeOfDay? lastUpdatedTime =
-        TimeOfDay.now(); // ! get last updated time rather than current time
-    String lastUpdatedTimeDisplay =
-        helperFunctions.standardTimeConvertionHandler(lastUpdatedTime);
 
     updateWatchlistDisplaySortAlgorithm();
 
