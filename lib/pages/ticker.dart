@@ -121,7 +121,14 @@ class TickerPage extends StatelessWidget {
                                         child: Center(
                                           child: Text(
                                             '\$${stock.tickerPrice.toStringAsFixed(2)}',
-                                            style: const TextStyle(
+                                            style: TextStyle(
+                                                color:
+                                                    stock.dayChangePercentage >=
+                                                            0
+                                                        ? const Color(
+                                                            0xFF00FF00)
+                                                        : const Color(
+                                                            0xFFFF0000),
                                                 fontSize: 28,
                                                 fontWeight: FontWeight.w600),
                                           ),
