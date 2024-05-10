@@ -74,13 +74,14 @@ class TickerPage extends StatelessWidget {
                 )),
                 SizedBox(
                   height: 150,
+                  width: double.infinity,
                   child: Row(
                     children: [
                       Flexible(
                         flex: 2,
                         child: Padding(
                           padding: const EdgeInsets.only(right: 10),
-                          child: Container(
+                          child: SizedBox(
                               width: double.infinity,
                               height: double.infinity,
                               child: Image.asset(
@@ -140,6 +141,7 @@ class TickerPage extends StatelessWidget {
                 ),
                 SizedBox(
                   height: 300,
+                  width: double.infinity,
                   child: Row(
                     children: [
                       Flexible(
@@ -147,10 +149,12 @@ class TickerPage extends StatelessWidget {
                         child: Column(
                           children: [
                             Flexible(
-                                flex: 2,
+                                flex: 3,
                                 child: Padding(
                                   padding: const EdgeInsets.only(bottom: 10),
                                   child: Container(
+                                    width: double.infinity,
+                                    height: double.infinity,
                                     decoration: BoxDecoration(
                                         border: Border.all(
                                             color: Colors.red, width: 4)),
@@ -211,7 +215,7 @@ class TickerPage extends StatelessWidget {
                                   ),
                                 )),
                             Flexible(
-                                flex: 1,
+                                flex: 2,
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
