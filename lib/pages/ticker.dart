@@ -36,12 +36,11 @@ class TickerPage extends StatelessWidget {
       ),
       actions: [
         SizedBox(
-          width: 60,
-          child: GestureDetector(
-            onTap: () => removeTicker(stock.ticker),
-            child: const Icon(Icons.delete, size: 35, color: Color(0xFF1B5E20)),
-          ),
-        )
+            width: 60,
+            child: GestureDetector(
+                onTap: () => removeTicker(stock.ticker),
+                child: const Icon(Icons.delete,
+                    size: 35, color: Color(0xFF1B5E20))))
       ],
     );
   }
@@ -83,8 +82,12 @@ class TickerPage extends StatelessWidget {
                         flex: 2,
                         child: Padding(
                           padding: const EdgeInsets.only(right: 10),
-                          child: Image.asset(
-                              'assets/market_logos/NASDAQ.png'), // ! temp value
+                          child: Container(
+                            width: double.infinity,
+                            height: double.infinity,
+                            child:
+                                Image.asset('assets/market_logos/NASDAQ.png'),
+                          ), // ! temp value
                         ),
                       ),
                       Flexible(
@@ -190,24 +193,22 @@ class TickerPage extends StatelessWidget {
                                         Flexible(
                                             flex: 2,
                                             child: SizedBox(
-                                              width: double.infinity,
-                                              height: double.infinity,
-                                              child: Center(
-                                                  child: Text(
-                                                '\$${stock.dayChangeDollars}',
-                                                style: TextStyle(
-                                                    color:
-                                                        stock.dayChangePercentage >=
-                                                                0
-                                                            ? const Color(
-                                                                0xFF00FF00)
-                                                            : const Color(
-                                                                0xFFFF0000),
-                                                    fontSize: 28,
-                                                    fontWeight:
-                                                        FontWeight.w600),
-                                              )),
-                                            )),
+                                                width: double.infinity,
+                                                height: double.infinity,
+                                                child: Center(
+                                                    child: Text(
+                                                        '\$${stock.dayChangeDollars}',
+                                                        style: TextStyle(
+                                                            color: stock.dayChangePercentage >=
+                                                                    0
+                                                                ? const Color(
+                                                                    0xFF00FF00)
+                                                                : const Color(
+                                                                    0xFFFF0000),
+                                                            fontSize: 28,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w600)))))
                                       ],
                                     ),
                                   ),
@@ -232,9 +233,8 @@ class TickerPage extends StatelessWidget {
                       Flexible(
                           flex: 2,
                           child: Padding(
-                            padding: EdgeInsets.only(left: 10),
-                            child: Placeholder(),
-                          ))
+                              padding: EdgeInsets.only(left: 10),
+                              child: Placeholder()))
                     ],
                   ),
                 )
