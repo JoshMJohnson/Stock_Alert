@@ -76,74 +76,102 @@ class _HomePageState extends State<HomePage> {
   final StockEntity stock1 = StockEntity(
       ticker: 'AAPLL',
       companyName: 'Apple Inc.',
+      companyDescription: '',
       tickerPrice: 9999.8,
       dayChangeDollars: -111.80,
       dayChangePercentage: -10.80,
-      exchange: 'ABC');
+      exchange: 'ABC',
+      low52Week: 75.32,
+      high52Week: 153.97);
 
   final StockEntity stock2 = StockEntity(
       ticker: 'MSFTF',
       companyName: 'Microsoft Corp.',
+      companyDescription: '',
       tickerPrice: 411.38,
       dayChangeDollars: -2.68,
       dayChangePercentage: -0.08,
-      exchange: 'NYSE');
+      exchange: 'NYSE',
+      low52Week: 75.32,
+      high52Week: 153.97);
 
   final StockEntity stock3 = StockEntity(
       ticker: 'SNDL',
       companyName: 'This is the Sundile company',
+      companyDescription: '',
       tickerPrice: 189.00,
       dayChangeDollars: 43.00,
       dayChangePercentage: 10.00,
-      exchange: 'CBA');
+      exchange: 'CBA',
+      low52Week: 75.32,
+      high52Week: 153.97);
 
   final StockEntity stock4 = StockEntity(
       ticker: 'SPOT',
       companyName: 'Spotify',
+      companyDescription: '',
       tickerPrice: 4,
       dayChangeDollars: -17,
       dayChangePercentage: -13,
-      exchange: 'NASDAQ');
+      exchange: 'NASDAQ',
+      low52Week: 75.32,
+      high52Week: 153.97);
 
   final StockEntity stock5 = StockEntity(
       ticker: 'OGI',
       companyName: 'Organic Company',
+      companyDescription: '',
       tickerPrice: 4.90,
       dayChangeDollars: 4.90,
       dayChangePercentage: 4.90,
-      exchange: 'NYSE');
+      exchange: 'NYSE',
+      low52Week: 75.32,
+      high52Week: 153.97);
 
   final StockEntity stock6 = StockEntity(
       ticker: 'ADBE',
       companyName: 'Adobe',
+      companyDescription:
+          'Founded 40 years ago on the simple idea of creating innovative products that change the world, Adobe offers groundbreaking technology that empowers everyone, everywhere to imagine, create, and bring any digital experience to life.',
       tickerPrice: 120.20,
       dayChangeDollars: 10.10,
       dayChangePercentage: 10.10,
-      exchange: 'NASDAQ');
+      exchange: 'NASDAQ',
+      low52Week: 75.32,
+      high52Week: 153.97);
 
   final StockEntity stock7 = StockEntity(
       ticker: 'BA',
       companyName: 'Boeing Co',
+      companyDescription: '',
       tickerPrice: 170.42,
       dayChangeDollars: .2,
       dayChangePercentage: .11,
-      exchange: 'NYSE');
+      exchange: 'NYSE',
+      low52Week: 75.32,
+      high52Week: 153.97);
 
   final StockEntity stock8 = StockEntity(
       ticker: 'BE',
       companyName: 'Bloom Energy Corp',
+      companyDescription: '',
       tickerPrice: 9.52,
       dayChangeDollars: -.22,
       dayChangePercentage: -2.25,
-      exchange: 'NYSE');
+      exchange: 'NYSE',
+      low52Week: 75.32,
+      high52Week: 153.97);
 
   final StockEntity stock9 = StockEntity(
       ticker: 'DIS',
       companyName: 'Walt Disney Co',
+      companyDescription: '',
       tickerPrice: 112.31,
       dayChangeDollars: -.11,
       dayChangePercentage: -.09,
-      exchange: 'NASDAQ');
+      exchange: 'NASDAQ',
+      low52Week: 75.32,
+      high52Week: 153.97);
 
   List<StockEntity> testingList = [];
   // ! end of testing code

@@ -1,4 +1,3 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:stock_alert/pages/homePageWidgets/stock_entity.dart';
@@ -56,10 +55,41 @@ class TickerPage extends StatelessWidget {
                 colors: [Color(0XAA006400), Color(0xFFA5D6A7)],
                 begin: Alignment.bottomCenter,
                 end: Alignment.topCenter)),
-        child: const Padding(
-            padding: EdgeInsets.all(20),
+        child: Padding(
+            padding: const EdgeInsets.all(20),
             child: Column(
-              children: [],
+              children: [
+                Container(
+                  decoration: const BoxDecoration(
+                      border: Border(bottom: BorderSide(color: Colors.blue))),
+                  child: Text(stock.companyName,
+                      style: const TextStyle(
+                          fontSize: 20, fontWeight: FontWeight.w600)),
+                ),
+                Expanded(
+                    child: Text(
+                  stock.companyDescription,
+                  style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                      overflow: TextOverflow.fade),
+                )),
+                Container(
+                  height: 100,
+                  child: Row(
+                    children: [
+                      Flexible(
+                        flex: 2,
+                        child: Padding(
+                          padding: const EdgeInsets.only(right: 10),
+                          child: Image.asset('assets/market_logos/NASDAQ.png'),
+                        ),
+                      ),
+                      Flexible(flex: 1, child: Placeholder())
+                    ],
+                  ),
+                )
+              ],
             )));
   }
 }

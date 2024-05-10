@@ -67,6 +67,8 @@ flutter:
     - assets/bear_bull_fighting.png
     - assets/bear.png
     - assets/bull.png
+    - assets/market_logos/NASDAQ.png
+    - assets/market_logos/NYSE.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
