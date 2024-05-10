@@ -75,7 +75,7 @@ class TickerPage extends StatelessWidget {
                       fontWeight: FontWeight.w600,
                       overflow: TextOverflow.fade),
                 )),
-                Container(
+                SizedBox(
                   height: 150,
                   child: Row(
                     children: [
@@ -89,27 +89,43 @@ class TickerPage extends StatelessWidget {
                       ),
                       Flexible(
                           flex: 1,
-                          child: Container(
-                              decoration: BoxDecoration(
-                                  border:
-                                      Border.all(color: Colors.red, width: 5))))
+                          child: Padding(
+                            padding: const EdgeInsets.only(bottom: 10),
+                            child: Container(
+                                decoration: BoxDecoration(
+                                    border: Border.all(
+                                        color: Colors.red, width: 5))),
+                          ))
                     ],
                   ),
                 ),
-                Container(
+                SizedBox(
                   height: 300,
-                  child: const Row(
+                  child: Row(
                     children: [
                       Flexible(
                         flex: 1,
                         child: Column(
                           children: [
-                            Flexible(flex: 1, child: Placeholder()),
+                            Flexible(
+                                flex: 1,
+                                child: Padding(
+                                  padding: EdgeInsets.only(bottom: 10),
+                                  child: Container(
+                                      decoration: BoxDecoration(
+                                          border: Border.all(
+                                              color: Colors.red, width: 5))),
+                                )),
                             Flexible(flex: 1, child: Placeholder())
                           ],
                         ),
                       ),
-                      Flexible(flex: 2, child: Placeholder())
+                      const Flexible(
+                          flex: 2,
+                          child: Padding(
+                            padding: EdgeInsets.only(left: 10),
+                            child: Placeholder(),
+                          ))
                     ],
                   ),
                 )
