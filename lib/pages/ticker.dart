@@ -14,33 +14,25 @@ class TickerPage extends StatelessWidget {
   /* header of the Ticker page */
   AppBar header(BuildContext context) {
     return AppBar(
-      title: Text(
-        stock.ticker,
-        style: TextStyle(
-            color: Colors.green[900],
-            fontSize: 28,
-            fontWeight: FontWeight.w900),
-      ),
-      backgroundColor: Colors.green[200],
-      leading: GestureDetector(
-        onTap: () {
-          Navigator.pop(context);
-        },
-        child: Icon(
-          Icons.arrow_back,
-          size: 35,
-          color: Colors.green[900],
-        ),
-      ),
-      actions: [
-        SizedBox(
-            width: 60,
-            child: GestureDetector(
-                onTap: () => removeTicker(stock.ticker),
-                child: const Icon(Icons.delete,
-                    size: 35, color: Color(0xFF1B5E20))))
-      ],
-    );
+        title: Text(stock.ticker,
+            style: TextStyle(
+                color: Colors.green[900],
+                fontSize: 28,
+                fontWeight: FontWeight.w900)),
+        backgroundColor: Colors.green[200],
+        leading: GestureDetector(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: Icon(Icons.arrow_back, size: 35, color: Colors.green[900])),
+        actions: [
+          SizedBox(
+              width: 60,
+              child: GestureDetector(
+                  onTap: () => removeTicker(stock.ticker),
+                  child: const Icon(Icons.delete,
+                      size: 35, color: Color(0xFF1B5E20))))
+        ]);
   }
 
   /* body of the ticker page */
@@ -200,18 +192,16 @@ class TickerPage extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     const Center(
-                                      child: Text('52 Week Range',
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                              fontSize: 20,
-                                              fontWeight: FontWeight.w600)),
-                                    ),
+                                        child: Text('52 Week Range',
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.w600))),
                                     Slider(
-                                      value: stock.tickerPrice,
-                                      onChanged: null,
-                                      min: stock.low52Week,
-                                      max: stock.high52Week,
-                                    )
+                                        value: stock.tickerPrice,
+                                        onChanged: null,
+                                        min: stock.low52Week,
+                                        max: stock.high52Week)
                                   ]))
                         ])),
                     Flexible(
@@ -221,10 +211,11 @@ class TickerPage extends StatelessWidget {
                             child: SizedBox(
                                 width: double.infinity,
                                 height: double.infinity,
-                                child: Image.asset(
-                                  'assets/bull_ticker_page.png',
-                                  fit: BoxFit.fill,
-                                ))))
+                                child: stock.dayChangePercentage >= 0
+                                    ? Image.asset('assets/bull_ticker_page.png',
+                                        fit: BoxFit.fill)
+                                    : Image.asset(
+                                        'assets/bear_ticker_page.png'))))
                   ]))
             ])));
   }
