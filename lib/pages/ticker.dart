@@ -73,7 +73,7 @@ class TickerPage extends StatelessWidget {
                       overflow: TextOverflow.fade),
                 )),
                 SizedBox(
-                  height: 150,
+                  height: 125,
                   width: double.infinity,
                   child: Row(
                     children: [
@@ -101,7 +101,7 @@ class TickerPage extends StatelessWidget {
                               child: Column(
                                 children: [
                                   const Flexible(
-                                      flex: 1,
+                                      flex: 2,
                                       child: SizedBox(
                                         width: double.infinity,
                                         height: double.infinity,
