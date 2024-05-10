@@ -76,7 +76,7 @@ class TickerPage extends StatelessWidget {
                       overflow: TextOverflow.fade),
                 )),
                 Container(
-                  height: 100,
+                  height: 150,
                   child: Row(
                     children: [
                       Flexible(
@@ -97,7 +97,7 @@ class TickerPage extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  height: 200,
+                  height: 300,
                   child: const Row(
                     children: [
                       Flexible(
