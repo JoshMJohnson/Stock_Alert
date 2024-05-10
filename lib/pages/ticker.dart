@@ -121,7 +121,7 @@ class TickerPage extends StatelessWidget {
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Text('52 Week Range'),
+                                    const Text('52 Week Range'),
                                     Slider(
                                       value: stock.tickerPrice,
                                       onChanged: null,
