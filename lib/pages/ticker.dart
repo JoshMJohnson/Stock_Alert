@@ -129,7 +129,7 @@ class TickerPage extends StatelessWidget {
                                                             0xFF00FF00)
                                                         : const Color(
                                                             0xFFFF0000),
-                                                fontSize: 26,
+                                                fontSize: 28,
                                                 fontWeight: FontWeight.w600),
                                           ),
                                         ),
