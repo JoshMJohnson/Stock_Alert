@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:stock_alert/pages/homePageWidgets/stock_entity.dart';
 
 class TickerPage extends StatelessWidget {
@@ -90,9 +92,44 @@ class TickerPage extends StatelessWidget {
                           child: Padding(
                             padding: const EdgeInsets.only(bottom: 10),
                             child: Container(
-                                decoration: BoxDecoration(
-                                    border: Border.all(
-                                        color: Colors.red, width: 5))),
+                              width: double.infinity,
+                              height: double.infinity,
+                              decoration: BoxDecoration(
+                                  border:
+                                      Border.all(color: Colors.red, width: 5)),
+                              child: Column(
+                                children: [
+                                  const Flexible(
+                                      flex: 1,
+                                      child: SizedBox(
+                                        width: double.infinity,
+                                        height: double.infinity,
+                                        child: Center(
+                                          child: Text(
+                                            'PPS',
+                                            style: TextStyle(
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.w600),
+                                          ),
+                                        ),
+                                      )),
+                                  Flexible(
+                                      flex: 3,
+                                      child: SizedBox(
+                                        width: double.infinity,
+                                        height: double.infinity,
+                                        child: Center(
+                                          child: Text(
+                                            '\$${stock.tickerPrice}',
+                                            style: const TextStyle(
+                                                fontSize: 28,
+                                                fontWeight: FontWeight.w600),
+                                          ),
+                                        ),
+                                      )),
+                                ],
+                              ),
+                            ),
                           ))
                     ],
                   ),
@@ -110,9 +147,27 @@ class TickerPage extends StatelessWidget {
                                 child: Padding(
                                   padding: EdgeInsets.only(bottom: 10),
                                   child: Container(
-                                      decoration: BoxDecoration(
-                                          border: Border.all(
-                                              color: Colors.red, width: 5))),
+                                    decoration: BoxDecoration(
+                                        border: Border.all(
+                                            color: Colors.red, width: 5)),
+                                    child: Column(
+                                      children: [
+                                        Flexible(flex: 1, child: Placeholder()),
+                                        Flexible(
+                                            flex: 2,
+                                            child: Row(
+                                              children: [
+                                                Flexible(
+                                                    flex: 1,
+                                                    child: Placeholder()),
+                                                Flexible(
+                                                    flex: 1,
+                                                    child: Placeholder())
+                                              ],
+                                            )),
+                                      ],
+                                    ),
+                                  ),
                                 )),
                             Flexible(
                                 flex: 1,
