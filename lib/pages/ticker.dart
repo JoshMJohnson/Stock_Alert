@@ -116,11 +116,24 @@ class TickerPage extends StatelessWidget {
                                           border: Border.all(
                                               color: Colors.red, width: 5))),
                                 )),
-                            Flexible(flex: 1, child: Placeholder())
+                            Flexible(
+                                flex: 1,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text('52 Week Range'),
+                                    Slider(
+                                      value: stock.tickerPrice,
+                                      onChanged: null,
+                                      min: stock.low52Week,
+                                      max: stock.high52Week,
+                                    )
+                                  ],
+                                ))
                           ],
                         ),
                       ),
-                      const Flexible(
+                      Flexible(
                           flex: 2,
                           child: Padding(
                             padding: EdgeInsets.only(left: 10),
