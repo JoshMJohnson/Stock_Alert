@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:stock_alert/pages/homePageWidgets/stock_entity.dart';
 
 class TickerPage extends StatelessWidget {
@@ -83,11 +81,10 @@ class TickerPage extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.only(right: 10),
                           child: Container(
-                            width: double.infinity,
-                            height: double.infinity,
-                            child:
-                                Image.asset('assets/market_logos/NASDAQ.png'),
-                          ), // ! temp value
+                              width: double.infinity,
+                              height: double.infinity,
+                              child: Image.asset(
+                                  'assets/market_logos/NASDAQ.png')), // ! temp value
                         ),
                       ),
                       Flexible(

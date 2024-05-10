@@ -2,6 +2,7 @@ Bugs:
 - Class constructor warning for.... // ignore: no_logic_in_create_state
 
 To Do:
+- Code cleanup... remove , after attributes to turn all into same line
 - Negative dollar value move negative sign left of dollar sign
 - Ticker page shows active/inactive reminder set for ticker entity
 - Include industries that the ticker company is involved in on the Ticker page
