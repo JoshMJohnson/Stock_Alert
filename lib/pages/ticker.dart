@@ -120,7 +120,7 @@ class TickerPage extends StatelessWidget {
                                         height: double.infinity,
                                         child: Center(
                                           child: Text(
-                                            '\$${stock.tickerPrice}',
+                                            '\$${stock.tickerPrice.toStringAsFixed(2)}',
                                             style: const TextStyle(
                                                 fontSize: 28,
                                                 fontWeight: FontWeight.w600),
