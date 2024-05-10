@@ -218,14 +218,13 @@ class TickerPage extends StatelessWidget {
                         flex: 2,
                         child: Padding(
                             padding: const EdgeInsets.only(left: 10),
-                            child: Container(
-                              width: double.infinity,
-                              height: double.infinity,
-                              child: Image.asset(
-                                'assets/bull_ticker_page.png',
-                                fit: BoxFit.fill,
-                              ),
-                            )))
+                            child: SizedBox(
+                                width: double.infinity,
+                                height: double.infinity,
+                                child: Image.asset(
+                                  'assets/bull_ticker_page.png',
+                                  fit: BoxFit.fill,
+                                ))))
                   ]))
             ])));
   }
