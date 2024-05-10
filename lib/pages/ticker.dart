@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:stock_alert/pages/homePageWidgets/stock_entity.dart';
@@ -82,10 +83,33 @@ class TickerPage extends StatelessWidget {
                         flex: 2,
                         child: Padding(
                           padding: const EdgeInsets.only(right: 10),
-                          child: Image.asset('assets/market_logos/NASDAQ.png'),
+                          child: Image.asset(
+                              'assets/market_logos/NASDAQ.png'), // ! temp value
                         ),
                       ),
-                      Flexible(flex: 1, child: Placeholder())
+                      Flexible(
+                          flex: 1,
+                          child: Container(
+                              decoration: BoxDecoration(
+                                  border:
+                                      Border.all(color: Colors.red, width: 5))))
+                    ],
+                  ),
+                ),
+                Container(
+                  height: 200,
+                  child: const Row(
+                    children: [
+                      Flexible(
+                        flex: 1,
+                        child: Column(
+                          children: [
+                            Flexible(flex: 1, child: Placeholder()),
+                            Flexible(flex: 1, child: Placeholder())
+                          ],
+                        ),
+                      ),
+                      Flexible(flex: 2, child: Placeholder())
                     ],
                   ),
                 )
