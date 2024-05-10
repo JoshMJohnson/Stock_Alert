@@ -144,7 +144,7 @@ class TickerPage extends StatelessWidget {
                                               color: Colors.red, width: 4)),
                                       child: Column(children: [
                                         const Flexible(
-                                            flex: 1,
+                                            flex: 2,
                                             child: SizedBox(
                                                 width: double.infinity,
                                                 height: double.infinity,
@@ -156,7 +156,7 @@ class TickerPage extends StatelessWidget {
                                                                 FontWeight
                                                                     .w600))))),
                                         Flexible(
-                                            flex: 2,
+                                            flex: 3,
                                             child: SizedBox(
                                                 width: double.infinity,
                                                 height: double.infinity,
@@ -175,7 +175,7 @@ class TickerPage extends StatelessWidget {
                                                                 FontWeight
                                                                     .w600))))),
                                         Flexible(
-                                            flex: 2,
+                                            flex: 3,
                                             child: SizedBox(
                                                 width: double.infinity,
                                                 height: double.infinity,
@@ -199,10 +199,13 @@ class TickerPage extends StatelessWidget {
                               child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Text('52 Week Range',
-                                        style: TextStyle(
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.w600)),
+                                    const Center(
+                                      child: Text('52 Week Range',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.w600)),
+                                    ),
                                     Slider(
                                       value: stock.tickerPrice,
                                       onChanged: null,
