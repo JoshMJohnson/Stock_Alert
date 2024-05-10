@@ -105,12 +105,10 @@ class TickerPage extends StatelessWidget {
                                         width: double.infinity,
                                         height: double.infinity,
                                         child: Center(
-                                          child: Text(
-                                            'PPS',
-                                            style: TextStyle(
-                                                fontSize: 20,
-                                                fontWeight: FontWeight.w600),
-                                          ),
+                                          child: Text('PPS',
+                                              style: TextStyle(
+                                                  fontSize: 20,
+                                                  fontWeight: FontWeight.w600)),
                                         ),
                                       )),
                                   Flexible(
@@ -120,18 +118,17 @@ class TickerPage extends StatelessWidget {
                                         height: double.infinity,
                                         child: Center(
                                           child: Text(
-                                            '\$${stock.tickerPrice.toStringAsFixed(2)}',
-                                            style: TextStyle(
-                                                color:
-                                                    stock.dayChangePercentage >=
-                                                            0
-                                                        ? const Color(
-                                                            0xFF00FF00)
-                                                        : const Color(
-                                                            0xFFFF0000),
-                                                fontSize: 28,
-                                                fontWeight: FontWeight.w600),
-                                          ),
+                                              '\$${stock.tickerPrice.toStringAsFixed(2)}',
+                                              style: TextStyle(
+                                                  color:
+                                                      stock.dayChangePercentage >=
+                                                              0
+                                                          ? const Color(
+                                                              0xFF00FF00)
+                                                          : const Color(
+                                                              0xFFFF0000),
+                                                  fontSize: 28,
+                                                  fontWeight: FontWeight.w600)),
                                         ),
                                       )),
                                 ],
@@ -150,27 +147,66 @@ class TickerPage extends StatelessWidget {
                         child: Column(
                           children: [
                             Flexible(
-                                flex: 1,
+                                flex: 2,
                                 child: Padding(
-                                  padding: EdgeInsets.only(bottom: 10),
+                                  padding: const EdgeInsets.only(bottom: 10),
                                   child: Container(
                                     decoration: BoxDecoration(
                                         border: Border.all(
-                                            color: Colors.red, width: 5)),
+                                            color: Colors.red, width: 4)),
                                     child: Column(
                                       children: [
-                                        Flexible(flex: 1, child: Placeholder()),
+                                        const Flexible(
+                                            flex: 1,
+                                            child: SizedBox(
+                                                width: double.infinity,
+                                                height: double.infinity,
+                                                child: Center(
+                                                    child: Text('Day Change',
+                                                        style: TextStyle(
+                                                            fontSize: 20,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w600))))),
                                         Flexible(
                                             flex: 2,
-                                            child: Row(
-                                              children: [
-                                                Flexible(
-                                                    flex: 1,
-                                                    child: Placeholder()),
-                                                Flexible(
-                                                    flex: 1,
-                                                    child: Placeholder())
-                                              ],
+                                            child: SizedBox(
+                                                width: double.infinity,
+                                                height: double.infinity,
+                                                child: Center(
+                                                    child: Text(
+                                                        '${stock.dayChangePercentage}%',
+                                                        style: TextStyle(
+                                                            color: stock.dayChangePercentage >=
+                                                                    0
+                                                                ? const Color(
+                                                                    0xFF00FF00)
+                                                                : const Color(
+                                                                    0xFFFF0000),
+                                                            fontSize: 28,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w600))))),
+                                        Flexible(
+                                            flex: 2,
+                                            child: SizedBox(
+                                              width: double.infinity,
+                                              height: double.infinity,
+                                              child: Center(
+                                                  child: Text(
+                                                '\$${stock.dayChangeDollars}',
+                                                style: TextStyle(
+                                                    color:
+                                                        stock.dayChangePercentage >=
+                                                                0
+                                                            ? const Color(
+                                                                0xFF00FF00)
+                                                            : const Color(
+                                                                0xFFFF0000),
+                                                    fontSize: 28,
+                                                    fontWeight:
+                                                        FontWeight.w600),
+                                              )),
                                             )),
                                       ],
                                     ),
