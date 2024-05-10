@@ -55,29 +55,24 @@ class TickerPage extends StatelessWidget {
                 end: Alignment.topCenter)),
         child: Padding(
             padding: const EdgeInsets.all(20),
-            child: Column(
-              children: [
-                Container(
+            child: Column(children: [
+              Container(
                   decoration: const BoxDecoration(
                       border: Border(bottom: BorderSide(color: Colors.blue))),
                   child: Text(stock.companyName,
                       style: const TextStyle(
-                          fontSize: 20, fontWeight: FontWeight.w600)),
-                ),
-                Expanded(
-                    child: Text(
-                  stock.companyDescription,
-                  style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      overflow: TextOverflow.fade),
-                )),
-                SizedBox(
+                          fontSize: 20, fontWeight: FontWeight.w600))),
+              Expanded(
+                  child: Text(stock.companyDescription,
+                      style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                          overflow: TextOverflow.fade))),
+              SizedBox(
                   height: 125,
                   width: double.infinity,
-                  child: Row(
-                    children: [
-                      Flexible(
+                  child: Row(children: [
+                    Flexible(
                         flex: 2,
                         child: Padding(
                           padding: const EdgeInsets.only(right: 10),
@@ -86,80 +81,68 @@ class TickerPage extends StatelessWidget {
                               height: double.infinity,
                               child: Image.asset(
                                   'assets/market_logos/NASDAQ.png')), // ! temp value
-                        ),
-                      ),
-                      Flexible(
-                          flex: 1,
-                          child: Padding(
+                        )),
+                    Flexible(
+                        flex: 1,
+                        child: Padding(
                             padding: const EdgeInsets.only(bottom: 10),
                             child: Container(
-                              width: double.infinity,
-                              height: double.infinity,
-                              decoration: BoxDecoration(
-                                  border:
-                                      Border.all(color: Colors.red, width: 4)),
-                              child: Column(
-                                children: [
+                                width: double.infinity,
+                                height: double.infinity,
+                                decoration: BoxDecoration(
+                                    border: Border.all(
+                                        color: Colors.red, width: 4)),
+                                child: Column(children: [
                                   const Flexible(
                                       flex: 2,
                                       child: SizedBox(
-                                        width: double.infinity,
-                                        height: double.infinity,
-                                        child: Center(
-                                          child: Text('PPS',
-                                              style: TextStyle(
-                                                  fontSize: 20,
-                                                  fontWeight: FontWeight.w600)),
-                                        ),
-                                      )),
+                                          width: double.infinity,
+                                          height: double.infinity,
+                                          child: Center(
+                                              child: Text('PPS',
+                                                  style: TextStyle(
+                                                      fontSize: 20,
+                                                      fontWeight:
+                                                          FontWeight.w600))))),
                                   Flexible(
                                       flex: 3,
                                       child: SizedBox(
-                                        width: double.infinity,
-                                        height: double.infinity,
-                                        child: Center(
-                                          child: Text(
-                                              '\$${stock.tickerPrice.toStringAsFixed(2)}',
-                                              style: TextStyle(
-                                                  color:
-                                                      stock.dayChangePercentage >=
-                                                              0
-                                                          ? const Color(
-                                                              0xFF00FF00)
-                                                          : const Color(
-                                                              0xFFFF0000),
-                                                  fontSize: 28,
-                                                  fontWeight: FontWeight.w600)),
-                                        ),
-                                      )),
-                                ],
-                              ),
-                            ),
-                          ))
-                    ],
-                  ),
-                ),
-                SizedBox(
+                                          width: double.infinity,
+                                          height: double.infinity,
+                                          child: Center(
+                                              child: Text(
+                                                  '\$${stock.tickerPrice.toStringAsFixed(2)}',
+                                                  style: TextStyle(
+                                                      color:
+                                                          stock.dayChangePercentage >=
+                                                                  0
+                                                              ? const Color(
+                                                                  0xFF00FF00)
+                                                              : const Color(
+                                                                  0xFFFF0000),
+                                                      fontSize: 28,
+                                                      fontWeight:
+                                                          FontWeight.w600)))))
+                                ]))))
+                  ])),
+              SizedBox(
                   height: 300,
                   width: double.infinity,
-                  child: Row(
-                    children: [
-                      Flexible(
+                  child: Row(children: [
+                    Flexible(
                         flex: 1,
-                        child: Column(
-                          children: [
-                            Flexible(
-                                flex: 3,
-                                child: Padding(
+                        child: Column(children: [
+                          Flexible(
+                              flex: 3,
+                              child: Padding(
                                   padding: const EdgeInsets.only(bottom: 10),
                                   child: Container(
-                                    width: double.infinity,
-                                    height: double.infinity,
-                                    decoration: BoxDecoration(
-                                        border: Border.all(
-                                            color: Colors.red, width: 4)),
-                                    child: Column(
-                                      children: [
+                                      width: double.infinity,
+                                      height: double.infinity,
+                                      decoration: BoxDecoration(
+                                          border: Border.all(
+                                              color: Colors.red, width: 4)),
+                                      child: Column(children: [
                                         const Flexible(
                                             flex: 1,
                                             child: SizedBox(
@@ -210,36 +193,30 @@ class TickerPage extends StatelessWidget {
                                                             fontWeight:
                                                                 FontWeight
                                                                     .w600)))))
-                                      ],
-                                    ),
-                                  ),
-                                )),
-                            Flexible(
-                                flex: 2,
-                                child: Column(
+                                      ])))),
+                          Flexible(
+                              flex: 2,
+                              child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    const Text('52 Week Range'),
+                                    Text('52 Week Range',
+                                        style: TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.w600)),
                                     Slider(
                                       value: stock.tickerPrice,
                                       onChanged: null,
                                       min: stock.low52Week,
                                       max: stock.high52Week,
                                     )
-                                  ],
-                                ))
-                          ],
-                        ),
-                      ),
-                      Flexible(
-                          flex: 2,
-                          child: Padding(
-                              padding: EdgeInsets.only(left: 10),
-                              child: Placeholder()))
-                    ],
-                  ),
-                )
-              ],
-            )));
+                                  ]))
+                        ])),
+                    Flexible(
+                        flex: 2,
+                        child: Padding(
+                            padding: EdgeInsets.only(left: 10),
+                            child: Placeholder()))
+                  ]))
+            ])));
   }
 }
