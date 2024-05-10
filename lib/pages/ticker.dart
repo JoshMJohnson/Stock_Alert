@@ -1,9 +1,12 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:stock_alert/pages/homePageWidgets/stock_entity.dart';
 
 class TickerPage extends StatelessWidget {
+  final Function(String deletingTicker) removeTicker;
   final StockEntity stock;
-  const TickerPage(this.stock, {super.key});
+  const TickerPage(this.removeTicker, this.stock, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +34,15 @@ class TickerPage extends StatelessWidget {
           color: Colors.green[900],
         ),
       ),
-      actions: const [Icon(Icons.delete)],
+      actions: [
+        SizedBox(
+          width: 60,
+          child: GestureDetector(
+            onTap: () => removeTicker(stock.ticker),
+            child: const Icon(Icons.delete, size: 35, color: Color(0xFF1B5E20)),
+          ),
+        )
+      ],
     );
   }
 

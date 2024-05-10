@@ -4,9 +4,12 @@ import 'package:stock_alert/pages/homePageWidgets/stock_entity.dart';
 import '../ticker.dart';
 
 class StockWatchlist extends StatelessWidget {
+  final Function(String) removeTicker;
   final Function(bool, StockEntity) updateActiveTracking;
   final List<StockEntity> watchlist;
-  const StockWatchlist(this.updateActiveTracking, this.watchlist, {super.key});
+  const StockWatchlist(
+      this.removeTicker, this.updateActiveTracking, this.watchlist,
+      {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +31,8 @@ class StockWatchlist extends StatelessWidget {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => TickerPage(watchlist[index])));
+                        builder: (context) =>
+                            TickerPage(removeTicker, watchlist[index])));
               },
               leading: Switch(
                 activeColor: const Color(0xFFA5D6A7),

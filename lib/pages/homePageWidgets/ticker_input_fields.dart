@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class TickerInputFields extends StatelessWidget {
   final Function(String) tickerFieldHandler;
   final Function() addTicker;
-  final Function() removeTicker;
+  final Function(String) removeTicker;
   final String currentTicker;
   const TickerInputFields(this.tickerFieldHandler, this.addTicker,
       this.removeTicker, this.currentTicker,
@@ -80,7 +80,7 @@ class TickerInputFields extends StatelessWidget {
   /* button to remove a stock ticker from the watchlist */
   GestureDetector removeTickerButton() {
     return GestureDetector(
-        onTap: () => removeTicker(),
+        onTap: () => removeTicker(currentTicker),
         child: const Icon(
           Icons.playlist_remove,
           size: 45,

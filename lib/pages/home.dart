@@ -213,9 +213,9 @@ class _HomePageState extends State<HomePage> {
   }
 
   /* handles removing ticker from text field to watchlist */ // todo
-  void removeTicker() {
+  void removeTicker(String removingTicker) {
     debugPrint(
-        'Remove stock ticker button pressed... currentTicker: $currentTicker');
+        'Remove stock ticker button pressed... currentTicker: $removingTicker');
   }
 
   /* handles the change in sort algorithm for stock watchlist */
@@ -345,7 +345,8 @@ class _HomePageState extends State<HomePage> {
                   child: SortInputFields(sortChangeHandler, sortAlgorithm),
                 ),
                 Expanded(
-                    child: StockWatchlist(updateActiveTracking, testingList)),
+                    child: StockWatchlist(
+                        removeTicker, updateActiveTracking, testingList)),
                 Text(
                   'Last Updated: $lastUpdatedTimeDisplay',
                   style: const TextStyle(
