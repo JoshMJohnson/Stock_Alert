@@ -82,7 +82,7 @@ class _HomePageState extends State<HomePage> {
       dayChangePercentage: -10.80,
       exchange: 'ABC',
       low52Week: 75.32,
-      high52Week: 153.97);
+      high52Week: 15993.97);
 
   final StockEntity stock2 = StockEntity(
       ticker: 'MSFTF',
