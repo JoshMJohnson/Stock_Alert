@@ -96,7 +96,7 @@ class TickerPage extends StatelessWidget {
                               height: double.infinity,
                               decoration: BoxDecoration(
                                   border:
-                                      Border.all(color: Colors.red, width: 5)),
+                                      Border.all(color: Colors.red, width: 4)),
                               child: Column(
                                 children: [
                                   const Flexible(
@@ -129,7 +129,7 @@ class TickerPage extends StatelessWidget {
                                                             0xFF00FF00)
                                                         : const Color(
                                                             0xFFFF0000),
-                                                fontSize: 28,
+                                                fontSize: 26,
                                                 fontWeight: FontWeight.w600),
                                           ),
                                         ),
