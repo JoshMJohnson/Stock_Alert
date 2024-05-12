@@ -134,8 +134,8 @@ class _HomePageState extends State<HomePage> {
       companyDescription:
           'Founded 40 years ago on the simple idea of creating innovative products that change the world, Adobe offers groundbreaking technology that empowers everyone, everywhere to imagine, create, and bring any digital experience to life.',
       tickerPrice: 120.20,
-      dayChangeDollars: 10.10,
-      dayChangePercentage: 10.10,
+      dayChangeDollars: 10.65,
+      dayChangePercentage: 3.10,
       exchange: 'NASDAQ',
       low52Week: 75.32,
       high52Week: 153.97);
