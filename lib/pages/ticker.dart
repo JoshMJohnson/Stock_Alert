@@ -214,8 +214,8 @@ class TickerPage extends StatelessWidget {
                                 child: stock.dayChangePercentage >= 0
                                     ? Image.asset('assets/bull_ticker_page.png',
                                         fit: BoxFit.fill)
-                                    : Image.asset(
-                                        'assets/bear_ticker_page.png'))))
+                                    : Image.asset('assets/bear_ticker_page.png',
+                                        fit: BoxFit.fill))))
                   ]))
             ])));
   }
