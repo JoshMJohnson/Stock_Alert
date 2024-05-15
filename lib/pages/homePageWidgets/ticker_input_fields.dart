@@ -44,7 +44,7 @@ class TickerInputFields extends StatelessWidget {
           focusedBorder: UnderlineInputBorder(
             borderSide: BorderSide(color: Color(0xFFAA0000)),
           ),
-          hintText: 'Stock Ticker',
+          hintText: 'Ticker Symbol',
           hintStyle: TextStyle(
               color: Color(0xFF1B5E20),
               fontSize: 22,

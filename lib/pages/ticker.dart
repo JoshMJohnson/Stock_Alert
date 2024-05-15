@@ -8,7 +8,7 @@ class TickerPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: header(context), body: tickerBody());
+    return Scaffold(appBar: header(context), body: tickerBody(context));
   }
 
   /* header of the Ticker page */
@@ -36,7 +36,7 @@ class TickerPage extends StatelessWidget {
   }
 
   /* body of the ticker page */
-  Container tickerBody() {
+  Container tickerBody(BuildContext context) {
     return Container(
         width: double.infinity,
         height: double.infinity,
@@ -197,11 +197,19 @@ class TickerPage extends StatelessWidget {
                                             style: TextStyle(
                                                 fontSize: 20,
                                                 fontWeight: FontWeight.w600))),
-                                    Slider(
-                                        value: stock.tickerPrice,
-                                        onChanged: null,
-                                        min: stock.low52Week,
-                                        max: stock.high52Week)
+                                    SliderTheme(
+                                      data: SliderTheme.of(context).copyWith(
+                                          disabledActiveTrackColor:
+                                              Colors.red[900],
+                                          disabledInactiveTrackColor:
+                                              Colors.green[900],
+                                          disabledThumbColor: Colors.black),
+                                      child: Slider(
+                                          value: stock.tickerPrice,
+                                          onChanged: null,
+                                          min: stock.low52Week,
+                                          max: stock.high52Week),
+                                    )
                                   ]))
                         ])),
                     Flexible(
