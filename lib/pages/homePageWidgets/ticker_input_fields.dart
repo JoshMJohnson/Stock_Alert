@@ -15,12 +15,12 @@ class TickerInputFields extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [tickerTextBox(context), buttonGrouping(context)],
+      children: [tickerTextBox(), buttonGrouping()],
     );
   }
 
   /* text field for entering a stock ticker for entry or removal */
-  SizedBox tickerTextBox(BuildContext context) {
+  SizedBox tickerTextBox() {
     return SizedBox(
       width: 150,
       height: 50,
@@ -37,18 +37,18 @@ class TickerInputFields extends StatelessWidget {
           fontSize: 22,
           fontWeight: FontWeight.w600,
         ),
-        decoration: InputDecoration(
+        decoration: const InputDecoration(
           counterText: '',
           border: InputBorder.none,
-          enabledBorder: const UnderlineInputBorder(
+          enabledBorder: UnderlineInputBorder(
             borderSide: BorderSide(color: Color(0xFFFF0000)),
           ),
-          focusedBorder: const UnderlineInputBorder(
+          focusedBorder: UnderlineInputBorder(
             borderSide: BorderSide(color: Color(0xFFAA0000)),
           ),
           hintText: 'Ticker Symbol',
           hintStyle: TextStyle(
-              color: Theme.of(context).hintColor,
+              color: Color(0xFF1B5E20),
               fontSize: 22,
               fontWeight: FontWeight.normal),
         ),
@@ -56,11 +56,11 @@ class TickerInputFields extends StatelessWidget {
     );
   }
 
-  Row buttonGrouping(BuildContext context) {
+  Row buttonGrouping() {
     return Row(
       children: [
         addTickerButton(),
-        removeTickerButton(context),
+        removeTickerButton(),
       ],
     );
   }
@@ -80,7 +80,7 @@ class TickerInputFields extends StatelessWidget {
   }
 
   /* button to remove a stock ticker from the watchlist */
-  GestureDetector removeTickerButton(BuildContext context) {
+  GestureDetector removeTickerButton() {
     return GestureDetector(
         onTap: () => removeTicker(currentTicker),
         child: const Icon(

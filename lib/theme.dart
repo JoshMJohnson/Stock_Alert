@@ -8,7 +8,6 @@ ThemeData lightMode = ThemeData(
       primary: const Color(0xFFCC0000),
       secondary: const Color(0xFF1B5E20),
       tertiary: const Color(0xFFCC0000)),
-  hintColor: const Color(0xFF1B5E20),
   dividerColor: const Color(0xFF1B5E20),
 );
 
@@ -21,6 +20,5 @@ ThemeData darkMode = ThemeData(
     secondary: Colors.grey.shade400,
     tertiary: Colors.grey.shade400,
   ),
-  hintColor: const Color(0xFFFF0000),
   dividerColor: const Color.fromARGB(255, 6, 20, 7),
 );
