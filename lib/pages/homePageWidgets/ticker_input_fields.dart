@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../theme.dart';
+
 class TickerInputFields extends StatelessWidget {
   final Function(String) tickerFieldHandler;
   final Function() addTicker;
@@ -13,12 +15,12 @@ class TickerInputFields extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [tickerTextBox(), buttonGrouping()],
+      children: [tickerTextBox(context), buttonGrouping()],
     );
   }
 
   /* text field for entering a stock ticker for entry or removal */
-  SizedBox tickerTextBox() {
+  SizedBox tickerTextBox(BuildContext context) {
     return SizedBox(
       width: 150,
       height: 50,
@@ -35,18 +37,18 @@ class TickerInputFields extends StatelessWidget {
           fontSize: 22,
           fontWeight: FontWeight.w600,
         ),
-        decoration: const InputDecoration(
+        decoration: InputDecoration(
           counterText: '',
           border: InputBorder.none,
-          enabledBorder: UnderlineInputBorder(
+          enabledBorder: const UnderlineInputBorder(
             borderSide: BorderSide(color: Color(0xFFFF0000)),
           ),
-          focusedBorder: UnderlineInputBorder(
+          focusedBorder: const UnderlineInputBorder(
             borderSide: BorderSide(color: Color(0xFFAA0000)),
           ),
           hintText: 'Ticker Symbol',
           hintStyle: TextStyle(
-              color: Color(0xFF1B5E20),
+              color: Theme.of(context).hintColor,
               fontSize: 22,
               fontWeight: FontWeight.normal),
         ),
