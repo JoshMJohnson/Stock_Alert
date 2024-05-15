@@ -124,8 +124,8 @@ class StockWatchlist extends StatelessWidget {
             );
           },
           separatorBuilder: (context, index) {
-            return const Divider(
-              color: Color(0xFF1B5E20),
+            return Divider(
+              color: Theme.of(context).dividerColor,
             );
           },
         ));

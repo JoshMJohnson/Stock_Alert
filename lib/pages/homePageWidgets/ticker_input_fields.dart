@@ -15,7 +15,7 @@ class TickerInputFields extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [tickerTextBox(context), buttonGrouping()],
+      children: [tickerTextBox(context), buttonGrouping(context)],
     );
   }
 
@@ -56,11 +56,11 @@ class TickerInputFields extends StatelessWidget {
     );
   }
 
-  Row buttonGrouping() {
+  Row buttonGrouping(BuildContext context) {
     return Row(
       children: [
         addTickerButton(),
-        removeTickerButton(),
+        removeTickerButton(context),
       ],
     );
   }
@@ -80,7 +80,7 @@ class TickerInputFields extends StatelessWidget {
   }
 
   /* button to remove a stock ticker from the watchlist */
-  GestureDetector removeTickerButton() {
+  GestureDetector removeTickerButton(BuildContext context) {
     return GestureDetector(
         onTap: () => removeTicker(currentTicker),
         child: const Icon(
