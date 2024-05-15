@@ -15,10 +15,10 @@ class PriceChangeThreshold extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const Text(
+          Text(
             'Day Change\nThreshold (%):',
             style: TextStyle(
-                color: Color(0xFF1B5E20),
+                color: Theme.of(context).textTheme.displayMedium!.color,
                 fontSize: 20,
                 fontWeight: FontWeight.w600),
           ),

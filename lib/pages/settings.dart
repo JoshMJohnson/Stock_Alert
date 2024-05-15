@@ -161,12 +161,12 @@ class _SettingsPageState extends State<SettingsPage> {
       title: Text(
         'Settings',
         style: TextStyle(
-            color: Colors.green[900],
+            color: Theme.of(context).textTheme.displayMedium!.color,
             fontSize: 28,
             fontWeight: FontWeight.w900),
       ),
       centerTitle: false,
-      backgroundColor: Colors.green[200],
+      backgroundColor: Theme.of(context).colorScheme.primary,
       actions: [Image.asset('assets/bear.png'), Image.asset('assets/bull.png')],
       leading: GestureDetector(
         onTap: () {
@@ -175,7 +175,7 @@ class _SettingsPageState extends State<SettingsPage> {
         child: Icon(
           Icons.arrow_back,
           size: 35,
-          color: Colors.green[900],
+          color: Theme.of(context).colorScheme.secondary,
         ),
       ),
     );
@@ -186,11 +186,11 @@ class _SettingsPageState extends State<SettingsPage> {
     return Container(
         width: double.infinity,
         height: double.infinity,
-        decoration: const BoxDecoration(
-            gradient: LinearGradient(
-                colors: [Color(0XAA006400), Color(0xFFA5D6A7)],
-                begin: Alignment.bottomCenter,
-                end: Alignment.topCenter)),
+        decoration: BoxDecoration(
+            gradient: LinearGradient(colors: [
+          Theme.of(context).colorScheme.background,
+          Theme.of(context).colorScheme.primary
+        ], begin: Alignment.bottomCenter, end: Alignment.topCenter)),
         child: SingleChildScrollView(
             child: Padding(
                 padding: const EdgeInsets.all(20),

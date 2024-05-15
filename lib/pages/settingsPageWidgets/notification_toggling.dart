@@ -15,10 +15,10 @@ class NotificationToggle extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const Text(
+          Text(
             'Notifications:',
             style: TextStyle(
-                color: Color(0xFF1B5E20),
+                color: Theme.of(context).textTheme.displayMedium!.color,
                 fontSize: 20,
                 fontWeight: FontWeight.w600),
           ),
@@ -36,10 +36,10 @@ class NotificationToggle extends StatelessWidget {
                     updateNotificationToggle(isToggledOn!);
                   },
                 ),
-                const Text(
+                Text(
                   'On',
                   style: TextStyle(
-                      color: Color(0xFF1B5E20),
+                      color: Theme.of(context).textTheme.displayMedium!.color,
                       fontSize: 20,
                       fontWeight: FontWeight.normal),
                 ),
@@ -60,10 +60,11 @@ class NotificationToggle extends StatelessWidget {
                         updateNotificationToggle(isToggledOn!);
                       },
                     ),
-                    const Text(
+                    Text(
                       'Off',
                       style: TextStyle(
-                          color: Color(0xFF1B5E20),
+                          color:
+                              Theme.of(context).textTheme.displayMedium!.color,
                           fontSize: 20,
                           fontWeight: FontWeight.normal),
                     ),

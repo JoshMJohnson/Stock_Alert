@@ -27,10 +27,10 @@ class QuantityNotificationsSelector extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
+              Text(
                 'Quantity of\nDaily Notifications:',
                 style: TextStyle(
-                    color: Color(0xFF1B5E20),
+                    color: Theme.of(context).textTheme.displayMedium!.color,
                     fontSize: 20,
                     fontWeight: FontWeight.w600),
               ),
