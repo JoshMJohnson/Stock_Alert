@@ -266,7 +266,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: header(context),
-      body: homeBody(),
+      body: homeBody(context),
     );
   }
 
@@ -277,12 +277,12 @@ class _HomePageState extends State<HomePage> {
         title: Text(
           'Stock Alert',
           style: TextStyle(
-              color: Colors.green[900],
+              color: Theme.of(context).textTheme.displayMedium!.color,
               fontSize: 28,
               fontWeight: FontWeight.w900),
         ),
         centerTitle: true,
-        backgroundColor: Colors.green[200],
+        backgroundColor: Theme.of(context).colorScheme.primary,
         actions: [
           GestureDetector(
               onTap: () {
@@ -309,7 +309,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   /* body widget of settings page */
-  Container homeBody() {
+  Container homeBody(BuildContext context) {
     testingList = [
       stock1,
       stock2,
@@ -327,11 +327,11 @@ class _HomePageState extends State<HomePage> {
     return Container(
         width: double.infinity,
         height: double.infinity,
-        decoration: const BoxDecoration(
-            gradient: LinearGradient(
-                colors: [Color(0xAA006400), Color(0xFFA5D6A7)],
-                begin: Alignment.bottomCenter,
-                end: Alignment.topCenter)),
+        decoration: BoxDecoration(
+            gradient: LinearGradient(colors: [
+          Theme.of(context).colorScheme.background,
+          Theme.of(context).colorScheme.primary
+        ], begin: Alignment.bottomCenter, end: Alignment.topCenter)),
         child: Padding(
             padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
             child: Column(
@@ -356,8 +356,8 @@ class _HomePageState extends State<HomePage> {
                         removeTicker, updateActiveTracking, testingList)),
                 Text(
                   'Last Updated: $lastUpdatedTimeDisplay',
-                  style: const TextStyle(
-                      color: Color(0xFFCC0000),
+                  style: TextStyle(
+                      color: Theme.of(context).textTheme.displayMedium!.color,
                       fontSize: 16,
                       fontWeight: FontWeight.normal),
                 )
