@@ -9,7 +9,6 @@ import 'package:stock_alert/pages/homePageWidgets/sort_input_fields.dart';
 import 'package:stock_alert/pages/homePageWidgets/stock_entity.dart';
 
 class HomePage extends StatefulWidget {
-  final bool startupLightMode;
   final String startupSortAlgorithm;
   final bool startupNotificationToggledOn;
   final double startupThresholdValue;
@@ -19,7 +18,6 @@ class HomePage extends StatefulWidget {
   final TimeOfDay startupNotification3;
 
   const HomePage(
-      this.startupLightMode,
       this.startupSortAlgorithm,
       this.startupNotificationToggledOn,
       this.startupThresholdValue,
@@ -33,7 +31,6 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() =>
       // ignore: no_logic_in_create_state
       _HomePageState(
-          startupLightMode,
           startupSortAlgorithm,
           startupNotificationToggledOn,
           startupThresholdValue,
@@ -45,7 +42,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   /* home page variables */
-  bool lightMode;
   String currentTicker = '';
   late List<StockEntity> watchlist; // todo load from Firebase
 
@@ -177,7 +173,6 @@ class _HomePageState extends State<HomePage> {
   // ! end of testing code
 
   _HomePageState(
-      this.lightMode,
       this.sortAlgorithm,
       this.notificationToggledOn,
       this.thresholdValue,
@@ -185,16 +180,6 @@ class _HomePageState extends State<HomePage> {
       this.notification1,
       this.notification2,
       this.notification3);
-
-  /* changes the device setting for light/dark mode being active */
-  lightDarkModeHandler() async {
-    setState(() {
-      lightMode = !lightMode;
-    });
-
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setBool('lightMode', lightMode);
-  }
 
   /* executes when navigator pops Settings -> Home; updates preference variables */
   settingsToHomeHandler() async {
@@ -295,13 +280,6 @@ class _HomePageState extends State<HomePage> {
               fontSize: 28,
               fontWeight: FontWeight.w900),
         ),
-        leading: GestureDetector(
-            onTap: lightDarkModeHandler,
-            child: lightMode
-                ? const Icon(Icons.dark_mode,
-                    size: 40, color: Color(0xFFCC0000))
-                : const Icon(Icons.light_mode,
-                    size: 40, color: Color(0xFF7FFF00))),
         centerTitle: true,
         backgroundColor: Colors.green[200],
         actions: [

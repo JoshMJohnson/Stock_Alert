@@ -8,9 +8,6 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final SharedPreferences prefs = await SharedPreferences.getInstance();
 
-  /* light/dark mode */
-  final bool startupLightMode = prefs.getBool('lightMode') ?? true;
-
   /* loads settings from device preferences */
   final String startupSortAlgorithm =
       prefs.getString('watchlistSort') ?? 'Alphabetically';
@@ -38,7 +35,6 @@ Future<void> main() async {
       TimeOfDay(hour: tod3Hours, minute: tod3Minutes);
 
   runApp(MyApp(
-      startupLightMode,
       startupSortAlgorithm,
       startupNotificationToggledOn,
       startupThresholdValue,
@@ -49,7 +45,6 @@ Future<void> main() async {
 }
 
 class MyApp extends StatelessWidget {
-  final bool startupLightMode;
   final String startupSortAlgorithm;
   final bool startupNotificationToggledOn;
   final double startupThresholdValue;
@@ -59,7 +54,6 @@ class MyApp extends StatelessWidget {
   final TimeOfDay startupNotification3;
 
   const MyApp(
-      this.startupLightMode,
       this.startupSortAlgorithm,
       this.startupNotificationToggledOn,
       this.startupThresholdValue,
@@ -77,7 +71,6 @@ class MyApp extends StatelessWidget {
         theme: lightMode,
         darkTheme: darkMode,
         home: HomePage(
-            startupLightMode,
             startupSortAlgorithm,
             startupNotificationToggledOn,
             startupThresholdValue,
