@@ -7,6 +7,7 @@ import 'package:stock_alert/pages/settings.dart';
 import 'package:stock_alert/pages/homePageWidgets/ticker_input_fields.dart';
 import 'package:stock_alert/pages/homePageWidgets/sort_input_fields.dart';
 import 'package:stock_alert/pages/homePageWidgets/stock_entity.dart';
+import '../theme.dart';
 
 class HomePage extends StatefulWidget {
   final String startupSortAlgorithm;
