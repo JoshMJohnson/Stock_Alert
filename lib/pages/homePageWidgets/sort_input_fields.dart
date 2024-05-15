@@ -12,8 +12,8 @@ class SortInputFields extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(sortAlgorithm,
-            style: const TextStyle(
-                color: Color(0xFFCC0000),
+            style: TextStyle(
+                color: Theme.of(context).textTheme.displayMedium!.color,
                 fontSize: 22,
                 fontWeight: FontWeight.w600)),
         GestureDetector(

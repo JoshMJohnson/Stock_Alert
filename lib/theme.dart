@@ -10,6 +10,7 @@ ThemeData lightMode = ThemeData(
       tertiary: Color(0xFFCC0000)),
   dividerColor: const Color(0xFF1B5E20),
   textTheme: const TextTheme(displayMedium: TextStyle(color: Colors.yellow)),
+  hintColor: Colors.white54,
 );
 
 ThemeData darkMode = ThemeData(
@@ -23,4 +24,5 @@ ThemeData darkMode = ThemeData(
   ),
   dividerColor: const Color.fromARGB(255, 6, 20, 7),
   textTheme: const TextTheme(displayMedium: TextStyle(color: Colors.white)),
+  hintColor: Colors.white54,
 );
