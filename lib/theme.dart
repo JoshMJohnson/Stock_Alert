@@ -42,7 +42,7 @@ ThemeData lightMode = ThemeData(
   ),
   radioTheme: RadioThemeData(fillColor:
       MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
-    return const Color(0xFF770000);
+    return const Color(0xFF003300);
   })),
   iconTheme: const IconThemeData(
     color: Color(0xFF005500),
