@@ -377,7 +377,7 @@ class _HomePageState extends State<HomePage> {
             'Last Updated: $lastUpdatedTimeDisplay',
             style: TextStyle(
               color: Theme.of(context).textTheme.displayMedium!.color,
-              fontSize: 16,
+              fontSize: 18,
               fontWeight: FontWeight.normal,
             ),
           )
