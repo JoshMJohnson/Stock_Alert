@@ -25,7 +25,7 @@ ThemeData lightMode = ThemeData(
     ),
   ),
   sliderTheme: const SliderThemeData(
-    thumbColor: Color(0xFF1B5E20),
+    thumbColor: Color(0xFF770000),
     activeTrackColor: Color(0xFF005500),
     inactiveTrackColor: Color(0xFF4CAF50),
     disabledThumbColor: Colors.black,
@@ -39,6 +39,13 @@ ThemeData lightMode = ThemeData(
       fillColor: Color(0xFFC8E6C9),
       focusColor: Colors.black,
     ),
+  ),
+  radioTheme: RadioThemeData(fillColor:
+      MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
+    return const Color(0xFF770000);
+  })),
+  iconTheme: const IconThemeData(
+    color: Color(0xFF005500),
   ),
 );
 
@@ -79,5 +86,12 @@ ThemeData darkMode = ThemeData(
       fillColor: Color(0xFF424242),
       focusColor: Colors.black,
     ),
+  ),
+  radioTheme: RadioThemeData(fillColor:
+      MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
+    return Colors.white;
+  })),
+  iconTheme: const IconThemeData(
+    color: Colors.white,
   ),
 );

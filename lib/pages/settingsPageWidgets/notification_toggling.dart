@@ -28,10 +28,7 @@ class NotificationToggle extends StatelessWidget {
                 Radio(
                   value: true,
                   groupValue: notificationToggledOn,
-                  fillColor: MaterialStateProperty.resolveWith<Color>(
-                      (Set<MaterialState> states) {
-                    return Theme.of(context).colorScheme.secondary;
-                  }),
+                  fillColor: Theme.of(context).radioTheme.fillColor,
                   onChanged: (isToggledOn) {
                     updateNotificationToggle(isToggledOn!);
                   },
@@ -52,10 +49,7 @@ class NotificationToggle extends StatelessWidget {
                     Radio(
                       value: false,
                       groupValue: notificationToggledOn,
-                      fillColor: MaterialStateProperty.resolveWith<Color>(
-                          (Set<MaterialState> states) {
-                        return Theme.of(context).colorScheme.secondary;
-                      }),
+                      fillColor: Theme.of(context).radioTheme.fillColor,
                       onChanged: (isToggledOn) {
                         updateNotificationToggle(isToggledOn!);
                       },

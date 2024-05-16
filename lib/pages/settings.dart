@@ -179,7 +179,7 @@ class _SettingsPageState extends State<SettingsPage> {
         child: Icon(
           Icons.arrow_back,
           size: 35,
-          color: Theme.of(context).colorScheme.secondary,
+          color: Theme.of(context).textTheme.displayMedium!.color,
         ),
       ),
     );

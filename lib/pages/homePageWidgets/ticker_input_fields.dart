@@ -70,23 +70,25 @@ class TickerInputFields extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
       child: GestureDetector(
-          onTap: () => addTicker(),
-          child: Icon(
-            Icons.playlist_add,
-            size: 45,
-            color: Theme.of(context).colorScheme.secondary,
-          )),
+        onTap: () => addTicker(),
+        child: Icon(
+          Icons.playlist_add,
+          size: 45,
+          color: Theme.of(context).iconTheme.color,
+        ),
+      ),
     );
   }
 
   /* button to remove a stock ticker from the watchlist */
   GestureDetector removeTickerButton(BuildContext context) {
     return GestureDetector(
-        onTap: () => removeTicker(currentTicker),
-        child: Icon(
-          Icons.playlist_remove,
-          size: 45,
-          color: Theme.of(context).colorScheme.secondary,
-        ));
+      onTap: () => removeTicker(currentTicker),
+      child: Icon(
+        Icons.playlist_remove,
+        size: 45,
+        color: Theme.of(context).iconTheme.color,
+      ),
+    );
   }
 }

@@ -25,7 +25,7 @@ class SortInputFields extends StatelessWidget {
               child: Icon(
                 Icons.sort,
                 size: 40,
-                color: Theme.of(context).colorScheme.secondary,
+                color: Theme.of(context).iconTheme.color,
               ),
             ))
       ],
