@@ -161,13 +161,17 @@ class _SettingsPageState extends State<SettingsPage> {
       title: Text(
         'Settings',
         style: TextStyle(
-            color: Theme.of(context).textTheme.displayMedium!.color,
-            fontSize: 28,
-            fontWeight: FontWeight.w900),
+          color: Theme.of(context).textTheme.displayMedium!.color,
+          fontSize: 28,
+          fontWeight: FontWeight.w900,
+        ),
       ),
       centerTitle: false,
       backgroundColor: Theme.of(context).colorScheme.primary,
-      actions: [Image.asset('assets/bear.png'), Image.asset('assets/bull.png')],
+      actions: [
+        Image.asset('assets/bear.png'),
+        Image.asset('assets/bull.png'),
+      ],
       leading: GestureDetector(
         onTap: () {
           Navigator.pop(context);
@@ -184,34 +188,42 @@ class _SettingsPageState extends State<SettingsPage> {
   /* body widget of settings page */
   Container settingsBody() {
     return Container(
-        width: double.infinity,
-        height: double.infinity,
-        decoration: BoxDecoration(
-            gradient: LinearGradient(colors: [
-          Theme.of(context).colorScheme.background,
-          Theme.of(context).colorScheme.primary
-        ], begin: Alignment.bottomCenter, end: Alignment.topCenter)),
-        child: SingleChildScrollView(
-            child: Padding(
-                padding: const EdgeInsets.all(20),
-                child: Column(
-                  children: [
-                    NotificationToggle(
-                        updateNotificationToggle: updateNotificationToggle,
-                        notificationToggledOn: notificationToggledOn),
-                    PriceChangeThreshold(
-                        sliderActionHandler: sliderActionHandler,
-                        thresholdValue: thresholdValue),
-                    QuantityNotificationsSelector(
-                        quantityNotificationDropdown:
-                            quantityNotificationDropdown,
-                        changeTODHandler: changeTODHandler,
-                        notificationQuantity: notificationQuantity,
-                        notification1: notification1,
-                        notification2: notification2,
-                        notification3: notification3),
-                    ButtonGroup(saveButtonHandler: saveButtonHandler)
-                  ],
-                ))));
+      width: double.infinity,
+      height: double.infinity,
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [
+            Theme.of(context).colorScheme.background,
+            Theme.of(context).colorScheme.primary
+          ],
+          begin: Alignment.bottomCenter,
+          end: Alignment.topCenter,
+        ),
+      ),
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(children: [
+            NotificationToggle(
+              updateNotificationToggle: updateNotificationToggle,
+              notificationToggledOn: notificationToggledOn,
+            ),
+            PriceChangeThreshold(
+              sliderActionHandler: sliderActionHandler,
+              thresholdValue: thresholdValue,
+            ),
+            QuantityNotificationsSelector(
+              quantityNotificationDropdown: quantityNotificationDropdown,
+              changeTODHandler: changeTODHandler,
+              notificationQuantity: notificationQuantity,
+              notification1: notification1,
+              notification2: notification2,
+              notification3: notification3,
+            ),
+            ButtonGroup(saveButtonHandler: saveButtonHandler)
+          ]),
+        ),
+      ),
+    );
   }
 }

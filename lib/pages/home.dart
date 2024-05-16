@@ -276,34 +276,39 @@ class _HomePageState extends State<HomePage> {
         title: Text(
           'Stock Alert',
           style: TextStyle(
-              color: Theme.of(context).textTheme.displayMedium!.color,
-              fontSize: 28,
-              fontWeight: FontWeight.w900),
+            color: Theme.of(context).textTheme.displayMedium!.color,
+            fontSize: 28,
+            fontWeight: FontWeight.w900,
+          ),
         ),
         centerTitle: true,
         backgroundColor: Theme.of(context).colorScheme.primary,
         actions: [
           GestureDetector(
-              onTap: () {
-                Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => SettingsPage(
-                                notificationToggledOn,
-                                thresholdValue,
-                                notificationQuantity,
-                                notification1,
-                                notification2,
-                                notification3)))
-                    .then((_) => settingsToHomeHandler());
-              },
-              child: Container(
-                  margin: const EdgeInsets.fromLTRB(0, 0, 35, 0),
-                  child: Icon(
-                    Icons.settings,
-                    size: 40,
-                    color: Theme.of(context).colorScheme.secondary,
-                  ))),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => SettingsPage(
+                    notificationToggledOn,
+                    thresholdValue,
+                    notificationQuantity,
+                    notification1,
+                    notification2,
+                    notification3,
+                  ),
+                ),
+              ).then((_) => settingsToHomeHandler());
+            },
+            child: Container(
+              margin: const EdgeInsets.fromLTRB(0, 0, 35, 0),
+              child: Icon(
+                Icons.settings,
+                size: 40,
+                color: Theme.of(context).colorScheme.secondary,
+              ),
+            ),
+          ),
         ]);
   }
 
@@ -324,43 +329,60 @@ class _HomePageState extends State<HomePage> {
     updateWatchlistDisplaySortAlgorithm(); // ! seems like the wrong location; called on text field typing
 
     return Container(
-        width: double.infinity,
-        height: double.infinity,
-        decoration: BoxDecoration(
-            gradient: LinearGradient(colors: [
-          Theme.of(context).colorScheme.background,
-          Theme.of(context).colorScheme.primary
-        ], begin: Alignment.bottomCenter, end: Alignment.topCenter)),
-        child: Padding(
-            padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-            child: Column(
-              children: [
-                Image.asset(
-                  'assets/bear_bull_fighting.png',
-                  width: double.infinity,
-                  height: 200,
-                  fit: BoxFit.fill,
-                ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-                  child: TickerInputFields(tickerFieldHandler, addTicker,
-                      removeTicker, currentTicker),
-                ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-                  child: SortInputFields(sortChangeHandler, sortAlgorithm),
-                ),
-                Expanded(
-                    child: StockWatchlist(
-                        removeTicker, updateActiveTracking, testingList)),
-                Text(
-                  'Last Updated: $lastUpdatedTimeDisplay',
-                  style: TextStyle(
-                      color: Theme.of(context).textTheme.displayMedium!.color,
-                      fontSize: 16,
-                      fontWeight: FontWeight.normal),
-                )
-              ],
-            )));
+      width: double.infinity,
+      height: double.infinity,
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [
+            Theme.of(context).colorScheme.background,
+            Theme.of(context).colorScheme.primary
+          ],
+          begin: Alignment.bottomCenter,
+          end: Alignment.topCenter,
+        ),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+        child: Column(children: [
+          Image.asset(
+            'assets/bear_bull_fighting.png',
+            width: double.infinity,
+            height: 200,
+            fit: BoxFit.fill,
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+            child: TickerInputFields(
+              tickerFieldHandler,
+              addTicker,
+              removeTicker,
+              currentTicker,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+            child: SortInputFields(
+              sortChangeHandler,
+              sortAlgorithm,
+            ),
+          ),
+          Expanded(
+            child: StockWatchlist(
+              removeTicker,
+              updateActiveTracking,
+              testingList,
+            ),
+          ),
+          Text(
+            'Last Updated: $lastUpdatedTimeDisplay',
+            style: TextStyle(
+              color: Theme.of(context).textTheme.displayMedium!.color,
+              fontSize: 16,
+              fontWeight: FontWeight.normal,
+            ),
+          )
+        ]),
+      ),
+    );
   }
 }
