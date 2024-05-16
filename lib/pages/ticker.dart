@@ -30,7 +30,7 @@ class TickerPage extends StatelessWidget {
           child: Icon(
             Icons.arrow_back,
             size: 35,
-            color: Theme.of(context).colorScheme.secondary,
+            color: Theme.of(context).iconTheme.color,
           ),
         ),
         actions: [
@@ -41,7 +41,7 @@ class TickerPage extends StatelessWidget {
               child: Icon(
                 Icons.delete,
                 size: 35,
-                color: Theme.of(context).colorScheme.secondary,
+                color: Theme.of(context).iconTheme.color,
               ),
             ),
           )
