@@ -31,5 +31,5 @@ ThemeData darkMode = ThemeData(
   textTheme: const TextTheme(
     displayMedium: TextStyle(color: Colors.white),
   ),
-  hintColor: Colors.white54,
+  hintColor: Colors.white70,
 );
