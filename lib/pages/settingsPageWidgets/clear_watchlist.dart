@@ -21,7 +21,10 @@ class ClearWatchlist extends StatelessWidget {
         'Clear\nWatchlist',
         textAlign: TextAlign.center,
         style: TextStyle(
-            color: Colors.white, fontSize: 20, fontWeight: FontWeight.w600),
+          color: Colors.white,
+          fontSize: 20,
+          fontWeight: FontWeight.w600,
+        ),
       ),
     );
   }
