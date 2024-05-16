@@ -21,6 +21,7 @@ ThemeData lightMode = ThemeData(
       background: Color(0xFF005500),
       primary: Color(0xFFC8E6C9),
       secondary: Color(0xFF00FF00),
+      tertiary: Color(0xFFC8E6C9),
     ),
   ),
 );
@@ -44,6 +45,7 @@ ThemeData darkMode = ThemeData(
       background: Color(0xFF212121),
       primary: Color(0xFF9E9E9E),
       secondary: Colors.white,
+      tertiary: Color(0xFF212121),
     ),
   ),
 );

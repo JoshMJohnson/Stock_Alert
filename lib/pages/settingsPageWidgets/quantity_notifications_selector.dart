@@ -22,56 +22,59 @@ class QuantityNotificationsSelector extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-        child: Column(children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                'Quantity of\nDaily Notifications:',
-                style: TextStyle(
-                    color: Theme.of(context).textTheme.displayMedium!.color,
-                    fontSize: 20,
-                    fontWeight: FontWeight.w600),
+      margin: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+      child: Column(children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              'Quantity of\nDaily Notifications:',
+              style: TextStyle(
+                color: Theme.of(context).textTheme.displayMedium!.color,
+                fontSize: 20,
+                fontWeight: FontWeight.w600,
               ),
-              DropdownButton(
-                items: dropdownOptions.map((int option) {
-                  return DropdownMenuItem<int>(
-                      value: option,
-                      child: Center(
-                        child: Text(
-                          option.toString(),
-                          style: TextStyle(
-                              color: Theme.of(context)
-                                  .textTheme
-                                  .displayMedium!
-                                  .color,
-                              fontSize: 20,
-                              fontWeight: FontWeight.normal),
-                        ),
-                      ));
-                }).toList(),
-                onChanged: (int? selectedValue) {
-                  quantityNotificationDropdown(selectedValue!);
-                },
-                value: notificationQuantity,
-                underline: Container(
-                  width: 200,
-                  height: 1,
-                  color: Theme.of(context).colorScheme.secondary,
-                ),
-                dropdownColor: Theme.of(context).colorScheme.background,
-                iconEnabledColor: Theme.of(context).colorScheme.secondary,
-                borderRadius: BorderRadius.circular(40),
+            ),
+            DropdownButton(
+              items: dropdownOptions.map((int option) {
+                return DropdownMenuItem<int>(
+                  value: option,
+                  child: Center(
+                    child: Text(
+                      option.toString(),
+                      style: TextStyle(
+                        color: Theme.of(context).textTheme.displayMedium!.color,
+                        fontSize: 20,
+                        fontWeight: FontWeight.normal,
+                      ),
+                    ),
+                  ),
+                );
+              }).toList(),
+              onChanged: (int? selectedValue) {
+                quantityNotificationDropdown(selectedValue!);
+              },
+              value: notificationQuantity,
+              underline: Container(
+                width: 200,
+                height: 1,
+                color: Theme.of(context).colorScheme.secondary,
               ),
-            ],
-          ),
-          TODReminders(
-              changeTODHandler: changeTODHandler,
-              notificationQuantity: notificationQuantity,
-              tod1: notification1,
-              tod2: notification2,
-              tod3: notification3)
-        ]));
+              dropdownColor:
+                  Theme.of(context).buttonTheme.colorScheme!.tertiary,
+              iconEnabledColor: Theme.of(context).colorScheme.secondary,
+              borderRadius: BorderRadius.circular(40),
+            ),
+          ],
+        ),
+        TODReminders(
+          changeTODHandler: changeTODHandler,
+          notificationQuantity: notificationQuantity,
+          tod1: notification1,
+          tod2: notification2,
+          tod3: notification3,
+        )
+      ]),
+    );
   }
 }
