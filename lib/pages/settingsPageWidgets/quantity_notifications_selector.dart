@@ -38,12 +38,17 @@ class QuantityNotificationsSelector extends StatelessWidget {
                 items: dropdownOptions.map((int option) {
                   return DropdownMenuItem<int>(
                       value: option,
-                      child: Text(
-                        option.toString(),
-                        style: const TextStyle(
-                            color: Color(0xFF1B5E20),
-                            fontSize: 20,
-                            fontWeight: FontWeight.normal),
+                      child: Center(
+                        child: Text(
+                          option.toString(),
+                          style: TextStyle(
+                              color: Theme.of(context)
+                                  .textTheme
+                                  .displayMedium!
+                                  .color,
+                              fontSize: 20,
+                              fontWeight: FontWeight.normal),
+                        ),
                       ));
                 }).toList(),
                 onChanged: (int? selectedValue) {
@@ -55,7 +60,7 @@ class QuantityNotificationsSelector extends StatelessWidget {
                   height: 1,
                   color: const Color(0xFFFF0000),
                 ),
-                dropdownColor: const Color(0xFFA5D6A7),
+                dropdownColor: Theme.of(context).colorScheme.background,
                 iconEnabledColor: const Color(0xFF1B5E20),
                 borderRadius: BorderRadius.circular(40),
               ),

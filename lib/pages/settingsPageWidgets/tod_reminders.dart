@@ -48,18 +48,18 @@ class TODReminders extends StatelessWidget {
             ),
             ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFFA5D6A7),
-                    foregroundColor: const Color(0xFF228B22)),
+                    backgroundColor: Theme.of(context).colorScheme.background,
+                    foregroundColor: Theme.of(context).colorScheme.primary),
                 onPressed: () async {
                   changeTODHandler(todID);
                 },
-                child: getCurrentTOD(todID))
+                child: getCurrentTOD(context, todID))
           ],
         ));
   }
 
   /* retrieves TODs from storage and adjusts for display */
-  Text getCurrentTOD(int todID) {
+  Text getCurrentTOD(BuildContext context, int todID) {
     final HelperFunctions helperFunctions = HelperFunctions();
     late String standardTime;
 
@@ -73,8 +73,8 @@ class TODReminders extends StatelessWidget {
 
     Text displayedTime = Text(
       standardTime,
-      style: const TextStyle(
-          color: Color(0xFF1B5E20),
+      style: TextStyle(
+          color: Theme.of(context).textTheme.displayMedium!.color,
           fontSize: 20,
           fontWeight: FontWeight.normal),
     );

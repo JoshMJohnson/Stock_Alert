@@ -35,8 +35,8 @@ class PriceChangeThreshold extends StatelessWidget {
                   }),
               Text(
                 '$thresholdValue',
-                style: const TextStyle(
-                    color: Color(0xFF1B5E20),
+                style: TextStyle(
+                    color: Theme.of(context).textTheme.displayMedium!.color,
                     fontSize: 20,
                     fontWeight: FontWeight.normal),
               )
