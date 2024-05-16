@@ -240,10 +240,16 @@ class TickerPage extends StatelessWidget {
                                     SliderTheme(
                                       data: SliderTheme.of(context).copyWith(
                                           disabledActiveTrackColor:
-                                              Colors.red[900],
+                                              Theme.of(context)
+                                                  .colorScheme
+                                                  .secondary,
                                           disabledInactiveTrackColor:
-                                              Colors.green[900],
-                                          disabledThumbColor: Colors.black),
+                                              Theme.of(context)
+                                                  .colorScheme
+                                                  .primary,
+                                          disabledThumbColor: Theme.of(context)
+                                              .colorScheme
+                                              .tertiary),
                                       child: Slider(
                                           value: stock.tickerPrice,
                                           onChanged: null,

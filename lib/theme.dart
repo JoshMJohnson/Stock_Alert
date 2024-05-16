@@ -20,9 +20,9 @@ ThemeData darkMode = ThemeData(
     background: const Color(0xFF212121),
     primary: const Color(0xFF9E9E9E),
     secondary: Colors.white,
-    tertiary: Colors.grey.shade400,
+    tertiary: Colors.grey.shade100,
   ),
-  dividerColor: const Color.fromARGB(255, 6, 20, 7),
+  dividerColor: Colors.black87,
   textTheme: const TextTheme(displayMedium: TextStyle(color: Colors.white)),
   hintColor: Colors.white54,
 );
