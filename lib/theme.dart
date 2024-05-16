@@ -18,7 +18,7 @@ ThemeData lightMode = ThemeData(
   hintColor: const Color(0xFF770000),
   buttonTheme: const ButtonThemeData(
     colorScheme: ColorScheme.light(
-      background: Color(0xFF005500),
+      background: Color(0xFF003300),
       primary: Color(0xFFC8E6C9),
       secondary: Color(0xFF00FF00),
       tertiary: Color(0xFFC8E6C9),
@@ -31,6 +31,14 @@ ThemeData lightMode = ThemeData(
     disabledThumbColor: Colors.black,
     disabledActiveTrackColor: Colors.white,
     disabledInactiveTrackColor: Color(0xFF424242),
+  ),
+  dropdownMenuTheme: const DropdownMenuThemeData(
+    inputDecorationTheme: InputDecorationTheme(
+      iconColor: Color(0xFF003300),
+      hoverColor: Color.fromARGB(255, 252, 36, 36),
+      fillColor: Color(0xFFC8E6C9),
+      focusColor: Colors.black,
+    ),
   ),
 );
 
@@ -63,5 +71,13 @@ ThemeData darkMode = ThemeData(
     disabledThumbColor: Colors.black,
     disabledActiveTrackColor: Colors.white,
     disabledInactiveTrackColor: Color(0xFF424242),
+  ),
+  dropdownMenuTheme: const DropdownMenuThemeData(
+    inputDecorationTheme: InputDecorationTheme(
+      iconColor: Colors.black,
+      hoverColor: Color.fromARGB(255, 252, 36, 36),
+      fillColor: Color(0xFF424242),
+      focusColor: Colors.black,
+    ),
   ),
 );

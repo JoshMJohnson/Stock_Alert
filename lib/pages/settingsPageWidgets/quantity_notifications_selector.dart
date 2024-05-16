@@ -58,11 +58,24 @@ class QuantityNotificationsSelector extends StatelessWidget {
               underline: Container(
                 width: 200,
                 height: 1,
-                color: Theme.of(context).colorScheme.secondary,
+                color: Theme.of(context)
+                    .dropdownMenuTheme
+                    .inputDecorationTheme!
+                    .iconColor,
               ),
-              dropdownColor:
-                  Theme.of(context).buttonTheme.colorScheme!.tertiary,
-              iconEnabledColor: Theme.of(context).colorScheme.secondary,
+              dropdownColor: Theme.of(context)
+                  .dropdownMenuTheme
+                  .inputDecorationTheme!
+                  .fillColor,
+
+              // focusColor: Theme.of(context)
+              //     .dropdownMenuTheme
+              //     .inputDecorationTheme!
+              //     .hoverColor,
+              iconEnabledColor: Theme.of(context)
+                  .dropdownMenuTheme
+                  .inputDecorationTheme!
+                  .iconColor,
               borderRadius: BorderRadius.circular(40),
             ),
           ],
