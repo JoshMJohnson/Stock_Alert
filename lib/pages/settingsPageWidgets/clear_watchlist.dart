@@ -17,11 +17,11 @@ class ClearWatchlist extends StatelessWidget {
       style: ElevatedButton.styleFrom(
           backgroundColor: const Color(0xFFFF0000),
           foregroundColor: const Color(0xFF800000)),
-      child: const Text(
+      child: Text(
         'Clear\nWatchlist',
         textAlign: TextAlign.center,
         style: TextStyle(
-            color: Color(0xFFA5D6A7),
+            color: Theme.of(context).textTheme.displayMedium!.color,
             fontSize: 20,
             fontWeight: FontWeight.w600),
       ),
