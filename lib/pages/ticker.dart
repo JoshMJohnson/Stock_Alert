@@ -16,22 +16,27 @@ class TickerPage extends StatelessWidget {
     return AppBar(
         title: Text(stock.ticker,
             style: TextStyle(
-                color: Colors.green[900],
+                color: Theme.of(context).textTheme.displayMedium!.color,
                 fontSize: 28,
                 fontWeight: FontWeight.w900)),
-        backgroundColor: Colors.green[200],
+        backgroundColor: Theme.of(context).colorScheme.primary,
         leading: GestureDetector(
             onTap: () {
               Navigator.pop(context);
             },
-            child: Icon(Icons.arrow_back, size: 35, color: Colors.green[900])),
+            child: Icon(
+              Icons.arrow_back,
+              size: 35,
+              color: Theme.of(context).colorScheme.secondary,
+            )),
         actions: [
           SizedBox(
               width: 60,
               child: GestureDetector(
                   onTap: () => removeTicker(stock.ticker),
-                  child: const Icon(Icons.delete,
-                      size: 35, color: Color(0xFF1B5E20))))
+                  child: Icon(Icons.delete,
+                      size: 35,
+                      color: Theme.of(context).colorScheme.secondary)))
         ]);
   }
 
@@ -40,23 +45,31 @@ class TickerPage extends StatelessWidget {
     return Container(
         width: double.infinity,
         height: double.infinity,
-        decoration: const BoxDecoration(
-            gradient: LinearGradient(
-                colors: [Color(0XAA006400), Color(0xFFA5D6A7)],
-                begin: Alignment.bottomCenter,
-                end: Alignment.topCenter)),
+        decoration: BoxDecoration(
+            gradient: LinearGradient(colors: [
+          Theme.of(context).colorScheme.background,
+          Theme.of(context).colorScheme.primary
+        ], begin: Alignment.bottomCenter, end: Alignment.topCenter)),
         child: Padding(
             padding: const EdgeInsets.all(20),
             child: Column(children: [
               Container(
-                  decoration: const BoxDecoration(
-                      border: Border(bottom: BorderSide(color: Colors.blue))),
+                  decoration: BoxDecoration(
+                      border: Border(
+                          bottom: BorderSide(
+                              color:
+                                  Theme.of(context).colorScheme.background))),
                   child: Text(stock.companyName,
-                      style: const TextStyle(
-                          fontSize: 20, fontWeight: FontWeight.w600))),
+                      style: TextStyle(
+                          color:
+                              Theme.of(context).textTheme.displayMedium!.color,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600))),
               Expanded(
                   child: Text(stock.companyDescription,
-                      style: const TextStyle(
+                      style: TextStyle(
+                          color:
+                              Theme.of(context).textTheme.displayMedium!.color,
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
                           overflow: TextOverflow.fade))),
@@ -65,15 +78,17 @@ class TickerPage extends StatelessWidget {
                   width: double.infinity,
                   child: Row(children: [
                     Flexible(
-                        flex: 2,
-                        child: Padding(
-                          padding: const EdgeInsets.only(right: 10),
-                          child: SizedBox(
-                              width: double.infinity,
-                              height: double.infinity,
-                              child: Image.asset(
-                                  'assets/market_logos/NASDAQ.png')), // ! temp value
-                        )),
+                      flex: 2,
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 10),
+                        child: SizedBox(
+                          width: double.infinity,
+                          height: double.infinity,
+                          child: Image.asset(
+                              'assets/market_logos/NASDAQ.png'), // ! temp value
+                        ),
+                      ),
+                    ),
                     Flexible(
                         flex: 1,
                         child: Padding(
@@ -82,20 +97,33 @@ class TickerPage extends StatelessWidget {
                                 width: double.infinity,
                                 height: double.infinity,
                                 decoration: BoxDecoration(
-                                    border: Border.all(
-                                        color: Colors.red, width: 4)),
+                                  border: Border.all(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .background,
+                                      width: 4),
+                                ),
                                 child: Column(children: [
-                                  const Flexible(
-                                      flex: 2,
-                                      child: SizedBox(
-                                          width: double.infinity,
-                                          height: double.infinity,
-                                          child: Center(
-                                              child: Text('PPS',
-                                                  style: TextStyle(
-                                                      fontSize: 20,
-                                                      fontWeight:
-                                                          FontWeight.w600))))),
+                                  Flexible(
+                                    flex: 2,
+                                    child: SizedBox(
+                                      width: double.infinity,
+                                      height: double.infinity,
+                                      child: Center(
+                                        child: Text(
+                                          'PPS',
+                                          style: TextStyle(
+                                            color: Theme.of(context)
+                                                .textTheme
+                                                .displayMedium!
+                                                .color,
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
                                   Flexible(
                                       flex: 3,
                                       child: SizedBox(
@@ -135,7 +163,7 @@ class TickerPage extends StatelessWidget {
                                           border: Border.all(
                                               color: Colors.red, width: 4)),
                                       child: Column(children: [
-                                        const Flexible(
+                                        Flexible(
                                             flex: 2,
                                             child: SizedBox(
                                                 width: double.infinity,
@@ -143,6 +171,11 @@ class TickerPage extends StatelessWidget {
                                                 child: Center(
                                                     child: Text('Day Change',
                                                         style: TextStyle(
+                                                            color: Theme.of(
+                                                                    context)
+                                                                .textTheme
+                                                                .displayMedium!
+                                                                .color,
                                                             fontSize: 20,
                                                             fontWeight:
                                                                 FontWeight
@@ -191,10 +224,14 @@ class TickerPage extends StatelessWidget {
                               child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    const Center(
+                                    Center(
                                         child: Text('52 Week Range',
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
+                                                color: Theme.of(context)
+                                                    .textTheme
+                                                    .displayMedium!
+                                                    .color,
                                                 fontSize: 20,
                                                 fontWeight: FontWeight.w600))),
                                     SliderTheme(
