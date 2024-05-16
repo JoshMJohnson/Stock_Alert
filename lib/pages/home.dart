@@ -302,7 +302,7 @@ class _HomePageState extends State<HomePage> {
                   child: Icon(
                     Icons.settings,
                     size: 40,
-                    color: Colors.green[900],
+                    color: Theme.of(context).colorScheme.secondary,
                   ))),
         ]);
   }

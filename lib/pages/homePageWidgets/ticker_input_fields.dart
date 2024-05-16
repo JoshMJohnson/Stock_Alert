@@ -13,7 +13,7 @@ class TickerInputFields extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [tickerTextBox(context), buttonGrouping()],
+      children: [tickerTextBox(context), buttonGrouping(context)],
     );
   }
 
@@ -25,7 +25,7 @@ class TickerInputFields extends StatelessWidget {
       child: TextField(
         onChanged: (updatedTickerValue) =>
             tickerFieldHandler(updatedTickerValue),
-        cursorColor: const Color(0xFFCC0000),
+        cursorColor: Theme.of(context).colorScheme.primary,
         textAlign: TextAlign.center,
         maxLength: 5,
         autocorrect: false,
@@ -38,11 +38,13 @@ class TickerInputFields extends StatelessWidget {
         decoration: InputDecoration(
           counterText: '',
           border: InputBorder.none,
-          enabledBorder: const UnderlineInputBorder(
-            borderSide: BorderSide(color: Color(0xFFFF0000)),
+          enabledBorder: UnderlineInputBorder(
+            borderSide:
+                BorderSide(color: Theme.of(context).colorScheme.background),
           ),
-          focusedBorder: const UnderlineInputBorder(
-            borderSide: BorderSide(color: Color(0xFFAA0000)),
+          focusedBorder: UnderlineInputBorder(
+            borderSide:
+                BorderSide(color: Theme.of(context).colorScheme.primary),
           ),
           hintText: 'Ticker Symbol',
           hintStyle: TextStyle(
@@ -54,37 +56,37 @@ class TickerInputFields extends StatelessWidget {
     );
   }
 
-  Row buttonGrouping() {
+  Row buttonGrouping(BuildContext context) {
     return Row(
       children: [
-        addTickerButton(),
-        removeTickerButton(),
+        addTickerButton(context),
+        removeTickerButton(context),
       ],
     );
   }
 
   /* button to add a stock ticker to the watchlist */
-  Padding addTickerButton() {
+  Padding addTickerButton(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
       child: GestureDetector(
           onTap: () => addTicker(),
-          child: const Icon(
+          child: Icon(
             Icons.playlist_add,
             size: 45,
-            color: Color(0xFF1B5E20),
+            color: Theme.of(context).colorScheme.secondary,
           )),
     );
   }
 
   /* button to remove a stock ticker from the watchlist */
-  GestureDetector removeTickerButton() {
+  GestureDetector removeTickerButton(BuildContext context) {
     return GestureDetector(
         onTap: () => removeTicker(currentTicker),
-        child: const Icon(
+        child: Icon(
           Icons.playlist_remove,
           size: 45,
-          color: Color(0xFFCC0000),
+          color: Theme.of(context).colorScheme.secondary,
         ));
   }
 }

@@ -20,12 +20,12 @@ class SortInputFields extends StatelessWidget {
             onTap: () {
               sortChangeHandler();
             },
-            child: const Padding(
-              padding: EdgeInsets.only(right: 10),
+            child: Padding(
+              padding: const EdgeInsets.only(right: 10),
               child: Icon(
                 Icons.sort,
                 size: 40,
-                color: Color(0xFF1B5E20),
+                color: Theme.of(context).colorScheme.secondary,
               ),
             ))
       ],
