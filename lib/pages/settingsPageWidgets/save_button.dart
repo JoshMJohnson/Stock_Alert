@@ -18,9 +18,10 @@ class SaveButton extends StatelessWidget {
         'Save\nSettings',
         textAlign: TextAlign.center,
         style: TextStyle(
-            color: Theme.of(context).buttonTheme.colorScheme!.secondary,
-            fontSize: 20,
-            fontWeight: FontWeight.w600),
+          color: Theme.of(context).buttonTheme.colorScheme!.secondary,
+          fontSize: 20,
+          fontWeight: FontWeight.w600,
+        ),
       ),
     );
   }
