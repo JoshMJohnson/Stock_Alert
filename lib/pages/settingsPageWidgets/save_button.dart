@@ -11,13 +11,14 @@ class SaveButton extends StatelessWidget {
         saveButtonHandler();
       },
       style: ElevatedButton.styleFrom(
-          backgroundColor: Theme.of(context).colorScheme.background,
-          foregroundColor: Theme.of(context).colorScheme.primary),
+        backgroundColor: Theme.of(context).buttonTheme.colorScheme!.background,
+        foregroundColor: Theme.of(context).buttonTheme.colorScheme!.primary,
+      ),
       child: Text(
         'Save\nSettings',
         textAlign: TextAlign.center,
         style: TextStyle(
-            color: Theme.of(context).textTheme.displayMedium!.color,
+            color: Theme.of(context).buttonTheme.colorScheme!.secondary,
             fontSize: 20,
             fontWeight: FontWeight.w600),
       ),

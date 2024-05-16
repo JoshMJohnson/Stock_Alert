@@ -16,6 +16,13 @@ ThemeData lightMode = ThemeData(
     ),
   ),
   hintColor: const Color(0xFF770000),
+  buttonTheme: const ButtonThemeData(
+    colorScheme: ColorScheme.light(
+      background: Color(0xFF005500),
+      primary: Color(0xFFC8E6C9),
+      secondary: Color(0xFF00FF00),
+    ),
+  ),
 );
 
 ThemeData darkMode = ThemeData(
@@ -32,4 +39,11 @@ ThemeData darkMode = ThemeData(
     displayMedium: TextStyle(color: Colors.white),
   ),
   hintColor: Colors.white70,
+  buttonTheme: const ButtonThemeData(
+    colorScheme: ColorScheme.light(
+      background: Color(0xFF212121),
+      primary: Color(0xFF9E9E9E),
+      secondary: Colors.white,
+    ),
+  ),
 );

@@ -48,8 +48,11 @@ class TODReminders extends StatelessWidget {
             ),
             ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                    backgroundColor: Theme.of(context).colorScheme.background,
-                    foregroundColor: Theme.of(context).colorScheme.primary),
+                  backgroundColor:
+                      Theme.of(context).buttonTheme.colorScheme!.background,
+                  foregroundColor:
+                      Theme.of(context).buttonTheme.colorScheme!.primary,
+                ),
                 onPressed: () async {
                   changeTODHandler(todID);
                 },
@@ -74,7 +77,7 @@ class TODReminders extends StatelessWidget {
     Text displayedTime = Text(
       standardTime,
       style: TextStyle(
-          color: Theme.of(context).textTheme.displayMedium!.color,
+          color: Theme.of(context).buttonTheme.colorScheme!.secondary,
           fontSize: 20,
           fontWeight: FontWeight.normal),
     );
