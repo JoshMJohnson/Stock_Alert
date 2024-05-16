@@ -161,7 +161,10 @@ class TickerPage extends StatelessWidget {
                                       height: double.infinity,
                                       decoration: BoxDecoration(
                                           border: Border.all(
-                                              color: Colors.red, width: 4)),
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .background,
+                                              width: 4)),
                                       child: Column(children: [
                                         Flexible(
                                             flex: 2,
