@@ -28,8 +28,8 @@ class PriceChangeThreshold extends StatelessWidget {
                   value: thresholdValue,
                   max: 10,
                   min: 2,
-                  activeColor: const Color(0xFF1B5E20),
-                  inactiveColor: const Color(0xFFCC0000),
+                  activeColor: Theme.of(context).colorScheme.secondary,
+                  inactiveColor: Theme.of(context).colorScheme.background,
                   onChanged: (value) {
                     sliderActionHandler(value);
                   }),

@@ -30,7 +30,7 @@ class NotificationToggle extends StatelessWidget {
                   groupValue: notificationToggledOn,
                   fillColor: MaterialStateProperty.resolveWith<Color>(
                       (Set<MaterialState> states) {
-                    return const Color(0xFF1B5E20);
+                    return Theme.of(context).colorScheme.secondary;
                   }),
                   onChanged: (isToggledOn) {
                     updateNotificationToggle(isToggledOn!);
@@ -54,7 +54,7 @@ class NotificationToggle extends StatelessWidget {
                       groupValue: notificationToggledOn,
                       fillColor: MaterialStateProperty.resolveWith<Color>(
                           (Set<MaterialState> states) {
-                        return const Color(0xFF1B5E20);
+                        return Theme.of(context).colorScheme.secondary;
                       }),
                       onChanged: (isToggledOn) {
                         updateNotificationToggle(isToggledOn!);
