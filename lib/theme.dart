@@ -24,6 +24,14 @@ ThemeData lightMode = ThemeData(
       tertiary: Color(0xFFC8E6C9),
     ),
   ),
+  sliderTheme: const SliderThemeData(
+    thumbColor: Color(0xFF1B5E20),
+    activeTrackColor: Color(0xFF005500),
+    inactiveTrackColor: Color(0xFF4CAF50),
+    disabledThumbColor: Colors.black,
+    disabledActiveTrackColor: Colors.white,
+    disabledInactiveTrackColor: Color(0xFF424242),
+  ),
 );
 
 ThemeData darkMode = ThemeData(
@@ -42,10 +50,18 @@ ThemeData darkMode = ThemeData(
   hintColor: Colors.white70,
   buttonTheme: const ButtonThemeData(
     colorScheme: ColorScheme.light(
-      background: Color(0xFF212121),
+      background: Colors.black,
       primary: Color(0xFF9E9E9E),
       secondary: Colors.white,
-      tertiary: Color(0xFF212121),
+      tertiary: Color(0xFF424242),
     ),
+  ),
+  sliderTheme: const SliderThemeData(
+    thumbColor: Colors.black,
+    activeTrackColor: Colors.white,
+    inactiveTrackColor: Color(0xFF212121),
+    disabledThumbColor: Colors.black,
+    disabledActiveTrackColor: Colors.white,
+    disabledInactiveTrackColor: Color(0xFF424242),
   ),
 );
