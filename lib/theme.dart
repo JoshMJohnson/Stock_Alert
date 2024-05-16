@@ -4,13 +4,18 @@ ThemeData lightMode = ThemeData(
   brightness: Brightness.light,
   fontFamily: 'EBGaramond',
   colorScheme: const ColorScheme.light(
-      background: Color(0xFF006400),
-      primary: Colors.black,
-      secondary: Color(0xFF1B5E20),
-      tertiary: Color(0xFFCC0000)),
+    background: Color(0xFF4CAF50),
+    primary: Color(0xFFC8E6C9),
+    secondary: Color(0xFF005500),
+    tertiary: Color(0xFF1B5E20),
+  ),
   dividerColor: const Color(0xFF1B5E20),
-  textTheme: const TextTheme(displayMedium: TextStyle(color: Colors.yellow)),
-  hintColor: Colors.white54,
+  textTheme: const TextTheme(
+    displayMedium: TextStyle(
+      color: Color(0xFF770000),
+    ),
+  ),
+  hintColor: const Color(0xFF770000),
 );
 
 ThemeData darkMode = ThemeData(
@@ -23,6 +28,8 @@ ThemeData darkMode = ThemeData(
     tertiary: Colors.grey.shade100,
   ),
   dividerColor: Colors.black87,
-  textTheme: const TextTheme(displayMedium: TextStyle(color: Colors.white)),
+  textTheme: const TextTheme(
+    displayMedium: TextStyle(color: Colors.white),
+  ),
   hintColor: Colors.white54,
 );
