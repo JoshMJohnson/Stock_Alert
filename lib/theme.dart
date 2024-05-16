@@ -35,9 +35,7 @@ ThemeData lightMode = ThemeData(
   dropdownMenuTheme: const DropdownMenuThemeData(
     inputDecorationTheme: InputDecorationTheme(
       iconColor: Color(0xFF003300),
-      hoverColor: Color.fromARGB(255, 252, 36, 36),
       fillColor: Color(0xFFC8E6C9),
-      focusColor: Colors.black,
     ),
   ),
   radioTheme: RadioThemeData(fillColor:
@@ -82,9 +80,7 @@ ThemeData darkMode = ThemeData(
   dropdownMenuTheme: const DropdownMenuThemeData(
     inputDecorationTheme: InputDecorationTheme(
       iconColor: Colors.black,
-      hoverColor: Color.fromARGB(255, 252, 36, 36),
       fillColor: Color(0xFF424242),
-      focusColor: Colors.black,
     ),
   ),
   radioTheme: RadioThemeData(fillColor:

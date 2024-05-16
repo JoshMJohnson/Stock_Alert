@@ -67,11 +67,6 @@ class QuantityNotificationsSelector extends StatelessWidget {
                   .dropdownMenuTheme
                   .inputDecorationTheme!
                   .fillColor,
-
-              // focusColor: Theme.of(context)
-              //     .dropdownMenuTheme
-              //     .inputDecorationTheme!
-              //     .hoverColor,
               iconEnabledColor: Theme.of(context)
                   .dropdownMenuTheme
                   .inputDecorationTheme!
