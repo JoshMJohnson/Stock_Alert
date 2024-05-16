@@ -30,8 +30,8 @@ ThemeData darkMode = ThemeData(
   brightness: Brightness.dark,
   fontFamily: 'EBGaramond',
   colorScheme: ColorScheme.dark(
-    background: const Color(0xFF212121),
-    primary: const Color(0xFF9E9E9E),
+    background: const Color(0xFF424242),
+    primary: const Color(0xFF757575),
     secondary: Colors.white,
     tertiary: Colors.grey.shade100,
   ),
