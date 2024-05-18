@@ -282,7 +282,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         centerTitle: true,
-        backgroundColor: Theme.of(context).colorScheme.primary,
+        backgroundColor: Theme.of(context).colorScheme.background,
         actions: [
           GestureDetector(
             onTap: () {
@@ -334,8 +334,8 @@ class _HomePageState extends State<HomePage> {
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            Theme.of(context).colorScheme.background,
-            Theme.of(context).colorScheme.primary
+            Theme.of(context).scaffoldBackgroundColor,
+            Theme.of(context).colorScheme.background
           ],
           begin: Alignment.bottomCenter,
           end: Alignment.topCenter,

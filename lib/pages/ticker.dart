@@ -17,12 +17,12 @@ class TickerPage extends StatelessWidget {
         title: Text(
           stock.ticker,
           style: TextStyle(
-            color: Theme.of(context).textTheme.bodyMedium!.color,
+            color: Theme.of(context).textTheme.headlineMedium!.color,
             fontSize: 28,
             fontWeight: FontWeight.w900,
           ),
         ),
-        backgroundColor: Theme.of(context).colorScheme.primary,
+        backgroundColor: Theme.of(context).colorScheme.background,
         leading: GestureDetector(
           onTap: () {
             Navigator.pop(context);
@@ -56,8 +56,8 @@ class TickerPage extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            Theme.of(context).colorScheme.background,
-            Theme.of(context).colorScheme.primary
+            Theme.of(context).scaffoldBackgroundColor,
+            Theme.of(context).colorScheme.background
           ],
           begin: Alignment.bottomCenter,
           end: Alignment.topCenter,
@@ -77,7 +77,7 @@ class TickerPage extends StatelessWidget {
             child: Text(
               stock.companyName,
               style: TextStyle(
-                color: Theme.of(context).textTheme.bodyMedium!.color,
+                color: Theme.of(context).textTheme.headlineMedium!.color,
                 fontSize: 20,
                 fontWeight: FontWeight.w600,
               ),

@@ -56,8 +56,9 @@ ThemeData lightMode = ThemeData(
 ThemeData darkMode = ThemeData(
   brightness: Brightness.dark,
   fontFamily: 'EBGaramond',
+  scaffoldBackgroundColor: const Color(0xFF1A237E),
   colorScheme: ColorScheme.dark(
-    background: const Color(0xFF424242),
+    background: const Color(0xFF5C6BC0),
     primary: const Color(0xFF757575),
     secondary: Colors.white,
     tertiary: Colors.grey.shade100,
@@ -65,7 +66,7 @@ ThemeData darkMode = ThemeData(
   dividerColor: Colors.black87,
   textTheme: const TextTheme(
     headlineMedium: TextStyle(
-      color: Color(0xFFECEFF1),
+      color: Color(0xFF1DE9B6),
     ),
     bodyMedium: TextStyle(
       color: Colors.white,

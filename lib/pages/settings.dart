@@ -167,7 +167,7 @@ class _SettingsPageState extends State<SettingsPage> {
         ),
       ),
       centerTitle: false,
-      backgroundColor: Theme.of(context).colorScheme.primary,
+      backgroundColor: Theme.of(context).colorScheme.background,
       actions: [
         Image.asset('assets/bear.png'),
         Image.asset('assets/bull.png'),
@@ -193,8 +193,8 @@ class _SettingsPageState extends State<SettingsPage> {
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            Theme.of(context).colorScheme.background,
-            Theme.of(context).colorScheme.primary
+            Theme.of(context).scaffoldBackgroundColor,
+            Theme.of(context).colorScheme.background
           ],
           begin: Alignment.bottomCenter,
           end: Alignment.topCenter,
