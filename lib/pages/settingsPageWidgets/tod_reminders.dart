@@ -42,7 +42,7 @@ class TODReminders extends StatelessWidget {
             Text(
               'Daily Notification:',
               style: TextStyle(
-                  color: Theme.of(context).textTheme.displayMedium!.color,
+                  color: Theme.of(context).textTheme.bodyMedium!.color,
                   fontSize: 20,
                   fontWeight: FontWeight.w600),
             ),

@@ -18,7 +18,7 @@ class NotificationToggle extends StatelessWidget {
           Text(
             'Notifications:',
             style: TextStyle(
-                color: Theme.of(context).textTheme.displayMedium!.color,
+                color: Theme.of(context).textTheme.bodyMedium!.color,
                 fontSize: 20,
                 fontWeight: FontWeight.w600),
           ),
@@ -36,7 +36,7 @@ class NotificationToggle extends StatelessWidget {
                 Text(
                   'On',
                   style: TextStyle(
-                      color: Theme.of(context).textTheme.displayMedium!.color,
+                      color: Theme.of(context).textTheme.bodyMedium!.color,
                       fontSize: 20,
                       fontWeight: FontWeight.normal),
                 ),
@@ -57,8 +57,7 @@ class NotificationToggle extends StatelessWidget {
                     Text(
                       'Off',
                       style: TextStyle(
-                          color:
-                              Theme.of(context).textTheme.displayMedium!.color,
+                          color: Theme.of(context).textTheme.bodyMedium!.color,
                           fontSize: 20,
                           fontWeight: FontWeight.normal),
                     ),

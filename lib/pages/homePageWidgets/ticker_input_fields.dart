@@ -31,7 +31,7 @@ class TickerInputFields extends StatelessWidget {
         autocorrect: false,
         enableSuggestions: false,
         style: TextStyle(
-          color: Theme.of(context).textTheme.displayMedium!.color,
+          color: Theme.of(context).textTheme.bodyMedium!.color,
           fontSize: 22,
           fontWeight: FontWeight.w600,
         ),

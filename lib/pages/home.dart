@@ -276,7 +276,7 @@ class _HomePageState extends State<HomePage> {
         title: Text(
           'Stock Alert',
           style: TextStyle(
-            color: Theme.of(context).textTheme.displayMedium!.color,
+            color: Theme.of(context).textTheme.bodyMedium!.color,
             fontSize: 28,
             fontWeight: FontWeight.w900,
           ),
@@ -376,7 +376,7 @@ class _HomePageState extends State<HomePage> {
           Text(
             'Last Updated: $lastUpdatedTimeDisplay',
             style: TextStyle(
-              color: Theme.of(context).textTheme.displayMedium!.color,
+              color: Theme.of(context).textTheme.bodyMedium!.color,
               fontSize: 18,
               fontWeight: FontWeight.normal,
             ),

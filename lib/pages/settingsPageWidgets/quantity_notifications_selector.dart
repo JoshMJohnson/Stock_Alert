@@ -30,7 +30,7 @@ class QuantityNotificationsSelector extends StatelessWidget {
             Text(
               'Quantity of\nDaily Notifications:',
               style: TextStyle(
-                color: Theme.of(context).textTheme.displayMedium!.color,
+                color: Theme.of(context).textTheme.bodyMedium!.color,
                 fontSize: 20,
                 fontWeight: FontWeight.w600,
               ),
@@ -43,7 +43,7 @@ class QuantityNotificationsSelector extends StatelessWidget {
                     child: Text(
                       option.toString(),
                       style: TextStyle(
-                        color: Theme.of(context).textTheme.displayMedium!.color,
+                        color: Theme.of(context).textTheme.bodyMedium!.color,
                         fontSize: 20,
                         fontWeight: FontWeight.normal,
                       ),

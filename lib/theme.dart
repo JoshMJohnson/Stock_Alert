@@ -11,7 +11,10 @@ ThemeData lightMode = ThemeData(
   ),
   dividerColor: const Color(0xFF1B5E20),
   textTheme: const TextTheme(
-    displayMedium: TextStyle(
+    headlineMedium: TextStyle(
+      color: Color(0xFF546E7A),
+    ),
+    bodyMedium: TextStyle(
       color: Color(0xFF770000),
     ),
   ),
@@ -61,7 +64,10 @@ ThemeData darkMode = ThemeData(
   ),
   dividerColor: Colors.black87,
   textTheme: const TextTheme(
-    displayMedium: TextStyle(
+    headlineMedium: TextStyle(
+      color: Color(0xFFCFD8DC),
+    ),
+    bodyMedium: TextStyle(
       color: Colors.white,
     ),
   ),

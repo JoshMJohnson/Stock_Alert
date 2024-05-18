@@ -161,7 +161,7 @@ class _SettingsPageState extends State<SettingsPage> {
       title: Text(
         'Settings',
         style: TextStyle(
-          color: Theme.of(context).textTheme.displayMedium!.color,
+          color: Theme.of(context).textTheme.bodyMedium!.color,
           fontSize: 28,
           fontWeight: FontWeight.w900,
         ),
