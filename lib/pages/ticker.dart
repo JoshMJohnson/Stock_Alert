@@ -229,47 +229,50 @@ class TickerPage extends StatelessWidget {
                             width: 4,
                           ),
                         ),
-                        child: Column(children: [
-                          Flexible(
-                            flex: 2,
-                            child: SizedBox(
-                              width: double.infinity,
-                              height: double.infinity,
-                              child: Center(
-                                child: Text(
-                                  'PPS',
-                                  style: TextStyle(
-                                    color: Theme.of(context)
-                                        .textTheme
-                                        .displayMedium!
-                                        .color,
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w600,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 20),
+                          child: Column(children: [
+                            Flexible(
+                              flex: 2,
+                              child: SizedBox(
+                                width: double.infinity,
+                                height: double.infinity,
+                                child: Center(
+                                  child: Text(
+                                    'PPS',
+                                    style: TextStyle(
+                                      color: Theme.of(context)
+                                          .textTheme
+                                          .displayMedium!
+                                          .color,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w600,
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
-                          ),
-                          Flexible(
-                            flex: 3,
-                            child: SizedBox(
-                              width: double.infinity,
-                              height: double.infinity,
-                              child: Center(
-                                child: Text(
-                                  '\$${stock.tickerPrice.toStringAsFixed(2)}',
-                                  style: TextStyle(
-                                    color: stock.dayChangePercentage >= 0
-                                        ? const Color(0xFF00FF00)
-                                        : const Color(0xFFFF0000),
-                                    fontSize: 28,
-                                    fontWeight: FontWeight.w600,
+                            Flexible(
+                              flex: 3,
+                              child: SizedBox(
+                                width: double.infinity,
+                                height: double.infinity,
+                                child: Center(
+                                  child: Text(
+                                    '\$${stock.tickerPrice.toStringAsFixed(2)}',
+                                    style: TextStyle(
+                                      color: stock.dayChangePercentage >= 0
+                                          ? const Color(0xFF00FF00)
+                                          : const Color(0xFFFF0000),
+                                      fontSize: 28,
+                                      fontWeight: FontWeight.w600,
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                          )
-                        ]),
+                            )
+                          ]),
+                        ),
                       ),
                     ),
                   ),
