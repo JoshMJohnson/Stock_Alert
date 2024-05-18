@@ -196,7 +196,7 @@ class TickerPage extends StatelessWidget {
                                     style: TextStyle(
                                       color: Theme.of(context)
                                           .textTheme
-                                          .bodyMedium!
+                                          .headlineMedium!
                                           .color,
                                       fontSize: 20,
                                       fontWeight: FontWeight.w600,
@@ -275,7 +275,7 @@ class TickerPage extends StatelessWidget {
                                     style: TextStyle(
                                       color: Theme.of(context)
                                           .textTheme
-                                          .bodyMedium!
+                                          .headlineMedium!
                                           .color,
                                       fontSize: 20,
                                       fontWeight: FontWeight.w600,
