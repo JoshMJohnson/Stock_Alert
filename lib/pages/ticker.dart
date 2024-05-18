@@ -130,7 +130,6 @@ class TickerPage extends StatelessWidget {
             ),
           ),
           SizedBox(
-            // todo good up to this point
             height: 350,
             width: double.infinity,
             child: Row(children: [
