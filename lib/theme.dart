@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 ThemeData lightMode = ThemeData(
   brightness: Brightness.light,
   fontFamily: 'EBGaramond',
+  scaffoldBackgroundColor: const Color(0xFF4CAF50),
   colorScheme: const ColorScheme.light(
-    background: Color(0xFF4CAF50),
+    background: Color(0xFFC8E6C9),
     primary: Color(0xFFC8E6C9),
     secondary: Color(0xFF005500),
     tertiary: Color(0xFF1B5E20),
