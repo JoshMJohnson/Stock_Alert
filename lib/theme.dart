@@ -6,9 +6,9 @@ ThemeData lightMode = ThemeData(
   scaffoldBackgroundColor: const Color(0xFF4CAF50),
   colorScheme: const ColorScheme.light(
     background: Color(0xFFC8E6C9),
-    primary: Color(0xFFC8E6C9),
-    secondary: Color(0xFF005500),
-    tertiary: Color(0xFF1B5E20),
+    primary: Color(0xFF00FF00),
+    secondary: Color(0xFFFF0000),
+    tertiary: Color(0xFF1B5E20), // todo
   ),
   dividerColor: const Color(0xFF1B5E20),
   textTheme: const TextTheme(
@@ -58,16 +58,16 @@ ThemeData darkMode = ThemeData(
   brightness: Brightness.dark,
   fontFamily: 'EBGaramond',
   scaffoldBackgroundColor: const Color(0xFF1A237E),
-  colorScheme: ColorScheme.dark(
-    background: const Color(0xFF5C6BC0),
-    primary: const Color(0xFF757575),
-    secondary: Colors.white,
-    tertiary: Colors.grey.shade100,
+  colorScheme: const ColorScheme.dark(
+    background: Color(0xFF5C6BC0),
+    primary: Color(0xFF00FF00),
+    secondary: Color(0xFFFF0000),
+    tertiary: Color(0xFFE8EAF6), // ! unused stock watchlist text
   ),
   dividerColor: Colors.black87,
   textTheme: const TextTheme(
     headlineMedium: TextStyle(
-      color: Color(0xFF1DE9B6),
+      color: Color(0xFF81D4FA),
     ),
     bodyMedium: TextStyle(
       color: Colors.white,

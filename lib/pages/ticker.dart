@@ -205,8 +205,12 @@ class TickerPage extends StatelessWidget {
                                     '${stock.dayChangePercentage}%',
                                     style: TextStyle(
                                       color: stock.dayChangePercentage >= 0
-                                          ? const Color(0xFF00FF00)
-                                          : const Color(0xFFFF0000),
+                                          ? Theme.of(context)
+                                              .colorScheme
+                                              .primary
+                                          : Theme.of(context)
+                                              .colorScheme
+                                              .secondary,
                                       fontSize: 28,
                                       fontWeight: FontWeight.w600,
                                     ),
@@ -224,8 +228,12 @@ class TickerPage extends StatelessWidget {
                                     '\$${stock.dayChangeDollars.toStringAsFixed(2)}',
                                     style: TextStyle(
                                       color: stock.dayChangePercentage >= 0
-                                          ? const Color(0xFF00FF00)
-                                          : const Color(0xFFFF0000),
+                                          ? Theme.of(context)
+                                              .colorScheme
+                                              .primary
+                                          : Theme.of(context)
+                                              .colorScheme
+                                              .secondary,
                                       fontSize: 28,
                                       fontWeight: FontWeight.w600,
                                     ),
@@ -284,8 +292,12 @@ class TickerPage extends StatelessWidget {
                                     '\$${stock.tickerPrice.toStringAsFixed(2)}',
                                     style: TextStyle(
                                       color: stock.dayChangePercentage >= 0
-                                          ? const Color(0xFF00FF00)
-                                          : const Color(0xFFFF0000),
+                                          ? Theme.of(context)
+                                              .colorScheme
+                                              .primary
+                                          : Theme.of(context)
+                                              .colorScheme
+                                              .secondary,
                                       fontSize: 28,
                                       fontWeight: FontWeight.w600,
                                     ),

@@ -64,9 +64,7 @@ class StockWatchlist extends StatelessWidget {
                         Text(
                           watchlist[index].ticker,
                           style: TextStyle(
-                              color: watchlist[index].dayChangePercentage >= 0
-                                  ? const Color(0xFF7FFF00)
-                                  : const Color(0xFFFF0000),
+                              color: Theme.of(context).colorScheme.tertiary,
                               fontSize: 20,
                               fontWeight: FontWeight.w600),
                         ),
@@ -74,9 +72,7 @@ class StockWatchlist extends StatelessWidget {
                           watchlist[index].companyName,
                           style: TextStyle(
                               overflow: TextOverflow.ellipsis,
-                              color: watchlist[index].dayChangeDollars >= 0
-                                  ? const Color(0xFF7FFF00)
-                                  : const Color(0xFFFF0000),
+                              color: Theme.of(context).colorScheme.tertiary,
                               fontSize: 14,
                               fontWeight: FontWeight.w600),
                         ),
@@ -86,9 +82,7 @@ class StockWatchlist extends StatelessWidget {
                   Text(
                     watchlist[index].tickerPrice.toStringAsFixed(2),
                     style: TextStyle(
-                        color: watchlist[index].dayChangeDollars >= 0
-                            ? const Color(0xFF7FFF00)
-                            : const Color(0xFFFF0000),
+                        color: Theme.of(context).colorScheme.tertiary,
                         fontSize: 20,
                         fontWeight: FontWeight.w600),
                   )
@@ -104,8 +98,8 @@ class StockWatchlist extends StatelessWidget {
                       '${watchlist[index].dayChangePercentage} (%)',
                       style: TextStyle(
                           color: watchlist[index].dayChangePercentage >= 0
-                              ? const Color(0xFF7FFF00)
-                              : const Color(0xFFFF0000),
+                              ? Theme.of(context).colorScheme.primary
+                              : Theme.of(context).colorScheme.secondary,
                           fontSize: 14,
                           fontWeight: FontWeight.w600),
                     ),
@@ -113,8 +107,8 @@ class StockWatchlist extends StatelessWidget {
                       '${watchlist[index].dayChangeDollars.toStringAsFixed(2)}  (\$)',
                       style: TextStyle(
                           color: watchlist[index].dayChangeDollars >= 0
-                              ? const Color(0xFF7FFF00)
-                              : const Color(0xFFFF0000),
+                              ? Theme.of(context).colorScheme.primary
+                              : Theme.of(context).colorScheme.secondary,
                           fontSize: 14,
                           fontWeight: FontWeight.w600),
                     ),
