@@ -145,7 +145,7 @@ class TickerPage extends StatelessWidget {
                         height: double.infinity,
                         decoration: BoxDecoration(
                           border: Border.all(
-                            color: Theme.of(context).colorScheme.background,
+                            color: (Theme.of(context).cardTheme.color)!,
                             width: 4,
                           ),
                         ),
@@ -224,7 +224,7 @@ class TickerPage extends StatelessWidget {
                         height: double.infinity,
                         decoration: BoxDecoration(
                           border: Border.all(
-                            color: Theme.of(context).colorScheme.background,
+                            color: (Theme.of(context).cardTheme.color)!,
                             width: 4,
                           ),
                         ),

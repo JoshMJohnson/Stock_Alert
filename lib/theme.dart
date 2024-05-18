@@ -45,6 +45,9 @@ ThemeData lightMode = ThemeData(
   iconTheme: const IconThemeData(
     color: Color(0xFF005500),
   ),
+  cardTheme: const CardTheme(
+    color: Color(0xFFE0E0E0),
+  ),
 );
 
 ThemeData darkMode = ThemeData(
@@ -91,5 +94,8 @@ ThemeData darkMode = ThemeData(
   })),
   iconTheme: const IconThemeData(
     color: Colors.black,
+  ),
+  cardTheme: const CardTheme(
+    color: Color(0xFFE0E0E0),
   ),
 );
