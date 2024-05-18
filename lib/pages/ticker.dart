@@ -64,7 +64,7 @@ class TickerPage extends StatelessWidget {
         ),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(20),
+        padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
         child: Column(children: [
           Container(
             decoration: BoxDecoration(
@@ -95,82 +95,43 @@ class TickerPage extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 125,
-            width: double.infinity,
-            child: Row(children: [
-              Flexible(
-                flex: 2,
-                child: Padding(
-                  padding: const EdgeInsets.only(right: 10),
-                  child: SizedBox(
-                    width: double.infinity,
-                    height: double.infinity,
-                    child: Image.asset(
-                        'assets/market_logos/NASDAQ.png'), // ! temp value
-                  ),
-                ),
+            height: 75,
+            child:
+                Image.asset('assets/market_logos/NASDAQ.png'), // ! temp value
+          ),
+          Center(
+            child: Text(
+              '52 Week Range',
+              style: TextStyle(
+                color: Theme.of(context).textTheme.displayMedium!.color,
+                fontSize: 20,
+                fontWeight: FontWeight.w600,
               ),
-              Flexible(
-                flex: 1,
-                child: Padding(
-                  padding: const EdgeInsets.only(bottom: 10),
-                  child: Container(
-                    width: double.infinity,
-                    height: double.infinity,
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Theme.of(context).colorScheme.background,
-                        width: 4,
-                      ),
-                    ),
-                    child: Column(children: [
-                      Flexible(
-                        flex: 2,
-                        child: SizedBox(
-                          width: double.infinity,
-                          height: double.infinity,
-                          child: Center(
-                            child: Text(
-                              'PPS',
-                              style: TextStyle(
-                                color: Theme.of(context)
-                                    .textTheme
-                                    .displayMedium!
-                                    .color,
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Flexible(
-                        flex: 3,
-                        child: SizedBox(
-                          width: double.infinity,
-                          height: double.infinity,
-                          child: Center(
-                            child: Text(
-                              '\$${stock.tickerPrice.toStringAsFixed(2)}',
-                              style: TextStyle(
-                                color: stock.dayChangePercentage >= 0
-                                    ? const Color(0xFF00FF00)
-                                    : const Color(0xFFFF0000),
-                                fontSize: 28,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ),
-                        ),
-                      )
-                    ]),
-                  ),
-                ),
-              )
-            ]),
+            ),
+          ),
+          SliderTheme(
+            data: SliderTheme.of(context).copyWith(
+              disabledActiveTrackColor:
+                  Theme.of(context).sliderTheme.disabledActiveTrackColor,
+              disabledInactiveTrackColor:
+                  Theme.of(context).sliderTheme.disabledInactiveTrackColor,
+              disabledThumbColor:
+                  Theme.of(context).sliderTheme.disabledThumbColor,
+              trackHeight: 10,
+              thumbShape: const RoundSliderThumbShape(
+                disabledThumbRadius: 15,
+              ),
+            ),
+            child: Slider(
+              value: stock.tickerPrice,
+              onChanged: null,
+              min: stock.low52Week,
+              max: stock.high52Week,
+            ),
           ),
           SizedBox(
-            height: 300,
+            // todo good up to this point
+            height: 350,
             width: double.infinity,
             child: Row(children: [
               Flexible(
@@ -178,6 +139,85 @@ class TickerPage extends StatelessWidget {
                 child: Column(children: [
                   Flexible(
                     flex: 3,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 20),
+                      child: Container(
+                        width: double.infinity,
+                        height: double.infinity,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Theme.of(context).colorScheme.background,
+                            width: 4,
+                          ),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 10),
+                          child: Column(children: [
+                            Flexible(
+                              flex: 2,
+                              child: SizedBox(
+                                width: double.infinity,
+                                height: double.infinity,
+                                child: Center(
+                                  child: Text(
+                                    'Day Change',
+                                    style: TextStyle(
+                                      color: Theme.of(context)
+                                          .textTheme
+                                          .displayMedium!
+                                          .color,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Flexible(
+                              flex: 3,
+                              child: SizedBox(
+                                width: double.infinity,
+                                height: double.infinity,
+                                child: Center(
+                                  child: Text(
+                                    '${stock.dayChangePercentage}%',
+                                    style: TextStyle(
+                                      color: stock.dayChangePercentage >= 0
+                                          ? const Color(0xFF00FF00)
+                                          : const Color(0xFFFF0000),
+                                      fontSize: 28,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Flexible(
+                              flex: 3,
+                              child: SizedBox(
+                                width: double.infinity,
+                                height: double.infinity,
+                                child: Center(
+                                  child: Text(
+                                    '\$${stock.dayChangeDollars}',
+                                    style: TextStyle(
+                                      color: stock.dayChangePercentage >= 0
+                                          ? const Color(0xFF00FF00)
+                                          : const Color(0xFFFF0000),
+                                      fontSize: 28,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            )
+                          ]),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Flexible(
+                    flex: 2,
                     child: Padding(
                       padding: const EdgeInsets.only(bottom: 10),
                       child: Container(
@@ -197,7 +237,7 @@ class TickerPage extends StatelessWidget {
                               height: double.infinity,
                               child: Center(
                                 child: Text(
-                                  'Day Change',
+                                  'PPS',
                                   style: TextStyle(
                                     color: Theme.of(context)
                                         .textTheme
@@ -217,26 +257,7 @@ class TickerPage extends StatelessWidget {
                               height: double.infinity,
                               child: Center(
                                 child: Text(
-                                  '${stock.dayChangePercentage}%',
-                                  style: TextStyle(
-                                    color: stock.dayChangePercentage >= 0
-                                        ? const Color(0xFF00FF00)
-                                        : const Color(0xFFFF0000),
-                                    fontSize: 28,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          Flexible(
-                            flex: 3,
-                            child: SizedBox(
-                              width: double.infinity,
-                              height: double.infinity,
-                              child: Center(
-                                child: Text(
-                                  '\$${stock.dayChangeDollars}',
+                                  '\$${stock.tickerPrice.toStringAsFixed(2)}',
                                   style: TextStyle(
                                     color: stock.dayChangePercentage >= 0
                                         ? const Color(0xFF00FF00)
@@ -252,43 +273,6 @@ class TickerPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Flexible(
-                    flex: 2,
-                    child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Center(
-                            child: Text(
-                              '52 Week Range',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Theme.of(context)
-                                    .textTheme
-                                    .displayMedium!
-                                    .color,
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ),
-                          SliderTheme(
-                            data: SliderTheme.of(context).copyWith(
-                              disabledActiveTrackColor:
-                                  Theme.of(context).colorScheme.secondary,
-                              disabledInactiveTrackColor:
-                                  Theme.of(context).colorScheme.primary,
-                              disabledThumbColor:
-                                  Theme.of(context).colorScheme.tertiary,
-                            ),
-                            child: Slider(
-                              value: stock.tickerPrice,
-                              onChanged: null,
-                              min: stock.low52Week,
-                              max: stock.high52Week,
-                            ),
-                          )
-                        ]),
-                  )
                 ]),
               ),
               Flexible(

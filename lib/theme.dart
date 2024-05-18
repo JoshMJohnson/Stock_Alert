@@ -58,7 +58,9 @@ ThemeData darkMode = ThemeData(
   ),
   dividerColor: Colors.black87,
   textTheme: const TextTheme(
-    displayMedium: TextStyle(color: Colors.white),
+    displayMedium: TextStyle(
+      color: Colors.white,
+    ),
   ),
   hintColor: Colors.white70,
   buttonTheme: const ButtonThemeData(
@@ -74,8 +76,8 @@ ThemeData darkMode = ThemeData(
     activeTrackColor: Colors.white,
     inactiveTrackColor: Color(0xFF212121),
     disabledThumbColor: Colors.black,
-    disabledActiveTrackColor: Colors.white,
-    disabledInactiveTrackColor: Color(0xFF424242),
+    disabledActiveTrackColor: Color(0xFFE0E0E0),
+    disabledInactiveTrackColor: Color(0xFFE0E0E0),
   ),
   dropdownMenuTheme: const DropdownMenuThemeData(
     inputDecorationTheme: InputDecorationTheme(
