@@ -129,11 +129,11 @@ class _HomePageState extends State<HomePage> {
       companyName: 'Adobe',
       companyDescription:
           'Founded 40 years ago on the simple idea of creating innovative products that change the world, Adobe offers groundbreaking technology that empowers everyone, everywhere to imagine, create, and bring any digital experience to life.',
-      tickerPrice: 120.20,
+      tickerPrice: 129.20,
       dayChangeDollars: 10.65,
       dayChangePercentage: 3.10,
       exchange: 'NASDAQ',
-      low52Week: 75.32,
+      low52Week: 122.32,
       high52Week: 153.97);
 
   final StockEntity stock7 = StockEntity(
