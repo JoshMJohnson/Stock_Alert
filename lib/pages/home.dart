@@ -73,12 +73,12 @@ class _HomePageState extends State<HomePage> {
       ticker: 'AAPLL',
       companyName: 'Apple Inc.',
       companyDescription: '',
-      tickerPrice: 9999.8,
-      dayChangeDollars: -111.80,
+      tickerPrice: 90.8,
+      dayChangeDollars: -11.80,
       dayChangePercentage: -10.80,
       exchange: 'ABC',
       low52Week: 75.32,
-      high52Week: 15993.97);
+      high52Week: 93.97);
 
   final StockEntity stock2 = StockEntity(
       ticker: 'MSFTF',

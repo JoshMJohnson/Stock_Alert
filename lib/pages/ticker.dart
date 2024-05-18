@@ -86,10 +86,11 @@ class TickerPage extends StatelessWidget {
           Expanded(
             child: Text(
               stock.companyDescription,
+              textAlign: TextAlign.center,
               style: TextStyle(
                 color: Theme.of(context).textTheme.bodyMedium!.color,
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
+                fontSize: 18,
+                fontWeight: FontWeight.w400,
                 overflow: TextOverflow.fade,
               ),
             ),
@@ -104,64 +105,53 @@ class TickerPage extends StatelessWidget {
               '52 Week Range',
               style: TextStyle(
                 color: Theme.of(context).textTheme.headlineMedium!.color,
-                fontSize: 22,
+                fontSize: 20,
                 fontWeight: FontWeight.w600,
               ),
             ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              SizedBox(
-                width: 75,
-                height: 75,
-                child: Center(
-                  child: Text(
-                    '\$${stock.low52Week.toStringAsFixed(2)}',
-                    style: TextStyle(
-                      color: Theme.of(context).textTheme.bodyMedium!.color,
-                      fontSize: 20,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
+          Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+            Center(
+              child: Text(
+                '\$${stock.low52Week.toStringAsFixed(2)}',
+                style: TextStyle(
+                  color: Theme.of(context).textTheme.bodyMedium!.color,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
                 ),
               ),
-              SliderTheme(
-                data: SliderTheme.of(context).copyWith(
-                  disabledActiveTrackColor:
-                      Theme.of(context).sliderTheme.disabledActiveTrackColor,
-                  disabledInactiveTrackColor:
-                      Theme.of(context).sliderTheme.disabledInactiveTrackColor,
-                  disabledThumbColor:
-                      Theme.of(context).sliderTheme.disabledThumbColor,
-                  trackHeight: 10,
-                  thumbShape: const RoundSliderThumbShape(
-                    disabledThumbRadius: 15,
-                  ),
-                ),
-                child: Slider(
-                  value: stock.tickerPrice,
-                  onChanged: null,
-                  min: stock.low52Week,
-                  max: stock.high52Week,
+            ),
+            SliderTheme(
+              data: SliderTheme.of(context).copyWith(
+                disabledActiveTrackColor:
+                    Theme.of(context).sliderTheme.disabledActiveTrackColor,
+                disabledInactiveTrackColor:
+                    Theme.of(context).sliderTheme.disabledInactiveTrackColor,
+                disabledThumbColor:
+                    Theme.of(context).sliderTheme.disabledThumbColor,
+                trackHeight: 10,
+                thumbShape: const RoundSliderThumbShape(
+                  disabledThumbRadius: 10,
                 ),
               ),
-              SizedBox(
-                width: 75,
-                height: 75,
-                child: Center(
-                  child: Text(
-                    '\$${stock.high52Week.toStringAsFixed(2)}',
-                    style: TextStyle(
-                      color: Theme.of(context).textTheme.bodyMedium!.color,
-                      fontSize: 20,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
+              child: Slider(
+                value: stock.tickerPrice,
+                onChanged: null,
+                min: stock.low52Week,
+                max: stock.high52Week,
+              ),
+            ),
+            Center(
+              child: Text(
+                '\$${stock.high52Week.toStringAsFixed(2)}',
+                style: TextStyle(
+                  color: Theme.of(context).textTheme.bodyMedium!.color,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
                 ),
               ),
-            ],
-          ),
+            ),
+          ]),
           SizedBox(
             height: 350,
             width: double.infinity,
@@ -231,7 +221,7 @@ class TickerPage extends StatelessWidget {
                                 height: double.infinity,
                                 child: Center(
                                   child: Text(
-                                    '\$${stock.dayChangeDollars}',
+                                    '\$${stock.dayChangeDollars.toStringAsFixed(2)}',
                                     style: TextStyle(
                                       color: stock.dayChangePercentage >= 0
                                           ? const Color(0xFF00FF00)
