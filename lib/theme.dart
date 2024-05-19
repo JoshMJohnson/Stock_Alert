@@ -79,10 +79,10 @@ ThemeData darkMode = ThemeData(
       color: Color(0xFFE3F2FD),
     ),
     bodySmall: TextStyle(
-      color: Colors.red,
+      color: Color(0xFFE57373),
     ),
     bodyLarge: TextStyle(
-      color: Colors.green,
+      color: Color(0xFF81C784),
     ),
   ),
   hintColor: Colors.white70,
