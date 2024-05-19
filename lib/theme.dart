@@ -34,12 +34,12 @@ ThemeData lightMode = ThemeData(
     ),
   ),
   sliderTheme: const SliderThemeData(
-    thumbColor: Color(0xFF1A237E),
-    activeTrackColor: Color(0xFF0D47A1),
+    thumbColor: Color(0xFF0D47A1),
+    activeTrackColor: Color(0xFF2196F3),
     inactiveTrackColor: Colors.black,
-    disabledThumbColor: Colors.black,
-    disabledActiveTrackColor: Colors.white,
-    disabledInactiveTrackColor: Color(0xFF424242),
+    disabledThumbColor: Color(0xFF0D47A1),
+    disabledActiveTrackColor: Color(0xFF2196F3),
+    disabledInactiveTrackColor: Color(0xFF2196F3),
   ),
   dropdownMenuTheme: const DropdownMenuThemeData(
     inputDecorationTheme: InputDecorationTheme(
