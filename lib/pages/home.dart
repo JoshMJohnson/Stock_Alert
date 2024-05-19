@@ -70,9 +70,10 @@ class _HomePageState extends State<HomePage> {
 
   // ! begin of testing code
   final StockEntity stock1 = StockEntity(
-      ticker: 'AAPLL',
+      ticker: 'AAPL',
       companyName: 'Apple Inc.',
-      companyDescription: '',
+      companyDescription:
+          'It designs, develops, and sells consumer electronics, computer software, and online services. Devices include the iPhone, iPad, Mac, Apple Watch, Vision Pro, and Apple TV; operating systems include iOS, iPadOS, and macOS; and software applications and services include iTunes, iCloud, Apple Music, and Apple TV',
       tickerPrice: 90.8,
       dayChangeDollars: -11.80,
       dayChangePercentage: -10.80,

@@ -99,18 +99,18 @@ class StockWatchlist extends StatelessWidget {
                       '${watchlist[index].dayChangePercentage} (%)',
                       style: TextStyle(
                           color: watchlist[index].dayChangePercentage >= 0
-                              ? Theme.of(context).colorScheme.primary
-                              : Theme.of(context).colorScheme.secondary,
-                          fontSize: 14,
+                              ? Colors.green
+                              : Colors.red,
+                          fontSize: 16,
                           fontWeight: FontWeight.w600),
                     ),
                     Text(
                       '${watchlist[index].dayChangeDollars.toStringAsFixed(2)}  (\$)',
                       style: TextStyle(
                           color: watchlist[index].dayChangeDollars >= 0
-                              ? Theme.of(context).colorScheme.primary
-                              : Theme.of(context).colorScheme.secondary,
-                          fontSize: 14,
+                              ? Colors.green
+                              : Colors.red,
+                          fontSize: 16,
                           fontWeight: FontWeight.w600),
                     ),
                   ],

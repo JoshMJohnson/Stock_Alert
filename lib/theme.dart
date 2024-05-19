@@ -8,7 +8,7 @@ ThemeData lightMode = ThemeData(
     background: Color(0xFFC8E6C9),
     primary: Color(0xFF00FF00),
     secondary: Color(0xFFFF0000),
-    tertiary: Color(0xFF1B5E20), // todo
+    tertiary: Color(0xFF1B5E20), // todo watchlist text
   ),
   dividerColor: const Color(0xFF1B5E20),
   textTheme: const TextTheme(
@@ -60,48 +60,48 @@ ThemeData darkMode = ThemeData(
   scaffoldBackgroundColor: const Color(0xFF1A237E),
   colorScheme: const ColorScheme.dark(
     background: Color(0xFF5C6BC0),
-    primary: Color(0xFF00FF00),
-    secondary: Color(0xFFFF0000),
-    tertiary: Color(0xFFE8EAF6), // ! unused stock watchlist text
+    primary: Color(0xFFBBDEFB),
+    secondary: Color(0xFFFF0000), // ! unused
+    tertiary: Color(0xFFE8EAF6),
   ),
   dividerColor: Colors.black87,
   textTheme: const TextTheme(
     headlineMedium: TextStyle(
-      color: Color(0xFF81D4FA),
+      color: Color(0xFF80D8FF),
     ),
     bodyMedium: TextStyle(
-      color: Colors.white,
+      color: Color(0xFFE3F2FD),
     ),
   ),
   hintColor: Colors.white70,
   buttonTheme: const ButtonThemeData(
     colorScheme: ColorScheme.light(
       background: Colors.black,
-      primary: Color(0xFF9E9E9E),
+      primary: Color.fromARGB(176, 23, 212, 255),
       secondary: Colors.white,
       tertiary: Color(0xFF424242),
     ),
   ),
   sliderTheme: const SliderThemeData(
-    thumbColor: Colors.black,
+    thumbColor: Color(0xFF42A5F5),
     activeTrackColor: Colors.white,
     inactiveTrackColor: Color(0xFF212121),
-    disabledThumbColor: Colors.black,
+    disabledThumbColor: Color(0xFF42A5F5),
     disabledActiveTrackColor: Color(0xFFE0E0E0),
     disabledInactiveTrackColor: Color(0xFFE0E0E0),
   ),
   dropdownMenuTheme: const DropdownMenuThemeData(
     inputDecorationTheme: InputDecorationTheme(
-      iconColor: Colors.black,
-      fillColor: Color(0xFF424242),
+      iconColor: Color(0xFF84FFFF),
+      fillColor: Colors.black,
     ),
   ),
   radioTheme: RadioThemeData(fillColor:
       MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
-    return Colors.black;
+    return const Color(0xFF84FFFF);
   })),
   iconTheme: const IconThemeData(
-    color: Colors.black,
+    color: Color(0xFF84FFFF),
   ),
   cardTheme: const CardTheme(
     color: Color(0xFFE0E0E0),
