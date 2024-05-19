@@ -6,17 +6,17 @@ ThemeData lightMode = ThemeData(
   scaffoldBackgroundColor: const Color(0xFF80D8FF),
   colorScheme: const ColorScheme.light(
     background: Color(0xFFB3E5FC),
-    primary: Color(0xFF00FF00),
-    secondary: Color(0xFFFF0000),
+    primary: Color(0xFF2979FF),
+    secondary: Color(0xFF82B1FF),
     tertiary: Color(0xFF01579B),
   ),
   dividerColor: const Color(0xFF1B5E20),
   textTheme: const TextTheme(
     headlineMedium: TextStyle(
-      color: Color(0xFFB71C1C),
+      color: Color(0xFF01579B),
     ),
     bodyMedium: TextStyle(
-      color: Color(0xFF770000),
+      color: Color(0xFF0D47A1),
     ),
     bodySmall: TextStyle(
       color: Color(0xFFD50000),
@@ -25,7 +25,7 @@ ThemeData lightMode = ThemeData(
       color: Color(0xFF1B5E20),
     ),
   ),
-  hintColor: const Color(0xFF770000),
+  hintColor: const Color(0xFF0D47A1),
   buttonTheme: const ButtonThemeData(
     colorScheme: ColorScheme.light(
       background: Color(0xFF003300),
@@ -50,10 +50,10 @@ ThemeData lightMode = ThemeData(
   ),
   radioTheme: RadioThemeData(fillColor:
       MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
-    return const Color(0xFF003300);
+    return const Color(0xFF1A237E);
   })),
   iconTheme: const IconThemeData(
-    color: Color(0xFF005500),
+    color: Color(0xFF1A237E),
   ),
   cardTheme: const CardTheme(
     color: Color(0xFFE0E0E0),
