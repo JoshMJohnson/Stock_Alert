@@ -102,9 +102,9 @@ ThemeData darkMode = ThemeData(
     thumbColor: Color(0xFF42A5F5),
     activeTrackColor: Colors.white,
     inactiveTrackColor: Color(0xFF212121),
-    disabledThumbColor: Color(0xFF42A5F5),
-    disabledActiveTrackColor: Color(0xFFE0E0E0),
-    disabledInactiveTrackColor: Color(0xFFE0E0E0),
+    disabledThumbColor: Color(0xFFE3F2FD),
+    disabledActiveTrackColor: Color(0xFF4FC3F7),
+    disabledInactiveTrackColor: Color(0xFF4FC3F7),
   ),
   dropdownMenuTheme: const DropdownMenuThemeData(
     inputDecorationTheme: InputDecorationTheme(
