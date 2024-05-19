@@ -277,7 +277,7 @@ class _HomePageState extends State<HomePage> {
         title: Text(
           'Stock Alert',
           style: TextStyle(
-            color: Theme.of(context).textTheme.bodyMedium!.color,
+            color: Theme.of(context).textTheme.headlineMedium!.color,
             fontSize: 28,
             fontWeight: FontWeight.w900,
           ),
