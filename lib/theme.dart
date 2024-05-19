@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 ThemeData lightMode = ThemeData(
   brightness: Brightness.light,
   fontFamily: 'EBGaramond',
-  scaffoldBackgroundColor: const Color(0xFF4CAF50),
+  scaffoldBackgroundColor: const Color(0xFF80D8FF),
   colorScheme: const ColorScheme.light(
-    background: Color(0xFFC8E6C9),
+    background: Color(0xFFB3E5FC),
     primary: Color(0xFF00FF00),
     secondary: Color(0xFFFF0000),
-    tertiary: Color(0xFF1B5E20), // todo watchlist text
+    tertiary: Color(0xFF01579B),
   ),
   dividerColor: const Color(0xFF1B5E20),
   textTheme: const TextTheme(
@@ -17,6 +17,12 @@ ThemeData lightMode = ThemeData(
     ),
     bodyMedium: TextStyle(
       color: Color(0xFF770000),
+    ),
+    bodySmall: TextStyle(
+      color: Color(0xFFD50000),
+    ),
+    bodyLarge: TextStyle(
+      color: Color(0xFF1B5E20),
     ),
   ),
   hintColor: const Color(0xFF770000),
@@ -71,6 +77,12 @@ ThemeData darkMode = ThemeData(
     ),
     bodyMedium: TextStyle(
       color: Color(0xFFE3F2FD),
+    ),
+    bodySmall: TextStyle(
+      color: Colors.red,
+    ),
+    bodyLarge: TextStyle(
+      color: Colors.green,
     ),
   ),
   hintColor: Colors.white70,
