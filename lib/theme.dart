@@ -16,12 +16,15 @@ ThemeData lightMode = ThemeData(
       color: Color(0xFF01579B),
     ),
     bodyMedium: TextStyle(
+      // normal font
       color: Color(0xFF0D47A1),
     ),
     bodySmall: TextStyle(
+      // bear red
       color: Color(0xFFD50000),
     ),
     bodyLarge: TextStyle(
+      // bull green
       color: Color(0xFF1B5E20),
     ),
   ),
@@ -72,19 +75,22 @@ ThemeData darkMode = ThemeData(
   dividerColor: Colors.black87,
   textTheme: const TextTheme(
     headlineMedium: TextStyle(
-      color: Color(0xFF80D8FF),
+      color: Color(0xFFB3E5FC),
     ),
     bodyMedium: TextStyle(
       color: Color(0xFFE3F2FD),
+      // normal font
     ),
     bodySmall: TextStyle(
+      // bear red
       color: Color(0xFFE57373),
     ),
     bodyLarge: TextStyle(
+      // bull green
       color: Color(0xFF81C784),
     ),
   ),
-  hintColor: Colors.white70,
+  hintColor: const Color(0xFFE3F2FD),
   buttonTheme: const ButtonThemeData(
     colorScheme: ColorScheme.light(
       background: Colors.black,
@@ -111,7 +117,7 @@ ThemeData darkMode = ThemeData(
     return const Color(0xFF84FFFF);
   })),
   iconTheme: const IconThemeData(
-    color: Color(0xFF84FFFF),
+    color: Color(0xFFBBDEFB),
   ),
   cardTheme: const CardTheme(
     color: Color(0xFFE0E0E0),
