@@ -73,7 +73,8 @@ class StockWatchlist extends StatelessWidget {
                           style: TextStyle(
                               overflow: TextOverflow.ellipsis,
                               color: Theme.of(context).colorScheme.tertiary,
-                              fontSize: 14,
+                              fontStyle: FontStyle.italic,
+                              fontSize: 16,
                               fontWeight: FontWeight.w600),
                         ),
                       ],
