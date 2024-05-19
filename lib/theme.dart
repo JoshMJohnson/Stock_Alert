@@ -57,7 +57,7 @@ ThemeData lightMode = ThemeData(
 ThemeData darkMode = ThemeData(
   brightness: Brightness.dark,
   fontFamily: 'EBGaramond',
-  scaffoldBackgroundColor: const Color(0xFF1A237E),
+  scaffoldBackgroundColor: const Color(0xFF311B92),
   colorScheme: const ColorScheme.dark(
     background: Color(0xFF5C6BC0),
     primary: Color(0xFFBBDEFB),
