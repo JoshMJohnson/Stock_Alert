@@ -116,7 +116,7 @@ class TickerPage extends StatelessWidget {
                 '\$${stock.low52Week.toStringAsFixed(2)}',
                 style: TextStyle(
                   color: Theme.of(context).textTheme.bodyMedium!.color,
-                  fontSize: 18,
+                  fontSize: 20,
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -146,7 +146,7 @@ class TickerPage extends StatelessWidget {
                 '\$${stock.high52Week.toStringAsFixed(2)}',
                 style: TextStyle(
                   color: Theme.of(context).textTheme.bodyMedium!.color,
-                  fontSize: 18,
+                  fontSize: 20,
                   fontWeight: FontWeight.w600,
                 ),
               ),

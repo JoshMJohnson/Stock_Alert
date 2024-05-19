@@ -13,7 +13,7 @@ ThemeData lightMode = ThemeData(
   dividerColor: const Color(0xFF1B5E20),
   textTheme: const TextTheme(
     headlineMedium: TextStyle(
-      color: Color(0xFF546E7A),
+      color: Color(0xFFB71C1C),
     ),
     bodyMedium: TextStyle(
       color: Color(0xFF770000),
