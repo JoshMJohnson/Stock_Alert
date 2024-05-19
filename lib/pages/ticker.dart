@@ -70,7 +70,7 @@ class TickerPage extends StatelessWidget {
             decoration: BoxDecoration(
               border: Border(
                 bottom: BorderSide(
-                  color: Theme.of(context).colorScheme.tertiary,
+                  color: (Theme.of(context).cardTheme.color)!,
                 ),
               ),
             ),

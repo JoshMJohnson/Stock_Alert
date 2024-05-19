@@ -10,7 +10,7 @@ ThemeData lightMode = ThemeData(
     secondary: Color(0xFF82B1FF),
     tertiary: Color(0xFF01579B),
   ),
-  dividerColor: const Color(0xFF1B5E20),
+  dividerColor: const Color(0xFF2962FF),
   textTheme: const TextTheme(
     headlineMedium: TextStyle(
       color: Color(0xFF01579B),
@@ -31,7 +31,6 @@ ThemeData lightMode = ThemeData(
       background: Color(0xFF0D47A1),
       primary: Color(0xFF81D4FA),
       secondary: Color(0xFFE1F5FE),
-      tertiary: Color(0xFFC8E6C9),
     ),
   ),
   sliderTheme: const SliderThemeData(
@@ -56,7 +55,7 @@ ThemeData lightMode = ThemeData(
     color: Color(0xFF1A237E),
   ),
   cardTheme: const CardTheme(
-    color: Color(0xFFE0E0E0),
+    color: Color(0xFF2962FF),
   ),
 );
 
@@ -91,7 +90,6 @@ ThemeData darkMode = ThemeData(
       background: Colors.black,
       primary: Color.fromARGB(176, 23, 212, 255),
       secondary: Colors.white,
-      tertiary: Color(0xFF424242),
     ),
   ),
   sliderTheme: const SliderThemeData(
