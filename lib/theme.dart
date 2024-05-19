@@ -100,21 +100,21 @@ ThemeData darkMode = ThemeData(
   ),
   sliderTheme: const SliderThemeData(
     thumbColor: Color(0xFF42A5F5),
-    activeTrackColor: Colors.white,
-    inactiveTrackColor: Color(0xFF212121),
+    activeTrackColor: Color(0xFF9FA8DA),
+    inactiveTrackColor: Color(0xFF3F51B5),
     disabledThumbColor: Color(0xFFE3F2FD),
-    disabledActiveTrackColor: Color(0xFF4FC3F7),
-    disabledInactiveTrackColor: Color(0xFF4FC3F7),
+    disabledActiveTrackColor: Color(0xFF9FA8DA),
+    disabledInactiveTrackColor: Color(0xFF9FA8DA),
   ),
   dropdownMenuTheme: const DropdownMenuThemeData(
     inputDecorationTheme: InputDecorationTheme(
-      iconColor: Color(0xFF84FFFF),
+      iconColor: Color(0xFFBBDEFB),
       fillColor: Colors.black,
     ),
   ),
   radioTheme: RadioThemeData(fillColor:
       MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
-    return const Color(0xFF84FFFF);
+    return const Color(0xFFBBDEFB);
   })),
   iconTheme: const IconThemeData(
     color: Color(0xFFBBDEFB),
