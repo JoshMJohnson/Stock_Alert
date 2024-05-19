@@ -74,10 +74,10 @@ class _HomePageState extends State<HomePage> {
       companyName: 'Apple Inc.',
       companyDescription:
           'It designs, develops, and sells consumer electronics, computer software, and online services. Devices include the iPhone, iPad, Mac, Apple Watch, Vision Pro, and Apple TV; operating systems include iOS, iPadOS, and macOS; and software applications and services include iTunes, iCloud, Apple Music, and Apple TV',
-      tickerPrice: 90.8,
-      dayChangeDollars: -11.80,
-      dayChangePercentage: -10.80,
-      exchange: 'ABC',
+      tickerPrice: 189.87,
+      dayChangeDollars: -12.53,
+      dayChangePercentage: -0.93,
+      exchange: 'NASDAQ',
       low52Week: 75.32,
       high52Week: 93.97);
 
@@ -130,20 +130,20 @@ class _HomePageState extends State<HomePage> {
       companyName: 'Adobe',
       companyDescription:
           'Founded 40 years ago on the simple idea of creating innovative products that change the world, Adobe offers groundbreaking technology that empowers everyone, everywhere to imagine, create, and bring any digital experience to life.',
-      tickerPrice: 129.20,
-      dayChangeDollars: 10.65,
-      dayChangePercentage: 3.10,
+      tickerPrice: 483.43,
+      dayChangeDollars: 0.55,
+      dayChangePercentage: 0.11,
       exchange: 'NASDAQ',
-      low52Week: 122.32,
-      high52Week: 153.97);
+      low52Week: 356.45,
+      high52Week: 638.25);
 
   final StockEntity stock7 = StockEntity(
       ticker: 'BA',
       companyName: 'Boeing Co',
       companyDescription: '',
-      tickerPrice: 170.42,
-      dayChangeDollars: .2,
-      dayChangePercentage: .11,
+      tickerPrice: 184.95,
+      dayChangeDollars: 1.99,
+      dayChangePercentage: 1.09,
       exchange: 'NYSE',
       low52Week: 75.32,
       high52Week: 153.97);
@@ -152,9 +152,9 @@ class _HomePageState extends State<HomePage> {
       ticker: 'BE',
       companyName: 'Bloom Energy Corp',
       companyDescription: '',
-      tickerPrice: 9.52,
-      dayChangeDollars: -.22,
-      dayChangePercentage: -2.25,
+      tickerPrice: 12.33,
+      dayChangeDollars: 0.1,
+      dayChangePercentage: 0.82,
       exchange: 'NYSE',
       low52Week: 75.32,
       high52Week: 153.97);
