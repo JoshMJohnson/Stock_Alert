@@ -61,7 +61,7 @@ ThemeData darkMode = ThemeData(
   colorScheme: const ColorScheme.dark(
     background: Color(0xFF5C6BC0),
     primary: Color(0xFFBBDEFB),
-    secondary: Color(0xFFFF0000), // ! unused
+    secondary: Color.fromARGB(255, 141, 160, 255),
     tertiary: Color(0xFFE8EAF6),
   ),
   dividerColor: Colors.black87,
