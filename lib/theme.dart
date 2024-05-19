@@ -72,7 +72,7 @@ ThemeData darkMode = ThemeData(
     secondary: Color.fromARGB(255, 141, 160, 255),
     tertiary: Color(0xFFE8EAF6),
   ),
-  dividerColor: Colors.black87,
+  dividerColor: const Color(0xFF90CAF9),
   textTheme: const TextTheme(
     headlineMedium: TextStyle(
       color: Color(0xFFB3E5FC),
