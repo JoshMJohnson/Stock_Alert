@@ -28,9 +28,9 @@ ThemeData lightMode = ThemeData(
   hintColor: const Color(0xFF0D47A1),
   buttonTheme: const ButtonThemeData(
     colorScheme: ColorScheme.light(
-      background: Color(0xFF003300),
-      primary: Color(0xFFC8E6C9),
-      secondary: Color(0xFF00FF00),
+      background: Color(0xFF0D47A1),
+      primary: Color(0xFF81D4FA),
+      secondary: Color(0xFFE1F5FE),
       tertiary: Color(0xFFC8E6C9),
     ),
   ),
