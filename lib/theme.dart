@@ -34,9 +34,9 @@ ThemeData lightMode = ThemeData(
     ),
   ),
   sliderTheme: const SliderThemeData(
-    thumbColor: Color(0xFF770000),
-    activeTrackColor: Color(0xFF005500),
-    inactiveTrackColor: Color(0xFF4CAF50),
+    thumbColor: Color(0xFF1A237E),
+    activeTrackColor: Color(0xFF0D47A1),
+    inactiveTrackColor: Colors.black,
     disabledThumbColor: Colors.black,
     disabledActiveTrackColor: Colors.white,
     disabledInactiveTrackColor: Color(0xFF424242),
