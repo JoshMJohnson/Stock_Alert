@@ -95,10 +95,13 @@ class TickerPage extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(
-            height: 75,
-            child:
-                Image.asset('assets/market_logos/NASDAQ.png'), // ! temp value
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10),
+            child: SizedBox(
+              height: 75,
+              child:
+                  Image.asset('assets/market_logos/NASDAQ.png'), // ! temp value
+            ),
           ),
           Center(
             child: Text(
