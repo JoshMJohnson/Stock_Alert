@@ -43,8 +43,8 @@ ThemeData lightMode = ThemeData(
   ),
   dropdownMenuTheme: const DropdownMenuThemeData(
     inputDecorationTheme: InputDecorationTheme(
-      iconColor: Color(0xFF003300),
-      fillColor: Color(0xFFC8E6C9),
+      iconColor: Color(0xFF1A237E),
+      fillColor: Color(0xFFB3E5FC),
     ),
   ),
   radioTheme: RadioThemeData(fillColor:
