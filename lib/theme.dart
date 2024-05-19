@@ -94,7 +94,7 @@ ThemeData darkMode = ThemeData(
   buttonTheme: const ButtonThemeData(
     colorScheme: ColorScheme.light(
       background: Colors.black,
-      primary: Color.fromARGB(176, 23, 212, 255),
+      primary: Color(0xFF1E88E5),
       secondary: Colors.white,
     ),
   ),
