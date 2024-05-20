@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:stock_alert/pages/homePageWidgets/stock_entity.dart';
 
+/* handles database interations */
 class DatabaseRepository {
   /* adds a stock symbol to the watchlist */ // todo
   void addSymbol() {}
