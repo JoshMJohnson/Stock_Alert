@@ -22,4 +22,11 @@ class DatabaseRepository {
     List<StockEntity> updatedWatchlist = [];
     return updatedWatchlist;
   }
+
+  /* returns an updated watchlist sorted based on algorithm provided */ // todo
+  List<StockEntity> sortWatchlist(
+      List<StockEntity> watchlist, String sortAlgorithm) {
+    List<StockEntity> sortedWatchlist = [];
+    return sortedWatchlist;
+  }
 }
