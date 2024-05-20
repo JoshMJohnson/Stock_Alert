@@ -1,13 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class HelperFunctions {
-  /* returns the current sort algorithm selected */ // todo
-  static Future getSortAlgorithm() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    return prefs.getString('watchlistSort');
-  }
-
   /* returns the time given as parameter as a string showing time in standard time */
   String standardTimeConvertionHandler(TimeOfDay timeGiven) {
     late String standardTime;
