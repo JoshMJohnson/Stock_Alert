@@ -10,14 +10,15 @@ class StockEntity {
   double high52Week;
   bool activeTracking = true;
 
-  StockEntity(
-      {required this.ticker,
-      required this.companyName,
-      required this.companyDescription,
-      required this.tickerPrice,
-      required this.dayChangeDollars,
-      required this.dayChangePercentage,
-      required this.exchange,
-      required this.low52Week,
-      required this.high52Week});
+  StockEntity({
+    required this.ticker,
+    required this.companyName,
+    required this.companyDescription,
+    required this.tickerPrice,
+    required this.dayChangeDollars,
+    required this.dayChangePercentage,
+    required this.exchange,
+    required this.low52Week,
+    required this.high52Week,
+  });
 }
