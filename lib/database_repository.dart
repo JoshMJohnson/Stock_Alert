@@ -1,33 +1,159 @@
-import 'package:flutter/material.dart';
+import 'dart:async';
+import 'package:path/path.dart';
+import 'package:sqflite/sqflite.dart';
 import 'package:stock_alert/pages/homePageWidgets/stock_entity.dart';
 
 /* handles database interations */
 class DatabaseRepository {
-  /* adds a stock symbol to the watchlist */ // todo
-  void addSymbol() {}
+  static Database? _db;
+  static final DatabaseRepository instance = DatabaseRepository._constructor();
+
+  final String stocksTable = 'stocks';
+
+  DatabaseRepository._constructor();
+
+  /* database getter function */
+  Future<Database> get database async {
+    if (_db != null) return _db!;
+    _db = await getDatabase();
+    return _db!;
+  }
+
+  /* creates/retrieves database for stock watchlist */
+  Future<Database> getDatabase() async {
+    final dbDirPath = await getDatabasesPath();
+    final dbPath = join(dbDirPath, 'stock_watchlist.db');
+    final database = await openDatabase(
+      dbPath,
+      onCreate: (db, version) {
+        db.execute('''
+        CREATE TABLE $stocksTable(
+          tickerSymbol TEXT PRIMARY KEY, companyName TEXT, companyDescription TEXT,
+          tickerPrice REAL, dayChangeDollars REAL, dayChangePercentage REAL,
+          exchange TEXT, low52Week REAL, high52Week REAL, activeTracking INTEGER DEFAULT 1
+        )
+        ''');
+      },
+      version: 1,
+    );
+    return database;
+  }
+
+  /* retrieves a list of all the watchlist stocks on the database  */
+  Future<List<StockEntity>> getStockSymbols() async {
+    final db = await database;
+    final data = await db.query(stocksTable);
+
+    List<StockEntity> stocks = data
+        .map(
+          (stock) => StockEntity(
+              ticker: stock['ticker'] as String,
+              companyName: stock['companyName'] as String,
+              companyDescription: stock['companyDescription'] as String,
+              tickerPrice: stock['tickerPrice'] as double,
+              dayChangeDollars: stock['dayChangeDollars'] as double,
+              dayChangePercentage: stock['dayChangePercentage'] as double,
+              exchange: stock['exchange'] as String,
+              low52Week: stock['low52Week'] as double,
+              high52Week: stock['high52Week'] as double,
+              activeTracking: stock['activeTracking'] as bool),
+        )
+        .toList();
+
+    return stocks;
+  }
+
+  /* calls the twelve data API for a stock symbol and returns a Stock Entity with updated info */ // todo
+  StockEntity retrieveStockDataFromTwelveDataAPI(String tickerSymbol) {
+    StockEntity?
+        updatedStockData; // ! find within database first; return null if new stock being added
+
+    updatedStockData!.ticker = tickerSymbol;
+    updatedStockData.companyName = 'company name';
+    updatedStockData.companyDescription = 'company description';
+    updatedStockData.tickerPrice = 78.21;
+    updatedStockData.dayChangeDollars = 3.2;
+    updatedStockData.dayChangePercentage = 0.12;
+    updatedStockData.exchange = 'NASDAQ example';
+    updatedStockData.low52Week = 45.34;
+    updatedStockData.high52Week = 112.03;
+    updatedStockData.activeTracking = true;
+
+    return updatedStockData;
+  }
+
+  /* adds a stock symbol to the watchlist */
+  void addSymbol(String stockSymbol) async {
+    StockEntity addingStock = retrieveStockDataFromTwelveDataAPI(stockSymbol);
+
+    final db = await database;
+    await db.insert(stocksTable, {
+      'ticker': addingStock.ticker,
+      'companyName': addingStock.companyName,
+      'companyDescription': addingStock.companyDescription,
+      'tickerPrice': addingStock.tickerPrice,
+      'dayChangeDollars': addingStock.dayChangeDollars,
+      'dayChangePercentage': addingStock.dayChangePercentage,
+      'exchange': addingStock.exchange,
+      'low52Week': addingStock.low52Week,
+      'high52Week': addingStock.high52Week,
+      'activeTracking': addingStock.activeTracking,
+    });
+  }
 
   /* removes a stock symbol from the watchlist */ // todo
-  void removeSymbol() {}
+  // void removeSymbol(String stockSymbol) async {
+  // await stockDB
+  //     .rawDelete('DELETE FROM stocks WHERE tickerSymbol = ?', [stockSymbol]);
+  // }
 
   /* routine update to stock data (ex: PPS/Day Change) */ // todo
-  void updateSymbolData() {}
+  // void updateSymbolData() {}
 
   /* updates stock symbol toggle to receive updates */ // todo
-  void updateSymbolToggle(StockEntity tickerSymbol) {}
+  // void updateSymbolToggle(StockEntity tickerSymbol) {}
 
   /* clears the watchlist */ // todo
-  void clearWatchlist() {}
+  // void clearWatchlist() async {
+  // await stockDB.rawDelete('DELETE * FROM stocks');
+  // }
 
   /* returns stock symbols on the watchlist */ // todo
-  List<StockEntity> getWatchlist() {
-    List<StockEntity> updatedWatchlist = [];
-    return updatedWatchlist;
-  }
+  // Future<List<StockEntity>> getWatchlist() async {
+  //   final List<Map<String, Object?>> stockMaps = await stockDB.query('stocks');
+
+  //   return [
+  //     for (final {
+  //           'tickerSymbol': tickerSymbol as String,
+  //           'companyName': companyName as String,
+  //           'companyDescription': companyDescription as String,
+  //           'tickerPrice': tickerPrice as double,
+  //           'dayChangeDollars': dayChangeDollars as double,
+  //           'dayChangePercentage': dayChangePercentage as double,
+  //           'exchange': exchange as String,
+  //           'low52Week': low52Week as double,
+  //           'high52Week': high52Week as double,
+  //           'activeTracking': activeTracking as int,
+  //         } in stockMaps)
+  //       StockEntity(
+  //         tickerSymbol: tickerSymbol,
+  //         companyName: companyName,
+  //         companyDescription: companyDescription,
+  //         tickerPrice: tickerPrice,
+  //         dayChangeDollars: dayChangeDollars,
+  //         dayChangePercentage: dayChangePercentage,
+  //         exchange: exchange,
+  //         low52Week: low52Week,
+  //         high52Week: high52Week,
+  //         activeTracking: (activeTracking == 0 ? false : true),
+  //       )
+  //   ];
+  // }
 
   /* returns an updated watchlist sorted based on algorithm provided */ // todo
-  List<StockEntity> sortWatchlist(
-      List<StockEntity> watchlist, String sortAlgorithm) {
-    List<StockEntity> sortedWatchlist = [];
-    return sortedWatchlist;
-  }
+  // List<StockEntity> sortWatchlist(
+  //     List<StockEntity> watchlist, String sortAlgorithm) {
+  //   List<StockEntity> sortedWatchlist = [];
+  //   return sortedWatchlist;
+  // }
 }

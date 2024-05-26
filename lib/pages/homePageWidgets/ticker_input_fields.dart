@@ -40,11 +40,15 @@ class TickerInputFields extends StatelessWidget {
           border: InputBorder.none,
           enabledBorder: UnderlineInputBorder(
             borderSide: BorderSide(
-                color: Theme.of(context).colorScheme.secondary, width: 3),
+              color: Theme.of(context).colorScheme.secondary,
+              width: 3,
+            ),
           ),
           focusedBorder: UnderlineInputBorder(
             borderSide: BorderSide(
-                color: Theme.of(context).colorScheme.primary, width: 3),
+              color: Theme.of(context).colorScheme.primary,
+              width: 3,
+            ),
           ),
           hintText: 'Ticker Symbol',
           hintStyle: TextStyle(

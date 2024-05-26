@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:stock_alert/pages/homePageWidgets/stock_entity.dart';
 
 import 'pages/home.dart';
 import './theme.dart';
+import 'package:stock_alert/database_repository.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // * preferences
   final SharedPreferences prefs = await SharedPreferences.getInstance();
 
   /* loads settings from device preferences */
@@ -34,14 +38,20 @@ Future<void> main() async {
   final TimeOfDay startupNotification3 =
       TimeOfDay(hour: tod3Hours, minute: tod3Minutes);
 
+  // * database
+  final DatabaseRepository repo = DatabaseRepository.instance;
+  List<StockEntity> watchlist = await repo.getStockSymbols();
+
   runApp(MyApp(
-      startupSortAlgorithm,
-      startupNotificationToggledOn,
-      startupThresholdValue,
-      startupNotificationQuantity,
-      startupNotification1,
-      startupNotification2,
-      startupNotification3));
+    startupSortAlgorithm,
+    startupNotificationToggledOn,
+    startupThresholdValue,
+    startupNotificationQuantity,
+    startupNotification1,
+    startupNotification2,
+    startupNotification3,
+    watchlist,
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -52,6 +62,7 @@ class MyApp extends StatelessWidget {
   final TimeOfDay startupNotification1;
   final TimeOfDay startupNotification2;
   final TimeOfDay startupNotification3;
+  final List<StockEntity> watchlist;
 
   const MyApp(
       this.startupSortAlgorithm,
@@ -61,22 +72,26 @@ class MyApp extends StatelessWidget {
       this.startupNotification1,
       this.startupNotification2,
       this.startupNotification3,
+      this.watchlist,
       {super.key});
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: lightMode,
-        darkTheme: darkMode,
-        home: HomePage(
-            startupSortAlgorithm,
-            startupNotificationToggledOn,
-            startupThresholdValue,
-            startupNotificationQuantity,
-            startupNotification1,
-            startupNotification2,
-            startupNotification3));
+      debugShowCheckedModeBanner: false,
+      theme: lightMode,
+      darkTheme: darkMode,
+      home: HomePage(
+        startupSortAlgorithm,
+        startupNotificationToggledOn,
+        startupThresholdValue,
+        startupNotificationQuantity,
+        startupNotification1,
+        startupNotification2,
+        startupNotification3,
+        watchlist,
+      ),
+    );
   }
 }

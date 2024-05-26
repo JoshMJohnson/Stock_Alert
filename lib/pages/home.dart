@@ -16,6 +16,7 @@ class HomePage extends StatefulWidget {
   final TimeOfDay startupNotification1;
   final TimeOfDay startupNotification2;
   final TimeOfDay startupNotification3;
+  final List<StockEntity> watchlist;
 
   const HomePage(
       this.startupSortAlgorithm,
@@ -25,25 +26,28 @@ class HomePage extends StatefulWidget {
       this.startupNotification1,
       this.startupNotification2,
       this.startupNotification3,
+      this.watchlist,
       {super.key});
 
   @override
   State<HomePage> createState() =>
       // ignore: no_logic_in_create_state
       _HomePageState(
-          startupSortAlgorithm,
-          startupNotificationToggledOn,
-          startupThresholdValue,
-          startupNotificationQuantity,
-          startupNotification1,
-          startupNotification2,
-          startupNotification3);
+        startupSortAlgorithm,
+        startupNotificationToggledOn,
+        startupThresholdValue,
+        startupNotificationQuantity,
+        startupNotification1,
+        startupNotification2,
+        startupNotification3,
+        watchlist,
+      );
 }
 
 class _HomePageState extends State<HomePage> {
   /* home page variables */
   String currentTicker = '';
-  late List<StockEntity> watchlist; // todo load from Firebase
+  List<StockEntity> watchlist; // todo load from Firebase
 
   /* settings variables used for quick load time for settings page */
   String sortAlgorithm;
@@ -68,119 +72,16 @@ class _HomePageState extends State<HomePage> {
     super.initState();
   }
 
-  // ! begin of testing code
-  final StockEntity stock1 = StockEntity(
-      ticker: 'AAPL',
-      companyName: 'Apple Inc.',
-      companyDescription:
-          'It designs, develops, and sells consumer electronics, computer software, and online services. Devices include the iPhone, iPad, Mac, Apple Watch, Vision Pro, and Apple TV; operating systems include iOS, iPadOS, and macOS; and software applications and services include iTunes, iCloud, Apple Music, and Apple TV',
-      tickerPrice: 189.87,
-      dayChangeDollars: -12.53,
-      dayChangePercentage: -0.93,
-      exchange: 'NASDAQ',
-      low52Week: 75.32,
-      high52Week: 193.97);
-
-  final StockEntity stock2 = StockEntity(
-      ticker: 'MSFTF',
-      companyName: 'Microsoft Corp.',
-      companyDescription: '',
-      tickerPrice: 411.38,
-      dayChangeDollars: -2.68,
-      dayChangePercentage: -0.08,
-      exchange: 'NYSE',
-      low52Week: 75.32,
-      high52Week: 153.97);
-
-  final StockEntity stock3 = StockEntity(
-      ticker: 'SNDL',
-      companyName: 'This is the Sundile company',
-      companyDescription: '',
-      tickerPrice: 189.00,
-      dayChangeDollars: 43.00,
-      dayChangePercentage: 10.00,
-      exchange: 'CBA',
-      low52Week: 75.32,
-      high52Week: 153.97);
-
-  final StockEntity stock4 = StockEntity(
-      ticker: 'SPOT',
-      companyName: 'Spotify',
-      companyDescription: '',
-      tickerPrice: 4,
-      dayChangeDollars: -17,
-      dayChangePercentage: -13,
-      exchange: 'NASDAQ',
-      low52Week: 75.32,
-      high52Week: 153.97);
-
-  final StockEntity stock5 = StockEntity(
-      ticker: 'OGI',
-      companyName: 'Organic Company',
-      companyDescription: '',
-      tickerPrice: 4.90,
-      dayChangeDollars: 4.90,
-      dayChangePercentage: 4.90,
-      exchange: 'NYSE',
-      low52Week: 75.32,
-      high52Week: 153.97);
-
-  final StockEntity stock6 = StockEntity(
-      ticker: 'ADBE',
-      companyName: 'Adobe',
-      companyDescription:
-          'Founded 40 years ago on the simple idea of creating innovative products that change the world, Adobe offers groundbreaking technology that empowers everyone, everywhere to imagine, create, and bring any digital experience to life.',
-      tickerPrice: 483.43,
-      dayChangeDollars: 0.55,
-      dayChangePercentage: 0.11,
-      exchange: 'NASDAQ',
-      low52Week: 356.45,
-      high52Week: 638.25);
-
-  final StockEntity stock7 = StockEntity(
-      ticker: 'BA',
-      companyName: 'Boeing Co',
-      companyDescription: '',
-      tickerPrice: 184.95,
-      dayChangeDollars: 1.99,
-      dayChangePercentage: 1.09,
-      exchange: 'NYSE',
-      low52Week: 75.32,
-      high52Week: 153.97);
-
-  final StockEntity stock8 = StockEntity(
-      ticker: 'BE',
-      companyName: 'Bloom Energy Corp',
-      companyDescription: '',
-      tickerPrice: 12.33,
-      dayChangeDollars: 0.1,
-      dayChangePercentage: 0.82,
-      exchange: 'NYSE',
-      low52Week: 75.32,
-      high52Week: 153.97);
-
-  final StockEntity stock9 = StockEntity(
-      ticker: 'DIS',
-      companyName: 'Walt Disney Co',
-      companyDescription: '',
-      tickerPrice: 112.31,
-      dayChangeDollars: -.11,
-      dayChangePercentage: -.09,
-      exchange: 'NASDAQ',
-      low52Week: 75.32,
-      high52Week: 153.97);
-
-  List<StockEntity> testingList = [];
-  // ! end of testing code
-
   _HomePageState(
-      this.sortAlgorithm,
-      this.notificationToggledOn,
-      this.thresholdValue,
-      this.notificationQuantity,
-      this.notification1,
-      this.notification2,
-      this.notification3);
+    this.sortAlgorithm,
+    this.notificationToggledOn,
+    this.thresholdValue,
+    this.notificationQuantity,
+    this.notification1,
+    this.notification2,
+    this.notification3,
+    this.watchlist,
+  );
 
   /* executes when navigator pops Settings -> Home; updates preference variables */
   settingsToHomeHandler() async {
@@ -253,11 +154,11 @@ class _HomePageState extends State<HomePage> {
     debugPrint('*********************Updating sort algorithm!');
 
     if (sortAlgorithm == 'Alphabetically') {
-      testingList.sort((a, b) => a.ticker.compareTo(b.ticker));
+      watchlist.sort((a, b) => a.ticker.compareTo(b.ticker));
     } else if (sortAlgorithm == 'Ticker Price') {
-      testingList.sort((a, b) => b.tickerPrice.compareTo(a.tickerPrice));
+      watchlist.sort((a, b) => b.tickerPrice.compareTo(a.tickerPrice));
     } else {
-      testingList.sort(
+      watchlist.sort(
           (a, b) => b.dayChangePercentage.compareTo(a.dayChangePercentage));
     }
   }
@@ -315,18 +216,6 @@ class _HomePageState extends State<HomePage> {
 
   /* body widget of settings page */
   Container homeBody(BuildContext context) {
-    testingList = [
-      stock1,
-      stock2,
-      stock3,
-      stock4,
-      stock5,
-      stock6,
-      stock7,
-      stock8,
-      stock9
-    ];
-
     updateWatchlistDisplaySortAlgorithm(); // ! seems like the wrong location; called on text field typing
 
     return Container(
@@ -371,7 +260,7 @@ class _HomePageState extends State<HomePage> {
             child: StockWatchlist(
               removeTicker,
               updateActiveTracking,
-              testingList,
+              watchlist,
             ),
           ),
           Text(

@@ -31,8 +31,9 @@ class StockWatchlist extends StatelessWidget {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) =>
-                            TickerPage(removeTicker, watchlist[index])));
+                      builder: (context) =>
+                          TickerPage(removeTicker, watchlist[index]),
+                    ));
               },
               leading: Switch(
                 activeColor: const Color(0xFFA5D6A7),

@@ -8,7 +8,7 @@ class StockEntity {
   String exchange;
   double low52Week;
   double high52Week;
-  bool activeTracking = true;
+  bool activeTracking;
 
   StockEntity({
     required this.ticker,
@@ -20,5 +20,6 @@ class StockEntity {
     required this.exchange,
     required this.low52Week,
     required this.high52Week,
+    required this.activeTracking,
   });
 }
