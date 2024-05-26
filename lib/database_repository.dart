@@ -28,7 +28,7 @@ class DatabaseRepository {
       onCreate: (db, version) {
         db.execute('''
         CREATE TABLE $stocksTable(
-          tickerSymbol TEXT PRIMARY KEY, companyName TEXT, companyDescription TEXT,
+          ticker TEXT PRIMARY KEY, companyName TEXT, companyDescription TEXT,
           tickerPrice REAL, dayChangeDollars REAL, dayChangePercentage REAL,
           exchange TEXT, low52Week REAL, high52Week REAL, activeTracking INTEGER DEFAULT 1
         )
@@ -47,16 +47,18 @@ class DatabaseRepository {
     List<StockEntity> stocks = data
         .map(
           (stock) => StockEntity(
-              ticker: stock['ticker'] as String,
-              companyName: stock['companyName'] as String,
-              companyDescription: stock['companyDescription'] as String,
-              tickerPrice: stock['tickerPrice'] as double,
-              dayChangeDollars: stock['dayChangeDollars'] as double,
-              dayChangePercentage: stock['dayChangePercentage'] as double,
-              exchange: stock['exchange'] as String,
-              low52Week: stock['low52Week'] as double,
-              high52Week: stock['high52Week'] as double,
-              activeTracking: stock['activeTracking'] as bool),
+            ticker: stock['ticker'] as String,
+            companyName: stock['companyName'] as String,
+            companyDescription: stock['companyDescription'] as String,
+            tickerPrice: stock['tickerPrice'] as double,
+            dayChangeDollars: stock['dayChangeDollars'] as double,
+            dayChangePercentage: stock['dayChangePercentage'] as double,
+            exchange: stock['exchange'] as String,
+            low52Week: stock['low52Week'] as double,
+            high52Week: stock['high52Week'] as double,
+            activeTracking:
+                (stock['activeTracking'] as int) == 1 ? true : false,
+          ),
         )
         .toList();
 
@@ -65,19 +67,18 @@ class DatabaseRepository {
 
   /* calls the twelve data API for a stock symbol and returns a Stock Entity with updated info */ // todo
   StockEntity retrieveStockDataFromTwelveDataAPI(String tickerSymbol) {
-    StockEntity?
-        updatedStockData; // ! find within database first; return null if new stock being added
-
-    updatedStockData!.ticker = tickerSymbol;
-    updatedStockData.companyName = 'company name';
-    updatedStockData.companyDescription = 'company description';
-    updatedStockData.tickerPrice = 78.21;
-    updatedStockData.dayChangeDollars = 3.2;
-    updatedStockData.dayChangePercentage = 0.12;
-    updatedStockData.exchange = 'NASDAQ example';
-    updatedStockData.low52Week = 45.34;
-    updatedStockData.high52Week = 112.03;
-    updatedStockData.activeTracking = true;
+    StockEntity? updatedStockData = StockEntity(
+        ticker: tickerSymbol,
+        companyName: 'company name',
+        companyDescription: 'company description',
+        tickerPrice: 78.21,
+        dayChangeDollars: 3.2,
+        dayChangePercentage: 0.12,
+        exchange: 'NASDAQ example',
+        low52Week: 45.34,
+        high52Week: 112.03,
+        activeTracking:
+            true); // ! find within database first; return null if new stock being added
 
     return updatedStockData;
   }

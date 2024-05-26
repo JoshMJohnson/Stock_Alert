@@ -52,9 +52,10 @@ class TickerInputFields extends StatelessWidget {
           ),
           hintText: 'Ticker Symbol',
           hintStyle: TextStyle(
-              color: Theme.of(context).hintColor,
-              fontSize: 22,
-              fontWeight: FontWeight.normal),
+            color: Theme.of(context).hintColor,
+            fontSize: 22,
+            fontWeight: FontWeight.normal,
+          ),
         ),
       ),
     );

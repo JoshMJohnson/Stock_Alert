@@ -7,6 +7,7 @@ import 'package:stock_alert/pages/settings.dart';
 import 'package:stock_alert/pages/homePageWidgets/ticker_input_fields.dart';
 import 'package:stock_alert/pages/homePageWidgets/sort_input_fields.dart';
 import 'package:stock_alert/pages/homePageWidgets/stock_entity.dart';
+import 'package:stock_alert/database_repository.dart';
 
 class HomePage extends StatefulWidget {
   final String startupSortAlgorithm;
@@ -121,10 +122,14 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  /* handles adding ticker from text field to watchlist */ // todo
+  /* handles adding ticker from text field to watchlist */
   void addTicker() {
     debugPrint(
         'Add stock ticker button pressed... currentTicker: $currentTicker');
+
+    final DatabaseRepository repo = DatabaseRepository.instance;
+    repo.addSymbol(currentTicker);
+    // todo refresh watchlist
   }
 
   /* handles removing ticker from text field to watchlist */ // todo
