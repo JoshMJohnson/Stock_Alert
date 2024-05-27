@@ -141,7 +141,7 @@ class TickerInputFields extends StatelessWidget {
     );
   }
 
-  /* button to remove a stock ticker from the watchlist */
+  /* button to remove a stock ticker from the watchlist */ // todo create alert similar to add
   GestureDetector removeTickerButton(BuildContext context) {
     return GestureDetector(
       onTap: () => removeTicker(currentTicker),
