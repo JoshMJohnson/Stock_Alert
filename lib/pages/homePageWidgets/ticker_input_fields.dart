@@ -138,7 +138,7 @@ class TickerInputFields extends StatelessWidget {
                                       .buttonTheme
                                       .colorScheme!
                                       .secondary,
-                                  fontSize: 20,
+                                  fontSize: 24,
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
@@ -147,7 +147,7 @@ class TickerInputFields extends StatelessWidget {
                               onTap: () => Navigator.pop(context),
                               child: Icon(
                                 Icons.cancel_outlined,
-                                size: 35,
+                                size: 40,
                                 color: Theme.of(context).iconTheme.color,
                               ),
                             ),
