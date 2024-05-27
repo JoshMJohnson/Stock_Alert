@@ -93,7 +93,12 @@ class TickerInputFields extends StatelessWidget {
                   child: Row(
                     children: [
                       ElevatedButton(
-                        onPressed: addTicker,
+                        onPressed: () {
+                          addTicker();
+                          Navigator.pop(context); // close alert window
+                          FocusManager.instance.primaryFocus
+                              ?.unfocus(); // close keyboard visibility
+                        },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Theme.of(context)
                               .buttonTheme
