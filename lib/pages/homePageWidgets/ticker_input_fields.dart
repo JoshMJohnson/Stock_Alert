@@ -75,7 +75,7 @@ class TickerInputFields extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
       child: GestureDetector(
-        onTap: () => currentTicker.length != 0
+        onTap: () => currentTicker.isNotEmpty
             ? showDialog(
                 context: context,
                 builder: (_) => AlertDialog(
@@ -91,55 +91,68 @@ class TickerInputFields extends StatelessWidget {
                   content: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Text(
-                        currentTicker,
-                        style: TextStyle(
-                          color: Theme.of(context).colorScheme.tertiary,
-                          fontSize: 34,
-                          fontWeight: FontWeight.w600,
+                      Container(
+                        padding: const EdgeInsets.all(20),
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Theme.of(context).colorScheme.primary,
+                            width: 5,
+                          ),
+                        ),
+                        child: Text(
+                          currentTicker,
+                          style: TextStyle(
+                            color: Theme.of(context).colorScheme.tertiary,
+                            fontSize: 34,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
                       ),
-                      Row(
-                        children: [
-                          ElevatedButton(
-                            onPressed: () {
-                              addTicker();
-                              Navigator.pop(context); // close alert window
-                              FocusManager.instance.primaryFocus
-                                  ?.unfocus(); // close keyboard visibility
-                            },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Theme.of(context)
-                                  .buttonTheme
-                                  .colorScheme!
-                                  .background,
-                              foregroundColor: Theme.of(context)
-                                  .buttonTheme
-                                  .colorScheme!
-                                  .primary,
-                            ),
-                            child: Text(
-                              'Add',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Theme.of(context)
+                      Padding(
+                        padding: const EdgeInsets.only(top: 20),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            ElevatedButton(
+                              onPressed: () {
+                                addTicker();
+                                Navigator.pop(context); // close alert window
+                                FocusManager.instance.primaryFocus
+                                    ?.unfocus(); // close keyboard visibility
+                              },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Theme.of(context)
                                     .buttonTheme
                                     .colorScheme!
-                                    .secondary,
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600,
+                                    .background,
+                                foregroundColor: Theme.of(context)
+                                    .buttonTheme
+                                    .colorScheme!
+                                    .primary,
+                              ),
+                              child: Text(
+                                'Add',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Theme.of(context)
+                                      .buttonTheme
+                                      .colorScheme!
+                                      .secondary,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w600,
+                                ),
                               ),
                             ),
-                          ),
-                          GestureDetector(
-                            onTap: () => Navigator.pop(context),
-                            child: Icon(
-                              Icons.cancel_outlined,
-                              size: 35,
-                              color: Theme.of(context).iconTheme.color,
+                            GestureDetector(
+                              onTap: () => Navigator.pop(context),
+                              child: Icon(
+                                Icons.cancel_outlined,
+                                size: 35,
+                                color: Theme.of(context).iconTheme.color,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ],
                   ),
