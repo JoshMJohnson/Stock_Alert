@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class TickerInputFields extends StatelessWidget {
   final Function(String) tickerFieldHandler;
@@ -78,10 +79,56 @@ class TickerInputFields extends StatelessWidget {
         onTap: () => showDialog(
           context: context,
           builder: (_) => AlertDialog(
-            title: Text('Add Ticker Symbol'),
+            title: const Text(
+              'Add Ticker Symbol',
+              textAlign: TextAlign.center,
+            ),
             content: Column(
               mainAxisSize: MainAxisSize.min,
-              children: [],
+              children: [
+                Text(
+                  currentTicker,
+                ),
+                Center(
+                  child: Row(
+                    children: [
+                      ElevatedButton(
+                        onPressed: addTicker,
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Theme.of(context)
+                              .buttonTheme
+                              .colorScheme!
+                              .background,
+                          foregroundColor: Theme.of(context)
+                              .buttonTheme
+                              .colorScheme!
+                              .primary,
+                        ),
+                        child: Text(
+                          'Confirm',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Theme.of(context)
+                                .buttonTheme
+                                .colorScheme!
+                                .secondary,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () => Navigator.pop(context),
+                        child: Icon(
+                          Icons.cancel_presentation,
+                          size: 35,
+                          color: Theme.of(context).iconTheme.color,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
           ),
         ),
