@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class TickerInputFields extends StatelessWidget {
   final Function(String) tickerFieldHandler;
@@ -76,67 +75,73 @@ class TickerInputFields extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
       child: GestureDetector(
-        onTap: () => showDialog(
-          context: context,
-          builder: (_) => AlertDialog(
-            title: const Text(
-              'Add Ticker Symbol',
-              textAlign: TextAlign.center,
-            ),
-            content: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  currentTicker,
-                ),
-                Center(
-                  child: Row(
+        onTap: () => currentTicker.length != 0
+            ? showDialog(
+                context: context,
+                builder: (_) => AlertDialog(
+                  title: const Text(
+                    'Add Ticker Symbol',
+                    textAlign: TextAlign.center,
+                  ),
+                  content: Column(
+                    mainAxisSize: MainAxisSize.min,
                     children: [
-                      ElevatedButton(
-                        onPressed: () {
-                          addTicker();
-                          Navigator.pop(context); // close alert window
-                          FocusManager.instance.primaryFocus
-                              ?.unfocus(); // close keyboard visibility
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Theme.of(context)
-                              .buttonTheme
-                              .colorScheme!
-                              .background,
-                          foregroundColor: Theme.of(context)
-                              .buttonTheme
-                              .colorScheme!
-                              .primary,
-                        ),
-                        child: Text(
-                          'Confirm',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Theme.of(context)
-                                .buttonTheme
-                                .colorScheme!
-                                .secondary,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
+                      Text(
+                        currentTicker,
                       ),
-                      GestureDetector(
-                        onTap: () => Navigator.pop(context),
-                        child: Icon(
-                          Icons.cancel_presentation,
-                          size: 35,
-                          color: Theme.of(context).iconTheme.color,
+                      Center(
+                        child: Row(
+                          children: [
+                            ElevatedButton(
+                              onPressed: () {
+                                addTicker();
+                                Navigator.pop(context); // close alert window
+                                FocusManager.instance.primaryFocus
+                                    ?.unfocus(); // close keyboard visibility
+                              },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Theme.of(context)
+                                    .buttonTheme
+                                    .colorScheme!
+                                    .background,
+                                foregroundColor: Theme.of(context)
+                                    .buttonTheme
+                                    .colorScheme!
+                                    .primary,
+                              ),
+                              child: Text(
+                                'Confirm',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Theme.of(context)
+                                      .buttonTheme
+                                      .colorScheme!
+                                      .secondary,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: () => Navigator.pop(context),
+                              child: Icon(
+                                Icons.cancel_presentation,
+                                size: 35,
+                                color: Theme.of(context).iconTheme.color,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ],
                   ),
                 ),
-              ],
-            ),
-          ),
-        ),
+              )
+            : Icon(
+                Icons.playlist_add,
+                size: 45,
+                color: Theme.of(context).iconTheme.color,
+              ),
         child: Icon(
           Icons.playlist_add,
           size: 45,
