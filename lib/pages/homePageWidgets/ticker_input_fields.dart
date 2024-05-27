@@ -80,7 +80,7 @@ class TickerInputFields extends StatelessWidget {
                 context: context,
                 builder: (_) => AlertDialog(
                   title: Text(
-                    'Ticker Symbol',
+                    'Add Ticker Symbol',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Theme.of(context).textTheme.headlineMedium!.color,
