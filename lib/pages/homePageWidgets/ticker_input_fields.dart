@@ -122,7 +122,7 @@ class TickerInputFields extends StatelessWidget {
                               },
                               child: Icon(
                                 Icons.check_circle_outline,
-                                size: 50,
+                                size: 60,
                                 color: Theme.of(context).iconTheme.color,
                               ),
                             ),
@@ -130,7 +130,7 @@ class TickerInputFields extends StatelessWidget {
                               onTap: () => Navigator.pop(context),
                               child: Icon(
                                 Icons.cancel_outlined,
-                                size: 50,
+                                size: 60,
                                 color: Theme.of(context).iconTheme.color,
                               ),
                             ),
