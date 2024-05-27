@@ -106,7 +106,8 @@ class TickerInputFields extends StatelessWidget {
                           style: TextStyle(
                             color: Theme.of(context).colorScheme.tertiary,
                             fontSize: 34,
-                            fontWeight: FontWeight.w600,
+                            fontWeight: FontWeight.w400,
+                            fontStyle: FontStyle.italic,
                           ),
                         ),
                       ),
@@ -191,7 +192,8 @@ class TickerInputFields extends StatelessWidget {
                         style: TextStyle(
                           color: Theme.of(context).colorScheme.tertiary,
                           fontSize: 34,
-                          fontWeight: FontWeight.w600,
+                          fontWeight: FontWeight.w400,
+                          fontStyle: FontStyle.italic,
                         ),
                       ),
                     ),
