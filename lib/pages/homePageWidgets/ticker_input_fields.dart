@@ -113,34 +113,17 @@ class TickerInputFields extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            ElevatedButton(
-                              onPressed: () {
-                                addTicker();
-                                Navigator.pop(context); // close alert window
+                            GestureDetector(
+                              onTap: () => {
+                                addTicker(),
+                                Navigator.pop(context), // close alert window
                                 FocusManager.instance.primaryFocus
-                                    ?.unfocus(); // close keyboard visibility
+                                    ?.unfocus(), // close keyboard visibility
                               },
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: Theme.of(context)
-                                    .buttonTheme
-                                    .colorScheme!
-                                    .background,
-                                foregroundColor: Theme.of(context)
-                                    .buttonTheme
-                                    .colorScheme!
-                                    .primary,
-                              ),
-                              child: Text(
-                                'Add',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: Theme.of(context)
-                                      .buttonTheme
-                                      .colorScheme!
-                                      .secondary,
-                                  fontSize: 24,
-                                  fontWeight: FontWeight.w600,
-                                ),
+                              child: Icon(
+                                Icons.check_circle_outline,
+                                size: 40,
+                                color: Theme.of(context).iconTheme.color,
                               ),
                             ),
                             GestureDetector(
