@@ -80,7 +80,7 @@ class TickerInputFields extends StatelessWidget {
                 context: context,
                 builder: (_) => AlertDialog(
                   title: Text(
-                    'Add Ticker Symbol',
+                    'Add\nTicker Symbol',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Theme.of(context).textTheme.headlineMedium!.color,
@@ -158,7 +158,77 @@ class TickerInputFields extends StatelessWidget {
   /* button to remove a stock ticker from the watchlist */ // todo create alert similar to add
   GestureDetector removeTickerButton(BuildContext context) {
     return GestureDetector(
-      onTap: () => removeTicker(currentTicker),
+      onTap: () => currentTicker.isNotEmpty
+          ? showDialog(
+              context: context,
+              builder: (_) => AlertDialog(
+                title: Text(
+                  'Remove\nTicker Symbol',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Theme.of(context).textTheme.headlineMedium!.color,
+                    fontSize: 28,
+                    fontWeight: FontWeight.w900,
+                  ),
+                ),
+                content: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.all(20),
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Theme.of(context).colorScheme.primary,
+                          width: 5,
+                        ),
+                      ),
+                      child: Text(
+                        currentTicker,
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.tertiary,
+                          fontSize: 34,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 20),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          GestureDetector(
+                            onTap: () => {
+                              removeTicker(currentTicker),
+                              Navigator.pop(context), // close alert window
+                              FocusManager.instance.primaryFocus
+                                  ?.unfocus(), // close keyboard visibility
+                            },
+                            child: Icon(
+                              Icons.check_circle_outline,
+                              size: 60,
+                              color: Theme.of(context).iconTheme.color,
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () => Navigator.pop(context),
+                            child: Icon(
+                              Icons.cancel_outlined,
+                              size: 60,
+                              color: Theme.of(context).iconTheme.color,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            )
+          : Icon(
+              Icons.playlist_remove,
+              size: 45,
+              color: Theme.of(context).iconTheme.color,
+            ),
       child: Icon(
         Icons.playlist_remove,
         size: 45,
