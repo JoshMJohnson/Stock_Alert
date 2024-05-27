@@ -79,59 +79,67 @@ class TickerInputFields extends StatelessWidget {
             ? showDialog(
                 context: context,
                 builder: (_) => AlertDialog(
-                  title: const Text(
-                    'Add Ticker Symbol',
+                  title: Text(
+                    'Ticker Symbol',
                     textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Theme.of(context).textTheme.headlineMedium!.color,
+                      fontSize: 28,
+                      fontWeight: FontWeight.w900,
+                    ),
                   ),
                   content: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
                         currentTicker,
-                      ),
-                      Center(
-                        child: Row(
-                          children: [
-                            ElevatedButton(
-                              onPressed: () {
-                                addTicker();
-                                Navigator.pop(context); // close alert window
-                                FocusManager.instance.primaryFocus
-                                    ?.unfocus(); // close keyboard visibility
-                              },
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: Theme.of(context)
-                                    .buttonTheme
-                                    .colorScheme!
-                                    .background,
-                                foregroundColor: Theme.of(context)
-                                    .buttonTheme
-                                    .colorScheme!
-                                    .primary,
-                              ),
-                              child: Text(
-                                'Confirm',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: Theme.of(context)
-                                      .buttonTheme
-                                      .colorScheme!
-                                      .secondary,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                            ),
-                            GestureDetector(
-                              onTap: () => Navigator.pop(context),
-                              child: Icon(
-                                Icons.cancel_presentation,
-                                size: 35,
-                                color: Theme.of(context).iconTheme.color,
-                              ),
-                            ),
-                          ],
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.tertiary,
+                          fontSize: 34,
+                          fontWeight: FontWeight.w600,
                         ),
+                      ),
+                      Row(
+                        children: [
+                          ElevatedButton(
+                            onPressed: () {
+                              addTicker();
+                              Navigator.pop(context); // close alert window
+                              FocusManager.instance.primaryFocus
+                                  ?.unfocus(); // close keyboard visibility
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Theme.of(context)
+                                  .buttonTheme
+                                  .colorScheme!
+                                  .background,
+                              foregroundColor: Theme.of(context)
+                                  .buttonTheme
+                                  .colorScheme!
+                                  .primary,
+                            ),
+                            child: Text(
+                              'Add',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Theme.of(context)
+                                    .buttonTheme
+                                    .colorScheme!
+                                    .secondary,
+                                fontSize: 20,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () => Navigator.pop(context),
+                            child: Icon(
+                              Icons.cancel_outlined,
+                              size: 35,
+                              color: Theme.of(context).iconTheme.color,
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
