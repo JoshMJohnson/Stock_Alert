@@ -91,17 +91,17 @@ class _HomePageState extends State<HomePage> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
     notificationToggledOn = prefs.getBool('notificationToggle') ?? false;
-    thresholdValue = prefs.getDouble('thresholdValue')!; // !
-    notificationQuantity = prefs.getInt('notificationQuantity')!; // !
+    thresholdValue = prefs.getDouble('thresholdValue') ?? 5.0;
+    notificationQuantity = prefs.getInt('notificationQuantity') ?? 3;
 
     /* time of day preference variables */
-    final int tod1Hours = prefs.getInt('tod1Hours')!; // !
-    final int tod2Hours = prefs.getInt('tod2Hours')!; // !
-    final int tod3Hours = prefs.getInt('tod3Hours')!; // !
+    final int tod1Hours = prefs.getInt('tod1Hours') ?? 8;
+    final int tod2Hours = prefs.getInt('tod2Hours') ?? 12;
+    final int tod3Hours = prefs.getInt('tod3Hours') ?? 14;
 
-    final int tod1Minutes = prefs.getInt('tod1Minutes')!; // !
-    final int tod2Minutes = prefs.getInt('tod2Minutes')!; // !
-    final int tod3Minutes = prefs.getInt('tod3Minutes')!; // !
+    final int tod1Minutes = prefs.getInt('tod1Minutes') ?? 45;
+    final int tod2Minutes = prefs.getInt('tod2Minutes') ?? 0;
+    final int tod3Minutes = prefs.getInt('tod3Minutes') ?? 12;
 
     notification1 = TimeOfDay(hour: tod1Hours, minute: tod1Minutes);
     notification2 = TimeOfDay(hour: tod2Hours, minute: tod2Minutes);
