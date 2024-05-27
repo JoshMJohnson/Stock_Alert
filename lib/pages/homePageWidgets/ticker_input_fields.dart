@@ -122,7 +122,7 @@ class TickerInputFields extends StatelessWidget {
                               },
                               child: Icon(
                                 Icons.check_circle_outline,
-                                size: 60,
+                                size: 55,
                                 color: Theme.of(context).iconTheme.color,
                               ),
                             ),
@@ -130,7 +130,7 @@ class TickerInputFields extends StatelessWidget {
                               onTap: () => Navigator.pop(context),
                               child: Icon(
                                 Icons.cancel_outlined,
-                                size: 60,
+                                size: 55,
                                 color: Theme.of(context).iconTheme.color,
                               ),
                             ),
@@ -205,7 +205,7 @@ class TickerInputFields extends StatelessWidget {
                             },
                             child: Icon(
                               Icons.check_circle_outline,
-                              size: 60,
+                              size: 55,
                               color: Theme.of(context).iconTheme.color,
                             ),
                           ),
@@ -213,7 +213,7 @@ class TickerInputFields extends StatelessWidget {
                             onTap: () => Navigator.pop(context),
                             child: Icon(
                               Icons.cancel_outlined,
-                              size: 60,
+                              size: 55,
                               color: Theme.of(context).iconTheme.color,
                             ),
                           ),
