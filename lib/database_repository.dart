@@ -68,17 +68,17 @@ class DatabaseRepository {
   /* calls the twelve data API for a stock symbol and returns a Stock Entity with updated info */ // todo
   StockEntity retrieveStockDataFromTwelveDataAPI(String tickerSymbol) {
     StockEntity? updatedStockData = StockEntity(
-        ticker: tickerSymbol,
-        companyName: 'company name',
-        companyDescription: 'company description',
-        tickerPrice: 78.21,
-        dayChangeDollars: 3.2,
-        dayChangePercentage: 0.12,
-        exchange: 'NASDAQ example',
-        low52Week: 45.34,
-        high52Week: 112.03,
-        activeTracking:
-            true); // ! find within database first; return null if new stock being added
+      ticker: tickerSymbol,
+      companyName: 'company name',
+      companyDescription: 'company description',
+      tickerPrice: 78.21,
+      dayChangeDollars: 3.2,
+      dayChangePercentage: 0.12,
+      exchange: 'NASDAQ example',
+      low52Week: 45.34,
+      high52Week: 112.03,
+      activeTracking: true,
+    ); // ! find within database first; return null if new stock being added
 
     return updatedStockData;
   }
