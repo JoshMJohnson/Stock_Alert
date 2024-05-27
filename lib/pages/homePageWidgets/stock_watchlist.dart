@@ -5,7 +5,7 @@ import '../ticker.dart';
 
 class StockWatchlist extends StatelessWidget {
   final Function(String) removeTicker;
-  final Function(bool, StockEntity) updateActiveTracking;
+  final Function(String, bool) updateActiveTracking;
   final List<StockEntity> watchlist;
   const StockWatchlist(
       this.removeTicker, this.updateActiveTracking, this.watchlist,
@@ -50,8 +50,8 @@ class StockWatchlist extends StatelessWidget {
                   },
                 ),
                 value: watchlist[index].activeTracking,
-                onChanged: (bool updatedSwitchValue) =>
-                    updateActiveTracking(updatedSwitchValue, watchlist[index]),
+                onChanged: (bool updatedSwitchValue) => updateActiveTracking(
+                    watchlist[index].ticker, updatedSwitchValue),
               ),
               title: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

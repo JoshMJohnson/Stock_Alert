@@ -102,6 +102,17 @@ class DatabaseRepository {
     });
   }
 
+  /* updates the stock toggle within the database */
+  void updateStockToggle(String tickerSymbol, bool toggleValue) async {
+    final db = await database;
+    await db.update(
+      stocksTable,
+      {'activeTracking': toggleValue},
+      where: 'ticker = ?',
+      whereArgs: [tickerSymbol],
+    );
+  }
+
   /* removes a stock symbol from the watchlist */ // todo
   // void removeSymbol(String stockSymbol) async {
   // await stockDB

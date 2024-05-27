@@ -90,18 +90,18 @@ class _HomePageState extends State<HomePage> {
   settingsToHomeHandler() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    notificationToggledOn = prefs.getBool('notificationToggle')!;
-    thresholdValue = prefs.getDouble('thresholdValue')!;
-    notificationQuantity = prefs.getInt('notificationQuantity')!;
+    notificationToggledOn = prefs.getBool('notificationToggle') ?? false;
+    thresholdValue = prefs.getDouble('thresholdValue')!; // !
+    notificationQuantity = prefs.getInt('notificationQuantity')!; // !
 
     /* time of day preference variables */
-    final int tod1Hours = prefs.getInt('tod1Hours')!;
-    final int tod2Hours = prefs.getInt('tod2Hours')!;
-    final int tod3Hours = prefs.getInt('tod3Hours')!;
+    final int tod1Hours = prefs.getInt('tod1Hours')!; // !
+    final int tod2Hours = prefs.getInt('tod2Hours')!; // !
+    final int tod3Hours = prefs.getInt('tod3Hours')!; // !
 
-    final int tod1Minutes = prefs.getInt('tod1Minutes')!;
-    final int tod2Minutes = prefs.getInt('tod2Minutes')!;
-    final int tod3Minutes = prefs.getInt('tod3Minutes')!;
+    final int tod1Minutes = prefs.getInt('tod1Minutes')!; // !
+    final int tod2Minutes = prefs.getInt('tod2Minutes')!; // !
+    final int tod3Minutes = prefs.getInt('tod3Minutes')!; // !
 
     notification1 = TimeOfDay(hour: tod1Hours, minute: tod1Minutes);
     notification2 = TimeOfDay(hour: tod2Hours, minute: tod2Minutes);
@@ -115,13 +115,10 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  /* updates active tracking toggle for stock entity */ // todo update database
-  updateActiveTracking(bool updatedActiveTracking, StockEntity stock) {
-    debugPrint('yessir... stock: ${stock.ticker}');
-
-    setState(() {
-      stock.activeTracking = updatedActiveTracking;
-    });
+  /* updates active tracking toggle for stock entity */
+  updateActiveTracking(String tickerSymbol, bool updatedActiveTracking) {
+    repo.updateStockToggle(tickerSymbol, updatedActiveTracking);
+    updateWatchlistData();
   }
 
   /* handles adding ticker from text field to watchlist */
@@ -169,10 +166,8 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
-  /* updates the watchlist stock data */ // todo
+  /* updates the watchlist stock data */
   void updateWatchlistData() async {
-    debugPrint('updateWatchlistData');
-
     watchlist = await repo.getStockSymbols();
 
     setState(() {
