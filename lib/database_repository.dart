@@ -113,11 +113,15 @@ class DatabaseRepository {
     );
   }
 
-  /* removes a stock symbol from the watchlist */ // todo
-  // void removeSymbol(String stockSymbol) async {
-  // await stockDB
-  //     .rawDelete('DELETE FROM stocks WHERE tickerSymbol = ?', [stockSymbol]);
-  // }
+  /* removes a stock symbol from the watchlist */
+  void removeSymbol(String stockSymbol) async {
+    final db = await database;
+    await db.delete(
+      stocksTable,
+      where: 'ticker = ?',
+      whereArgs: [stockSymbol],
+    );
+  }
 
   /* routine update to stock data (ex: PPS/Day Change) */ // todo
   // void updateSymbolData() {}

@@ -123,17 +123,14 @@ class _HomePageState extends State<HomePage> {
 
   /* handles adding ticker from text field to watchlist */
   void addTicker() {
-    debugPrint(
-        'Add stock ticker button pressed... currentTicker: $currentTicker');
-
     repo.addSymbol(currentTicker);
     updateWatchlistData();
   }
 
-  /* handles removing ticker from text field to watchlist */ // todo
+  /* handles removing ticker from text field to watchlist */
   void removeTicker(String removingTicker) {
-    debugPrint(
-        'Remove stock ticker button pressed... currentTicker: $removingTicker');
+    repo.removeSymbol(removingTicker);
+    updateWatchlistData();
   }
 
   /* handles the change in sort algorithm for stock watchlist */
