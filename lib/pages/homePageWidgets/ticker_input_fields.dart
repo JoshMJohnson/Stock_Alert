@@ -79,6 +79,8 @@ class TickerInputFields extends StatelessWidget {
             ? showDialog(
                 context: context,
                 builder: (_) => AlertDialog(
+                  titlePadding: const EdgeInsets.all(10),
+                  contentPadding: const EdgeInsets.all(10),
                   title: Text(
                     'Add\nTicker Symbol',
                     textAlign: TextAlign.center,
@@ -109,7 +111,7 @@ class TickerInputFields extends StatelessWidget {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(top: 20),
+                        padding: const EdgeInsets.only(top: 10),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
@@ -162,6 +164,8 @@ class TickerInputFields extends StatelessWidget {
           ? showDialog(
               context: context,
               builder: (_) => AlertDialog(
+                titlePadding: const EdgeInsets.all(10),
+                contentPadding: const EdgeInsets.all(10),
                 title: Text(
                   'Remove\nTicker Symbol',
                   textAlign: TextAlign.center,
@@ -192,7 +196,7 @@ class TickerInputFields extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 20),
+                      padding: const EdgeInsets.only(top: 10),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
