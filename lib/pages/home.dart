@@ -46,6 +46,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final DatabaseRepository repo = DatabaseRepository.instance;
+
   /* home page variables */
   String currentTicker = '';
   List<StockEntity> watchlist; // todo load from Firebase
@@ -127,9 +129,8 @@ class _HomePageState extends State<HomePage> {
     debugPrint(
         'Add stock ticker button pressed... currentTicker: $currentTicker');
 
-    final DatabaseRepository repo = DatabaseRepository.instance;
     repo.addSymbol(currentTicker);
-    // todo refresh watchlist
+    updateWatchlistData();
   }
 
   /* handles removing ticker from text field to watchlist */ // todo
@@ -155,7 +156,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   /* refreshes the stock watchlist display based on sort algorithm selected */ // todo
-  void updateWatchlistDisplaySortAlgorithm() {
+  void updateWatchlistSortAlgorithm() {
     debugPrint('*********************Updating sort algorithm!');
 
     if (sortAlgorithm == 'Alphabetically') {
@@ -166,6 +167,17 @@ class _HomePageState extends State<HomePage> {
       watchlist.sort(
           (a, b) => b.dayChangePercentage.compareTo(a.dayChangePercentage));
     }
+  }
+
+  /* updates the watchlist stock data */ // todo
+  void updateWatchlistData() async {
+    debugPrint('updateWatchlistData');
+
+    watchlist = await repo.getStockSymbols();
+
+    setState(() {
+      watchlist = watchlist;
+    });
   }
 
   @override
@@ -221,7 +233,7 @@ class _HomePageState extends State<HomePage> {
 
   /* body widget of settings page */
   Container homeBody(BuildContext context) {
-    updateWatchlistDisplaySortAlgorithm(); // ! seems like the wrong location; called on text field typing
+    updateWatchlistSortAlgorithm(); // ! seems like the wrong location; called on text field typing
 
     return Container(
       width: double.infinity,
