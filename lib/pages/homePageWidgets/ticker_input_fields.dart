@@ -79,15 +79,13 @@ class TickerInputFields extends StatelessWidget {
             ? showDialog(
                 context: context,
                 builder: (_) => AlertDialog(
-                  titlePadding: const EdgeInsets.all(10),
-                  contentPadding: const EdgeInsets.all(10),
                   title: Text(
                     'Add\nTicker Symbol',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Theme.of(context).textTheme.headlineMedium!.color,
                       fontSize: 28,
-                      fontWeight: FontWeight.w900,
+                      fontWeight: FontWeight.w700,
                     ),
                   ),
                   content: Column(
@@ -105,8 +103,8 @@ class TickerInputFields extends StatelessWidget {
                           currentTicker,
                           style: TextStyle(
                             color: Theme.of(context).colorScheme.tertiary,
-                            fontSize: 34,
-                            fontWeight: FontWeight.w400,
+                            fontSize: 30,
+                            fontWeight: FontWeight.w600,
                             fontStyle: FontStyle.italic,
                           ),
                         ),
@@ -165,15 +163,13 @@ class TickerInputFields extends StatelessWidget {
           ? showDialog(
               context: context,
               builder: (_) => AlertDialog(
-                titlePadding: const EdgeInsets.all(10),
-                contentPadding: const EdgeInsets.all(10),
                 title: Text(
                   'Remove\nTicker Symbol',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Theme.of(context).textTheme.headlineMedium!.color,
                     fontSize: 28,
-                    fontWeight: FontWeight.w900,
+                    fontWeight: FontWeight.w700,
                   ),
                 ),
                 content: Column(
@@ -191,8 +187,8 @@ class TickerInputFields extends StatelessWidget {
                         currentTicker,
                         style: TextStyle(
                           color: Theme.of(context).colorScheme.tertiary,
-                          fontSize: 34,
-                          fontWeight: FontWeight.w400,
+                          fontSize: 30,
+                          fontWeight: FontWeight.w600,
                           fontStyle: FontStyle.italic,
                         ),
                       ),
