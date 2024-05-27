@@ -75,7 +75,16 @@ class TickerInputFields extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
       child: GestureDetector(
-        onTap: () => addTicker(),
+        onTap: () => showDialog(
+          context: context,
+          builder: (_) => AlertDialog(
+            title: Text('Add Ticker Symbol'),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [],
+            ),
+          ),
+        ),
         child: Icon(
           Icons.playlist_add,
           size: 45,

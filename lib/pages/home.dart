@@ -123,14 +123,14 @@ class _HomePageState extends State<HomePage> {
 
   /* handles adding ticker from text field to watchlist */
   void addTicker() {
-    FocusManager.instance.primaryFocus?.unfocus();
+    FocusManager.instance.primaryFocus?.unfocus(); // close keyboard visibility
     repo.addSymbol(currentTicker);
     updateWatchlistData();
   }
 
   /* handles removing ticker from text field to watchlist */
   void removeTicker(String removingTicker) {
-    FocusManager.instance.primaryFocus?.unfocus();
+    FocusManager.instance.primaryFocus?.unfocus(); // close keyboard visibility
     repo.removeSymbol(removingTicker);
     updateWatchlistData();
   }
