@@ -40,7 +40,7 @@ class _TickerInputFieldsState extends State<TickerInputFields> {
           ChangeToUpperCaseText(),
         ],
         onChanged: (updatedTickerValue) =>
-            widget.tickerFieldHandler(updatedTickerValue.toUpperCase()),
+            widget.tickerFieldHandler(updatedTickerValue),
         cursorColor: Theme.of(context).colorScheme.primary,
         textAlign: TextAlign.center,
         maxLength: 5,
