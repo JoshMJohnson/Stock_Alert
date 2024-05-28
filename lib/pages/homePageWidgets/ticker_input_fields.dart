@@ -6,9 +6,10 @@ class TickerInputFields extends StatefulWidget {
   final Function() addTicker;
   final Function(String) removeTicker;
   final String currentTicker;
+  final TextEditingController tickerTextController;
 
   const TickerInputFields(this.tickerFieldHandler, this.addTicker,
-      this.removeTicker, this.currentTicker,
+      this.removeTicker, this.currentTicker, this.tickerTextController,
       {super.key});
 
   @override
@@ -16,8 +17,6 @@ class TickerInputFields extends StatefulWidget {
 }
 
 class _TickerInputFieldsState extends State<TickerInputFields> {
-  final tickerTextController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -35,7 +34,7 @@ class _TickerInputFieldsState extends State<TickerInputFields> {
       width: 150,
       height: 50,
       child: TextField(
-        controller: tickerTextController,
+        controller: widget.tickerTextController,
         inputFormatters: [
           ChangeToUpperCaseText(),
         ],

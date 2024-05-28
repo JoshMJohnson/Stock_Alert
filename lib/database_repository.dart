@@ -115,6 +115,7 @@ class DatabaseRepository {
 
   /* removes a stock symbol from the watchlist */
   void removeSymbol(String stockSymbol) async {
+    // ! breaks; reload app, type an existing app and try to remove... nothing happens
     final db = await database;
     await db.delete(
       stocksTable,

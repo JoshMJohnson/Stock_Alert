@@ -47,6 +47,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final DatabaseRepository repo = DatabaseRepository.instance;
+  final tickerTextController = TextEditingController();
 
   /* home page variables */
   String currentTicker = '';
@@ -124,6 +125,7 @@ class _HomePageState extends State<HomePage> {
   /* handles adding ticker from text field to watchlist */
   void addTicker() {
     FocusManager.instance.primaryFocus?.unfocus(); // close keyboard visibility
+    tickerTextController.clear();
     repo.addSymbol(currentTicker);
     updateWatchlistData();
   }
@@ -131,6 +133,7 @@ class _HomePageState extends State<HomePage> {
   /* handles removing ticker from text field to watchlist */
   void removeTicker(String removingTicker) {
     FocusManager.instance.primaryFocus?.unfocus(); // close keyboard visibility
+    tickerTextController.clear();
     repo.removeSymbol(removingTicker);
     updateWatchlistData();
   }
@@ -258,6 +261,7 @@ class _HomePageState extends State<HomePage> {
               addTicker,
               removeTicker,
               currentTicker,
+              tickerTextController,
             ),
           ),
           Padding(
