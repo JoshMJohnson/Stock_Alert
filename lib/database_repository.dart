@@ -98,7 +98,7 @@ class DatabaseRepository {
       'exchange': addingStock.exchange,
       'low52Week': addingStock.low52Week,
       'high52Week': addingStock.high52Week,
-      'activeTracking': addingStock.activeTracking,
+      'activeTracking': addingStock.activeTracking ? 1 : 0,
     });
   }
 
