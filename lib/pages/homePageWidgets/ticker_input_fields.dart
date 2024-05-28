@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:stock_alert/helper_functions.dart';
 
-class TickerInputFields extends StatelessWidget {
+class TickerInputFields extends StatefulWidget {
   final Function(String) tickerFieldHandler;
   final Function() addTicker;
   final Function(String) removeTicker;
   final String currentTicker;
 
-  // final tickerTextController = TextEditingController();
-
   const TickerInputFields(this.tickerFieldHandler, this.addTicker,
       this.removeTicker, this.currentTicker,
       {super.key});
+
+  @override
+  State<TickerInputFields> createState() => _TickerInputFieldsState();
+}
+
+class _TickerInputFieldsState extends State<TickerInputFields> {
+  final tickerTextController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -30,12 +35,12 @@ class TickerInputFields extends StatelessWidget {
       width: 150,
       height: 50,
       child: TextField(
-        // controller: tickerTextController,
-        // inputFormatters: [
-        //   ChangeToUpperCaseText(),
-        // ],
+        controller: tickerTextController,
+        inputFormatters: [
+          ChangeToUpperCaseText(),
+        ],
         onChanged: (updatedTickerValue) =>
-            tickerFieldHandler(updatedTickerValue.toUpperCase()),
+            widget.tickerFieldHandler(updatedTickerValue.toUpperCase()),
         cursorColor: Theme.of(context).colorScheme.primary,
         textAlign: TextAlign.center,
         maxLength: 5,
@@ -86,7 +91,7 @@ class TickerInputFields extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
       child: GestureDetector(
-        onTap: () => currentTicker.isNotEmpty
+        onTap: () => widget.currentTicker.isNotEmpty
             ? showDialog(
                 context: context,
                 builder: (_) => AlertDialog(
@@ -111,7 +116,7 @@ class TickerInputFields extends StatelessWidget {
                           ),
                         ),
                         child: Text(
-                          currentTicker,
+                          widget.currentTicker,
                           style: TextStyle(
                             color: Theme.of(context).colorScheme.tertiary,
                             fontSize: 30,
@@ -127,7 +132,7 @@ class TickerInputFields extends StatelessWidget {
                           children: [
                             GestureDetector(
                               onTap: () => {
-                                addTicker(),
+                                widget.addTicker(),
                                 Navigator.pop(context), // close alert window
                                 FocusManager.instance.primaryFocus
                                     ?.unfocus(), // close keyboard visibility
@@ -170,7 +175,7 @@ class TickerInputFields extends StatelessWidget {
   /* button to remove a stock ticker from the watchlist */
   GestureDetector removeTickerButton(BuildContext context) {
     return GestureDetector(
-      onTap: () => currentTicker.isNotEmpty
+      onTap: () => widget.currentTicker.isNotEmpty
           ? showDialog(
               context: context,
               builder: (_) => AlertDialog(
@@ -195,7 +200,7 @@ class TickerInputFields extends StatelessWidget {
                         ),
                       ),
                       child: Text(
-                        currentTicker,
+                        widget.currentTicker,
                         style: TextStyle(
                           color: Theme.of(context).colorScheme.tertiary,
                           fontSize: 30,
@@ -211,7 +216,7 @@ class TickerInputFields extends StatelessWidget {
                         children: [
                           GestureDetector(
                             onTap: () => {
-                              removeTicker(currentTicker),
+                              widget.removeTicker(widget.currentTicker),
                               Navigator.pop(context), // close alert window
                               FocusManager.instance.primaryFocus
                                   ?.unfocus(), // close keyboard visibility
