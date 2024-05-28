@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:stock_alert/helper_functions.dart';
 
 class TickerInputFields extends StatelessWidget {
   final Function(String) tickerFieldHandler;
   final Function() addTicker;
   final Function(String) removeTicker;
   final String currentTicker;
+
+  // final tickerTextController = TextEditingController();
+
   const TickerInputFields(this.tickerFieldHandler, this.addTicker,
       this.removeTicker, this.currentTicker,
       {super.key});
@@ -13,7 +17,10 @@ class TickerInputFields extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [tickerTextBox(context), buttonGrouping(context)],
+      children: [
+        tickerTextBox(context),
+        buttonGrouping(context),
+      ],
     );
   }
 
@@ -23,8 +30,12 @@ class TickerInputFields extends StatelessWidget {
       width: 150,
       height: 50,
       child: TextField(
+        // controller: tickerTextController,
+        // inputFormatters: [
+        //   ChangeToUpperCaseText(),
+        // ],
         onChanged: (updatedTickerValue) =>
-            tickerFieldHandler(updatedTickerValue),
+            tickerFieldHandler(updatedTickerValue.toUpperCase()),
         cursorColor: Theme.of(context).colorScheme.primary,
         textAlign: TextAlign.center,
         maxLength: 5,
