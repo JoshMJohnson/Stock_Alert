@@ -125,13 +125,13 @@ class _HomePageState extends State<HomePage> {
   /* handles adding ticker from text field to watchlist */
   void addTicker() {
     FocusManager.instance.primaryFocus?.unfocus(); // close keyboard visibility
-
     repo.addSymbol(currentTicker);
     updateWatchlistData();
   }
 
   /* handles removing ticker from text field to watchlist */
   void removeTicker(String removingTicker) {
+    debugPrint('******* HOME PAGE removingTicker: "$removingTicker"');
     FocusManager.instance.primaryFocus?.unfocus(); // close keyboard visibility
     repo.removeSymbol(removingTicker);
     updateWatchlistData();
@@ -170,10 +170,12 @@ class _HomePageState extends State<HomePage> {
   /* updates the watchlist stock data */
   void updateWatchlistData() async {
     tickerTextController.clear();
+
     watchlist = await repo.getStockSymbols();
 
     setState(() {
       watchlist = watchlist;
+      currentTicker = '';
     });
   }
 
