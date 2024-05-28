@@ -41,10 +41,6 @@ class ChangeToUpperCaseText extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(
       TextEditingValue oldValue, TextEditingValue newValue) {
-    debugPrint('********** oldValue: $oldValue ... newValue: $newValue');
-    debugPrint(
-        '********** newValue.text.toUpperCase(): ${newValue.text.toUpperCase()}');
-
     return TextEditingValue(
       text: newValue.text.toUpperCase(),
       selection: newValue.selection,
