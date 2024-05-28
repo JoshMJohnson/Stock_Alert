@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:stock_alert/pages/homePageWidgets/stock_entity.dart';
@@ -7,7 +8,6 @@ import 'package:stock_alert/pages/homePageWidgets/stock_entity.dart';
 class DatabaseRepository {
   static Database? _db;
   static final DatabaseRepository instance = DatabaseRepository._constructor();
-
   final String stocksTable = 'stocks';
 
   DatabaseRepository._constructor();
@@ -67,6 +67,8 @@ class DatabaseRepository {
 
   /* calls the twelve data API for a stock symbol and returns a Stock Entity with updated info */ // todo
   StockEntity retrieveStockDataFromTwelveDataAPI(String tickerSymbol) {
+    debugPrint('****** api function... tickerSymbol: "$tickerSymbol"');
+
     StockEntity? updatedStockData = StockEntity(
       ticker: tickerSymbol,
       companyName: 'company name',
@@ -89,7 +91,7 @@ class DatabaseRepository {
 
     final db = await database;
     await db.insert(stocksTable, {
-      'ticker': addingStock.ticker,
+      'ticker': stockSymbol,
       'companyName': addingStock.companyName,
       'companyDescription': addingStock.companyDescription,
       'tickerPrice': addingStock.tickerPrice,
@@ -116,6 +118,7 @@ class DatabaseRepository {
   /* removes a stock symbol from the watchlist */
   void removeSymbol(String stockSymbol) async {
     // ! breaks; reload app, type an existing app and try to remove... nothing happens
+    debugPrint('******* db page... removingTicker: "$stockSymbol"');
     final db = await database;
     await db.delete(
       stocksTable,
