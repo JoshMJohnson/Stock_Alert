@@ -88,7 +88,7 @@ class _TickerInputFieldsState extends State<TickerInputFields> {
   /* button to add a stock ticker to the watchlist */
   Padding addTickerButton(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
+      padding: const EdgeInsets.only(right: 20),
       child: GestureDetector(
         onTap: () => widget.currentTicker.isNotEmpty
             ? showDialog(
