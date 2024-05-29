@@ -107,6 +107,8 @@ class _HomePageState extends State<HomePage> {
     notification1 = TimeOfDay(hour: tod1Hours, minute: tod1Minutes);
     notification2 = TimeOfDay(hour: tod2Hours, minute: tod2Minutes);
     notification3 = TimeOfDay(hour: tod3Hours, minute: tod3Minutes);
+
+    updateWatchlistData();
   }
 
   /* handles stock ticker text field change in value */
@@ -131,7 +133,6 @@ class _HomePageState extends State<HomePage> {
 
   /* handles removing ticker from text field to watchlist */
   void removeTicker(String removingTicker) {
-    debugPrint('******* HOME PAGE removingTicker: "$removingTicker"');
     FocusManager.instance.primaryFocus?.unfocus(); // close keyboard visibility
     repo.removeSymbol(removingTicker);
     updateWatchlistData();
@@ -155,8 +156,6 @@ class _HomePageState extends State<HomePage> {
 
   /* refreshes the stock watchlist display based on sort algorithm selected */ // todo
   void updateWatchlistSortAlgorithm() {
-    debugPrint('*********************Updating sort algorithm!');
-
     if (sortAlgorithm == 'Alphabetically') {
       watchlist.sort((a, b) => a.ticker.compareTo(b.ticker));
     } else if (sortAlgorithm == 'Ticker Price') {

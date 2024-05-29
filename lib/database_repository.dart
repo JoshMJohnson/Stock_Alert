@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:stock_alert/pages/homePageWidgets/stock_entity.dart';
@@ -67,8 +66,6 @@ class DatabaseRepository {
 
   /* calls the twelve data API for a stock symbol and returns a Stock Entity with updated info */ // todo
   StockEntity retrieveStockDataFromTwelveDataAPI(String tickerSymbol) {
-    debugPrint('****** api function... tickerSymbol: "$tickerSymbol"');
-
     StockEntity? updatedStockData = StockEntity(
       ticker: tickerSymbol,
       companyName: 'company name',
@@ -117,8 +114,6 @@ class DatabaseRepository {
 
   /* removes a stock symbol from the watchlist */
   void removeSymbol(String stockSymbol) async {
-    // ! breaks; reload app, type an existing app and try to remove... nothing happens
-    debugPrint('******* db page... removingTicker: "$stockSymbol"');
     final db = await database;
     await db.delete(
       stocksTable,
@@ -127,48 +122,11 @@ class DatabaseRepository {
     );
   }
 
-  /* routine update to stock data (ex: PPS/Day Change) */ // todo
-  // void updateSymbolData() {}
-
-  /* updates stock symbol toggle to receive updates */ // todo
-  // void updateSymbolToggle(StockEntity tickerSymbol) {}
-
-  /* clears the watchlist */ // todo
-  // void clearWatchlist() async {
-  // await stockDB.rawDelete('DELETE * FROM stocks');
-  // }
-
-  /* returns stock symbols on the watchlist */ // todo
-  // Future<List<StockEntity>> getWatchlist() async {
-  //   final List<Map<String, Object?>> stockMaps = await stockDB.query('stocks');
-
-  //   return [
-  //     for (final {
-  //           'tickerSymbol': tickerSymbol as String,
-  //           'companyName': companyName as String,
-  //           'companyDescription': companyDescription as String,
-  //           'tickerPrice': tickerPrice as double,
-  //           'dayChangeDollars': dayChangeDollars as double,
-  //           'dayChangePercentage': dayChangePercentage as double,
-  //           'exchange': exchange as String,
-  //           'low52Week': low52Week as double,
-  //           'high52Week': high52Week as double,
-  //           'activeTracking': activeTracking as int,
-  //         } in stockMaps)
-  //       StockEntity(
-  //         tickerSymbol: tickerSymbol,
-  //         companyName: companyName,
-  //         companyDescription: companyDescription,
-  //         tickerPrice: tickerPrice,
-  //         dayChangeDollars: dayChangeDollars,
-  //         dayChangePercentage: dayChangePercentage,
-  //         exchange: exchange,
-  //         low52Week: low52Week,
-  //         high52Week: high52Week,
-  //         activeTracking: (activeTracking == 0 ? false : true),
-  //       )
-  //   ];
-  // }
+  /* clears the watchlist; removes all from the stocks table from the database */
+  void clearWatchlist() async {
+    final db = await database;
+    await db.rawDelete('DELETE FROM $stocksTable');
+  }
 
   /* returns an updated watchlist sorted based on algorithm provided */ // todo
   // List<StockEntity> sortWatchlist(
