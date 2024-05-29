@@ -16,11 +16,30 @@ class ClearWatchlist extends StatelessWidget {
       onPressed: () => showDialog(
         context: context,
         builder: (_) => AlertDialog(
-          title: Text('Clear Watchlist'),
+          title: Text(
+            'Clear Watchlist',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Theme.of(context).textTheme.headlineMedium!.color,
+              fontSize: 28,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text('Are you sure?'),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(10, 10, 10, 20),
+                child: Text(
+                  'Are you sure?',
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.tertiary,
+                    fontSize: 30,
+                    fontWeight: FontWeight.w600,
+                    fontStyle: FontStyle.italic,
+                  ),
+                ),
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
