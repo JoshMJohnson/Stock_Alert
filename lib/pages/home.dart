@@ -152,7 +152,7 @@ class _HomePageState extends State<HomePage> {
     await prefs.setString('watchlistSort', sortAlgorithm);
   }
 
-  /* refreshes the stock watchlist display based on sort algorithm selected */ // todo
+  /* refreshes the stock watchlist display based on sort algorithm selected */
   void updateWatchlistSortAlgorithm() {
     if (sortAlgorithm == 'Alphabetically') {
       watchlist.sort((a, b) => a.ticker.compareTo(b.ticker));
