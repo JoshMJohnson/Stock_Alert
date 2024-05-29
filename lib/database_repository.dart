@@ -128,8 +128,8 @@ class DatabaseRepository {
     return stocks;
   }
 
-  /* returns a stock entity if found in database; else returns null */ // todo
-  Future<StockEntity?> getStockEntity() async {
+  /* returns a stock entity if ticker symbol was found in database; else returns null */ // todo
+  Future<StockEntity?> getStockEntity(String tickerSymbol) async {
     final db = await database;
   }
 
