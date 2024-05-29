@@ -38,32 +38,6 @@ class DatabaseRepository {
     return database;
   }
 
-  /* retrieves a list of all the watchlist stocks on the database  */
-  Future<List<StockEntity>> getStockSymbols() async {
-    final db = await database;
-    final data = await db.query(stocksTable);
-
-    List<StockEntity> stocks = data
-        .map(
-          (stock) => StockEntity(
-            ticker: stock['ticker'] as String,
-            companyName: stock['companyName'] as String,
-            companyDescription: stock['companyDescription'] as String,
-            tickerPrice: stock['tickerPrice'] as double,
-            dayChangeDollars: stock['dayChangeDollars'] as double,
-            dayChangePercentage: stock['dayChangePercentage'] as double,
-            exchange: stock['exchange'] as String,
-            low52Week: stock['low52Week'] as double,
-            high52Week: stock['high52Week'] as double,
-            activeTracking:
-                (stock['activeTracking'] as int) == 1 ? true : false,
-          ),
-        )
-        .toList();
-
-    return stocks;
-  }
-
   /* calls the twelve data API for a stock symbol and returns a Stock Entity with updated info */ // todo
   StockEntity retrieveStockDataFromTwelveDataAPI(String tickerSymbol) {
     StockEntity? updatedStockData = StockEntity(
@@ -126,6 +100,37 @@ class DatabaseRepository {
   void clearWatchlist() async {
     final db = await database;
     await db.rawDelete('DELETE FROM $stocksTable');
+  }
+
+  /* retrieves a list of all the watchlist stocks on the database  */
+  Future<List<StockEntity>> getStockSymbols() async {
+    final db = await database;
+    final data = await db.query(stocksTable);
+
+    List<StockEntity> stocks = data
+        .map(
+          (stock) => StockEntity(
+            ticker: stock['ticker'] as String,
+            companyName: stock['companyName'] as String,
+            companyDescription: stock['companyDescription'] as String,
+            tickerPrice: stock['tickerPrice'] as double,
+            dayChangeDollars: stock['dayChangeDollars'] as double,
+            dayChangePercentage: stock['dayChangePercentage'] as double,
+            exchange: stock['exchange'] as String,
+            low52Week: stock['low52Week'] as double,
+            high52Week: stock['high52Week'] as double,
+            activeTracking:
+                (stock['activeTracking'] as int) == 1 ? true : false,
+          ),
+        )
+        .toList();
+
+    return stocks;
+  }
+
+  /* returns a stock entity if found in database; else returns null */ // todo
+  Future<StockEntity?> getStockEntity() async {
+    final db = await database;
   }
 
   /* returns an updated watchlist sorted based on algorithm provided */ // todo
