@@ -223,7 +223,10 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [const ClearWatchlist(), SaveButton(saveButtonHandler)],
+              children: [
+                const ClearWatchlist(),
+                SaveButton(saveButtonHandler),
+              ],
             )
           ]),
         ),
