@@ -129,16 +129,6 @@ class DatabaseRepository {
     return stocks;
   }
 
-  /* returns a stock entity if ticker symbol was found in database; else returns null */ // todo
-  Future<StockEntity?> getStockEntity(String tickerSymbol) async {
-    final db = await database;
-    final stockMap = await db
-        .query(stocksTable, where: 'ticker = ?', whereArgs: [tickerSymbol]);
-
-    debugPrint('****** stockMap: $stockMap');
-    // StockEntity stock = stockMap
-  }
-
   /* returns an updated watchlist sorted based on algorithm provided */ // todo
   // List<StockEntity> sortWatchlist(
   //     List<StockEntity> watchlist, String sortAlgorithm) {
