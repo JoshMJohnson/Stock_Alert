@@ -4,7 +4,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stock_alert/pages/settingsPageWidgets/notification_toggling.dart';
 import 'package:stock_alert/pages/settingsPageWidgets/price_change_threshold.dart';
 import 'package:stock_alert/pages/settingsPageWidgets/quantity_notifications_selector.dart';
-import 'package:stock_alert/pages/settingsPageWidgets/button_group.dart';
+import 'package:stock_alert/pages/settingsPageWidgets/clear_watchlist.dart';
+import 'package:stock_alert/pages/settingsPageWidgets/save_button.dart';
 
 class SettingsPage extends StatefulWidget {
   final bool notificationToggledOn;
@@ -220,7 +221,10 @@ class _SettingsPageState extends State<SettingsPage> {
               notification2: notification2,
               notification3: notification3,
             ),
-            ButtonGroup(saveButtonHandler: saveButtonHandler)
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [const ClearWatchlist(), SaveButton(saveButtonHandler)],
+            )
           ]),
         ),
       ),
