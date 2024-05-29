@@ -4,7 +4,7 @@ import 'package:stock_alert/database_repository.dart';
 class ClearWatchlist extends StatelessWidget {
   const ClearWatchlist({super.key});
 
-  /* clears the watchlist of stocks */ // todo
+  /* clears the watchlist of stocks */ // todo add an alert
   clearWatchlistHandler() async {
     final DatabaseRepository repo = DatabaseRepository.instance;
     repo.clearWatchlist();
