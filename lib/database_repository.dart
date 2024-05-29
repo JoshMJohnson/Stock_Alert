@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:stock_alert/pages/homePageWidgets/stock_entity.dart';
@@ -131,6 +132,11 @@ class DatabaseRepository {
   /* returns a stock entity if ticker symbol was found in database; else returns null */ // todo
   Future<StockEntity?> getStockEntity(String tickerSymbol) async {
     final db = await database;
+    final stockMap = await db
+        .query(stocksTable, where: 'ticker = ?', whereArgs: [tickerSymbol]);
+
+    debugPrint('****** stockMap: $stockMap');
+    // StockEntity stock = stockMap
   }
 
   /* returns an updated watchlist sorted based on algorithm provided */ // todo

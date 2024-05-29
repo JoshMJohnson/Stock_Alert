@@ -262,6 +262,7 @@ class _HomePageState extends State<HomePage> {
               removeTicker,
               currentTicker,
               tickerTextController,
+              watchlist,
             ),
           ),
           Padding(

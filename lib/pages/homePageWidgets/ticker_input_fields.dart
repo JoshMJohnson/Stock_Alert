@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stock_alert/helper_functions.dart';
+import 'package:stock_alert/pages/homePageWidgets/stock_entity.dart';
 
 class TickerInputFields extends StatefulWidget {
   final Function(String) tickerFieldHandler;
@@ -7,9 +8,15 @@ class TickerInputFields extends StatefulWidget {
   final Function(String) removeTicker;
   final String currentTicker;
   final TextEditingController tickerTextController;
+  final List<StockEntity> watchlist;
 
-  const TickerInputFields(this.tickerFieldHandler, this.addTicker,
-      this.removeTicker, this.currentTicker, this.tickerTextController,
+  const TickerInputFields(
+      this.tickerFieldHandler,
+      this.addTicker,
+      this.removeTicker,
+      this.currentTicker,
+      this.tickerTextController,
+      this.watchlist,
       {super.key});
 
   @override
@@ -85,77 +92,189 @@ class _TickerInputFieldsState extends State<TickerInputFields> {
     );
   }
 
+  /* decides which alert to show by checking watchlist to see if symbol is on it */ // todo
+  bool stockOnWatchlist() {
+    for (var stock in widget.watchlist) {
+      if (stock.ticker == widget.currentTicker) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
   /* button to add a stock ticker to the watchlist */
   Padding addTickerButton(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(right: 20),
       child: GestureDetector(
         onTap: () => widget.currentTicker.isNotEmpty
-            ? showDialog(
-                context: context,
-                builder: (_) => AlertDialog(
-                  title: Text(
-                    'Add\nTicker Symbol',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Theme.of(context).textTheme.headlineMedium!.color,
-                      fontSize: 28,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                  content: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.all(20),
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Theme.of(context).colorScheme.primary,
-                            width: 5,
+            ? (
+                stockOnWatchlist()
+                    ? showDialog(
+                        context: context,
+                        builder: (_) => AlertDialog(
+                          title: Text(
+                            'Failed to Add',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Theme.of(context)
+                                  .textTheme
+                                  .headlineMedium!
+                                  .color,
+                              fontSize: 28,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                          content: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Container(
+                                padding: const EdgeInsets.all(20),
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                    color:
+                                        Theme.of(context).colorScheme.primary,
+                                    width: 5,
+                                  ),
+                                ),
+                                child: Text(
+                                  widget.currentTicker,
+                                  style: TextStyle(
+                                    color:
+                                        Theme.of(context).colorScheme.tertiary,
+                                    fontSize: 30,
+                                    fontWeight: FontWeight.w600,
+                                    fontStyle: FontStyle.italic,
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 20),
+                                child: Text(
+                                  'Ticker symbol is already on the watchlist',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color:
+                                        Theme.of(context).colorScheme.tertiary,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w600,
+                                    fontStyle: FontStyle.normal,
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 10),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    GestureDetector(
+                                      onTap: () => {
+                                        widget.addTicker(),
+                                        Navigator.pop(
+                                            context), // close alert window
+                                        FocusManager.instance.primaryFocus
+                                            ?.unfocus(), // close keyboard visibility
+                                      },
+                                      child: Icon(
+                                        Icons.check_circle_outline,
+                                        size: 55,
+                                        color:
+                                            Theme.of(context).iconTheme.color,
+                                      ),
+                                    ),
+                                    GestureDetector(
+                                      onTap: () => Navigator.pop(context),
+                                      child: Icon(
+                                        Icons.cancel_outlined,
+                                        size: 55,
+                                        color:
+                                            Theme.of(context).iconTheme.color,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
                           ),
                         ),
-                        child: Text(
-                          widget.currentTicker,
-                          style: TextStyle(
-                            color: Theme.of(context).colorScheme.tertiary,
-                            fontSize: 30,
-                            fontWeight: FontWeight.w600,
-                            fontStyle: FontStyle.italic,
+                      )
+                    : showDialog(
+                        context: context,
+                        builder: (_) => AlertDialog(
+                          title: Text(
+                            'Add\nTicker Symbol',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Theme.of(context)
+                                  .textTheme
+                                  .headlineMedium!
+                                  .color,
+                              fontSize: 28,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                          content: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Container(
+                                padding: const EdgeInsets.all(20),
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                    color:
+                                        Theme.of(context).colorScheme.primary,
+                                    width: 5,
+                                  ),
+                                ),
+                                child: Text(
+                                  widget.currentTicker,
+                                  style: TextStyle(
+                                    color:
+                                        Theme.of(context).colorScheme.tertiary,
+                                    fontSize: 30,
+                                    fontWeight: FontWeight.w600,
+                                    fontStyle: FontStyle.italic,
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 10),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    GestureDetector(
+                                      onTap: () => {
+                                        widget.addTicker(),
+                                        Navigator.pop(
+                                            context), // close alert window
+                                        FocusManager.instance.primaryFocus
+                                            ?.unfocus(), // close keyboard visibility
+                                      },
+                                      child: Icon(
+                                        Icons.check_circle_outline,
+                                        size: 55,
+                                        color:
+                                            Theme.of(context).iconTheme.color,
+                                      ),
+                                    ),
+                                    GestureDetector(
+                                      onTap: () => Navigator.pop(context),
+                                      child: Icon(
+                                        Icons.cancel_outlined,
+                                        size: 55,
+                                        color:
+                                            Theme.of(context).iconTheme.color,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            GestureDetector(
-                              onTap: () => {
-                                widget.addTicker(),
-                                Navigator.pop(context), // close alert window
-                                FocusManager.instance.primaryFocus
-                                    ?.unfocus(), // close keyboard visibility
-                              },
-                              child: Icon(
-                                Icons.check_circle_outline,
-                                size: 55,
-                                color: Theme.of(context).iconTheme.color,
-                              ),
-                            ),
-                            GestureDetector(
-                              onTap: () => Navigator.pop(context),
-                              child: Icon(
-                                Icons.cancel_outlined,
-                                size: 55,
-                                color: Theme.of(context).iconTheme.color,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
               )
             : Icon(
                 Icons.playlist_add,
