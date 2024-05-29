@@ -5,6 +5,10 @@ To Do:
 - Negative dollar value move negative sign left of dollar sign
 - Turn off battery optimization for foreground service delay prevention
 - Handle font scaling
+- Create notifications when save pressed within Settings page
+- Handle foreground service on save pressed within Settings page
+    - Start service
+    - Terminate service
     
 Feature Additions:
 - Last updated time value on home page just about list view of stocks
