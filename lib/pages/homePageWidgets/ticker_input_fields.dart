@@ -92,7 +92,7 @@ class _TickerInputFieldsState extends State<TickerInputFields> {
     );
   }
 
-  /* decides which alert to show by checking watchlist to see if symbol is on it */ // todo
+  /* if ticker symbol in text field is already on the watchlist return true; else false */
   bool stockOnWatchlist() {
     for (var stock in widget.watchlist) {
       if (stock.ticker == widget.currentTicker) {
@@ -115,7 +115,7 @@ class _TickerInputFieldsState extends State<TickerInputFields> {
                         context: context,
                         builder: (_) => AlertDialog(
                           title: Text(
-                            'Failed to Add',
+                            'Failed Add',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               color: Theme.of(context)
@@ -294,71 +294,163 @@ class _TickerInputFieldsState extends State<TickerInputFields> {
   GestureDetector removeTickerButton(BuildContext context) {
     return GestureDetector(
       onTap: () => widget.currentTicker.isNotEmpty
-          ? showDialog(
-              context: context,
-              builder: (_) => AlertDialog(
-                title: Text(
-                  'Remove\nTicker Symbol',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Theme.of(context).textTheme.headlineMedium!.color,
-                    fontSize: 28,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-                content: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.all(20),
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: Theme.of(context).colorScheme.primary,
-                          width: 5,
+          ? (
+              !stockOnWatchlist()
+                  ? showDialog(
+                      context: context,
+                      builder: (_) => AlertDialog(
+                        title: Text(
+                          'Failed Remove',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Theme.of(context)
+                                .textTheme
+                                .headlineMedium!
+                                .color,
+                            fontSize: 28,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                        content: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.all(20),
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                  color: Theme.of(context).colorScheme.primary,
+                                  width: 5,
+                                ),
+                              ),
+                              child: Text(
+                                widget.currentTicker,
+                                style: TextStyle(
+                                  color: Theme.of(context).colorScheme.tertiary,
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.w600,
+                                  fontStyle: FontStyle.italic,
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 20),
+                              child: Text(
+                                'Ticker symbol is not on the watchlist',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Theme.of(context).colorScheme.tertiary,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w600,
+                                  fontStyle: FontStyle.normal,
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 10),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  GestureDetector(
+                                    onTap: () => {
+                                      widget.addTicker(),
+                                      Navigator.pop(
+                                          context), // close alert window
+                                      FocusManager.instance.primaryFocus
+                                          ?.unfocus(), // close keyboard visibility
+                                    },
+                                    child: Icon(
+                                      Icons.check_circle_outline,
+                                      size: 55,
+                                      color: Theme.of(context).iconTheme.color,
+                                    ),
+                                  ),
+                                  GestureDetector(
+                                    onTap: () => Navigator.pop(context),
+                                    child: Icon(
+                                      Icons.cancel_outlined,
+                                      size: 55,
+                                      color: Theme.of(context).iconTheme.color,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                      child: Text(
-                        widget.currentTicker,
-                        style: TextStyle(
-                          color: Theme.of(context).colorScheme.tertiary,
-                          fontSize: 30,
-                          fontWeight: FontWeight.w600,
-                          fontStyle: FontStyle.italic,
+                    )
+                  : showDialog(
+                      context: context,
+                      builder: (_) => AlertDialog(
+                        title: Text(
+                          'Remove\nTicker Symbol',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Theme.of(context)
+                                .textTheme
+                                .headlineMedium!
+                                .color,
+                            fontSize: 28,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                        content: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.all(20),
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                  color: Theme.of(context).colorScheme.primary,
+                                  width: 5,
+                                ),
+                              ),
+                              child: Text(
+                                widget.currentTicker,
+                                style: TextStyle(
+                                  color: Theme.of(context).colorScheme.tertiary,
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.w600,
+                                  fontStyle: FontStyle.italic,
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 10),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  GestureDetector(
+                                    onTap: () => {
+                                      widget.removeTicker(widget.currentTicker),
+                                      Navigator.pop(
+                                          context), // close alert window
+                                      FocusManager.instance.primaryFocus
+                                          ?.unfocus(), // close keyboard visibility
+                                    },
+                                    child: Icon(
+                                      Icons.check_circle_outline,
+                                      size: 55,
+                                      color: Theme.of(context).iconTheme.color,
+                                    ),
+                                  ),
+                                  GestureDetector(
+                                    onTap: () => Navigator.pop(context),
+                                    child: Icon(
+                                      Icons.cancel_outlined,
+                                      size: 55,
+                                      color: Theme.of(context).iconTheme.color,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          GestureDetector(
-                            onTap: () => {
-                              widget.removeTicker(widget.currentTicker),
-                              Navigator.pop(context), // close alert window
-                              FocusManager.instance.primaryFocus
-                                  ?.unfocus(), // close keyboard visibility
-                            },
-                            child: Icon(
-                              Icons.check_circle_outline,
-                              size: 55,
-                              color: Theme.of(context).iconTheme.color,
-                            ),
-                          ),
-                          GestureDetector(
-                            onTap: () => Navigator.pop(context),
-                            child: Icon(
-                              Icons.cancel_outlined,
-                              size: 55,
-                              color: Theme.of(context).iconTheme.color,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
             )
           : Icon(
               Icons.playlist_remove,
