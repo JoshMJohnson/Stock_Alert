@@ -109,7 +109,7 @@ class DatabaseRepository {
     final db = await database;
     await db.update(
       stocksTable,
-      {'activeTracking': toggleValue},
+      {'activeTracking': toggleValue ? 1 : 0},
       where: 'ticker = ?',
       whereArgs: [tickerSymbol],
     );
