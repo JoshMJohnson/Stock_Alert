@@ -2,68 +2,34 @@ Bugs:
 - Class constructor warning for.... // ignore: no_logic_in_create_state
 
 To Do:
-- Code cleanup... remove , after attributes to turn all into same line
 - Negative dollar value move negative sign left of dollar sign
-- Ticker page shows active/inactive reminder set for ticker entity
-- Include industries that the ticker company is involved in on the Ticker page
-- Add a small note somewhere in app stating the only 8 stock requests per min
 - Turn off battery optimization for foreground service delay prevention
-- Create a themes file holding color delarations
 - Handle font scaling
-- Implement an first time app use intro directions
-    - use flutter name: IntroductionScreen
     
 Feature Additions:
-- Animated headline bar moving from right to left of the NASDAQ and other markets
-updated on market open and close (ex: NASDAQ, NYSE)
-    - Ability to turn on/off notifications for open/close market status
-- Configure to be compatible with ios
-- Light/Dark modes
 - Last updated time value on home page just about list view of stocks
-- Switch that can toggle on/off alerts for specific stock tickers on watchlist
+- Ticker page shows active/inactive toggle for ticker entity
+- Include industries that the ticker company is involved in on the Ticker page
+- Add a small note somewhere in app stating the only 8 stock requests per min
+    - Info icon on top left of home page within header
+- Implement an first time app use intro directions
+    - use flutter name: IntroductionScreen
+
+GitHub:
+- Create README
 - Private -> Public... GitHub repository when completed
     - Delete private info such as the Twelve Data API code
     - Complete the project README file for Stock Alert
         - Add an info section at the top of the GitHub readme for Stock Alert about creating an account
         for Twelve Data and inserting key from API into project code
-    
-Home Page:
-- Stock Watchlist
-    - Clickable stock entities that use Stack Navigator to go to Ticker Page
-    - Sort options
-        - Alphabetically
-        - Stock Exchange (ex: NASDAQ)
-        - Ticker Price
-        - Percentage Day Change
-    - Add stocks to watchlist
-        - Add ticker to Firebase table
-        - Refresh display of watchlist on home page to show added stock
-        - Display alert when api request failed
-            - More than 8 ticker get requests within 1 minute
-            - Ticker already exists
-            - Ticker not found on stock market
-    - Remove stocks from watchlist
-        - Remove ticker from Firebase table
-        - Refresh display of watchlist on home page to remove stock
-
+   
 Ticker Page:
 - x | Ticker
--  | Company Name
--  | Company Description
--  | Ticker Price (since last api request)
--  | Day Dollar Change
--  | Day Percentage Change
--  | 52 Week High
--  | 52 Week Low
-
-Settings Page:
-- Display/Hide 'Daily Notification' based on quantity selected
-- Clear button functionality
-    - Clear Firebase stock watchlist
-    - Refresh Home page stock watchlist
-- Activate/Update/Terminate notification settings on saved button pressed
-    - Activate/Terminate foreground service with notification toggling
-    - Update threshold value for stocks included within notifications
-    - Create 1-3 repeating notifications running on foreground service
-        - Only notify on stock market being open
-        - Set to notify at specific times of the day
+- x | Company Name
+- x | Company Description
+- x | Ticker Price (since last api request)
+- x | Day Dollar Change
+- x | Day Percentage Change
+- x | 52 Week High
+- x | 52 Week Low
+-  | Industries
