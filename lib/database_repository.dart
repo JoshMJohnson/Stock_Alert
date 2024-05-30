@@ -71,14 +71,14 @@ class DatabaseRepository {
     /* update all stock data on watchlist */
     List<StockEntity> prevWatchlist = await getStockSymbols();
 
-    for (var i = 1; i <= prevWatchlist.length; i++) {
+    for (var i = 0; i < prevWatchlist.length; i++) {
       /* only perform 8 api requests per minute per Twelve Data API request limit */
       if (i % 8 == 0) {
         await Future.delayed(const Duration(seconds: 61));
       }
 
       StockEntity updatedStockEntity =
-          retrieveStockDataFromTwelveDataAPI(prevWatchlist[i - 1].ticker);
+          retrieveStockDataFromTwelveDataAPI(prevWatchlist[i].ticker);
 
       final db = await database;
       await db.update(
