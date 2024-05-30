@@ -12,8 +12,6 @@ Future<void> main() async {
   // * preferences
   final SharedPreferences prefs = await SharedPreferences.getInstance();
 
-  /* last updated time stamp */ // todo
-
   /* loads settings from device preferences */
   final String startupSortAlgorithm =
       prefs.getString('watchlistSort') ?? 'Alphabetically';

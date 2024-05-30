@@ -64,14 +64,40 @@ class _HomePageState extends State<HomePage> {
 
   final HelperFunctions helperFunctions = HelperFunctions();
 
-  TimeOfDay lastUpdatedTime =
-      TimeOfDay.now(); // ! get last updated time rather than current time
-  String lastUpdatedTimeDisplay = '';
+  String lastUpdatedTimeDisplay = '--:--';
 
   @override
   void initState() {
-    lastUpdatedTimeDisplay =
-        helperFunctions.standardTimeConvertionHandler(lastUpdatedTime);
+    // ! doesnt refresh unless app is fully closed
+    debugPrint('*******HEERRRERE******');
+
+    void loadLastUpdatedTime() async {
+      final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+      /* last updated time stamp */
+      final int? lastUpdatedHours = prefs.getInt('lastUpdatedHours');
+      final int? lastUpdatedMinutes = prefs.getInt('lastUpdatedMinutes');
+
+      if (lastUpdatedHours != null && lastUpdatedMinutes != null) {
+        TimeOfDay lastUpdatedTime =
+            TimeOfDay(hour: lastUpdatedHours, minute: lastUpdatedMinutes);
+
+        lastUpdatedTimeDisplay =
+            helperFunctions.standardTimeConvertionHandler(lastUpdatedTime);
+      }
+    }
+
+    /* loads watchlist */
+    void loadWatchlist() async {
+      watchlist = await repo.getStockSymbols();
+
+      setState(() {
+        watchlist = watchlist;
+      });
+    }
+
+    loadLastUpdatedTime();
+    loadWatchlist();
 
     super.initState();
   }

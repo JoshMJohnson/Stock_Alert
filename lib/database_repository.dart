@@ -1,5 +1,7 @@
 import 'dart:async';
+import 'package:flutter/material.dart';
 import 'package:path/path.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:stock_alert/pages/homePageWidgets/stock_entity.dart';
 
@@ -53,9 +55,41 @@ class DatabaseRepository {
       activeTracking: true,
     ); // ! find within database first; return null if new stock being added
 
-    /* update time stamp for last updated */ // todo
-
     return updatedStockData;
+  }
+
+  /* updates all watchlist stock tickers data */ // todo trigger on notification time
+  void updateWatchlist(List<StockEntity> prevWatchlist) async {
+    /* update time stamp for last updated */
+    TimeOfDay currentTime = TimeOfDay.now();
+
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    prefs.setInt('lastUpdatedHours', currentTime.hour);
+    prefs.setInt('lastUpdatedMinutes', currentTime.minute);
+
+    /* update all stock data on watchlist */
+    List<StockEntity> prevWatchlist = await getStockSymbols();
+
+    for (var stock in prevWatchlist) {
+      // todo trigger 8 per minute for API request limit
+      stock = retrieveStockDataFromTwelveDataAPI(stock.ticker);
+
+      final db = await database;
+      await db.update(
+        stocksTable,
+        {
+          'tickerPrice': stock.tickerPrice,
+          'dayChangeDollars': stock.dayChangeDollars,
+          'dayChangePercentage': stock.dayChangePercentage,
+          'exchange': stock.exchange,
+          'low52Week': stock.low52Week,
+          'high52Week': stock.high52Week,
+        },
+        where: 'ticker = ?',
+        whereArgs: [stock.ticker],
+      );
+    }
   }
 
   /* adds a stock symbol to the watchlist */
@@ -82,7 +116,9 @@ class DatabaseRepository {
     final db = await database;
     await db.update(
       stocksTable,
-      {'activeTracking': toggleValue ? 1 : 0},
+      {
+        'activeTracking': toggleValue ? 1 : 0,
+      },
       where: 'ticker = ?',
       whereArgs: [tickerSymbol],
     );
@@ -129,11 +165,4 @@ class DatabaseRepository {
 
     return stocks;
   }
-
-  /* returns an updated watchlist sorted based on algorithm provided */ // todo
-  // List<StockEntity> sortWatchlist(
-  //     List<StockEntity> watchlist, String sortAlgorithm) {
-  //   List<StockEntity> sortedWatchlist = [];
-  //   return sortedWatchlist;
-  // }
 }
