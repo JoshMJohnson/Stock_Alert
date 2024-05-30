@@ -71,23 +71,28 @@ class DatabaseRepository {
     /* update all stock data on watchlist */
     List<StockEntity> prevWatchlist = await getStockSymbols();
 
-    for (var stock in prevWatchlist) {
-      // todo trigger 8 per minute for API request limit
-      stock = retrieveStockDataFromTwelveDataAPI(stock.ticker);
+    for (var i = 1; i <= prevWatchlist.length; i++) {
+      /* only perform 8 api requests per minute per Twelve Data API request limit */
+      if (i % 8 == 0) {
+        await Future.delayed(const Duration(seconds: 61));
+      }
+
+      StockEntity updatedStockEntity =
+          retrieveStockDataFromTwelveDataAPI(prevWatchlist[i - 1].ticker);
 
       final db = await database;
       await db.update(
         stocksTable,
         {
-          'tickerPrice': stock.tickerPrice,
-          'dayChangeDollars': stock.dayChangeDollars,
-          'dayChangePercentage': stock.dayChangePercentage,
-          'exchange': stock.exchange,
-          'low52Week': stock.low52Week,
-          'high52Week': stock.high52Week,
+          'tickerPrice': updatedStockEntity.tickerPrice,
+          'dayChangeDollars': updatedStockEntity.dayChangeDollars,
+          'dayChangePercentage': updatedStockEntity.dayChangePercentage,
+          'exchange': updatedStockEntity.exchange,
+          'low52Week': updatedStockEntity.low52Week,
+          'high52Week': updatedStockEntity.high52Week,
         },
         where: 'ticker = ?',
-        whereArgs: [stock.ticker],
+        whereArgs: [updatedStockEntity.ticker],
       );
     }
   }
