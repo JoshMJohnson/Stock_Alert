@@ -87,7 +87,7 @@ class _HomePageState extends State<HomePage> {
       }
     }
 
-    /* loads watchlist */
+    /* loads current watchlist data */
     void loadWatchlist() async {
       watchlist = await repo.getStockSymbols();
 
