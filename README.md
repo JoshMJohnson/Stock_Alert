@@ -9,8 +9,14 @@ Provides stock alerts of major changes in the market<br>
 
 <img src="/project_screenshots/home_light.png" alt="Home page light mode" width="250" height="500" align="left">
 <img src="/project_screenshots/home_dark.png" alt="Home page dark mode" width="250" height="500" align="right">
+
+<br>
+
 <img src="/project_screenshots/ticker_light.png" alt="Home page light mode" width="250" height="500" align="left">
 <img src="/project_screenshots/ticker_dark.png" alt="Home page dark mode" width="250" height="500" align="right">
+
+<br>
+
 <img src="/project_screenshots/settings_light.png" alt="Home page light mode" width="250" height="500" align="left">
 <img src="/project_screenshots/settings_dark.png" alt="Home page dark mode" width="250" height="500" align="right">
 
