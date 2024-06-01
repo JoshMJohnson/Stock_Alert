@@ -8,8 +8,8 @@ Provides stock alerts of major changes in the market<br>
 
 <h3>Home Page</h3>
 
-<img src="/project_screenshots/home_light.png" alt="Home page light mode" width="50%" height="50%" align="left">
-<img src="/project_screenshots/home_light.png" alt="Home page dark mode" width="50%" height="50%" align="right">
+<img src="/project_screenshots/home_light.png" alt="Home page light mode" width="250" height="500" align="left">
+<img src="/project_screenshots/home_dark.png" alt="Home page dark mode" width="250" height="500" align="right">
 
 <h3>Ticker Page</h3>
 
