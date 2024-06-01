@@ -10,7 +10,7 @@ Provides stock alerts of major changes in the market<br>
 
 <hr>
 
-<h2 align='center'>Previews</h2>
+<h2 align='center'>Preview</h2>
 
 <div align='center'>
 
