@@ -5,6 +5,9 @@
 Provides stock alerts of major changes in the market<br>
 
 </div>
+
+<hr>
+
 <div align='center'>
 
 <img src="/project_screenshots/home_light.png" alt="Home page light mode" width="250" height="500" align="left">
