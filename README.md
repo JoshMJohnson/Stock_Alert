@@ -1,12 +1,16 @@
-<h1 align="center" style="font-weight: bold">:open_book: Stock Alert :open_book:</h1>
+<h1 align="center" style="font-weight: bold">:chart_with_upwards_trend: Stock Alert :chart_with_downwards_trend:</h1>
 
 <div align='center'>
+
+<i>Still in development</i>
 
 Provides stock alerts of major changes in the market<br>
 
 </div>
 
 <hr>
+
+<h2 align='center'>Previews</h2>
 
 <div align='center'>
 
