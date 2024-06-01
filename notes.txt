@@ -1,7 +1,15 @@
 Bugs:
 - Class constructor warning for.... // ignore: no_logic_in_create_state
 - Can only do 8 api requests per minute... look at adding stocks within the pull time set for notification
-
+    - Tell this within an Info button on top left header of home screen
+- Close keyboard when going from Ticker page to Home page
+- Ticker page market logo responsive (example: NASDAQ, NYSE)
+- Database interations (check Stock Tracker repo file for error numbers; verify with Postman)
+    - Adding stocks already on watchlist
+    - Adding stocks not found on stock market
+    - Removing stocks not on watchlist
+    - Adding stocks past the 8 GET request limit per minute by Twelve Data API
+    
 To Do:
 - Negative dollar value move negative sign left of dollar sign
 - Turn off battery optimization for foreground service delay prevention
