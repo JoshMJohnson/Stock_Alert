@@ -1,3 +1,4 @@
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -140,7 +141,15 @@ class _SettingsPageState extends State<SettingsPage> {
   }
 
   /* updates the notification settings */ // todo
-  updateNotificationSettings() {}
+  updateNotificationSettings() {
+    AwesomeNotifications().createNotification(
+        content: NotificationContent(
+      id: 1,
+      channelKey: 'basic_channel',
+      title: 'temp title',
+      body: 'temp body here',
+    ));
+  }
 
   /* updates/creates daily notifications */
   saveButtonHandler() {

@@ -1,5 +1,7 @@
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:stock_alert/notification_service.dart';
 import 'package:stock_alert/pages/homePageWidgets/stock_entity.dart';
 
 import 'pages/home.dart';
@@ -8,6 +10,38 @@ import 'package:stock_alert/database_repository.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // * local notifications
+  await AwesomeNotifications().initialize(null, [
+    NotificationChannel(
+      channelGroupKey: 'basic_channel_group',
+      channelKey: 'basic_channel',
+      channelName: 'basic notifications',
+      channelDescription: 'test description',
+    )
+  ], channelGroups: [
+    NotificationChannelGroup(
+      channelGroupKey: 'basic_channel_group',
+      channelGroupName: 'basic group',
+    )
+  ]);
+
+  bool isAllowedToSendNotification =
+      await AwesomeNotifications().isNotificationAllowed();
+
+  if (!isAllowedToSendNotification) {
+    AwesomeNotifications().requestPermissionToSendNotifications();
+  }
+
+  AwesomeNotifications().setListeners(
+    onActionReceivedMethod: NotificationService.onActionReceivedMethod,
+    onDismissActionReceivedMethod:
+        NotificationService.onDismissActionReceivedMethod,
+    onNotificationDisplayedMethod:
+        NotificationService.onNotificationDisplayedMethod,
+    onNotificationCreatedMethod:
+        NotificationService.onNotificationCreatedMethod,
+  );
 
   // * preferences
   final SharedPreferences prefs = await SharedPreferences.getInstance();
