@@ -145,8 +145,16 @@ class _SettingsPageState extends State<SettingsPage> {
     AwesomeNotifications().createNotification(
         content: NotificationContent(
       id: 1,
-      channelKey: 'basic_channel',
-      title: 'temp title',
+      channelKey: 'bull_channel',
+      title: 'Bull title',
+      body: 'temp body here',
+    ));
+
+    AwesomeNotifications().createNotification(
+        content: NotificationContent(
+      id: 2,
+      channelKey: 'bear_channel',
+      title: 'Bear title',
       body: 'temp body here',
     ));
   }

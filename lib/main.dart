@@ -12,17 +12,20 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   // * local notifications
-  await AwesomeNotifications().initialize(null, [
+  // todo
+  await AwesomeNotifications().initialize('resource://drawable/bull_icon', [
     NotificationChannel(
-      channelGroupKey: 'basic_channel_group',
-      channelKey: 'basic_channel',
-      channelName: 'basic notifications',
-      channelDescription: 'test description',
+      channelKey: 'bull_channel',
+      channelName: 'Bull Stocks',
+      channelDescription: 'Provides alerts for stocks that are up.',
     )
-  ], channelGroups: [
-    NotificationChannelGroup(
-      channelGroupKey: 'basic_channel_group',
-      channelGroupName: 'basic group',
+  ]);
+
+  await AwesomeNotifications().initialize('resource://drawable/bear_icon', [
+    NotificationChannel(
+      channelKey: 'bear_channel',
+      channelName: 'Bear Stocks',
+      channelDescription: 'Provides alerts for stocks that are down.',
     )
   ]);
 
