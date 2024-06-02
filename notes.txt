@@ -1,5 +1,6 @@
 Bugs:
 - Class constructor warning for.... // ignore: no_logic_in_create_state
+- Toggling ticker symbols on watchlist doesn't turn off request for that entity yet
 - Can only do 8 api requests per minute... look at adding stocks within the pull time set for notification
     - Tell this within an Info button on top left header of home screen
 - Close keyboard when going from Ticker page to Home page
