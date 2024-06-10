@@ -300,6 +300,7 @@ class _HomePageState extends State<HomePage> {
           ),
           Expanded(
             child: StockWatchlist(
+              updateWatchlistData,
               removeTicker,
               updateActiveTracking,
               watchlist,
