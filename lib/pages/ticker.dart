@@ -37,7 +37,75 @@ class TickerPage extends StatelessWidget {
           SizedBox(
             width: 60,
             child: GestureDetector(
-              onTap: () => removeTicker(stock.ticker),
+              onTap: () {
+                showDialog(
+                  context: context,
+                  builder: (_) => AlertDialog(
+                    title: Text(
+                      'Remove\nTicker Symbol',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color:
+                            Theme.of(context).textTheme.headlineMedium!.color,
+                        fontSize: 28,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    content: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.all(20),
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Theme.of(context).colorScheme.primary,
+                              width: 5,
+                            ),
+                          ),
+                          child: Text(
+                            stock.ticker,
+                            style: TextStyle(
+                              color: Theme.of(context).colorScheme.tertiary,
+                              fontSize: 30,
+                              fontWeight: FontWeight.w600,
+                              fontStyle: FontStyle.italic,
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              GestureDetector(
+                                onTap: () => {
+                                  removeTicker(stock.ticker),
+                                  Navigator.pop(context), // close alert window
+                                  Navigator.pop(
+                                      context), // return to home screen
+                                },
+                                child: Icon(
+                                  Icons.check_circle_outline,
+                                  size: 55,
+                                  color: Theme.of(context).iconTheme.color,
+                                ),
+                              ),
+                              GestureDetector(
+                                onTap: () => Navigator.pop(context),
+                                child: Icon(
+                                  Icons.cancel_outlined,
+                                  size: 55,
+                                  color: Theme.of(context).iconTheme.color,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
               child: Icon(
                 Icons.delete,
                 size: 35,
