@@ -13,11 +13,22 @@ Future<void> main() async {
 
   // * local notifications
   // todo
+  await AwesomeNotifications()
+      .initialize('resource://drawable/foreground_service_icon', [
+    NotificationChannel(
+      channelKey: 'foreground_service',
+      channelName: 'Foreground Service',
+      channelDescription: 'Foreground service for Stock Alert.',
+      channelShowBadge: false,
+    )
+  ]);
+
   await AwesomeNotifications().initialize('resource://drawable/bull_icon', [
     NotificationChannel(
       channelKey: 'bull_channel',
       channelName: 'Bull Stocks',
       channelDescription: 'Provides alerts for stocks that are up.',
+      channelShowBadge: false,
     )
   ]);
 
@@ -26,6 +37,7 @@ Future<void> main() async {
       channelKey: 'bear_channel',
       channelName: 'Bear Stocks',
       channelDescription: 'Provides alerts for stocks that are down.',
+      channelShowBadge: false,
     )
   ]);
 

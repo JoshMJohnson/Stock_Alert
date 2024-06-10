@@ -165,35 +165,13 @@ class _TickerInputFieldsState extends State<TickerInputFields> {
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(top: 10),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    GestureDetector(
-                                      onTap: () => {
-                                        widget.addTicker(),
-                                        Navigator.pop(
-                                            context), // close alert window
-                                        FocusManager.instance.primaryFocus
-                                            ?.unfocus(), // close keyboard visibility
-                                      },
-                                      child: Icon(
-                                        Icons.check_circle_outline,
-                                        size: 55,
-                                        color:
-                                            Theme.of(context).iconTheme.color,
-                                      ),
-                                    ),
-                                    GestureDetector(
-                                      onTap: () => Navigator.pop(context),
-                                      child: Icon(
-                                        Icons.cancel_outlined,
-                                        size: 55,
-                                        color:
-                                            Theme.of(context).iconTheme.color,
-                                      ),
-                                    ),
-                                  ],
+                                child: GestureDetector(
+                                  onTap: () => Navigator.pop(context),
+                                  child: Icon(
+                                    Icons.cancel_outlined,
+                                    size: 55,
+                                    color: Theme.of(context).iconTheme.color,
+                                  ),
                                 ),
                               ),
                             ],
@@ -347,33 +325,13 @@ class _TickerInputFieldsState extends State<TickerInputFields> {
                             ),
                             Padding(
                               padding: const EdgeInsets.only(top: 10),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  GestureDetector(
-                                    onTap: () => {
-                                      widget.addTicker(),
-                                      Navigator.pop(
-                                          context), // close alert window
-                                      FocusManager.instance.primaryFocus
-                                          ?.unfocus(), // close keyboard visibility
-                                    },
-                                    child: Icon(
-                                      Icons.check_circle_outline,
-                                      size: 55,
-                                      color: Theme.of(context).iconTheme.color,
-                                    ),
-                                  ),
-                                  GestureDetector(
-                                    onTap: () => Navigator.pop(context),
-                                    child: Icon(
-                                      Icons.cancel_outlined,
-                                      size: 55,
-                                      color: Theme.of(context).iconTheme.color,
-                                    ),
-                                  ),
-                                ],
+                              child: GestureDetector(
+                                onTap: () => Navigator.pop(context),
+                                child: Icon(
+                                  Icons.cancel_outlined,
+                                  size: 55,
+                                  color: Theme.of(context).iconTheme.color,
+                                ),
                               ),
                             ),
                           ],

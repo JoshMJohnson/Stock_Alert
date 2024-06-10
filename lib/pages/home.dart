@@ -256,7 +256,7 @@ class _HomePageState extends State<HomePage> {
 
   /* body widget of settings page */
   Container homeBody(BuildContext context) {
-    updateWatchlistSortAlgorithm(); // ! seems like the wrong location; called on text field typing
+    updateWatchlistSortAlgorithm();
 
     return Container(
       width: double.infinity,
