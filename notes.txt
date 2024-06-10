@@ -1,18 +1,15 @@
 Bugs:
-- Class constructor warning for.... // ignore: no_logic_in_create_state
 - Toggling ticker symbols on watchlist doesn't turn off request for that entity yet
-- Can only do 8 api requests per minute... look at adding stocks within the pull time set for notification
-    - Tell this within an Info button on top left header of home screen
-- Close keyboard when going from Ticker page to Home page
+    - Stop api get request
+    - Ignore on notification description
 - Ticker page market logo responsive (example: NASDAQ, NYSE)
 - Database interations (check Stock Tracker repo file for error numbers; verify with Postman)
-    - Adding stocks already on watchlist
     - Adding stocks not found on stock market
-    - Removing stocks not on watchlist
     - Adding stocks past the 8 GET request limit per minute by Twelve Data API
+- Last Updated feature only refreshes on application initial load.
+    - needs to update text display on trigger if app is open in the background
     
 To Do:
-- Negative dollar value move negative sign left of dollar sign
 - Turn off battery optimization for foreground service delay prevention
 - Handle font scaling
 - Create notifications when save pressed within Settings page
@@ -21,21 +18,12 @@ To Do:
     - Terminate service
     
 Feature Additions:
-- Last updated time value on home page just about list view of stocks
-- Ticker page shows active/inactive toggle for ticker entity
 - Include industries that the ticker company is involved in on the Ticker page
-- Add a small note somewhere in app stating the only 8 stock requests per min
-    - Info icon on top left of home page within header
 - Implement an first time app use intro directions
     - use flutter name: IntroductionScreen
 
 GitHub:
 - Create README
-- Private -> Public... GitHub repository when completed
-    - Delete private info such as the Twelve Data API code
-    - Complete the project README file for Stock Alert
-        - Add an info section at the top of the GitHub readme for Stock Alert about creating an account
-        for Twelve Data and inserting key from API into project code
    
 Ticker Page:
 - x | Ticker
