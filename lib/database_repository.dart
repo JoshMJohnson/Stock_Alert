@@ -6,6 +6,7 @@ import 'package:sqflite/sqflite.dart';
 import 'package:stock_alert/pages/homePageWidgets/stock_entity.dart';
 
 import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 /* handles database interations */
 class DatabaseRepository {
@@ -47,9 +48,12 @@ class DatabaseRepository {
   /* calls the twelve data API for a stock symbol and returns a Stock Entity with updated info */ // todo
   Future retrieveStockDataFromTwelveDataAPI(
       String tickerSymbol, bool prevCreated) async {
-    final updatedTickerDataLocation = Uri.parse(
-        'https://api.twelvedata.com/quote?symbol=${tickerSymbol}&apikey=${apiCode}');
-    final updatedTickerData = await http.read(updatedTickerDataLocation);
+    final tickerURL = Uri.parse(
+        'https://api.twelvedata.com/quote?symbol=$tickerSymbol&apikey=$apiCode');
+    final tickerData = await http.read(tickerURL);
+    // final tickerJSON = json.decode(tickerData) as Map<String, dynamic>;
+
+    debugPrint(tickerData);
 
     /* assigns variable to the correct data */ // todo
     String companyName = 'temp company name';
