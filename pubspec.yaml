@@ -40,6 +40,7 @@ dependencies:
   path: ^1.9.0
   awesome_notifications_core: ^0.9.0 # <~ always ensure to use the latest version
   awesome_notifications: any # <~ this version is managed by awesome_notifications_core package
+  http: ^1.2.1
 
 dev_dependencies:
   flutter_test:

@@ -19,6 +19,8 @@ To Do:
 - Handle twelve data api errors (shown on documentation)
     
 Feature Additions:
+- Possibly use http flutter request to access stock tickers directly somehow
+    - Allows app to go on app store
 - Include industries that the ticker company is involved in on the Ticker page
 - Implement an first time app use intro directions
     - use flutter name: IntroductionScreen

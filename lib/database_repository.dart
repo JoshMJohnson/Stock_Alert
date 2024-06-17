@@ -5,6 +5,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:stock_alert/pages/homePageWidgets/stock_entity.dart';
 
+import 'package:http/http.dart' as http;
+
 /* handles database interations */
 class DatabaseRepository {
   static Database? _db;
@@ -41,21 +43,55 @@ class DatabaseRepository {
   }
 
   /* calls the twelve data API for a stock symbol and returns a Stock Entity with updated info */ // todo
-  StockEntity retrieveStockDataFromTwelveDataAPI(String tickerSymbol) {
-    StockEntity? updatedStockData = StockEntity(
-      ticker: tickerSymbol,
-      companyName: 'company name',
-      companyDescription: 'company description',
-      tickerPrice: 78.21,
-      dayChangeDollars: -93.2,
-      dayChangePercentage: -10.1,
-      exchange: 'NASDAQ example',
-      low52Week: 45.34,
-      high52Week: 112.03,
-      activeTracking: true,
-    ); // ! find within database first; return null if new stock being added
+  void retrieveStockDataFromTwelveDataAPI(
+      String tickerSymbol, bool prevCreated) async {
+    final httpPackageUrl = Uri.parse(
+        'https://api.twelvedata.com/quote?symbol=BA&apikey=b621e679c4744860a830188951a1a427');
+    final httpPackageInfo = await http.read(httpPackageUrl);
+    debugPrint(httpPackageInfo);
 
-    return updatedStockData;
+    /* assigns variable to the correct data */ // todo
+    String companyName = 'Boeing';
+    String companyDescription = 'Here is company description';
+    double tickerPPS = 89.32;
+    double dayChangeDollars = 32.11;
+    double dayChangePercentage = 4.21;
+    String exchange = 'NASDAQ';
+    double low52Week = 82.33;
+    double high52Week = 342.1;
+
+    if (prevCreated) {
+      final db = await database;
+      await db.update(
+        stocksTable,
+        {
+          'tickerPrice': tickerPPS,
+          'dayChangeDollars': dayChangeDollars,
+          'dayChangePercentage': dayChangePercentage,
+          'low52Week': low52Week,
+          'high52Week': high52Week,
+        },
+        where: 'ticker = ?',
+        whereArgs: [tickerSymbol],
+      );
+    } else {
+      final db = await database;
+      await db.insert(
+        stocksTable,
+        {
+          'ticker': tickerSymbol,
+          'companyName': companyName,
+          'companyDescription': companyDescription,
+          'tickerPrice': tickerPPS,
+          'dayChangeDollars': dayChangeDollars,
+          'dayChangePercentage': dayChangePercentage,
+          'exchange': exchange,
+          'low52Week': low52Week,
+          'high52Week': high52Week,
+          'activeTracking': 1,
+        },
+      );
+    }
   }
 
   /* updates all watchlist stock tickers data */ // todo trigger on notification time
@@ -77,43 +113,13 @@ class DatabaseRepository {
         await Future.delayed(const Duration(seconds: 61));
       }
 
-      StockEntity updatedStockEntity =
-          retrieveStockDataFromTwelveDataAPI(prevWatchlist[i].ticker);
-
-      final db = await database;
-      await db.update(
-        stocksTable,
-        {
-          'tickerPrice': updatedStockEntity.tickerPrice,
-          'dayChangeDollars': updatedStockEntity.dayChangeDollars,
-          'dayChangePercentage': updatedStockEntity.dayChangePercentage,
-          'exchange': updatedStockEntity.exchange,
-          'low52Week': updatedStockEntity.low52Week,
-          'high52Week': updatedStockEntity.high52Week,
-        },
-        where: 'ticker = ?',
-        whereArgs: [updatedStockEntity.ticker],
-      );
+      retrieveStockDataFromTwelveDataAPI(prevWatchlist[i].ticker, true);
     }
   }
 
   /* adds a stock symbol to the watchlist */
-  void addSymbol(String stockSymbol) async {
-    StockEntity addingStock = retrieveStockDataFromTwelveDataAPI(stockSymbol);
-
-    final db = await database;
-    await db.insert(stocksTable, {
-      'ticker': stockSymbol,
-      'companyName': addingStock.companyName,
-      'companyDescription': addingStock.companyDescription,
-      'tickerPrice': addingStock.tickerPrice,
-      'dayChangeDollars': addingStock.dayChangeDollars,
-      'dayChangePercentage': addingStock.dayChangePercentage,
-      'exchange': addingStock.exchange,
-      'low52Week': addingStock.low52Week,
-      'high52Week': addingStock.high52Week,
-      'activeTracking': addingStock.activeTracking ? 1 : 0,
-    });
+  void addSymbol(String stockSymbol) {
+    retrieveStockDataFromTwelveDataAPI(stockSymbol, false);
   }
 
   /* updates the stock toggle within the database */
