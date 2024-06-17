@@ -16,15 +16,19 @@ To Do:
 - Handle foreground service on save pressed within Settings page
     - Start service
     - Terminate service
+- Handle twelve data api errors (shown on documentation)
     
 Feature Additions:
 - Include industries that the ticker company is involved in on the Ticker page
 - Implement an first time app use intro directions
     - use flutter name: IntroductionScreen
+- API get request for logo on adding symbol to watchlist
+    - Possibly request after market is closed
+        - loop through watchlist and if no image; call api get request for it
 
 GitHub:
-- Create README
-   
+- 
+
 Ticker Page:
 - x | Ticker
 - x | Company Name
