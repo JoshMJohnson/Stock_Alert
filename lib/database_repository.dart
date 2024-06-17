@@ -50,13 +50,13 @@ class DatabaseRepository {
       String tickerSymbol, bool prevCreated) async {
     final tickerURL = Uri.parse(
         'https://api.twelvedata.com/quote?symbol=$tickerSymbol&apikey=$apiCode');
-    final tickerData = await http.read(tickerURL);
-    // final tickerJSON = json.decode(tickerData) as Map<String, dynamic>;
+    final tickerData = await http.get(tickerURL);
+    final tickerJSON = json.decode(tickerData.body) as Map<String, dynamic>;
 
-    debugPrint(tickerData);
+    debugPrint(tickerData.body);
 
     /* assigns variable to the correct data */ // todo
-    String companyName = 'temp company name';
+    String companyName = tickerJSON['name'];
     String companyDescription = 'Here is company description';
     double tickerPPS = 89.32;
     double dayChangeDollars = 32.11;
