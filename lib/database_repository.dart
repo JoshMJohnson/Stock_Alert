@@ -45,24 +45,21 @@ class DatabaseRepository {
     return database;
   }
 
-  /* calls the twelve data API for a stock symbol and returns a Stock Entity with updated info */ // todo
+  /* calls the twelve data API for a stock symbol and returns a Stock Entity with updated info */
   Future retrieveStockDataFromTwelveDataAPI(
       String tickerSymbol, bool prevCreated) async {
     final tickerURL = Uri.parse(
         'https://api.twelvedata.com/quote?symbol=$tickerSymbol&apikey=$apiCode');
     final tickerData = await http.get(tickerURL);
     final tickerJSON = json.decode(tickerData.body) as Map<String, dynamic>;
-
-    // debugPrint(tickerData.body);
+    debugPrint(tickerData.body);
 
     /* assigns variable to the correct data */
-    String companyName = tickerJSON['name'];
-    String companyDescription = 'Here is company description';
     double tickerPPS =
         double.parse(tickerJSON['open']) - double.parse(tickerJSON['change']);
     double dayChangeDollars = double.parse(tickerJSON['change']);
     double dayChangePercentage = double.parse(tickerJSON['percent_change']);
-    String exchange = tickerJSON['exchange'];
+
     var weeks52 = tickerJSON['fifty_two_week'];
     double low52Week = double.parse(weeks52['low']);
     double high52Week = double.parse(weeks52['high']);
@@ -85,6 +82,10 @@ class DatabaseRepository {
         whereArgs: [tickerSymbol],
       );
     } else {
+      String companyName = tickerJSON['name'];
+      String companyDescription = 'Here is company description'; // todo
+      String exchange = tickerJSON['exchange'];
+
       final db = await database;
       await db.insert(
         stocksTable,
