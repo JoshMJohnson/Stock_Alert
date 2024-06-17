@@ -55,15 +55,18 @@ class DatabaseRepository {
 
     debugPrint(tickerData.body);
 
-    /* assigns variable to the correct data */ // todo
+    /* assigns variable to the correct data */ // todo is_market_open
     String companyName = tickerJSON['name'];
     String companyDescription = 'Here is company description';
-    double tickerPPS = 89.32;
-    double dayChangeDollars = 32.11;
-    double dayChangePercentage = 4.21;
-    String exchange = 'NASDAQ';
-    double low52Week = 82.33;
-    double high52Week = 342.1;
+    double tickerPPS =
+        double.parse(tickerJSON['open']) - double.parse(tickerJSON['change']);
+    double dayChangeDollars = double.parse(tickerJSON['change']);
+    double dayChangePercentage = double.parse(tickerJSON['percent_change']);
+    String exchange = tickerJSON['exchange'];
+    // double low52Week = double.parse(tickerJSON['fifty_two_week[low]']);
+    // double high52Week = double.parse(tickerJSON['fifty_two_week[high]']);
+    double low52Week = 5.4;
+    double high52Week = 3.5;
 
     if (prevCreated) {
       final db = await database;

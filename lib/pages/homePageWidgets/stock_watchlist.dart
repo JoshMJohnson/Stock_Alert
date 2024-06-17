@@ -101,7 +101,7 @@ class StockWatchlist extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Text(
-                      '${watchlist[index].dayChangePercentage} (%)',
+                      '${watchlist[index].dayChangePercentage.toStringAsFixed(2)} (%)',
                       style: TextStyle(
                           color: watchlist[index].dayChangePercentage >= 0
                               ? Theme.of(context).textTheme.bodyLarge!.color
