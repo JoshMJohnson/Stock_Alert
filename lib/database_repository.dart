@@ -12,6 +12,8 @@ class DatabaseRepository {
   static Database? _db;
   static final DatabaseRepository instance = DatabaseRepository._constructor();
   final String stocksTable = 'stocks';
+  final String apiCode =
+      'b621e679c4744860a830188951a1a427'; /* Twelve Data API currently */
 
   DatabaseRepository._constructor();
 
@@ -45,13 +47,12 @@ class DatabaseRepository {
   /* calls the twelve data API for a stock symbol and returns a Stock Entity with updated info */ // todo
   Future retrieveStockDataFromTwelveDataAPI(
       String tickerSymbol, bool prevCreated) async {
-    final httpPackageUrl = Uri.parse(
-        'https://api.twelvedata.com/quote?symbol=BA&apikey=b621e679c4744860a830188951a1a427');
-    final httpPackageInfo = await http.read(httpPackageUrl);
-    debugPrint(httpPackageInfo);
+    final updatedTickerDataLocation = Uri.parse(
+        'https://api.twelvedata.com/quote?symbol=${tickerSymbol}&apikey=${apiCode}');
+    final updatedTickerData = await http.read(updatedTickerDataLocation);
 
     /* assigns variable to the correct data */ // todo
-    String companyName = 'Boeing';
+    String companyName = 'temp company name';
     String companyDescription = 'Here is company description';
     double tickerPPS = 89.32;
     double dayChangeDollars = 32.11;
