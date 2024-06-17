@@ -15,7 +15,7 @@ class DatabaseRepository {
   final String stocksTable = 'stocks';
   final String apiCode =
       'b621e679c4744860a830188951a1a427'; /* Twelve Data API currently */
-  late bool isMarketOpen; // todo unimplemented
+  bool isMarketOpen = false; // todo unimplemented
 
   DatabaseRepository._constructor();
 
@@ -65,9 +65,9 @@ class DatabaseRepository {
     double low52Week = double.parse(weeks52['low']);
     double high52Week = double.parse(weeks52['high']);
 
-    isMarketOpen = tickerJSON['is_market_open'];
-
     if (prevCreated) {
+      isMarketOpen = tickerJSON['is_market_open'];
+
       final db = await database;
       await db.update(
         stocksTable,
