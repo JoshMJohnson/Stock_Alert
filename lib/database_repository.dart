@@ -46,7 +46,7 @@ class DatabaseRepository {
     return database;
   }
 
-  /* calls the twelve data API for a stock symbol and returns a Stock Entity with updated info */
+  /* calls the twelve data API for a stock symbol and updates database row with updated info */
   Future retrieveStockDataFromTwelveDataAPI(
       String tickerSymbol, bool prevCreated) async {
     final tickerURL = Uri.parse(
