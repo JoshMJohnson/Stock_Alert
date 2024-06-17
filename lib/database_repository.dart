@@ -65,8 +65,8 @@ class DatabaseRepository {
     String exchange = tickerJSON['exchange'];
     // double low52Week = double.parse(tickerJSON['fifty_two_week[low]']);
     // double high52Week = double.parse(tickerJSON['fifty_two_week[high]']);
-    double low52Week = 5.4;
-    double high52Week = 3.5;
+    double low52Week = 1.0;
+    double high52Week = 500.5;
 
     if (prevCreated) {
       final db = await database;
