@@ -151,8 +151,8 @@ class _HomePageState extends State<HomePage> {
   }
 
   /* handles adding ticker from text field to watchlist */
-  void addTicker() {
-    repo.addSymbol(currentTicker);
+  void addTicker() async {
+    await repo.addSymbol(currentTicker);
     updateWatchlistData();
   }
 

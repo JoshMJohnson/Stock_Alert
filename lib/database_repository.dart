@@ -43,7 +43,7 @@ class DatabaseRepository {
   }
 
   /* calls the twelve data API for a stock symbol and returns a Stock Entity with updated info */ // todo
-  void retrieveStockDataFromTwelveDataAPI(
+  Future retrieveStockDataFromTwelveDataAPI(
       String tickerSymbol, bool prevCreated) async {
     final httpPackageUrl = Uri.parse(
         'https://api.twelvedata.com/quote?symbol=BA&apikey=b621e679c4744860a830188951a1a427');
@@ -95,7 +95,7 @@ class DatabaseRepository {
   }
 
   /* updates all watchlist stock tickers data */ // todo trigger on notification time
-  void updateWatchlist(List<StockEntity> prevWatchlist) async {
+  Future updateWatchlist(List<StockEntity> prevWatchlist) async {
     /* update time stamp for last updated */
     TimeOfDay currentTime = TimeOfDay.now();
 
@@ -113,13 +113,13 @@ class DatabaseRepository {
         await Future.delayed(const Duration(seconds: 61));
       }
 
-      retrieveStockDataFromTwelveDataAPI(prevWatchlist[i].ticker, true);
+      await retrieveStockDataFromTwelveDataAPI(prevWatchlist[i].ticker, true);
     }
   }
 
   /* adds a stock symbol to the watchlist */
-  void addSymbol(String stockSymbol) {
-    retrieveStockDataFromTwelveDataAPI(stockSymbol, false);
+  Future addSymbol(String stockSymbol) async {
+    await retrieveStockDataFromTwelveDataAPI(stockSymbol, false);
   }
 
   /* updates the stock toggle within the database */
