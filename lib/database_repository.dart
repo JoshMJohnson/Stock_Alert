@@ -53,9 +53,9 @@ class DatabaseRepository {
     final tickerData = await http.get(tickerURL);
     final tickerJSON = json.decode(tickerData.body) as Map<String, dynamic>;
 
-    debugPrint(tickerData.body);
+    // debugPrint(tickerData.body);
 
-    /* assigns variable to the correct data */ // todo is_market_open
+    /* assigns variable to the correct data */
     String companyName = tickerJSON['name'];
     String companyDescription = 'Here is company description';
     double tickerPPS =
@@ -63,10 +63,12 @@ class DatabaseRepository {
     double dayChangeDollars = double.parse(tickerJSON['change']);
     double dayChangePercentage = double.parse(tickerJSON['percent_change']);
     String exchange = tickerJSON['exchange'];
-    // double low52Week = double.parse(tickerJSON['fifty_two_week[low]']);
-    // double high52Week = double.parse(tickerJSON['fifty_two_week[high]']);
-    double low52Week = 1.0;
-    double high52Week = 500.5;
+    var weeks52 = tickerJSON['fifty_two_week'];
+    double low52Week = double.parse(weeks52['low']);
+    double high52Week = double.parse(weeks52['high']);
+
+    bool isMarketOpen = tickerJSON['is_market_open']; // todo
+    // debugPrint('$isMarketOpen');
 
     if (prevCreated) {
       final db = await database;
