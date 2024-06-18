@@ -120,6 +120,18 @@ class DatabaseRepository {
       var errorType = tickerJSON['code'];
       debugPrint('@@@@@@@@ ERROR: $errorType @@@@@@@@');
 
+      if (errorType == 401) {
+        /* bad API key */ // todo
+      } else if (errorType == 403) {
+        /* upgraded twelve data plan needed */ // todo
+      } else if (errorType == 404) {
+        /* ticker not found */ // todo
+      } else if (errorType == 429) {
+        /* too many requests */ // todo
+      } else if (errorType == 500) {
+        /* tweleve data having issues; try again later message needed */ // todo
+      }
+
       return;
     }
 
