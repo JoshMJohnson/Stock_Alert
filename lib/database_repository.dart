@@ -47,17 +47,17 @@ class DatabaseRepository {
   }
 
   /* calls the twelve data API for a stock symbol and updates database row with updated info */
-  Future retrieveStockDataFromTwelveDataAPI(
-      String tickerSymbol, bool prevCreated) async {
+  Future retrieveStockDataFromTwelveDataAPI(String tickerSymbol) async {
     final tickerURL = Uri.parse(
         'https://api.twelvedata.com/quote?symbol=$tickerSymbol&apikey=$apiCode');
     final tickerData = await http.get(tickerURL);
     final tickerJSON = json.decode(tickerData.body) as Map<String, dynamic>;
     debugPrint(tickerData.body);
+    // todo if too many requests... delay 1 min
 
     /* assigns variable to the correct data */
     double tickerPPS =
-        double.parse(tickerJSON['open']) - double.parse(tickerJSON['change']);
+        double.parse(tickerJSON['open']) + double.parse(tickerJSON['change']);
     double dayChangeDollars = double.parse(tickerJSON['change']);
     double dayChangePercentage = double.parse(tickerJSON['percent_change']);
 
@@ -65,44 +65,21 @@ class DatabaseRepository {
     double low52Week = double.parse(weeks52['low']);
     double high52Week = double.parse(weeks52['high']);
 
-    if (prevCreated) {
-      isMarketOpen = tickerJSON['is_market_open'];
+    isMarketOpen = tickerJSON['is_market_open'];
 
-      final db = await database;
-      await db.update(
-        stocksTable,
-        {
-          'tickerPrice': tickerPPS,
-          'dayChangeDollars': dayChangeDollars,
-          'dayChangePercentage': dayChangePercentage,
-          'low52Week': low52Week,
-          'high52Week': high52Week,
-        },
-        where: 'ticker = ?',
-        whereArgs: [tickerSymbol],
-      );
-    } else {
-      String companyName = tickerJSON['name'];
-      String companyDescription = 'Here is company description'; // todo
-      String exchange = tickerJSON['exchange'];
-
-      final db = await database;
-      await db.insert(
-        stocksTable,
-        {
-          'ticker': tickerSymbol,
-          'companyName': companyName,
-          'companyDescription': companyDescription,
-          'tickerPrice': tickerPPS,
-          'dayChangeDollars': dayChangeDollars,
-          'dayChangePercentage': dayChangePercentage,
-          'exchange': exchange,
-          'low52Week': low52Week,
-          'high52Week': high52Week,
-          'activeTracking': 1,
-        },
-      );
-    }
+    final db = await database;
+    await db.update(
+      stocksTable,
+      {
+        'tickerPrice': tickerPPS,
+        'dayChangeDollars': dayChangeDollars,
+        'dayChangePercentage': dayChangePercentage,
+        'low52Week': low52Week,
+        'high52Week': high52Week,
+      },
+      where: 'ticker = ?',
+      whereArgs: [tickerSymbol],
+    );
   }
 
   /* updates all watchlist stock tickers data */ // todo trigger on notification time
@@ -124,13 +101,55 @@ class DatabaseRepository {
         await Future.delayed(const Duration(seconds: 61));
       }
 
-      await retrieveStockDataFromTwelveDataAPI(prevWatchlist[i].ticker, true);
+      await retrieveStockDataFromTwelveDataAPI(prevWatchlist[i].ticker);
     }
   }
 
-  /* adds a stock symbol to the watchlist */
-  Future addSymbol(String stockSymbol) async {
-    await retrieveStockDataFromTwelveDataAPI(stockSymbol, false);
+  /* adds a stock symbol to the watchlist; gets data from twelve data api */
+  Future addSymbol(String tickerSymbol) async {
+    final tickerURL = Uri.parse(
+        'https://api.twelvedata.com/quote?symbol=$tickerSymbol&apikey=$apiCode');
+    final tickerData = await http.get(tickerURL);
+    final tickerJSON = json.decode(tickerData.body) as Map<String, dynamic>;
+    debugPrint(tickerData.body);
+
+    /* handles possible errors */ // todo show pop up alert messages
+    debugPrint('****** ${tickerJSON['code']} ******');
+    if (tickerJSON['code'] != null) {
+      debugPrint('@@@@@@@@ ERROR @@@@@@@@');
+      return;
+    }
+
+    /* assigns variable to the correct data */
+    double tickerPPS =
+        double.parse(tickerJSON['open']) + double.parse(tickerJSON['change']);
+    double dayChangeDollars = double.parse(tickerJSON['change']);
+    double dayChangePercentage = double.parse(tickerJSON['percent_change']);
+
+    var weeks52 = tickerJSON['fifty_two_week'];
+    double low52Week = double.parse(weeks52['low']);
+    double high52Week = double.parse(weeks52['high']);
+
+    String companyName = tickerJSON['name'];
+    String companyDescription = 'Here is company description'; // todo
+    String exchange = tickerJSON['exchange'];
+
+    final db = await database;
+    await db.insert(
+      stocksTable,
+      {
+        'ticker': tickerSymbol,
+        'companyName': companyName,
+        'companyDescription': companyDescription,
+        'tickerPrice': tickerPPS,
+        'dayChangeDollars': dayChangeDollars,
+        'dayChangePercentage': dayChangePercentage,
+        'exchange': exchange,
+        'low52Week': low52Week,
+        'high52Week': high52Week,
+        'activeTracking': 1,
+      },
+    );
   }
 
   /* updates the stock toggle within the database */
