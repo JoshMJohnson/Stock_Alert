@@ -115,8 +115,11 @@ class DatabaseRepository {
 
     /* handles possible errors */ // todo show pop up alert messages
     debugPrint('****** ${tickerJSON['code']} ******');
-    if (tickerJSON['code'] != null) {
-      debugPrint('@@@@@@@@ ERROR @@@@@@@@');
+    var hasError = tickerJSON['code'] != null ? true : false;
+    if (hasError) {
+      var errorType = tickerJSON['code'];
+      debugPrint('@@@@@@@@ ERROR: $errorType @@@@@@@@');
+
       return;
     }
 
