@@ -319,15 +319,15 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  /* show info dialog */ // todo
+  /* show info dialog */
   void showInfoDialog() {
     String apiLimitMessage =
-        'This app uses Twelve Data API to access the stock market.\n'
-        'Twelve Data API has a limit of 8 stock ticker lookups per minute.\n\n'
-        'This will go unnoticed most of the time, but may be incountered while adding '
-        'stocks to the watchlist while Stock Alert is collecting data for notifications.\n\n'
-        'Due to the 8 request limit per minute, notifications will also be delayed '
-        '1 minute for every 8 stocks on your watchlist.';
+        'Stock Alert uses Twelve Data API to access the stock market.\n'
+        'This has a limit of 8 ticker lookups per minute.\n\n'
+        'This may be incountered while adding stocks to the watchlist '
+        'while collecting data for a notification.\n\n'
+        'Since there is an 8 request limit per minute, notifications will also '
+        'be delayed 1 minute for every 8 stocks on your watchlist.';
 
     showDialog(
       context: context,
