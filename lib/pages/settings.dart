@@ -141,30 +141,38 @@ class _SettingsPageState extends State<SettingsPage> {
   }
 
   /* updates the notification settings */ // todo
-  updateNotificationSettings() {
-    AwesomeNotifications().createNotification(
-        content: NotificationContent(
-      id: 1,
-      channelKey: 'foreground_service',
-      title: 'Stock Alert Active',
-      // locked: true,
-    ));
+  // todo if notifications are turned off... prompt user to turn on
+  updateNotificationSettings() async {
+    bool isAllowedToSendNotification =
+        await AwesomeNotifications().isNotificationAllowed();
 
-    AwesomeNotifications().createNotification(
-        content: NotificationContent(
-      id: 2,
-      channelKey: 'bull_channel',
-      title: 'Bull title',
-      body: 'temp body here',
-    ));
+    if (!isAllowedToSendNotification) {
+      AwesomeNotifications().requestPermissionToSendNotifications();
+    } else {
+      AwesomeNotifications().createNotification(
+          content: NotificationContent(
+        id: 1,
+        channelKey: 'foreground_service',
+        title: 'Stock Alert Active',
+        // locked: true,
+      ));
 
-    AwesomeNotifications().createNotification(
-        content: NotificationContent(
-      id: 3,
-      channelKey: 'bear_channel',
-      title: 'Bear title',
-      body: 'temp body here',
-    ));
+      AwesomeNotifications().createNotification(
+          content: NotificationContent(
+        id: 2,
+        channelKey: 'bull_channel',
+        title: 'Bull title',
+        body: 'temp body here',
+      ));
+
+      AwesomeNotifications().createNotification(
+          content: NotificationContent(
+        id: 3,
+        channelKey: 'bear_channel',
+        title: 'Bear title',
+        body: 'temp body here',
+      ));
+    }
   }
 
   /* updates/creates daily notifications */

@@ -41,13 +41,6 @@ Future<void> main() async {
     )
   ]);
 
-  bool isAllowedToSendNotification =
-      await AwesomeNotifications().isNotificationAllowed();
-
-  if (!isAllowedToSendNotification) {
-    AwesomeNotifications().requestPermissionToSendNotifications();
-  }
-
   AwesomeNotifications().setListeners(
     onActionReceivedMethod: NotificationService.onActionReceivedMethod,
     onDismissActionReceivedMethod:
