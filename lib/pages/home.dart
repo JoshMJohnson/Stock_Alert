@@ -322,7 +322,7 @@ class _HomePageState extends State<HomePage> {
   /* show info dialog */
   void showInfoDialog() {
     String apiLimitMessage =
-        'Stock Alert uses Twelve Data API to access the stock market.\n'
+        'Stock Alert uses Twelve Data API to access the stock market.\n\n'
         'This API has a limit of 8 ticker lookups per minute.\n\n'
         'The limit may be encountered while adding stocks to the watchlist '
         'at the same time as collecting data for a notification.\n\n'
