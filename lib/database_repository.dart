@@ -105,6 +105,9 @@ class DatabaseRepository {
     }
   }
 
+  /* api error alert */ // todo
+  void errorAlert(int errorCode) {}
+
   /* adds a stock symbol to the watchlist; gets data from twelve data api */
   Future addSymbol(String tickerSymbol) async {
     final tickerURL = Uri.parse(
@@ -121,18 +124,23 @@ class DatabaseRepository {
       debugPrint('@@@@@@@@ ERROR: $errorType @@@@@@@@');
 
       if (errorType == 401) {
-        /* bad API key */ // todo
+        /* bad API key */
+        return 401;
       } else if (errorType == 403) {
-        /* upgraded twelve data plan needed */ // todo
+        /* upgraded twelve data plan needed */
+        return 403;
       } else if (errorType == 404) {
-        /* ticker not found */ // todo
+        /* ticker not found */
+        return 404;
       } else if (errorType == 429) {
-        /* too many requests */ // todo
+        /* too many requests */
+        return 429;
       } else if (errorType == 500) {
-        /* tweleve data having issues; try again later message needed */ // todo
+        /* tweleve data having issues; try again later message needed */
+        return 500;
       }
 
-      return;
+      return 501;
     }
 
     /* assigns variable to the correct data */
@@ -165,6 +173,8 @@ class DatabaseRepository {
         'activeTracking': 1,
       },
     );
+
+    return -1;
   }
 
   /* updates the stock toggle within the database */

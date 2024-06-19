@@ -150,10 +150,95 @@ class _HomePageState extends State<HomePage> {
     updateWatchlistData();
   }
 
+  /* creates and displays alert for an error with the api */ // todo
+  void errorAlertWithAPI(int errorCode) {
+    showDialog(
+      context: context,
+      builder: (_) => AlertDialog(
+        title: Text(
+          'Failed Addggggg',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            color: Theme.of(context).textTheme.headlineMedium!.color,
+            fontSize: 28,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Theme.of(context).colorScheme.primary,
+                  width: 5,
+                ),
+              ),
+              child: Text(
+                currentTicker,
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.tertiary,
+                  fontSize: 30,
+                  fontWeight: FontWeight.w600,
+                  fontStyle: FontStyle.italic,
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 20),
+              child: Text(
+                'Ticker symbol is already on the watchlist',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.tertiary,
+                  fontSize: 20,
+                  fontWeight: FontWeight.w600,
+                  fontStyle: FontStyle.normal,
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 10),
+              child: GestureDetector(
+                onTap: () => Navigator.pop(context),
+                child: Icon(
+                  Icons.cancel_outlined,
+                  size: 55,
+                  color: Theme.of(context).iconTheme.color,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   /* handles adding ticker from text field to watchlist */
   void addTicker() async {
-    await repo.addSymbol(currentTicker);
-    updateWatchlistData();
+    int errorCode = await repo.addSymbol(currentTicker);
+    if (errorCode == 401) {
+      /* bad API key */
+      errorAlertWithAPI(401);
+    } else if (errorCode == 403) {
+      /* upgraded twelve data plan needed */
+      errorAlertWithAPI(403);
+    } else if (errorCode == 404) {
+      /* ticker not found */
+      errorAlertWithAPI(404);
+    } else if (errorCode == 429) {
+      /* too many requests */
+      errorAlertWithAPI(429);
+    } else if (errorCode == 500) {
+      /* tweleve data having issues; try again later message needed */
+      errorAlertWithAPI(500);
+    } else if (errorCode == 501) {
+      /* unknown error with twelve data api */
+      errorAlertWithAPI(501);
+    } else {
+      updateWatchlistData();
+    }
   }
 
   /* handles removing ticker from text field to watchlist */
