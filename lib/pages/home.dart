@@ -69,8 +69,6 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     // ! doesnt refresh unless app is fully closed
-    debugPrint('*******HEERRRERE******');
-
     void loadLastUpdatedTime() async {
       final SharedPreferences prefs = await SharedPreferences.getInstance();
 

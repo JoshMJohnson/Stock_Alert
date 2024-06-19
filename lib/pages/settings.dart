@@ -140,45 +140,60 @@ class _SettingsPageState extends State<SettingsPage> {
     prefs.setInt('tod3Minutes', tod3Minutes);
   }
 
-  /* updates the notification settings */ // todo
-  // todo if notifications are turned off... prompt user to turn on
-  updateNotificationSettings() async {
-    bool isAllowedToSendNotification =
-        await AwesomeNotifications().isNotificationAllowed();
+  /* updates the notification settings */
+  updateNotificationSettings(bool permissionsChecked) async {
+    if (notificationToggledOn) {
+      // todo
+      bool isAllowedToSendNotification =
+          await AwesomeNotifications().isNotificationAllowed();
 
-    if (!isAllowedToSendNotification) {
-      AwesomeNotifications().requestPermissionToSendNotifications();
+      if (!isAllowedToSendNotification && !permissionsChecked) {
+        await AwesomeNotifications().requestPermissionToSendNotifications();
+        // todo allow notifications to trigger if allowing notifications without hitting save again
+
+        updateNotificationSettings(true);
+      } else if (!isAllowedToSendNotification && permissionsChecked) {
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+
+        setState(() {
+          notificationToggledOn = false;
+          prefs.setBool('notificationToggle', false);
+        });
+      } else {
+        AwesomeNotifications().createNotification(
+            content: NotificationContent(
+          id: 1,
+          channelKey: 'foreground_service',
+          title: 'Stock Alert Active',
+          // locked: true,
+        ));
+
+        AwesomeNotifications().createNotification(
+            content: NotificationContent(
+          id: 2,
+          channelKey: 'bull_channel',
+          title: 'Bull title',
+          body: 'temp body here',
+        ));
+
+        AwesomeNotifications().createNotification(
+            content: NotificationContent(
+          id: 3,
+          channelKey: 'bear_channel',
+          title: 'Bear title',
+          body: 'temp body here',
+        ));
+      }
     } else {
-      AwesomeNotifications().createNotification(
-          content: NotificationContent(
-        id: 1,
-        channelKey: 'foreground_service',
-        title: 'Stock Alert Active',
-        // locked: true,
-      ));
-
-      AwesomeNotifications().createNotification(
-          content: NotificationContent(
-        id: 2,
-        channelKey: 'bull_channel',
-        title: 'Bull title',
-        body: 'temp body here',
-      ));
-
-      AwesomeNotifications().createNotification(
-          content: NotificationContent(
-        id: 3,
-        channelKey: 'bear_channel',
-        title: 'Bear title',
-        body: 'temp body here',
-      ));
+      // todo turn off notifications
+      debugPrint('Turning off notifications');
     }
   }
 
   /* updates/creates daily notifications */
   saveButtonHandler() {
     savePreferences();
-    updateNotificationSettings();
+    updateNotificationSettings(false);
   }
 
   @override
