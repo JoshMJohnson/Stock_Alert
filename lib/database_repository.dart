@@ -105,9 +105,6 @@ class DatabaseRepository {
     }
   }
 
-  /* api error alert */ // todo
-  void errorAlert(int errorCode) {}
-
   /* adds a stock symbol to the watchlist; gets data from twelve data api */
   Future addSymbol(String tickerSymbol) async {
     final tickerURL = Uri.parse(
