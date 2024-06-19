@@ -7,6 +7,7 @@ Bugs:
     - needs to update text display on trigger if app is open in the background
     - include time and date of last updated
 - ticker page description
+- Handle when pulling data for notification from watchlist and connection is lost
 
 To Do:
 - Turn off battery optimization for foreground service delay prevention
@@ -15,6 +16,8 @@ To Do:
 - Handle foreground service on save pressed within Settings page
     - Start service
     - Terminate service
+- Create a notification for progress bar of pulling stocks from watchlist
+    - Shows progress bar of stocks pulled when over 8
     
 Feature Additions:
 - Possibly use http flutter request to access stock tickers directly somehow
