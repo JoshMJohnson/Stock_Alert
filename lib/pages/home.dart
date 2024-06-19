@@ -173,7 +173,7 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
-  /* creates and displays alert for an error with the api */ // todo
+  /* creates and displays alert for an error with the api */
   void errorAlertWithAPI(int errorCode) {
     showDialog(
       context: context,
