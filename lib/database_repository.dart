@@ -116,12 +116,10 @@ class DatabaseRepository {
     final tickerJSON = json.decode(tickerData.body) as Map<String, dynamic>;
     debugPrint(tickerData.body);
 
-    /* handles possible errors */ // todo show pop up alert messages
-    debugPrint('****** ${tickerJSON['code']} ******');
+    /* handles possible errors */
     var hasError = tickerJSON['code'] != null ? true : false;
     if (hasError) {
       var errorType = tickerJSON['code'];
-      debugPrint('@@@@@@@@ ERROR: $errorType @@@@@@@@');
 
       if (errorType == 401) {
         /* bad API key */
