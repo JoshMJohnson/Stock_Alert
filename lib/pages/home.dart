@@ -150,13 +150,36 @@ class _HomePageState extends State<HomePage> {
     updateWatchlistData();
   }
 
+  /* returns the string corresponding with the api error code */ // todo
+  String apiErrorMessage(int errorCode) {
+    if (errorCode == 401) {
+      /* bad API key */
+      return 'Bad/Incorrect Twelve Data API key';
+    } else if (errorCode == 403) {
+      /* upgraded twelve data plan needed */
+      return 'Not available with the free version of Twelve Data API';
+    } else if (errorCode == 404) {
+      /* ticker not found */
+      return 'Ticker not found on stock market';
+    } else if (errorCode == 429) {
+      /* too many requests */
+      return 'Too many requests too fast. Wait a few seconds and try again';
+    } else if (errorCode == 500) {
+      /* tweleve data having issues; try again later message needed */
+      return 'Twelve Data API is having server side issues. Try again later';
+    } else {
+      /* unknown error with twelve data api */
+      return 'Unknown error with Twelve Data API';
+    }
+  }
+
   /* creates and displays alert for an error with the api */ // todo
   void errorAlertWithAPI(int errorCode) {
     showDialog(
       context: context,
       builder: (_) => AlertDialog(
         title: Text(
-          'Failed Addggggg',
+          'Failed Add',
           textAlign: TextAlign.center,
           style: TextStyle(
             color: Theme.of(context).textTheme.headlineMedium!.color,
@@ -188,7 +211,7 @@ class _HomePageState extends State<HomePage> {
             Padding(
               padding: const EdgeInsets.only(top: 20),
               child: Text(
-                'Ticker symbol is already on the watchlist',
+                apiErrorMessage(errorCode),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.tertiary,
