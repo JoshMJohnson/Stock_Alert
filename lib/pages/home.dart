@@ -319,10 +319,73 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  /* show info dialog */ // todo
+  void showInfoDialog() {
+    String apiLimitMessage =
+        'This app uses Twelve Data API to access the stock market.\n'
+        'Twelve Data API has a limit of 8 stock ticker lookups per minute.\n\n'
+        'This will go unnoticed most of the time, but may be incountered while adding '
+        'stocks to the watchlist while Stock Alert is collecting data for notifications.\n\n'
+        'Due to the 8 request limit per minute, notifications will also be delayed '
+        '1 minute for every 8 stocks on your watchlist.';
+
+    showDialog(
+      context: context,
+      builder: (_) => AlertDialog(
+        title: Text(
+          'Quick Info',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            color: Theme.of(context).textTheme.headlineMedium!.color,
+            fontSize: 28,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 20),
+              child: Text(
+                apiLimitMessage,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.tertiary,
+                  fontSize: 20,
+                  fontWeight: FontWeight.w600,
+                  fontStyle: FontStyle.normal,
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 10),
+              child: GestureDetector(
+                onTap: () => Navigator.pop(context),
+                child: Icon(
+                  Icons.cancel_outlined,
+                  size: 55,
+                  color: Theme.of(context).iconTheme.color,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   /* header widget */
   AppBar header(BuildContext context) {
     return AppBar(
         leadingWidth: 110,
+        leading: IconButton(
+          onPressed: showInfoDialog,
+          icon: Icon(
+            Icons.info_outline,
+            size: 40,
+            color: Theme.of(context).iconTheme.color,
+          ),
+        ),
         title: Text(
           'Stock Alert',
           style: TextStyle(
