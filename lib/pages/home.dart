@@ -150,7 +150,7 @@ class _HomePageState extends State<HomePage> {
     updateWatchlistData();
   }
 
-  /* returns the string corresponding with the api error code */ // todo
+  /* returns the string corresponding with the api error code */
   String apiErrorMessage(int errorCode) {
     if (errorCode == 401) {
       /* bad API key */
