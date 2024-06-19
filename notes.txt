@@ -7,7 +7,7 @@ Bugs:
     - needs to update text display on trigger if app is open in the background
     - include time and date of last updated
 - ticker page description
-    
+
 To Do:
 - Turn off battery optimization for foreground service delay prevention
 - Handle font scaling
@@ -15,6 +15,7 @@ To Do:
 - Handle foreground service on save pressed within Settings page
     - Start service
     - Terminate service
+- Add an info button top left of home header explaining the 8 api requests per minute
     
 Feature Additions:
 - Possibly use http flutter request to access stock tickers directly somehow
