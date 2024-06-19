@@ -53,7 +53,7 @@ class DatabaseRepository {
     final tickerData = await http.get(tickerURL);
     final tickerJSON = json.decode(tickerData.body) as Map<String, dynamic>;
     debugPrint(tickerData.body);
-    // todo if too many requests... delay 1 min
+    // todo if too many requests... delay 1 min and continue
 
     /* assigns variable to the correct data */
     double tickerPPS =
