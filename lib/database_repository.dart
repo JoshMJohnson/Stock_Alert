@@ -56,8 +56,8 @@ class DatabaseRepository {
     // todo if too many requests... delay 1 min and continue
 
     /* assigns variable to the correct data */
-    double tickerPPS =
-        double.parse(tickerJSON['open']) + double.parse(tickerJSON['change']);
+    double tickerPPS = double.parse(tickerJSON['previous_close']) +
+        double.parse(tickerJSON['change']);
     double dayChangeDollars = double.parse(tickerJSON['change']);
     double dayChangePercentage = double.parse(tickerJSON['percent_change']);
 
@@ -139,8 +139,8 @@ class DatabaseRepository {
     }
 
     /* assigns variable to the correct data */
-    double tickerPPS =
-        double.parse(tickerJSON['open']) + double.parse(tickerJSON['change']);
+    double tickerPPS = double.parse(tickerJSON['previous_close']) +
+        double.parse(tickerJSON['change']);
     double dayChangeDollars = double.parse(tickerJSON['change']);
     double dayChangePercentage = double.parse(tickerJSON['percent_change']);
 
