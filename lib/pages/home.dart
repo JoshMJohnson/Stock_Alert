@@ -324,7 +324,7 @@ class _HomePageState extends State<HomePage> {
     String apiLimitMessage =
         'Stock Alert uses Twelve Data API to access the stock market.\n'
         'This has a limit of 8 ticker lookups per minute.\n\n'
-        'This may be incountered while adding stocks to the watchlist '
+        'This may be encountered while adding stocks to the watchlist '
         'while collecting data for a notification.\n\n'
         'Since there is an 8 request limit per minute, notifications will also '
         'be delayed 1 minute for every 8 stocks on your watchlist.';
@@ -341,34 +341,33 @@ class _HomePageState extends State<HomePage> {
             fontWeight: FontWeight.w700,
           ),
         ),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 20),
-              child: Text(
+        content: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
                 apiLimitMessage,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.tertiary,
-                  fontSize: 20,
+                  fontSize: 18,
                   fontWeight: FontWeight.w600,
                   fontStyle: FontStyle.normal,
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 10),
-              child: GestureDetector(
-                onTap: () => Navigator.pop(context),
-                child: Icon(
-                  Icons.cancel_outlined,
-                  size: 55,
-                  color: Theme.of(context).iconTheme.color,
+              Padding(
+                padding: const EdgeInsets.only(top: 10),
+                child: GestureDetector(
+                  onTap: () => Navigator.pop(context),
+                  child: Icon(
+                    Icons.cancel_outlined,
+                    size: 55,
+                    color: Theme.of(context).iconTheme.color,
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
