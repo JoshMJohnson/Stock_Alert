@@ -143,14 +143,12 @@ class _SettingsPageState extends State<SettingsPage> {
   /* updates the notification settings */
   updateNotificationSettings(bool permissionsChecked) async {
     if (notificationToggledOn) {
-      // todo
+      /* notifications are turned on */
       bool isAllowedToSendNotification =
           await AwesomeNotifications().isNotificationAllowed();
 
       if (!isAllowedToSendNotification && !permissionsChecked) {
         await AwesomeNotifications().requestPermissionToSendNotifications();
-        // todo allow notifications to trigger if allowing notifications without hitting save again
-
         updateNotificationSettings(true);
       } else if (!isAllowedToSendNotification && permissionsChecked) {
         SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -160,6 +158,7 @@ class _SettingsPageState extends State<SettingsPage> {
           prefs.setBool('notificationToggle', false);
         });
       } else {
+        /* prepare and begin notifications */ // todo
         AwesomeNotifications().createNotification(
             content: NotificationContent(
           id: 1,
@@ -185,7 +184,7 @@ class _SettingsPageState extends State<SettingsPage> {
         ));
       }
     } else {
-      // todo turn off notifications
+      /* notifications turned off; terminate all existing notifications */ // todo turn off notifications
       debugPrint('Turning off notifications');
     }
   }
