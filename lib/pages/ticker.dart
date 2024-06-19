@@ -370,15 +370,10 @@ class TickerPage extends StatelessWidget {
                                   child: Text(
                                     '\$${stock.tickerPrice.toStringAsFixed(2)}',
                                     style: TextStyle(
-                                      color: stock.dayChangePercentage >= 0
-                                          ? Theme.of(context)
-                                              .textTheme
-                                              .bodyLarge!
-                                              .color
-                                          : Theme.of(context)
-                                              .textTheme
-                                              .bodySmall!
-                                              .color,
+                                      color: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium!
+                                          .color,
                                       fontSize: 28,
                                       fontWeight: FontWeight.w600,
                                     ),
