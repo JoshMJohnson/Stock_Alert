@@ -3,11 +3,10 @@ Bugs:
     - Stop api get request
     - Ignore on notification description
 - Ticker page market logo responsive (example: NASDAQ, NYSE)
-- Database interations (check Stock Tracker repo file for error numbers; verify with Postman)
-    - Adding stocks not found on stock market
-    - Adding stocks past the 8 GET request limit per minute by Twelve Data API
 - Last Updated feature only refreshes on application initial load.
     - needs to update text display on trigger if app is open in the background
+    - include time and date of last updated
+- ticker page description
     
 To Do:
 - Turn off battery optimization for foreground service delay prevention
@@ -16,7 +15,6 @@ To Do:
 - Handle foreground service on save pressed within Settings page
     - Start service
     - Terminate service
-- Handle twelve data api errors (shown on documentation)
     
 Feature Additions:
 - Possibly use http flutter request to access stock tickers directly somehow
