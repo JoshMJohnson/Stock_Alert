@@ -323,11 +323,11 @@ class _HomePageState extends State<HomePage> {
   void showInfoDialog() {
     String apiLimitMessage =
         'Stock Alert uses Twelve Data API to access the stock market.\n'
-        'This has a limit of 8 ticker lookups per minute.\n\n'
-        'This may be encountered while adding stocks to the watchlist '
-        'while collecting data for a notification.\n\n'
-        'Since there is an 8 request limit per minute, notifications will also '
-        'be delayed 1 minute for every 8 stocks on your watchlist.';
+        'This API has a limit of 8 ticker lookups per minute.\n\n'
+        'The limit may be encountered while adding stocks to the watchlist '
+        'at the same time as collecting data for a notification.\n\n'
+        'Notifications will also be delayed 1 minute for every 8 stocks on your '
+        'watchlist';
 
     showDialog(
       context: context,
@@ -337,7 +337,7 @@ class _HomePageState extends State<HomePage> {
           textAlign: TextAlign.center,
           style: TextStyle(
             color: Theme.of(context).textTheme.headlineMedium!.color,
-            fontSize: 28,
+            fontSize: 26,
             fontWeight: FontWeight.w700,
           ),
         ),
