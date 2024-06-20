@@ -24,6 +24,8 @@ Future<void> main() async {
         channelShowBadge: false,
         icon: 'resource://drawable/update_icon',
         importance: NotificationImportance.Low,
+        playSound: false,
+        enableVibration: false,
       ),
       NotificationChannel(
         groupKey: 'bull_stocks',
@@ -33,6 +35,8 @@ Future<void> main() async {
         channelShowBadge: false,
         icon: 'resource://drawable/bull_icon',
         importance: NotificationImportance.Default,
+        playSound: true,
+        enableVibration: true,
       ),
       NotificationChannel(
         groupKey: 'bear_stocks',
@@ -42,6 +46,8 @@ Future<void> main() async {
         channelShowBadge: false,
         icon: 'resource://drawable/bear_icon',
         importance: NotificationImportance.Default,
+        playSound: true,
+        enableVibration: true,
       ),
     ],
   );
