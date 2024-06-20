@@ -22,7 +22,7 @@ Future<void> main() async {
         channelName: 'Update Progression',
         channelDescription: 'Progression on pulling updated ticker data',
         channelShowBadge: false,
-        icon: 'resource://drawable/bull_icon',
+        icon: 'resource://drawable/update_icon',
       ),
       NotificationChannel(
         groupKey: 'bull_stocks',
