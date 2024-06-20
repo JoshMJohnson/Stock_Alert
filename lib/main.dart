@@ -18,58 +18,28 @@ Future<void> main() async {
     [
       NotificationChannel(
         groupKey: 'updating_stocks',
-        channelGroupKey: 'update_group',
         channelKey: 'update_progression',
         channelName: 'Update Progression',
         channelDescription: 'Progression on pulling updated ticker data',
         channelShowBadge: false,
-      )
-    ],
-    channelGroups: [
-      NotificationChannelGroup(
-        channelGroupKey: 'update_group',
-        channelGroupName: 'Updating Watchlist',
-      )
-    ],
-  );
-
-  await AwesomeNotifications().initialize(
-    'resource://drawable/bull_icon',
-    [
+        icon: 'resource://drawable/bull_icon',
+      ),
       NotificationChannel(
         groupKey: 'bull_stocks',
-        channelGroupKey: 'bull_group',
         channelKey: 'bull_channel',
         channelName: 'Bull Stocks',
         channelDescription: 'Provides alerts for stocks that are up.',
         channelShowBadge: false,
-      )
-    ],
-    channelGroups: [
-      NotificationChannelGroup(
-        channelGroupKey: 'bull_group',
-        channelGroupName: 'Bull Stocks Group',
-      )
-    ],
-  );
-
-  await AwesomeNotifications().initialize(
-    'resource://drawable/bear_icon',
-    [
+        icon: 'resource://drawable/bull_icon',
+      ),
       NotificationChannel(
         groupKey: 'bear_stocks',
-        channelGroupKey: 'bear_group',
         channelKey: 'bear_channel',
         channelName: 'Bear Stocks',
         channelDescription: 'Provides alerts for stocks that are down.',
         channelShowBadge: false,
-      )
-    ],
-    channelGroups: [
-      NotificationChannelGroup(
-        channelGroupKey: 'bear_group',
-        channelGroupName: 'Bear Stocks Group',
-      )
+        icon: 'resource://drawable/bear_icon',
+      ),
     ],
   );
 
