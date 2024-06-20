@@ -14,7 +14,7 @@ Future<void> main() async {
   // * local notifications
   // todo
   await AwesomeNotifications().initialize(
-    'resource://drawable/bull_icon',
+    null,
     [
       NotificationChannel(
         groupKey: 'updating_stocks',
