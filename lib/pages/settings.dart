@@ -162,9 +162,9 @@ class _SettingsPageState extends State<SettingsPage> {
         AwesomeNotifications().createNotification(
             content: NotificationContent(
           id: 1,
-          channelKey: 'foreground_service',
-          title: 'Stock Alert Active',
-          // locked: true,
+          channelKey: 'update_progression',
+          title: 'Updating watchlist',
+          body: 'temp body here',
         ));
 
         AwesomeNotifications().createNotification(

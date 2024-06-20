@@ -13,33 +13,65 @@ Future<void> main() async {
 
   // * local notifications
   // todo
-  await AwesomeNotifications()
-      .initialize('resource://drawable/foreground_service_icon', [
-    NotificationChannel(
-      channelKey: 'foreground_service',
-      channelName: 'Foreground Service',
-      channelDescription: 'Foreground service for Stock Alert.',
-      channelShowBadge: false,
-    )
-  ]);
+  await AwesomeNotifications().initialize(
+    'resource://drawable/bull_icon',
+    [
+      NotificationChannel(
+        groupKey: 'updating_stocks',
+        channelGroupKey: 'update_group',
+        channelKey: 'update_progression',
+        channelName: 'Update Progression',
+        channelDescription: 'Progression on pulling updated ticker data',
+        channelShowBadge: false,
+      )
+    ],
+    channelGroups: [
+      NotificationChannelGroup(
+        channelGroupKey: 'update_group',
+        channelGroupName: 'Updating Watchlist',
+      )
+    ],
+  );
 
-  await AwesomeNotifications().initialize('resource://drawable/bull_icon', [
-    NotificationChannel(
-      channelKey: 'bull_channel',
-      channelName: 'Bull Stocks',
-      channelDescription: 'Provides alerts for stocks that are up.',
-      channelShowBadge: false,
-    )
-  ]);
+  await AwesomeNotifications().initialize(
+    'resource://drawable/bull_icon',
+    [
+      NotificationChannel(
+        groupKey: 'bull_stocks',
+        channelGroupKey: 'bull_group',
+        channelKey: 'bull_channel',
+        channelName: 'Bull Stocks',
+        channelDescription: 'Provides alerts for stocks that are up.',
+        channelShowBadge: false,
+      )
+    ],
+    channelGroups: [
+      NotificationChannelGroup(
+        channelGroupKey: 'bull_group',
+        channelGroupName: 'Bull Stocks Group',
+      )
+    ],
+  );
 
-  await AwesomeNotifications().initialize('resource://drawable/bear_icon', [
-    NotificationChannel(
-      channelKey: 'bear_channel',
-      channelName: 'Bear Stocks',
-      channelDescription: 'Provides alerts for stocks that are down.',
-      channelShowBadge: false,
-    )
-  ]);
+  await AwesomeNotifications().initialize(
+    'resource://drawable/bear_icon',
+    [
+      NotificationChannel(
+        groupKey: 'bear_stocks',
+        channelGroupKey: 'bear_group',
+        channelKey: 'bear_channel',
+        channelName: 'Bear Stocks',
+        channelDescription: 'Provides alerts for stocks that are down.',
+        channelShowBadge: false,
+      )
+    ],
+    channelGroups: [
+      NotificationChannelGroup(
+        channelGroupKey: 'bear_group',
+        channelGroupName: 'Bear Stocks Group',
+      )
+    ],
+  );
 
   AwesomeNotifications().setListeners(
     onActionReceivedMethod: NotificationService.onActionReceivedMethod,
