@@ -23,6 +23,7 @@ Future<void> main() async {
         channelDescription: 'Progression on pulling updated ticker data',
         channelShowBadge: false,
         icon: 'resource://drawable/update_icon',
+        importance: NotificationImportance.Low,
       ),
       NotificationChannel(
         groupKey: 'bull_stocks',
@@ -31,6 +32,7 @@ Future<void> main() async {
         channelDescription: 'Provides alerts for stocks that are up.',
         channelShowBadge: false,
         icon: 'resource://drawable/bull_icon',
+        importance: NotificationImportance.Default,
       ),
       NotificationChannel(
         groupKey: 'bear_stocks',
@@ -39,6 +41,7 @@ Future<void> main() async {
         channelDescription: 'Provides alerts for stocks that are down.',
         channelShowBadge: false,
         icon: 'resource://drawable/bear_icon',
+        importance: NotificationImportance.Default,
       ),
     ],
   );
