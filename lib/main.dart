@@ -32,6 +32,7 @@ Future<void> main() async {
         channelName: 'Bull Stocks',
         channelDescription: 'Provides alerts for stocks that are up.',
         icon: 'resource://drawable/bull_icon',
+        defaultPrivacy: NotificationPrivacy.Public,
       ),
       NotificationChannel(
         groupKey: 'bear_stocks',
@@ -39,6 +40,7 @@ Future<void> main() async {
         channelName: 'Bear Stocks',
         channelDescription: 'Provides alerts for stocks that are down.',
         icon: 'resource://drawable/bear_icon',
+        defaultPrivacy: NotificationPrivacy.Public,
       ),
     ],
   );
