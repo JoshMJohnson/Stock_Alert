@@ -42,6 +42,17 @@ Future<void> main() async {
         icon: 'resource://drawable/bear_icon',
         defaultPrivacy: NotificationPrivacy.Public,
       ),
+      NotificationChannel(
+        groupKey: 'foreground_service',
+        channelKey: 'foreground_service',
+        channelName: 'Foreground Service',
+        channelDescription: 'Foreground service',
+        icon: 'resource://drawable/bear_icon',
+        defaultPrivacy: NotificationPrivacy.Public,
+        playSound: false,
+        enableVibration: false,
+        locked: true,
+      ),
     ],
   );
 

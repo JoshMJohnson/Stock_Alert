@@ -8,6 +8,8 @@ import 'package:stock_alert/pages/settingsPageWidgets/quantity_notifications_sel
 import 'package:stock_alert/pages/settingsPageWidgets/clear_watchlist.dart';
 import 'package:stock_alert/pages/settingsPageWidgets/save_button.dart';
 
+import 'package:awesome_notifications/android_foreground_service.dart';
+
 class SettingsPage extends StatefulWidget {
   final bool notificationToggledOn;
   final double thresholdValue;
@@ -165,6 +167,7 @@ class _SettingsPageState extends State<SettingsPage> {
           channelKey: 'update_progression',
           title: 'Updating watchlist',
           body: 'temp body here',
+          autoDismissible: false,
         ));
 
         AwesomeNotifications().createNotification(
@@ -173,6 +176,7 @@ class _SettingsPageState extends State<SettingsPage> {
           channelKey: 'bull_channel',
           title: 'Bull title',
           body: 'temp body here',
+          autoDismissible: false,
         ));
 
         AwesomeNotifications().createNotification(
@@ -181,7 +185,22 @@ class _SettingsPageState extends State<SettingsPage> {
           channelKey: 'bear_channel',
           title: 'Bear title',
           body: 'temp body here',
+          autoDismissible: false,
         ));
+
+        AndroidForegroundService.startAndroidForegroundService(
+          foregroundStartMode: ForegroundStartMode.stick,
+          foregroundServiceType: ForegroundServiceType.none,
+          content: NotificationContent(
+            id: 4,
+            channelKey: 'foreground_service',
+            title: 'Stock Alert',
+            body: 'Foreground service running...',
+            category: NotificationCategory.Service,
+            locked: true,
+            autoDismissible: false,
+          ),
+        );
       }
     } else {
       /* notifications turned off; terminate all existing notifications */ // todo turn off notifications
