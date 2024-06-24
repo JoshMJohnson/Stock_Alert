@@ -1,4 +1,6 @@
+import 'package:awesome_notifications/android_foreground_service.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
+import 'package:flutter/material.dart';
 
 class NotificationService {
   /* initializes local notifications */
@@ -60,6 +62,73 @@ class NotificationService {
         ),
       ],
     );
+  }
+
+  /* checks device settings if notifications are allowed */
+  static Future<bool> checkPermissions() async {
+    return await AwesomeNotifications().isNotificationAllowed();
+  }
+
+  /* promps user request for permissions */
+  static Future requestPermissions() async {
+    return await AwesomeNotifications().requestPermissionToSendNotifications();
+  }
+
+  /* starts the foreground service */
+  static startForegroundService() {
+    AndroidForegroundService.startAndroidForegroundService(
+      foregroundStartMode: ForegroundStartMode.stick,
+      foregroundServiceType: ForegroundServiceType.none,
+      content: NotificationContent(
+        id: 1,
+        channelKey: 'foreground_service',
+        title: 'Stock Alert',
+        body: 'Active...',
+        category: NotificationCategory.Service,
+        locked: true,
+        autoDismissible: false,
+      ),
+    );
+  }
+
+  /* terminates the foreground service */
+  static terminateForegroundService() {
+    AndroidForegroundService.stopForeground(1);
+  }
+
+  /* creates repeating reminder notifications */ // todo turn into scheduled reminders
+  static createScheduledReminderNotifications(
+    int quanitiyReminders,
+    TimeOfDay notification1,
+    TimeOfDay notification2,
+    TimeOfDay notification3,
+  ) {
+    AwesomeNotifications().createNotification(
+        content: NotificationContent(
+      id: 2,
+      channelKey: 'update_progression',
+      title: 'Updating watchlist',
+      body: 'temp body here',
+      autoDismissible: false,
+    ));
+
+    AwesomeNotifications().createNotification(
+        content: NotificationContent(
+      id: 3,
+      channelKey: 'bull_channel',
+      title: 'Bull title',
+      body: 'temp body here',
+      autoDismissible: false,
+    ));
+
+    AwesomeNotifications().createNotification(
+        content: NotificationContent(
+      id: 4,
+      channelKey: 'bear_channel',
+      title: 'Bear title',
+      body: 'temp body here',
+      autoDismissible: false,
+    ));
   }
 
   /// Use this method to detect when a new notification or a schedule is created

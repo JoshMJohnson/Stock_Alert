@@ -1,14 +1,11 @@
-import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
+import 'package:stock_alert/notification_service.dart';
 import 'package:stock_alert/pages/settingsPageWidgets/notification_toggling.dart';
 import 'package:stock_alert/pages/settingsPageWidgets/price_change_threshold.dart';
 import 'package:stock_alert/pages/settingsPageWidgets/quantity_notifications_selector.dart';
 import 'package:stock_alert/pages/settingsPageWidgets/clear_watchlist.dart';
 import 'package:stock_alert/pages/settingsPageWidgets/save_button.dart';
-
-import 'package:awesome_notifications/android_foreground_service.dart';
 
 class SettingsPage extends StatefulWidget {
   final bool notificationToggledOn;
@@ -147,10 +144,10 @@ class _SettingsPageState extends State<SettingsPage> {
     if (notificationToggledOn) {
       /* notifications are turned on */
       bool isAllowedToSendNotification =
-          await AwesomeNotifications().isNotificationAllowed();
+          await NotificationService.checkPermissions();
 
       if (!isAllowedToSendNotification && !permissionsChecked) {
-        await AwesomeNotifications().requestPermissionToSendNotifications();
+        await NotificationService.requestPermissions();
         updateNotificationSettings(true);
       } else if (!isAllowedToSendNotification && permissionsChecked) {
         SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -160,52 +157,15 @@ class _SettingsPageState extends State<SettingsPage> {
           prefs.setBool('notificationToggle', false);
         });
       } else {
-        /* prepare and begin notifications */ // todo
-        AndroidForegroundService.startAndroidForegroundService(
-          foregroundStartMode: ForegroundStartMode.stick,
-          foregroundServiceType: ForegroundServiceType.none,
-          content: NotificationContent(
-            id: 1,
-            channelKey: 'foreground_service',
-            title: 'Stock Alert',
-            body: 'Active...',
-            category: NotificationCategory.Service,
-            locked: true,
-            autoDismissible: false,
-          ),
-        );
-
-        AwesomeNotifications().createNotification(
-            content: NotificationContent(
-          id: 2,
-          channelKey: 'update_progression',
-          title: 'Updating watchlist',
-          body: 'temp body here',
-          autoDismissible: false,
-        ));
-
-        AwesomeNotifications().createNotification(
-            content: NotificationContent(
-          id: 3,
-          channelKey: 'bull_channel',
-          title: 'Bull title',
-          body: 'temp body here',
-          autoDismissible: false,
-        ));
-
-        AwesomeNotifications().createNotification(
-            content: NotificationContent(
-          id: 4,
-          channelKey: 'bear_channel',
-          title: 'Bear title',
-          body: 'temp body here',
-          autoDismissible: false,
-        ));
+        /* turns Stock Alert active */
+        NotificationService.startForegroundService();
+        NotificationService.createScheduledReminderNotifications(
+            notificationQuantity, notification1, notification2, notification3);
       }
     } else {
       /* notifications turned off; terminate all existing notifications */ // todo turn off notifications
       debugPrint('Turning off notifications');
-      AndroidForegroundService.stopForeground(1);
+      NotificationService.terminateForegroundService();
     }
   }
 
