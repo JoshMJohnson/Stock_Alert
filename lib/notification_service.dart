@@ -88,6 +88,7 @@ class NotificationService {
         category: NotificationCategory.Service,
         locked: true,
         autoDismissible: false,
+        color: const Color.fromARGB(255, 70, 130, 180),
       ),
     );
   }
@@ -114,6 +115,7 @@ class NotificationService {
       title: 'Updating watchlist',
       body: 'temp body here',
       autoDismissible: false,
+      color: const Color.fromARGB(255, 70, 130, 180),
     ));
   }
 
@@ -155,7 +157,7 @@ class NotificationService {
         body: bullTickers,
         autoDismissible: false,
         notificationLayout: NotificationLayout.Inbox,
-        backgroundColor: const Color.fromARGB(255, 22, 129, 24),
+        color: const Color.fromARGB(255, 22, 129, 24),
       ));
     }
 
@@ -198,7 +200,7 @@ class NotificationService {
         body: bearTickers,
         autoDismissible: false,
         notificationLayout: NotificationLayout.Inbox,
-        backgroundColor: const Color.fromARGB(255, 255, 0, 0),
+        color: const Color.fromARGB(255, 255, 0, 0),
       ));
     }
   }
