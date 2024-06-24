@@ -160,7 +160,7 @@ class _SettingsPageState extends State<SettingsPage> {
       } else {
         /* turns Stock Alert active */
         NotificationService.startForegroundService();
-        NotificationService.createScheduledProgressionPull(
+        NotificationService.createScheduledProgression(
             notificationQuantity, notification1, notification2, notification3);
 
         // ! begin of testing

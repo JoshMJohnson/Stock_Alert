@@ -101,15 +101,38 @@ class NotificationService {
     creates a progression notification for pulling 
     updated watchlist ticker data scheduled for a specific time 
   */ // todo create repeating progression notification for pulling watchlist data
-  static createScheduledProgressionPull(
+  static createScheduledProgression(
     int quanitiyReminders,
     TimeOfDay notification1,
     TimeOfDay notification2,
     TimeOfDay notification3,
   ) {
+    /* scheduled daily reminder 1 */ // todo
     AwesomeNotifications().createNotification(
         content: NotificationContent(
       id: 2,
+      channelKey: 'update_progression',
+      title: 'Updating watchlist',
+      body: 'temp body here',
+      autoDismissible: false,
+      color: const Color.fromARGB(255, 70, 130, 180),
+    ));
+
+    /* scheduled daily reminder 2 */ // todo
+    AwesomeNotifications().createNotification(
+        content: NotificationContent(
+      id: 3,
+      channelKey: 'update_progression',
+      title: 'Updating watchlist',
+      body: 'temp body here',
+      autoDismissible: false,
+      color: const Color.fromARGB(255, 70, 130, 180),
+    ));
+
+    /* scheduled daily reminder 3 */ // todo
+    AwesomeNotifications().createNotification(
+        content: NotificationContent(
+      id: 4,
       channelKey: 'update_progression',
       title: 'Updating watchlist',
       body: 'temp body here',
@@ -150,7 +173,7 @@ class NotificationService {
 
       AwesomeNotifications().createNotification(
           content: NotificationContent(
-        id: 3,
+        id: 5,
         channelKey: 'bull_channel',
         title: 'Bull Stocks',
         body: bullTickers,
@@ -193,7 +216,7 @@ class NotificationService {
 
       AwesomeNotifications().createNotification(
           content: NotificationContent(
-        id: 4,
+        id: 6,
         channelKey: 'bear_channel',
         title: 'Bear Stocks',
         body: bearTickers,
