@@ -136,7 +136,7 @@ class NotificationService {
             bullTickerList[tempTicker].tickerPrice.toStringAsFixed(2);
 
         String tickerLine =
-            '$tempTickerSymbol is up \$$tempDayChange ($tempPercentChange%) (\$$tempPPS)';
+            '${Emojis.office_chart_increasing} $tempTickerSymbol \$$tempDayChange ($tempPercentChange%) (\$$tempPPS) ${Emojis.office_chart_increasing}';
 
         /* if last ticker in list of bull stocks given */
         if (tempTicker == bullTickerList.length - 1) {
@@ -155,6 +155,7 @@ class NotificationService {
         body: bullTickers,
         autoDismissible: false,
         notificationLayout: NotificationLayout.Inbox,
+        color: const Color.fromARGB(255, 22, 129, 24),
       ));
     }
 
@@ -178,7 +179,7 @@ class NotificationService {
             bearTickerList[tempTicker].tickerPrice.toStringAsFixed(2);
 
         String tickerLine =
-            '$tempTickerSymbol is down -\$$tempDayChange (-$tempPercentChange%) (\$$tempPPS)';
+            '${Emojis.office_chart_decreasing} $tempTickerSymbol -\$$tempDayChange (-$tempPercentChange%) (\$$tempPPS) ${Emojis.office_chart_decreasing}';
 
         /* if last ticker in list of bull stocks given */
         if (tempTicker == bearTickerList.length - 1) {
@@ -197,6 +198,7 @@ class NotificationService {
         body: bearTickers,
         autoDismissible: false,
         notificationLayout: NotificationLayout.Inbox,
+        color: const Color.fromARGB(255, 255, 0, 0),
       ));
     }
   }
