@@ -17,6 +17,17 @@ Future<void> main() async {
     null,
     [
       NotificationChannel(
+        groupKey: 'foreground_service',
+        channelKey: 'foreground_service',
+        channelName: 'Foreground Service',
+        channelDescription: 'Foreground service',
+        icon: 'resource://drawable/bear_icon',
+        defaultPrivacy: NotificationPrivacy.Public,
+        playSound: false,
+        enableVibration: false,
+        locked: true,
+      ),
+      NotificationChannel(
         groupKey: 'updating_stocks',
         channelKey: 'update_progression',
         channelName: 'Update Progression',
@@ -41,17 +52,6 @@ Future<void> main() async {
         channelDescription: 'Provides alerts for stocks that are down.',
         icon: 'resource://drawable/bear_icon',
         defaultPrivacy: NotificationPrivacy.Public,
-      ),
-      NotificationChannel(
-        groupKey: 'foreground_service',
-        channelKey: 'foreground_service',
-        channelName: 'Foreground Service',
-        channelDescription: 'Foreground service',
-        icon: 'resource://drawable/bear_icon',
-        defaultPrivacy: NotificationPrivacy.Public,
-        playSound: false,
-        enableVibration: false,
-        locked: true,
       ),
     ],
   );

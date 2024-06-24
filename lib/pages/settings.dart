@@ -161,38 +161,11 @@ class _SettingsPageState extends State<SettingsPage> {
         });
       } else {
         /* prepare and begin notifications */ // todo
-        AwesomeNotifications().createNotification(
-            content: NotificationContent(
-          id: 1,
-          channelKey: 'update_progression',
-          title: 'Updating watchlist',
-          body: 'temp body here',
-          autoDismissible: false,
-        ));
-
-        AwesomeNotifications().createNotification(
-            content: NotificationContent(
-          id: 2,
-          channelKey: 'bull_channel',
-          title: 'Bull title',
-          body: 'temp body here',
-          autoDismissible: false,
-        ));
-
-        AwesomeNotifications().createNotification(
-            content: NotificationContent(
-          id: 3,
-          channelKey: 'bear_channel',
-          title: 'Bear title',
-          body: 'temp body here',
-          autoDismissible: false,
-        ));
-
         AndroidForegroundService.startAndroidForegroundService(
           foregroundStartMode: ForegroundStartMode.stick,
           foregroundServiceType: ForegroundServiceType.none,
           content: NotificationContent(
-            id: 4,
+            id: 1,
             channelKey: 'foreground_service',
             title: 'Stock Alert',
             body: 'Foreground service running...',
@@ -201,6 +174,33 @@ class _SettingsPageState extends State<SettingsPage> {
             autoDismissible: false,
           ),
         );
+
+        AwesomeNotifications().createNotification(
+            content: NotificationContent(
+          id: 2,
+          channelKey: 'update_progression',
+          title: 'Updating watchlist',
+          body: 'temp body here',
+          autoDismissible: false,
+        ));
+
+        AwesomeNotifications().createNotification(
+            content: NotificationContent(
+          id: 3,
+          channelKey: 'bull_channel',
+          title: 'Bull title',
+          body: 'temp body here',
+          autoDismissible: false,
+        ));
+
+        AwesomeNotifications().createNotification(
+            content: NotificationContent(
+          id: 4,
+          channelKey: 'bear_channel',
+          title: 'Bear title',
+          body: 'temp body here',
+          autoDismissible: false,
+        ));
       }
     } else {
       /* notifications turned off; terminate all existing notifications */ // todo turn off notifications
