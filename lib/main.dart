@@ -21,7 +21,7 @@ Future<void> main() async {
         channelKey: 'foreground_service',
         channelName: 'Foreground Service',
         channelDescription: 'Foreground service',
-        icon: 'resource://drawable/bear_icon',
+        icon: 'resource://drawable/foreground_service_icon',
         defaultPrivacy: NotificationPrivacy.Public,
         playSound: false,
         enableVibration: false,
