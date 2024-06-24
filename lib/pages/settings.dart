@@ -205,7 +205,7 @@ class _SettingsPageState extends State<SettingsPage> {
     } else {
       /* notifications turned off; terminate all existing notifications */ // todo turn off notifications
       debugPrint('Turning off notifications');
-      AndroidForegroundService.stopForeground(4);
+      AndroidForegroundService.stopForeground(1);
     }
   }
 
