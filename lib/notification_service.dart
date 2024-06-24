@@ -155,7 +155,7 @@ class NotificationService {
         body: bullTickers,
         autoDismissible: false,
         notificationLayout: NotificationLayout.Inbox,
-        color: const Color.fromARGB(255, 22, 129, 24),
+        backgroundColor: const Color.fromARGB(255, 22, 129, 24),
       ));
     }
 
@@ -198,7 +198,7 @@ class NotificationService {
         body: bearTickers,
         autoDismissible: false,
         notificationLayout: NotificationLayout.Inbox,
-        color: const Color.fromARGB(255, 255, 0, 0),
+        backgroundColor: const Color.fromARGB(255, 255, 0, 0),
       ));
     }
   }
