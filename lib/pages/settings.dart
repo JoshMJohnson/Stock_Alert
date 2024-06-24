@@ -162,74 +162,9 @@ class _SettingsPageState extends State<SettingsPage> {
         NotificationService.startForegroundService();
         NotificationService.createScheduledProgressionPull(
             notificationQuantity, notification1, notification2, notification3);
-
-        // ! begin of testing
-        List<StockEntity> bullStockList = [];
-        List<StockEntity> bearStockList = [];
-
-        StockEntity stock1 = StockEntity(
-          ticker: 'stock1',
-          companyName: 'company1',
-          companyDescription: 'des1',
-          tickerPrice: 23.12,
-          dayChangeDollars: 3.12,
-          dayChangePercentage: 4.6,
-          exchange: 'NASDAQ',
-          low52Week: 0.1,
-          high52Week: 1234.2,
-          activeTracking: true,
-        );
-
-        StockEntity stock2 = StockEntity(
-          ticker: 'stock2',
-          companyName: 'company2',
-          companyDescription: 'des2',
-          tickerPrice: 643.4,
-          dayChangeDollars: 52.3,
-          dayChangePercentage: 44.36,
-          exchange: 'NASDAQ',
-          low52Week: 0.1,
-          high52Week: 1234.2,
-          activeTracking: true,
-        );
-
-        StockEntity stock3 = StockEntity(
-          ticker: 'stock3',
-          companyName: 'company3',
-          companyDescription: 'des3',
-          tickerPrice: 62.76,
-          dayChangeDollars: 78.2,
-          dayChangePercentage: 42.34,
-          exchange: 'NASDAQ',
-          low52Week: 0.1,
-          high52Week: 1234.2,
-          activeTracking: true,
-        );
-
-        StockEntity stock4 = StockEntity(
-          ticker: 'stock4',
-          companyName: 'company4',
-          companyDescription: 'des4',
-          tickerPrice: 723.53,
-          dayChangeDollars: 35,
-          dayChangePercentage: 45.16,
-          exchange: 'NASDAQ',
-          low52Week: 0.1,
-          high52Week: 1234.2,
-          activeTracking: true,
-        );
-
-        bullStockList.add(stock1);
-        bullStockList.add(stock2);
-        bullStockList.add(stock3);
-        bullStockList.add(stock4);
-
-        NotificationService.createBearBullNotifications(
-            bullStockList, bearStockList);
-        // ! end of testing
       }
     } else {
-      /* notifications turned off; terminate all existing notifications */ // todo turn off notifications
+      /* notifications turned off; terminate all existing notifications */ // todo cancel scheduled notifications
       debugPrint('Turning off notifications');
       NotificationService.terminateForegroundService();
     }
