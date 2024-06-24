@@ -1,4 +1,3 @@
-import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stock_alert/notification_service.dart';
@@ -13,58 +12,7 @@ Future<void> main() async {
 
   // * local notifications
   // todo
-  await AwesomeNotifications().initialize(
-    null,
-    [
-      NotificationChannel(
-        groupKey: 'foreground_service',
-        channelKey: 'foreground_service',
-        channelName: 'Foreground Service',
-        channelDescription: 'Foreground service',
-        icon: 'resource://drawable/foreground_service_icon',
-        defaultPrivacy: NotificationPrivacy.Public,
-        playSound: false,
-        enableVibration: false,
-        locked: true,
-      ),
-      NotificationChannel(
-        groupKey: 'updating_stocks',
-        channelKey: 'update_progression',
-        channelName: 'Update Progression',
-        channelDescription: 'Progression on pulling updated ticker data',
-        icon: 'resource://drawable/update_icon',
-        importance: NotificationImportance.Low,
-        playSound: false,
-        enableVibration: false,
-      ),
-      NotificationChannel(
-        groupKey: 'bull_stocks',
-        channelKey: 'bull_channel',
-        channelName: 'Bull Stocks',
-        channelDescription: 'Provides alerts for stocks that are up.',
-        icon: 'resource://drawable/bull_icon',
-        defaultPrivacy: NotificationPrivacy.Public,
-      ),
-      NotificationChannel(
-        groupKey: 'bear_stocks',
-        channelKey: 'bear_channel',
-        channelName: 'Bear Stocks',
-        channelDescription: 'Provides alerts for stocks that are down.',
-        icon: 'resource://drawable/bear_icon',
-        defaultPrivacy: NotificationPrivacy.Public,
-      ),
-    ],
-  );
-
-  AwesomeNotifications().setListeners(
-    onActionReceivedMethod: NotificationService.onActionReceivedMethod,
-    onDismissActionReceivedMethod:
-        NotificationService.onDismissActionReceivedMethod,
-    onNotificationDisplayedMethod:
-        NotificationService.onNotificationDisplayedMethod,
-    onNotificationCreatedMethod:
-        NotificationService.onNotificationCreatedMethod,
-  );
+  await NotificationService.init();
 
   // * preferences
   final SharedPreferences prefs = await SharedPreferences.getInstance();

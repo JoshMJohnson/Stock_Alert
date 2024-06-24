@@ -168,7 +168,7 @@ class _SettingsPageState extends State<SettingsPage> {
             id: 1,
             channelKey: 'foreground_service',
             title: 'Stock Alert',
-            body: 'Foreground service running...',
+            body: 'Active...',
             category: NotificationCategory.Service,
             locked: true,
             autoDismissible: false,
