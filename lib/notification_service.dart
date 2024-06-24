@@ -1,6 +1,7 @@
 import 'package:awesome_notifications/android_foreground_service.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
+import 'package:stock_alert/pages/homePageWidgets/stock_entity.dart';
 
 class NotificationService {
   /* initializes local notifications */
@@ -96,8 +97,11 @@ class NotificationService {
     AndroidForegroundService.stopForeground(1);
   }
 
-  /* creates repeating reminder notifications */ // todo turn into scheduled reminders
-  static createScheduledReminderNotifications(
+  /* 
+    creates a progression notification for pulling 
+    updated watchlist ticker data scheduled for a specific time 
+  */ // todo calls
+  static createScheduledProgressionPull(
     int quanitiyReminders,
     TimeOfDay notification1,
     TimeOfDay notification2,
@@ -111,24 +115,90 @@ class NotificationService {
       body: 'temp body here',
       autoDismissible: false,
     ));
+  }
 
-    AwesomeNotifications().createNotification(
-        content: NotificationContent(
-      id: 3,
-      channelKey: 'bull_channel',
-      title: 'Bull title',
-      body: 'temp body here',
-      autoDismissible: false,
-    ));
+  /* creates bear and bull display text notifications */ // todo call after progression notification is complete pulling data
+  static createBearBullNotifications(
+      List<StockEntity> bullTickerList, List<StockEntity> bearTickerList) {
+    /* bull stock notification; stocks on watchlist that are up past the threshold value */
+    if (bullTickerList.isNotEmpty) {
+      String bullTickers = '';
 
-    AwesomeNotifications().createNotification(
-        content: NotificationContent(
-      id: 4,
-      channelKey: 'bear_channel',
-      title: 'Bear title',
-      body: 'temp body here',
-      autoDismissible: false,
-    ));
+      for (var tempTicker = 0;
+          tempTicker < bullTickerList.length;
+          tempTicker++) {
+        String tempTickerSymbol = bullTickerList[tempTicker].ticker;
+        String tempDayChange =
+            bullTickerList[tempTicker].dayChangeDollars.toStringAsFixed(2);
+        String tempPercentChange =
+            bullTickerList[tempTicker].dayChangePercentage.toStringAsFixed(2);
+        String tempPPS =
+            bullTickerList[tempTicker].tickerPrice.toStringAsFixed(2);
+
+        String tickerLine =
+            '$tempTickerSymbol is up \$$tempDayChange ($tempPercentChange%) (\$$tempPPS)';
+
+        /* if last ticker in list of bull stocks given */
+        if (tempTicker == bullTickerList.length - 1) {
+          bullTickers = '$bullTickers$tickerLine';
+          break;
+        }
+
+        bullTickers = '$bullTickers$tickerLine\n';
+      }
+
+      AwesomeNotifications().createNotification(
+          content: NotificationContent(
+        id: 3,
+        channelKey: 'bull_channel',
+        title: 'Bull Stocks',
+        body: bullTickers,
+        autoDismissible: false,
+        notificationLayout: NotificationLayout.Inbox,
+      ));
+    }
+
+    /* bear stock notification; stocks on watchlist that are down past the threshold value */
+    if (bearTickerList.isNotEmpty) {
+      String bearTickers = '';
+
+      for (var tempTicker = 0;
+          tempTicker < bearTickerList.length;
+          tempTicker++) {
+        String tempTickerSymbol = bearTickerList[tempTicker].ticker;
+        String tempDayChange = bearTickerList[tempTicker]
+            .dayChangeDollars
+            .abs()
+            .toStringAsFixed(2);
+        String tempPercentChange = bearTickerList[tempTicker]
+            .dayChangePercentage
+            .abs()
+            .toStringAsFixed(2);
+        String tempPPS =
+            bearTickerList[tempTicker].tickerPrice.toStringAsFixed(2);
+
+        String tickerLine =
+            '$tempTickerSymbol is down -\$$tempDayChange (-$tempPercentChange%) (\$$tempPPS)';
+
+        /* if last ticker in list of bull stocks given */
+        if (tempTicker == bearTickerList.length - 1) {
+          bearTickers = '$bearTickers$tickerLine';
+          break;
+        }
+
+        bearTickers = '$bearTickers$tickerLine\n';
+      }
+
+      AwesomeNotifications().createNotification(
+          content: NotificationContent(
+        id: 4,
+        channelKey: 'bear_channel',
+        title: 'Bear Stocks',
+        body: bearTickers,
+        autoDismissible: false,
+        notificationLayout: NotificationLayout.Inbox,
+      ));
+    }
   }
 
   /// Use this method to detect when a new notification or a schedule is created
