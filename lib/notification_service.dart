@@ -100,7 +100,7 @@ class NotificationService {
   /* 
     creates a progression notification for pulling 
     updated watchlist ticker data scheduled for a specific time 
-  */ // todo calls
+  */ // todo create repeating progression notification for pulling watchlist data
   static createScheduledProgressionPull(
     int quanitiyReminders,
     TimeOfDay notification1,
