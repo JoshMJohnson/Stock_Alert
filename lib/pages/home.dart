@@ -422,7 +422,7 @@ class _HomePageState extends State<HomePage> {
         ]);
   }
 
-  /* body widget of settings page */
+  /* body widget of home page */
   Container homeBody(BuildContext context) {
     updateWatchlistSortAlgorithm();
 
