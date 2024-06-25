@@ -34,6 +34,7 @@ class NotificationService {
           playSound: false,
           enableVibration: false,
           locked: true,
+          importance: NotificationImportance.Max,
         ),
         NotificationChannel(
           groupKey: 'updating_stocks',
@@ -116,29 +117,31 @@ class NotificationService {
       body: 'temp body here',
       autoDismissible: false,
       color: const Color.fromARGB(255, 70, 130, 180),
+      // notificationLayout: NotificationLayout.ProgressBar,
+      // progress:
     ));
 
-    /* scheduled daily reminder 2 */ // todo
-    AwesomeNotifications().createNotification(
-        content: NotificationContent(
-      id: 3,
-      channelKey: 'update_progression',
-      title: 'Updating watchlist',
-      body: 'temp body here',
-      autoDismissible: false,
-      color: const Color.fromARGB(255, 70, 130, 180),
-    ));
+    // /* scheduled daily reminder 2 */ // todo
+    // AwesomeNotifications().createNotification(
+    //     content: NotificationContent(
+    //   id: 3,
+    //   channelKey: 'update_progression',
+    //   title: 'Updating watchlist',
+    //   body: 'temp body here',
+    //   autoDismissible: false,
+    //   color: const Color.fromARGB(255, 70, 130, 180),
+    // ));
 
-    /* scheduled daily reminder 3 */ // todo
-    AwesomeNotifications().createNotification(
-        content: NotificationContent(
-      id: 4,
-      channelKey: 'update_progression',
-      title: 'Updating watchlist',
-      body: 'temp body here',
-      autoDismissible: false,
-      color: const Color.fromARGB(255, 70, 130, 180),
-    ));
+    // /* scheduled daily reminder 3 */ // todo
+    // AwesomeNotifications().createNotification(
+    //     content: NotificationContent(
+    //   id: 4,
+    //   channelKey: 'update_progression',
+    //   title: 'Updating watchlist',
+    //   body: 'temp body here',
+    //   autoDismissible: false,
+    //   color: const Color.fromARGB(255, 70, 130, 180),
+    // ));
   }
 
   /* creates bear and bull display text notifications */ // todo call after progression notification is complete pulling data
