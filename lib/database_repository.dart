@@ -53,7 +53,6 @@ class DatabaseRepository {
     final tickerData = await http.get(tickerURL);
     final tickerJSON = json.decode(tickerData.body) as Map<String, dynamic>;
     debugPrint(tickerData.body);
-    // todo if too many requests... delay 1 min and continue
 
     /* assigns variable to the correct data */
     double tickerPPS = double.parse(tickerJSON['previous_close']) +
@@ -98,11 +97,16 @@ class DatabaseRepository {
     for (var i = 0; i < prevWatchlist.length; i++) {
       /* only perform 8 api requests per minute per Twelve Data API request limit */
       if (i % 8 == 0) {
+        /* block from adding tickers to watchlist; used max requests for that minute */ // todo too many requests handling
+        prefs.setBool('limitReached', true);
+
         await Future.delayed(const Duration(seconds: 61));
       }
 
       await retrieveStockDataFromTwelveDataAPI(prevWatchlist[i].ticker);
     }
+
+    prefs.setBool('limitReached', false);
   }
 
   /* adds a stock symbol to the watchlist; gets data from twelve data api */
