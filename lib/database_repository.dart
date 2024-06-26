@@ -94,6 +94,7 @@ class DatabaseRepository {
     /* update all stock data on watchlist */
     List<StockEntity> prevWatchlist = await getStockSymbols();
 
+    // todo do not check tickers that have activeTracking = false
     for (var i = 0; i < prevWatchlist.length; i++) {
       /* only perform 8 api requests per minute per Twelve Data API request limit */
       if (i % 8 == 0) {

@@ -51,7 +51,7 @@ class _HomePageState extends State<HomePage> {
 
   /* home page variables */
   String currentTicker = '';
-  List<StockEntity> watchlist; // todo load from Firebase
+  List<StockEntity> watchlist;
 
   /* settings variables used for quick load time for settings page */
   String sortAlgorithm;
