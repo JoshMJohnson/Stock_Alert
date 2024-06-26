@@ -98,8 +98,10 @@ class NotificationService {
     AndroidForegroundService.stopForeground(1);
   }
 
-  /* terminates all previous scheduled notifications */ // todo
-  static terminateScheduledNotifications() {}
+  /* terminates all previous scheduled notifications */
+  static terminateScheduledNotifications() {
+    AwesomeNotifications().cancelAll();
+  }
 
   /* 
     creates a progression notification for pulling 
