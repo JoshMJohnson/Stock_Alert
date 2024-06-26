@@ -98,6 +98,9 @@ class NotificationService {
     AndroidForegroundService.stopForeground(1);
   }
 
+  /* terminates all previous scheduled notifications */ // todo
+  static terminateScheduledNotifications() {}
+
   /* 
     creates a progression notification for pulling 
     updated watchlist ticker data scheduled for a specific time 

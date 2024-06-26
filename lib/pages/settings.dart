@@ -158,6 +158,10 @@ class _SettingsPageState extends State<SettingsPage> {
           prefs.setBool('notificationToggle', false);
         });
       } else {
+        /* terminate previous notifications; foreground and reminders */
+        NotificationService.terminateForegroundService();
+        NotificationService.terminateScheduledNotifications();
+
         /* turns Stock Alert active */
         NotificationService.startForegroundService();
         NotificationService.createScheduledProgression(
@@ -234,9 +238,10 @@ class _SettingsPageState extends State<SettingsPage> {
         // ! end of testing
       }
     } else {
-      /* notifications turned off; terminate all existing notifications */ // todo cancel scheduled notifications
+      /* notifications turned off; terminate all existing notifications */
       debugPrint('Turning off notifications');
       NotificationService.terminateForegroundService();
+      NotificationService.terminateScheduledNotifications();
     }
   }
 
