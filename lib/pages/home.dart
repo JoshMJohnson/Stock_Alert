@@ -150,7 +150,10 @@ class _HomePageState extends State<HomePage> {
 
   /* returns the string corresponding with the api error code */
   String apiErrorMessage(int errorCode) {
-    if (errorCode == 401) {
+    if (errorCode == 400) {
+      /* bad request; ticker went bankrupt */
+      return 'Bad Request';
+    } else if (errorCode == 401) {
       /* bad API key */
       return 'Bad/Incorrect Twelve Data API key';
     } else if (errorCode == 403) {
@@ -239,7 +242,10 @@ class _HomePageState extends State<HomePage> {
   /* handles adding ticker from text field to watchlist */
   void addTicker() async {
     int errorCode = await repo.addSymbol(currentTicker);
-    if (errorCode == 401) {
+    if (errorCode == 400) {
+      /* bad request; ticker went bankrupt */
+      errorAlertWithAPI(400);
+    } else if (errorCode == 401) {
       /* bad API key */
       errorAlertWithAPI(401);
     } else if (errorCode == 403) {

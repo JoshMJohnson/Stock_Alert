@@ -54,6 +54,35 @@ class DatabaseRepository {
     final tickerJSON = json.decode(tickerData.body) as Map<String, dynamic>;
     debugPrint(tickerData.body);
 
+    /* handles possible errors */
+    var hasError = tickerJSON['code'] != null ? true : false;
+    if (hasError) {
+      var errorType = tickerJSON['code'];
+
+      if (errorType == 400) {
+        /* bad request; ticker went bankrupt */
+        return 400;
+      } else if (errorType == 401) {
+        /* bad API key */
+        return 401;
+      } else if (errorType == 403) {
+        /* upgraded twelve data plan needed */
+        return 403;
+      } else if (errorType == 404) {
+        /* ticker not found */
+        return 404;
+      } else if (errorType == 429) {
+        /* too many requests */
+        return 429;
+      } else if (errorType == 500) {
+        /* tweleve data having issues; try again later message needed */
+        return 500;
+      }
+
+      /* unknown error with Twelve Data API */
+      return 501;
+    }
+
     /* assigns variable to the correct data */
     double tickerPPS = double.parse(tickerJSON['previous_close']) +
         double.parse(tickerJSON['change']);
@@ -104,7 +133,17 @@ class DatabaseRepository {
         await Future.delayed(const Duration(seconds: 61));
       }
 
-      await retrieveStockDataFromTwelveDataAPI(prevWatchlist[i].ticker);
+      int errorCode = await retrieveStockDataFromTwelveDataAPI(prevWatchlist[i]
+          .ticker); // todo if cant be found - remove ticker from watchlist
+
+      /* remove ticker from watchlist if not found; else delay 1 minute */
+      if (errorCode == 400 || errorCode == 404) {
+        /* remove ticker from watchlist and advance */ // todo
+        debugPrint('************Removing ticker**************');
+      } else {
+        /* delay 60 seconds */ // todo
+        debugPrint('Delay Pull 60 Seconds*********************************');
+      }
     }
 
     prefs.setBool('limitReached', false);
@@ -123,7 +162,10 @@ class DatabaseRepository {
     if (hasError) {
       var errorType = tickerJSON['code'];
 
-      if (errorType == 401) {
+      if (errorType == 400) {
+        /* bad request; ticker went bankrupt */
+        return 400;
+      } else if (errorType == 401) {
         /* bad API key */
         return 401;
       } else if (errorType == 403) {
@@ -140,6 +182,7 @@ class DatabaseRepository {
         return 500;
       }
 
+      /* unknown error with Twelve Data API */
       return 501;
     }
 
