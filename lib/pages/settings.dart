@@ -239,7 +239,6 @@ class _SettingsPageState extends State<SettingsPage> {
       }
     } else {
       /* notifications turned off; terminate all existing notifications */
-      debugPrint('Turning off notifications');
       NotificationService.terminateForegroundService();
       NotificationService.terminateScheduledNotifications();
     }

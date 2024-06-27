@@ -53,7 +53,6 @@ class DatabaseRepository {
         'https://api.twelvedata.com/quote?symbol=$tickerSymbol&apikey=$apiCode');
     final tickerData = await http.get(tickerURL);
     final tickerJSON = json.decode(tickerData.body) as Map<String, dynamic>;
-    debugPrint(tickerData.body);
 
     /* handles possible errors */
     var hasError = tickerJSON['code'] != null ? true : false;
@@ -212,7 +211,6 @@ class DatabaseRepository {
         'https://api.twelvedata.com/quote?symbol=$tickerSymbol&apikey=$apiCode');
     final tickerData = await http.get(tickerURL);
     final tickerJSON = json.decode(tickerData.body) as Map<String, dynamic>;
-    debugPrint(tickerData.body);
 
     /* handles possible errors */
     var hasError = tickerJSON['code'] != null ? true : false;
