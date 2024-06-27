@@ -150,15 +150,9 @@ class NotificationService {
     // ));
   }
 
-  /* creates bear and bull display text notifications */ // todo call after progression notification is complete pulling data
-  static createBearBullNotifications(List<StockEntity> bullTickerList,
-      List<StockEntity> bearTickerList) async {
-    // ! testing beginning; including async
-    final DatabaseRepository repo = DatabaseRepository.instance;
-    bullTickerList = await repo.getBullStocks();
-    bearTickerList = await repo.getBearStocks();
-    // ! testing ending
-
+  /* creates bear and bull display text notifications */
+  static createBearBullNotifications(
+      List<StockEntity> bullTickerList, List<StockEntity> bearTickerList) {
     /* bull stock notification; stocks on watchlist that are up past the threshold value */
     if (bullTickerList.isNotEmpty) {
       String bullTickers = '';
