@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:stock_alert/notification_service.dart';
 import 'package:stock_alert/pages/homePageWidgets/stock_entity.dart';
 
 import 'package:http/http.dart' as http;
@@ -110,6 +111,55 @@ class DatabaseRepository {
     );
   }
 
+  /* prepares a list of bull stocks according to the settings chosen */
+  Future<List<StockEntity>> getBullStocks() async {
+    List<StockEntity> allStocks = await getStockSymbols();
+    List<StockEntity> bullStocks = [];
+
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    double thresholdValue = prefs.getDouble('thresholdValue')!;
+
+    /* loops through all watchlist tickers */
+    for (var ticker = 0; ticker < allStocks.length; ticker++) {
+      /* if active tracking is off for current ticker; advance in list */
+      if (!allStocks[ticker].activeTracking) {
+        continue;
+      }
+
+      /* if ticker is above the threshold set */
+      if (allStocks[ticker].dayChangePercentage >= thresholdValue) {
+        bullStocks.add(allStocks[ticker]);
+      }
+    }
+
+    return bullStocks;
+  }
+
+  /* prepares a list of bear stocks according to the settings chosen */
+  Future<List<StockEntity>> getBearStocks() async {
+    List<StockEntity> allStocks = await getStockSymbols();
+    List<StockEntity> bearStocks = [];
+
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    double thresholdValue = prefs.getDouble('thresholdValue')!;
+
+    /* loops through all watchlist tickers */
+    for (var ticker = 0; ticker < allStocks.length; ticker++) {
+      /* if active tracking is off for current ticker; advance in list */
+      if (!allStocks[ticker].activeTracking) {
+        continue;
+      }
+
+      /* if ticker is above the threshold set */
+      if (allStocks[ticker].dayChangePercentage < 0 &&
+          allStocks[ticker].dayChangePercentage.abs() > thresholdValue) {
+        bearStocks.add(allStocks[ticker]);
+      }
+    }
+
+    return bearStocks;
+  }
+
   /* updates all watchlist stock tickers data */ // todo trigger on notification time
   Future updateWatchlist(List<StockEntity> prevWatchlist) async {
     /* update time stamp for last updated */
@@ -147,6 +197,11 @@ class DatabaseRepository {
     }
 
     prefs.setBool('limitReached', false);
+
+    /* gather bull and bear stocks that meet notification specs in settings */
+    List<StockEntity> bullStocks = await getBullStocks();
+    List<StockEntity> bearStocks = await getBearStocks();
+    NotificationService.createBearBullNotifications(bullStocks, bearStocks);
   }
 
   /* adds a stock symbol to the watchlist; gets data from twelve data api */

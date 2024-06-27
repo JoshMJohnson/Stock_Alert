@@ -1,6 +1,7 @@
 import 'package:awesome_notifications/android_foreground_service.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
+import 'package:stock_alert/database_repository.dart';
 import 'package:stock_alert/pages/homePageWidgets/stock_entity.dart';
 
 class NotificationService {
@@ -150,8 +151,14 @@ class NotificationService {
   }
 
   /* creates bear and bull display text notifications */ // todo call after progression notification is complete pulling data
-  static createBearBullNotifications(
-      List<StockEntity> bullTickerList, List<StockEntity> bearTickerList) {
+  static createBearBullNotifications(List<StockEntity> bullTickerList,
+      List<StockEntity> bearTickerList) async {
+    // ! testing beginning; including async
+    final DatabaseRepository repo = DatabaseRepository.instance;
+    bullTickerList = await repo.getBullStocks();
+    bearTickerList = await repo.getBearStocks();
+    // ! testing ending
+
     /* bull stock notification; stocks on watchlist that are up past the threshold value */
     if (bullTickerList.isNotEmpty) {
       String bullTickers = '';
