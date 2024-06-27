@@ -16,7 +16,7 @@ class DatabaseRepository {
   final String stocksTable = 'stocks';
   final String apiCode =
       'b621e679c4744860a830188951a1a427'; /* Twelve Data API currently */
-  bool isMarketOpen = false; // todo unimplemented
+  bool isMarketOpen = false;
 
   DatabaseRepository._constructor();
 
@@ -199,9 +199,11 @@ class DatabaseRepository {
     prefs.setBool('limitReached', false);
 
     /* gather bull and bear stocks that meet notification specs in settings */
-    List<StockEntity> bullStocks = await getBullStocks();
-    List<StockEntity> bearStocks = await getBearStocks();
-    NotificationService.createBearBullNotifications(bullStocks, bearStocks);
+    if (isMarketOpen) {
+      List<StockEntity> bullStocks = await getBullStocks();
+      List<StockEntity> bearStocks = await getBearStocks();
+      NotificationService.createBearBullNotifications(bullStocks, bearStocks);
+    }
   }
 
   /* adds a stock symbol to the watchlist; gets data from twelve data api */
