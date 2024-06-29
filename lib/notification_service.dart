@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:awesome_notifications/android_foreground_service.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
@@ -126,8 +128,8 @@ class NotificationService {
       // notificationLayout: NotificationLayout.ProgressBar,
     ));
 
+    /* scheduled daily reminder 2 */ // todo
     // if (quanitiyReminders >= 2) {
-    //   /* scheduled daily reminder 2 */ // todo
     //   AwesomeNotifications().createNotification(
     //       content: NotificationContent(
     //     id: 3,
@@ -139,8 +141,8 @@ class NotificationService {
     //   ));
     // }
 
+    /* scheduled daily reminder 3 */ // todo
     // if (quanitiyReminders == 3) {
-    //   /* scheduled daily reminder 3 */ // todo
     //   AwesomeNotifications().createNotification(
     //       content: NotificationContent(
     //     id: 4,
@@ -151,6 +153,44 @@ class NotificationService {
     //     color: const Color.fromARGB(255, 70, 130, 180),
     //   ));
     // }
+  }
+
+  /* updates the current progress bar */ // todo unused
+  void updateProgressBar(
+      int notificationID, int currentProgress, int totalTickersPulling) {
+    int progress =
+        min((currentProgress / totalTickersPulling * 100).round(), 100);
+
+    /* still pulling; reached api limit; delaying */
+    if (currentProgress < totalTickersPulling) {
+      AwesomeNotifications().createNotification(
+          content: NotificationContent(
+        id: notificationID,
+        channelKey: 'update_progression',
+        title: 'Updating watchlist ($progress)',
+        body: 'Gathering updated watchlist data',
+        autoDismissible: false,
+        color: const Color.fromARGB(255, 70, 130, 180),
+        notificationLayout: NotificationLayout.ProgressBar,
+        category: NotificationCategory.Progress,
+        progress: progress as double,
+        locked: true,
+      ));
+    } else {
+      /* finished pulling ticker data from watchlist */
+      AwesomeNotifications().createNotification(
+          content: NotificationContent(
+        id: notificationID,
+        channelKey: 'update_progression',
+        title: 'Watchlist updated',
+        body: 'Finished gathering watchlist data',
+        autoDismissible: false,
+        color: const Color.fromARGB(255, 70, 130, 180),
+        category: NotificationCategory.Progress,
+        progress: progress as double,
+        locked: false,
+      ));
+    }
   }
 
   /* creates bear and bull display text notifications */

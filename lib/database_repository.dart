@@ -160,10 +160,10 @@ class DatabaseRepository {
   }
 
   /* updates all watchlist stock tickers data */ // todo trigger on notification time
-  Future updateWatchlist(List<StockEntity> prevWatchlist) async {
+  Future updateWatchlist(int notificationID) async {
     debugPrint('************updateWatchlist*************'); // ! testing
 
-    /* update time stamp for last updated */
+    /* update time stamp for last updated */ // todo also pull date
     TimeOfDay currentTime = TimeOfDay.now();
 
     final SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -174,6 +174,7 @@ class DatabaseRepository {
     /* update all stock data on watchlist */
     List<StockEntity> prevWatchlist = await getStockSymbols();
 
+    /* loop through watchlist and update the data */ // todo
     for (var i = 0; i < prevWatchlist.length; i++) {
       /* only perform 8 api requests per minute per Twelve Data API request limit */
       if (i % 8 == 0) {
