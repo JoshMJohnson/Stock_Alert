@@ -44,8 +44,7 @@ Future<void> main() async {
       TimeOfDay(hour: tod3Hours, minute: tod3Minutes);
 
   // * database
-  final DatabaseRepository repo = DatabaseRepository.instance;
-  List<StockEntity> watchlist = await repo.getStockSymbols();
+  List<StockEntity> watchlist = await DatabaseRepository.getStockSymbols();
 
   runApp(MyApp(
     startupSortAlgorithm,

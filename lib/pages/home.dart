@@ -46,7 +46,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final DatabaseRepository repo = DatabaseRepository.instance;
   final tickerTextController = TextEditingController();
 
   /* home page variables */
@@ -87,7 +86,7 @@ class _HomePageState extends State<HomePage> {
 
     /* loads current watchlist data */
     void loadWatchlist() async {
-      watchlist = await repo.getStockSymbols();
+      watchlist = await DatabaseRepository.getStockSymbols();
 
       setState(() {
         watchlist = watchlist;
@@ -144,7 +143,7 @@ class _HomePageState extends State<HomePage> {
 
   /* updates active tracking toggle for stock entity */
   updateActiveTracking(String tickerSymbol, bool updatedActiveTracking) {
-    repo.updateStockToggle(tickerSymbol, updatedActiveTracking);
+    DatabaseRepository.updateStockToggle(tickerSymbol, updatedActiveTracking);
     updateWatchlistData();
   }
 
@@ -241,7 +240,7 @@ class _HomePageState extends State<HomePage> {
 
   /* handles adding ticker from text field to watchlist */
   void addTicker() async {
-    int errorCode = await repo.addSymbol(currentTicker);
+    int errorCode = await DatabaseRepository.addSymbol(currentTicker);
     if (errorCode == 400) {
       /* bad request; ticker went bankrupt */
       errorAlertWithAPI(400);
@@ -270,7 +269,7 @@ class _HomePageState extends State<HomePage> {
 
   /* handles removing ticker from text field to watchlist */
   void removeTicker(String removingTicker) {
-    repo.removeSymbol(removingTicker);
+    DatabaseRepository.removeSymbol(removingTicker);
     updateWatchlistData();
   }
 
@@ -307,7 +306,7 @@ class _HomePageState extends State<HomePage> {
     FocusManager.instance.primaryFocus?.unfocus(); // close keyboard visibility
     tickerTextController.clear();
 
-    watchlist = await repo.getStockSymbols();
+    watchlist = await DatabaseRepository.getStockSymbols();
 
     setState(() {
       watchlist = watchlist;

@@ -14,22 +14,20 @@ import 'dart:convert';
 class DatabaseRepository {
   static Database? _db;
   static final DatabaseRepository instance = DatabaseRepository._constructor();
-  final String stocksTable = 'stocks';
-  final String apiCode =
+  static const String stocksTable = 'stocks';
+  static const String apiCode =
       'b621e679c4744860a830188951a1a427'; /* Twelve Data API currently */
-  bool isMarketOpen = false;
+  static bool isMarketOpen = false;
 
   DatabaseRepository._constructor();
 
   /* database getter function */
-  Future<Database> get database async {
-    if (_db != null) return _db!;
-    _db = await getDatabase();
-    return _db!;
+  static Future<Database> get database async {
+    return _db ??= await getDatabase();
   }
 
   /* creates/retrieves database for stock watchlist */
-  Future<Database> getDatabase() async {
+  static Future<Database> getDatabase() async {
     final dbDirPath = await getDatabasesPath();
     final dbPath = join(dbDirPath, 'stock_watchlist.db');
     final database = await openDatabase(
@@ -49,7 +47,7 @@ class DatabaseRepository {
   }
 
   /* calls the twelve data API for a stock symbol and updates database row with updated info */
-  Future retrieveStockDataFromTwelveDataAPI(String tickerSymbol) async {
+  static Future retrieveStockDataFromTwelveDataAPI(String tickerSymbol) async {
     final tickerURL = Uri.parse(
         'https://api.twelvedata.com/quote?symbol=$tickerSymbol&apikey=$apiCode');
     final tickerData = await http.get(tickerURL);
@@ -112,7 +110,7 @@ class DatabaseRepository {
   }
 
   /* prepares a list of bull stocks according to the settings chosen */
-  Future<List<StockEntity>> getBullStocks() async {
+  static Future<List<StockEntity>> getBullStocks() async {
     List<StockEntity> allStocks = await getStockSymbols();
     List<StockEntity> bullStocks = [];
 
@@ -136,7 +134,7 @@ class DatabaseRepository {
   }
 
   /* prepares a list of bear stocks according to the settings chosen */
-  Future<List<StockEntity>> getBearStocks() async {
+  static Future<List<StockEntity>> getBearStocks() async {
     List<StockEntity> allStocks = await getStockSymbols();
     List<StockEntity> bearStocks = [];
 
@@ -161,7 +159,7 @@ class DatabaseRepository {
   }
 
   /* updates all watchlist stock tickers data */ // todo trigger on notification time
-  Future updateWatchlist(int notificationID) async {
+  static Future updateWatchlist(int notificationID) async {
     debugPrint('************updateWatchlist*************'); // ! testing
 
     /* update time stamp for last updated */ // todo also pull date
@@ -182,7 +180,7 @@ class DatabaseRepository {
         currentTickerIndex++) {
       String currentTickerSymbol = prevWatchlist[currentTickerIndex].ticker;
 
-      int errorCode =
+      int? errorCode =
           await retrieveStockDataFromTwelveDataAPI(currentTickerSymbol);
 
       if (errorCode == 400 || errorCode == 404) {
@@ -228,7 +226,7 @@ class DatabaseRepository {
   }
 
   /* adds a stock symbol to the watchlist; gets data from twelve data api */
-  Future addSymbol(String tickerSymbol) async {
+  static Future addSymbol(String tickerSymbol) async {
     final tickerURL = Uri.parse(
         'https://api.twelvedata.com/quote?symbol=$tickerSymbol&apikey=$apiCode');
     final tickerData = await http.get(tickerURL);
@@ -298,7 +296,7 @@ class DatabaseRepository {
   }
 
   /* updates the stock toggle within the database */
-  void updateStockToggle(String tickerSymbol, bool toggleValue) async {
+  static void updateStockToggle(String tickerSymbol, bool toggleValue) async {
     final db = await database;
     await db.update(
       stocksTable,
@@ -311,7 +309,7 @@ class DatabaseRepository {
   }
 
   /* removes a stock symbol from the watchlist */
-  void removeSymbol(String stockSymbol) async {
+  static void removeSymbol(String stockSymbol) async {
     final db = await database;
     await db.delete(
       stocksTable,
@@ -327,7 +325,7 @@ class DatabaseRepository {
   }
 
   /* retrieves a list of all the watchlist stocks on the database  */
-  Future<List<StockEntity>> getStockSymbols() async {
+  static Future<List<StockEntity>> getStockSymbols() async {
     final db = await database;
     final data = await db.query(stocksTable);
 

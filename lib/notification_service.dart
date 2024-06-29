@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:awesome_notifications/android_foreground_service.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
+import 'package:stock_alert/database_repository.dart';
 import 'package:stock_alert/pages/homePageWidgets/stock_entity.dart';
 
 class NotificationService {
@@ -116,7 +117,7 @@ class NotificationService {
     TimeOfDay notification3,
   ) {
     /* scheduled daily reminder 1 */ // todo trigger at scheduled time; repeating
-    // repo.updateWatchlist(1);
+    DatabaseRepository.updateWatchlist(1);
 
     /* scheduled daily reminder 2 */ // todo
     // if (quanitiyReminders >= 2) {
@@ -148,8 +149,7 @@ class NotificationService {
   /* updates the current progress bar */
   static void updateProgressBar(
       int notificationID, int currentProgress, int totalTickersPulling) {
-    int progress =
-        min((currentProgress / totalTickersPulling * 100).round(), 100);
+    double progress = currentProgress / totalTickersPulling * 100;
 
     /* still pulling; reached api limit; delaying */
     if (currentProgress < totalTickersPulling) {
@@ -177,7 +177,7 @@ class NotificationService {
         autoDismissible: false,
         color: const Color.fromARGB(255, 70, 130, 180),
         category: NotificationCategory.Progress,
-        progress: progress as double,
+        progress: progress,
         locked: false,
       ));
     }
