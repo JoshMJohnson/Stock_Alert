@@ -198,7 +198,7 @@ class DatabaseRepository {
 
         await Future.delayed(const Duration(seconds: 61));
         currentTickerIndex--; /* retry ticker that failed */
-      }
+      } // todo delay if no connection and continue; handle connection loss mid pull
     }
 
     /* display finished pulling updated ticker data notification */

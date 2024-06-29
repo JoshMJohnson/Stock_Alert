@@ -157,13 +157,13 @@ class NotificationService {
           content: NotificationContent(
         id: notificationID,
         channelKey: 'update_progression',
-        title: 'Updating watchlist ($progress)',
+        title: 'Updating watchlist (${progress.round()}%)',
         body: 'Gathering updated watchlist data',
         autoDismissible: false,
         color: const Color.fromARGB(255, 70, 130, 180),
         notificationLayout: NotificationLayout.ProgressBar,
         category: NotificationCategory.Progress,
-        progress: progress as double,
+        progress: progress,
         locked: true,
       ));
     } else {
