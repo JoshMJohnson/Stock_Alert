@@ -173,31 +173,42 @@ class DatabaseRepository {
 
     /* update all stock data on watchlist */
     List<StockEntity> prevWatchlist = await getStockSymbols();
+    int watchlistLength = prevWatchlist.length;
 
-    /* loop through watchlist and update the data */ // todo
-    for (var i = 0; i < prevWatchlist.length; i++) {
-      /* only perform 8 api requests per minute per Twelve Data API request limit */
-      if (i % 8 == 0) {
-        /* block from adding tickers to watchlist; used max requests for that minute */ // todo too many requests handling
-        prefs.setBool('limitReached', true);
+    /* loop through watchlist and update the data */
+    for (var currentTicker = 0;
+        currentTicker < watchlistLength;
+        currentTicker++) {
+      int errorCode = await retrieveStockDataFromTwelveDataAPI(
+          prevWatchlist[currentTicker].ticker);
 
-        await Future.delayed(const Duration(seconds: 61));
-      }
-
-      int errorCode = await retrieveStockDataFromTwelveDataAPI(prevWatchlist[i]
-          .ticker); // todo if cant be found - remove ticker from watchlist
-
-      /* remove ticker from watchlist if not found; else delay 1 minute */
       if (errorCode == 400 || errorCode == 404) {
-        /* remove ticker from watchlist and advance */ // todo
-        debugPrint('************Removing ticker**************');
+        /* if current ticker was removed or not found; remove ticker from watchlist */ // todo
+        debugPrint(
+            '************Ticker Error; removing ticker from watchlist**************');
       } else {
-        /* delay 60 seconds */ // todo
-        debugPrint('Delay Pull 60 Seconds*********************************');
+        /* else; no errors occured finding ticker on the stock market */
+        if (errorCode == 429) {
+          NotificationService.updateProgressBar(
+            notificationID,
+            currentTicker,
+            watchlistLength,
+          );
+
+          /* if minute limit reached; delay 1 minute */
+          await Future.delayed(const Duration(seconds: 61));
+        }
+
+        // todo update watchlist data; home page AND database
       }
     }
 
-    prefs.setBool('limitReached', false);
+    /* display finished pulling updated ticker data notification */
+    NotificationService.updateProgressBar(
+      notificationID,
+      watchlistLength,
+      watchlistLength,
+    );
 
     /* gather bull and bear stocks that meet notification specs in settings */
     if (isMarketOpen) {

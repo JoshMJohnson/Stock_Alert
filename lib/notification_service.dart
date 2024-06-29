@@ -155,8 +155,8 @@ class NotificationService {
     // }
   }
 
-  /* updates the current progress bar */ // todo unused
-  void updateProgressBar(
+  /* updates the current progress bar */
+  static void updateProgressBar(
       int notificationID, int currentProgress, int totalTickersPulling) {
     int progress =
         min((currentProgress / totalTickersPulling * 100).round(), 100);
