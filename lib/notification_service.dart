@@ -3,7 +3,6 @@ import 'dart:math';
 import 'package:awesome_notifications/android_foreground_service.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
-import 'package:stock_alert/database_repository.dart';
 import 'package:stock_alert/pages/homePageWidgets/stock_entity.dart';
 
 class NotificationService {
@@ -116,17 +115,8 @@ class NotificationService {
     TimeOfDay notification2,
     TimeOfDay notification3,
   ) {
-    /* scheduled daily reminder 1 */ // todo
-    AwesomeNotifications().createNotification(
-        content: NotificationContent(
-      id: 2,
-      channelKey: 'update_progression',
-      title: 'Updating watchlist',
-      body: 'temp body here',
-      autoDismissible: false,
-      color: const Color.fromARGB(255, 70, 130, 180),
-      // notificationLayout: NotificationLayout.ProgressBar,
-    ));
+    /* scheduled daily reminder 1 */ // todo trigger at scheduled time; repeating
+    // repo.updateWatchlist(1);
 
     /* scheduled daily reminder 2 */ // todo
     // if (quanitiyReminders >= 2) {

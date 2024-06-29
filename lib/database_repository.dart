@@ -176,30 +176,29 @@ class DatabaseRepository {
     int watchlistLength = prevWatchlist.length;
 
     /* loop through watchlist and update the data */
-    for (var currentTicker = 0;
-        currentTicker < watchlistLength;
-        currentTicker++) {
-      int errorCode = await retrieveStockDataFromTwelveDataAPI(
-          prevWatchlist[currentTicker].ticker);
+    for (var currentTickerIndex = 0;
+        currentTickerIndex < watchlistLength;
+        currentTickerIndex++) {
+      String currentTickerSymbol = prevWatchlist[currentTickerIndex].ticker;
+
+      int errorCode =
+          await retrieveStockDataFromTwelveDataAPI(currentTickerSymbol);
 
       if (errorCode == 400 || errorCode == 404) {
         /* if current ticker was removed or not found; remove ticker from watchlist */ // todo
         debugPrint(
             '************Ticker Error; removing ticker from watchlist**************');
-      } else {
-        /* else; no errors occured finding ticker on the stock market */
-        if (errorCode == 429) {
-          NotificationService.updateProgressBar(
-            notificationID,
-            currentTicker,
-            watchlistLength,
-          );
+      }
+      /* else; no errors occured finding ticker on the stock market; minute limit reached though */
+      else if (errorCode == 429) {
+        NotificationService.updateProgressBar(
+          notificationID,
+          currentTickerIndex,
+          watchlistLength,
+        );
 
-          /* if minute limit reached; delay 1 minute */
-          await Future.delayed(const Duration(seconds: 61));
-        }
-
-        // todo update watchlist data; home page AND database
+        await Future.delayed(const Duration(seconds: 61));
+        currentTickerIndex--; /* retry ticker that failed */
       }
     }
 
@@ -210,6 +209,8 @@ class DatabaseRepository {
       watchlistLength,
     );
 
+    // todo update watchlist on Home Page
+
     /* gather bull and bear stocks that meet notification specs in settings */
     if (isMarketOpen) {
       // todo if stock market is closed... stop  pulling
@@ -217,6 +218,12 @@ class DatabaseRepository {
       List<StockEntity> bearStocks = await getBearStocks();
       NotificationService.createBearBullNotifications(bullStocks, bearStocks);
     }
+
+    // ! begin of testing
+    List<StockEntity> bullStocks = await getBullStocks();
+    List<StockEntity> bearStocks = await getBearStocks();
+    NotificationService.createBearBullNotifications(bullStocks, bearStocks);
+    // ! end of testing
   }
 
   /* adds a stock symbol to the watchlist; gets data from twelve data api */
