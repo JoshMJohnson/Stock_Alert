@@ -161,6 +161,8 @@ class DatabaseRepository {
 
   /* updates all watchlist stock tickers data */ // todo trigger on notification time
   Future updateWatchlist(List<StockEntity> prevWatchlist) async {
+    debugPrint('************updateWatchlist*************'); // ! testing
+
     /* update time stamp for last updated */
     TimeOfDay currentTime = TimeOfDay.now();
 
@@ -172,7 +174,6 @@ class DatabaseRepository {
     /* update all stock data on watchlist */
     List<StockEntity> prevWatchlist = await getStockSymbols();
 
-    // todo do not check tickers that have activeTracking = false
     for (var i = 0; i < prevWatchlist.length; i++) {
       /* only perform 8 api requests per minute per Twelve Data API request limit */
       if (i % 8 == 0) {
@@ -199,6 +200,7 @@ class DatabaseRepository {
 
     /* gather bull and bear stocks that meet notification specs in settings */
     if (isMarketOpen) {
+      // todo if stock market is closed... stop  pulling
       List<StockEntity> bullStocks = await getBullStocks();
       List<StockEntity> bearStocks = await getBearStocks();
       NotificationService.createBearBullNotifications(bullStocks, bearStocks);

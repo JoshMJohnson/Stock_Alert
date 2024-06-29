@@ -124,30 +124,33 @@ class NotificationService {
       autoDismissible: false,
       color: const Color.fromARGB(255, 70, 130, 180),
       // notificationLayout: NotificationLayout.ProgressBar,
-      // progress:
     ));
 
-    // /* scheduled daily reminder 2 */ // todo
-    // AwesomeNotifications().createNotification(
-    //     content: NotificationContent(
-    //   id: 3,
-    //   channelKey: 'update_progression',
-    //   title: 'Updating watchlist',
-    //   body: 'temp body here',
-    //   autoDismissible: false,
-    //   color: const Color.fromARGB(255, 70, 130, 180),
-    // ));
+    // if (quanitiyReminders >= 2) {
+    //   /* scheduled daily reminder 2 */ // todo
+    //   AwesomeNotifications().createNotification(
+    //       content: NotificationContent(
+    //     id: 3,
+    //     channelKey: 'update_progression',
+    //     title: 'Updating watchlist',
+    //     body: 'temp body here',
+    //     autoDismissible: false,
+    //     color: const Color.fromARGB(255, 70, 130, 180),
+    //   ));
+    // }
 
-    // /* scheduled daily reminder 3 */ // todo
-    // AwesomeNotifications().createNotification(
-    //     content: NotificationContent(
-    //   id: 4,
-    //   channelKey: 'update_progression',
-    //   title: 'Updating watchlist',
-    //   body: 'temp body here',
-    //   autoDismissible: false,
-    //   color: const Color.fromARGB(255, 70, 130, 180),
-    // ));
+    // if (quanitiyReminders == 3) {
+    //   /* scheduled daily reminder 3 */ // todo
+    //   AwesomeNotifications().createNotification(
+    //       content: NotificationContent(
+    //     id: 4,
+    //     channelKey: 'update_progression',
+    //     title: 'Updating watchlist',
+    //     body: 'temp body here',
+    //     autoDismissible: false,
+    //     color: const Color.fromARGB(255, 70, 130, 180),
+    //   ));
+    // }
   }
 
   /* creates bear and bull display text notifications */
