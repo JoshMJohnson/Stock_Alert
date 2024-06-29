@@ -9,6 +9,7 @@ import 'package:stock_alert/pages/homePageWidgets/stock_entity.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+// todo turn into static class; 1 single instance; needed for access from notification service
 /* handles database interations */
 class DatabaseRepository {
   static Database? _db;
