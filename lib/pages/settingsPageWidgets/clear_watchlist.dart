@@ -16,6 +16,7 @@ class ClearWatchlist extends StatelessWidget {
       onPressed: () => showDialog(
         context: context,
         builder: (_) => AlertDialog(
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           title: Text(
             'Clear Watchlist',
             textAlign: TextAlign.center,

@@ -12,6 +12,7 @@ class SaveButton extends StatelessWidget {
         showDialog(
           context: context,
           builder: (_) => AlertDialog(
+            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
             title: Text(
               'Settings Saved',
               textAlign: TextAlign.center,

@@ -41,6 +41,7 @@ class TickerPage extends StatelessWidget {
                 showDialog(
                   context: context,
                   builder: (_) => AlertDialog(
+                    backgroundColor: Theme.of(context).scaffoldBackgroundColor,
                     title: Text(
                       'Remove\nTicker Symbol',
                       textAlign: TextAlign.center,

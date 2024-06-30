@@ -178,6 +178,7 @@ class _HomePageState extends State<HomePage> {
     showDialog(
       context: context,
       builder: (_) => AlertDialog(
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         title: Text(
           'Failed Add',
           textAlign: TextAlign.center,
@@ -344,11 +345,12 @@ class _HomePageState extends State<HomePage> {
     String section3Body =
         'The switch on the left side of each stock on the watchlist '
         'determines if that ticker symbol will be included in the bear/bull notifications '
-        '(i.e. Turns on/off alerts for that ticker)';
+        '(i.e. Turns on/off alerts for that ticker).';
 
     showDialog(
       context: context,
       builder: (_) => AlertDialog(
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         title: Text(
           'Quick Info',
           textAlign: TextAlign.center,

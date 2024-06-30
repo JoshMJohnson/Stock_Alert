@@ -114,6 +114,8 @@ class _TickerInputFieldsState extends State<TickerInputFields> {
                     ? showDialog(
                         context: context,
                         builder: (_) => AlertDialog(
+                          backgroundColor:
+                              Theme.of(context).scaffoldBackgroundColor,
                           title: Text(
                             'Failed Add',
                             textAlign: TextAlign.center,
@@ -181,6 +183,8 @@ class _TickerInputFieldsState extends State<TickerInputFields> {
                     : showDialog(
                         context: context,
                         builder: (_) => AlertDialog(
+                          backgroundColor:
+                              Theme.of(context).scaffoldBackgroundColor,
                           title: Text(
                             'Add\nTicker Symbol',
                             textAlign: TextAlign.center,
@@ -277,6 +281,8 @@ class _TickerInputFieldsState extends State<TickerInputFields> {
                   ? showDialog(
                       context: context,
                       builder: (_) => AlertDialog(
+                        backgroundColor:
+                            Theme.of(context).scaffoldBackgroundColor,
                         title: Text(
                           'Failed Remove',
                           textAlign: TextAlign.center,
@@ -341,6 +347,8 @@ class _TickerInputFieldsState extends State<TickerInputFields> {
                   : showDialog(
                       context: context,
                       builder: (_) => AlertDialog(
+                        backgroundColor:
+                            Theme.of(context).scaffoldBackgroundColor,
                         title: Text(
                           'Remove\nTicker Symbol',
                           textAlign: TextAlign.center,
