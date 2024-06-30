@@ -324,7 +324,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  /* show info dialog */ // todo have text fade out if scrollable; too long. same thing going up
+  /* show info dialog */
   void showInfoDialog() {
     /* possible delays */
     String section1Header = 'Possible Delays';
