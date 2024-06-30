@@ -335,17 +335,17 @@ class _HomePageState extends State<HomePage> {
         'Notifications will also be delayed 1 minute for every 8 stocks on your watchlist.';
 
     /* holiday notification deliveries when market is closed */
-    String section2Header = 'Got a notification while the market was closed?';
+    String section2Header = 'Notification Exceptions';
     String section2Body =
         'Occasional holidays may not be registered for a closed market by Twelve Data API '
         'and may trigger a notification containing data from the last closing bell.';
 
     /* isActive ticker toggle on watchlist */
-    String section3Header = 'Disabling Ticker Symbol Tracking';
+    String section3Header = 'Ticker Symbol Tracking';
     String section3Body =
         'The switch on the left side of each stock on the watchlist '
         'determines if that ticker symbol will be included in the bear/bull notifications '
-        '(i.e. Turns on/off alerts for that ticker).';
+        '(i.e. Turns on/off alerts for that ticker specifically).';
 
     showDialog(
       context: context,
