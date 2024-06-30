@@ -324,22 +324,27 @@ class _HomePageState extends State<HomePage> {
 
   /* show info dialog */ // todo have text fade out if scrollable; too long. same thing going up
   void showInfoDialog() {
-    String apiLimitMessage =
+    /* possible delays */
+    String section1Header = 'Possible Delays';
+    String section1Body =
         'Stock Alert uses Twelve Data API to access the stock market which has '
-        'a limit of 8 ticker lookups per minute.\n\n'
+        'a limit of 8 ticker symbol lookups per minute.\n\n'
         'The limit may be encountered while adding stocks to the watchlist '
         'at the same time as collecting data for a notification.\n\n'
-        'Notifications will also be delayed 1 minute for every 8 stocks on your '
-        'watchlist\n\nOccasional holidays may not be registered for a closed market '
-        'and may trigger a notification containing data from the last closing bell.\n\n'
-        'The toggle on the left side of each ticker on the watchlist '
-        'determines if that ticker will be included in the bear/bull notifications '
-        '(i.e. Turns on/off alerts for that ticker)';
+        'Notifications will also be delayed 1 minute for every 8 stocks on your watchlist.';
 
-    /* about 8 ticker requests per minute */ // todo
-    /* about possible delays */ // todo
-    /* holiday notification deliveries when market is closed */ // todo
-    /* isActive ticker toggle on watchlist */ // todo
+    /* holiday notification deliveries when market is closed */
+    String section2Header = 'Got a notification while the market was closed?';
+    String section2Body =
+        'Occasional holidays may not be registered for a closed market by Twelve Data API '
+        'and may trigger a notification containing data from the last closing bell.';
+
+    /* isActive ticker toggle on watchlist */
+    String section3Header = 'Disabling Ticker Symbol Tracking';
+    String section3Body =
+        'The switch on the left side of each stock on the watchlist '
+        'determines if that ticker symbol will be included in the bear/bull notifications '
+        '(i.e. Turns on/off alerts for that ticker)';
 
     showDialog(
       context: context,
@@ -350,32 +355,115 @@ class _HomePageState extends State<HomePage> {
           style: TextStyle(
             color: Theme.of(context).textTheme.headlineMedium!.color,
             fontSize: 26,
-            fontWeight: FontWeight.w700,
+            fontWeight: FontWeight.w900,
           ),
         ),
         content: SingleChildScrollView(
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text(
-                apiLimitMessage,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Theme.of(context).colorScheme.tertiary,
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600,
-                  fontStyle: FontStyle.normal,
+              Container(
+                decoration: BoxDecoration(
+                  border: Border(
+                    bottom: BorderSide(
+                      color: (Theme.of(context).cardTheme.color)!,
+                    ),
+                  ),
+                ),
+                child: Text(
+                  section1Header,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.tertiary,
+                    fontSize: 22,
+                    fontWeight: FontWeight.w700,
+                    fontStyle: FontStyle.normal,
+                  ),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 10),
-                child: GestureDetector(
-                  onTap: () => Navigator.pop(context),
-                  child: Icon(
-                    Icons.cancel_outlined,
-                    size: 55,
-                    color: Theme.of(context).iconTheme.color,
+                padding: const EdgeInsets.all(20),
+                child: Text(
+                  section1Body,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.tertiary,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                    fontStyle: FontStyle.normal,
                   ),
+                ),
+              ),
+              Container(
+                decoration: BoxDecoration(
+                  border: Border(
+                    bottom: BorderSide(
+                      color: (Theme.of(context).cardTheme.color)!,
+                    ),
+                  ),
+                ),
+                child: Text(
+                  section2Header,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.tertiary,
+                    fontSize: 22,
+                    fontWeight: FontWeight.w700,
+                    fontStyle: FontStyle.normal,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(20),
+                child: Text(
+                  section2Body,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.tertiary,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                    fontStyle: FontStyle.normal,
+                  ),
+                ),
+              ),
+              Container(
+                decoration: BoxDecoration(
+                  border: Border(
+                    bottom: BorderSide(
+                      color: (Theme.of(context).cardTheme.color)!,
+                    ),
+                  ),
+                ),
+                child: Text(
+                  section3Header,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.tertiary,
+                    fontSize: 22,
+                    fontWeight: FontWeight.w700,
+                    fontStyle: FontStyle.normal,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(20),
+                child: Text(
+                  section3Body,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.tertiary,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                    fontStyle: FontStyle.normal,
+                  ),
+                ),
+              ),
+              GestureDetector(
+                onTap: () => Navigator.pop(context),
+                child: Icon(
+                  Icons.cancel_outlined,
+                  size: 55,
+                  color: Theme.of(context).iconTheme.color,
                 ),
               ),
             ],
