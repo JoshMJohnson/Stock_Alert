@@ -1,3 +1,4 @@
+import 'package:fading_edge_scrollview/fading_edge_scrollview.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -360,115 +361,122 @@ class _HomePageState extends State<HomePage> {
             fontWeight: FontWeight.w900,
           ),
         ),
-        content: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                  border: Border(
-                    bottom: BorderSide(
-                      color: (Theme.of(context).cardTheme.color)!,
+        content: FadingEdgeScrollView.fromSingleChildScrollView(
+          gradientFractionOnEnd: .9,
+          child: SingleChildScrollView(
+            controller: ScrollController(
+              initialScrollOffset: 0.0,
+              keepScrollOffset: false,
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border(
+                      bottom: BorderSide(
+                        color: (Theme.of(context).cardTheme.color)!,
+                      ),
+                    ),
+                  ),
+                  child: Text(
+                    section1Header,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.tertiary,
+                      fontSize: 22,
+                      fontWeight: FontWeight.w700,
+                      fontStyle: FontStyle.normal,
                     ),
                   ),
                 ),
-                child: Text(
-                  section1Header,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.tertiary,
-                    fontSize: 22,
-                    fontWeight: FontWeight.w700,
-                    fontStyle: FontStyle.normal,
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(20),
-                child: Text(
-                  section1Body,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.tertiary,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600,
-                    fontStyle: FontStyle.normal,
-                  ),
-                ),
-              ),
-              Container(
-                decoration: BoxDecoration(
-                  border: Border(
-                    bottom: BorderSide(
-                      color: (Theme.of(context).cardTheme.color)!,
+                Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: Text(
+                    section1Body,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.tertiary,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                      fontStyle: FontStyle.normal,
                     ),
                   ),
                 ),
-                child: Text(
-                  section2Header,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.tertiary,
-                    fontSize: 22,
-                    fontWeight: FontWeight.w700,
-                    fontStyle: FontStyle.normal,
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border(
+                      bottom: BorderSide(
+                        color: (Theme.of(context).cardTheme.color)!,
+                      ),
+                    ),
                   ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(20),
-                child: Text(
-                  section2Body,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.tertiary,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600,
-                    fontStyle: FontStyle.normal,
-                  ),
-                ),
-              ),
-              Container(
-                decoration: BoxDecoration(
-                  border: Border(
-                    bottom: BorderSide(
-                      color: (Theme.of(context).cardTheme.color)!,
+                  child: Text(
+                    section2Header,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.tertiary,
+                      fontSize: 22,
+                      fontWeight: FontWeight.w700,
+                      fontStyle: FontStyle.normal,
                     ),
                   ),
                 ),
-                child: Text(
-                  section3Header,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.tertiary,
-                    fontSize: 22,
-                    fontWeight: FontWeight.w700,
-                    fontStyle: FontStyle.normal,
+                Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: Text(
+                    section2Body,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.tertiary,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                      fontStyle: FontStyle.normal,
+                    ),
                   ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(20),
-                child: Text(
-                  section3Body,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.tertiary,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600,
-                    fontStyle: FontStyle.normal,
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border(
+                      bottom: BorderSide(
+                        color: (Theme.of(context).cardTheme.color)!,
+                      ),
+                    ),
+                  ),
+                  child: Text(
+                    section3Header,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.tertiary,
+                      fontSize: 22,
+                      fontWeight: FontWeight.w700,
+                      fontStyle: FontStyle.normal,
+                    ),
                   ),
                 ),
-              ),
-              GestureDetector(
-                onTap: () => Navigator.pop(context),
-                child: Icon(
-                  Icons.cancel_outlined,
-                  size: 55,
-                  color: Theme.of(context).iconTheme.color,
+                Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: Text(
+                    section3Body,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.tertiary,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                      fontStyle: FontStyle.normal,
+                    ),
+                  ),
                 ),
-              ),
-            ],
+                GestureDetector(
+                  onTap: () => Navigator.pop(context),
+                  child: Icon(
+                    Icons.cancel_outlined,
+                    size: 55,
+                    color: Theme.of(context).iconTheme.color,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
