@@ -322,7 +322,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  /* show info dialog */
+  /* show info dialog */ // todo have text fade out if scrollable; too long
   void showInfoDialog() {
     String apiLimitMessage =
         'Stock Alert uses Twelve Data API to access the stock market which has '
