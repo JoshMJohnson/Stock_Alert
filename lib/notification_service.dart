@@ -147,12 +147,9 @@ class NotificationService {
   /* updates the current progress bar */
   static void updateProgressBar(
       int notificationID, int currentProgress, int totalTickersPulling) {
-    debugPrint(
-        'currentProgress: $currentProgress | totalTickersPulling: $totalTickersPulling'); // ! testing
-
     double progress = currentProgress / totalTickersPulling * 100;
 
-    /* still pulling; reached api limit; delaying */
+    /* still pulling; reached api limit; delaying */ // todo show estimated time remainging
     if (currentProgress < totalTickersPulling) {
       AwesomeNotifications().createNotification(
           content: NotificationContent(
