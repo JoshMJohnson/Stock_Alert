@@ -159,8 +159,6 @@ class DatabaseRepository {
 
   /* updates all watchlist stock tickers data */ // todo trigger on notification time
   static Future updateWatchlist(int notificationID) async {
-    debugPrint('************updateWatchlist*************'); // ! testing
-
     /* update time stamp for last updated */ // todo also pull date
     TimeOfDay currentTime = TimeOfDay.now();
 
