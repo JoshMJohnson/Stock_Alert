@@ -325,12 +325,21 @@ class _HomePageState extends State<HomePage> {
   /* show info dialog */
   void showInfoDialog() {
     String apiLimitMessage =
-        'Stock Alert uses Twelve Data API to access the stock market.\n\n'
-        'This API has a limit of 8 ticker lookups per minute.\n\n'
+        'Stock Alert uses Twelve Data API to access the stock market which has '
+        'a limit of 8 ticker lookups per minute.\n\n'
         'The limit may be encountered while adding stocks to the watchlist '
         'at the same time as collecting data for a notification.\n\n'
         'Notifications will also be delayed 1 minute for every 8 stocks on your '
-        'watchlist';
+        'watchlist\n\nOccasional holidays may not be registered for a closed market '
+        'and may trigger a notification containing data from the last closing bell.\n\n'
+        'The toggle on the left side of each ticker on the watchlist '
+        'determines if that ticker will be included in the bear/bull notifications '
+        '(i.e. Turns on/off alerts for that ticker)';
+
+    /* about 8 ticker requests per minute */ // todo
+    /* about possible delays */ // todo
+    /* holiday notification deliveries when market is closed */ // todo
+    /* isActive ticker toggle on watchlist */ // todo
 
     showDialog(
       context: context,
