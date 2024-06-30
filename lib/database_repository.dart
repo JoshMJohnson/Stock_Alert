@@ -157,7 +157,7 @@ class DatabaseRepository {
     return bearStocks;
   }
 
-  /* updates all watchlist stock tickers data */ // todo trigger on notification time
+  /* updates all watchlist stock tickers data */
   static Future updateWatchlist(int notificationID) async {
     /* update time stamp for last updated */ // todo also pull date
     TimeOfDay currentTime = TimeOfDay.now();
@@ -209,7 +209,6 @@ class DatabaseRepository {
 
     /* gather bull and bear stocks that meet notification specs in settings */
     if (isMarketOpen) {
-      // todo if stock market is closed... stop  pulling
       List<StockEntity> bullStocks = await getBullStocks();
       List<StockEntity> bearStocks = await getBearStocks();
       NotificationService.createBearBullNotifications(bullStocks, bearStocks);
