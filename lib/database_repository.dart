@@ -205,7 +205,7 @@ class DatabaseRepository {
       watchlistLength,
     );
 
-    // todo update watchlist on Home Page
+    // todo update Home Page watchlist AND last updated
 
     /* gather bull and bear stocks that meet notification specs in settings */
     if (isMarketOpen) {
