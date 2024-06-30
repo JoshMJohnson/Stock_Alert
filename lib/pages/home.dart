@@ -357,7 +357,7 @@ class _HomePageState extends State<HomePage> {
           textAlign: TextAlign.center,
           style: TextStyle(
             color: Theme.of(context).textTheme.headlineMedium!.color,
-            fontSize: 26,
+            fontSize: 30,
             fontWeight: FontWeight.w900,
           ),
         ),
