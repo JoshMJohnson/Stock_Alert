@@ -115,7 +115,16 @@ class NotificationService {
     TimeOfDay notification3,
   ) {
     /* scheduled daily reminder 1 */ // todo trigger at scheduled time; repeating
-    DatabaseRepository.updateWatchlist(1);
+    DatabaseRepository.updateWatchlist(2);
+    // AwesomeNotifications().createNotification(
+    //     content: NotificationContent(
+    //   id: 2,
+    //   channelKey: 'update_progression',
+    //   title: 'Updating watchlist',
+    //   body: 'temp body here',
+    //   autoDismissible: false,
+    //   color: const Color.fromARGB(255, 70, 130, 180),
+    // ));
 
     /* scheduled daily reminder 2 */ // todo
     // if (quanitiyReminders >= 2) {
