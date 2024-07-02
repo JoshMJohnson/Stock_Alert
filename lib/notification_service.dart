@@ -167,8 +167,8 @@ class NotificationService {
         color: const Color.fromARGB(255, 70, 130, 180),
         actionType: ActionType.Default,
         category: NotificationCategory.Reminder,
-        title: 'Start of watchlist updating',
-        timeoutAfter: const Duration(seconds: 1),
+        title: 'Updating watchlist',
+        timeoutAfter: const Duration(seconds: 2),
       ),
       schedule: NotificationCalendar(
         preciseAlarm: true,
@@ -177,7 +177,6 @@ class NotificationService {
         repeats: true,
         hour: notification1.hour,
         minute: notification1.minute,
-        second: 0,
         weekday: 2,
       ),
     );
