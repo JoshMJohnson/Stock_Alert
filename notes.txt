@@ -8,6 +8,8 @@ Bugs:
     - include time and date of last updated
 - ticker page description
 - Handle when pulling data for notification from watchlist and connection is lost
+- Use EST for scheduled notification timezone for consistency based on market open/closed
+no matter where you are at the time
 
 To Do:
 - Turn off battery optimization for foreground service delay prevention
