@@ -25,11 +25,12 @@ class NotificationService {
   static Future<void> onNotificationCreatedMethod(
       ReceivedNotification receivedNotification) async {}
 
-  /* triggers on notification displayed */
+  /* triggers on notification displayed */ // ! called endless loop
   static Future onNotificationDisplayedMethod(
       ReceivedNotification receivedNotification) async {
     /* 18 = starting at 3, 5 days a week, 3 possible daily reminders */
     if (receivedNotification.id! >= 3 && receivedNotification.id! <= 18) {
+      debugPrint('receivedNotification.id: ${receivedNotification.id}');
       DatabaseRepository.updateWatchlist();
     }
   }
@@ -145,6 +146,8 @@ class NotificationService {
     int weekdayValue,
     TimeOfDay tod,
   ) {
+    debugPrint('notificationGenerator');
+
     AwesomeNotifications().createNotification(
       content: NotificationContent(
         id: notificationID,
@@ -177,6 +180,8 @@ class NotificationService {
     TimeOfDay notification2,
     TimeOfDay notification3,
   ) async {
+    debugPrint('createScheduledProgression');
+
     String localTimeZone = await AwesomeNotifications()
         .getLocalTimeZoneIdentifier(); // ! use same time zone; adjust to not changed based on time zone currently in; messes with market open/close times
 
@@ -271,14 +276,14 @@ class NotificationService {
       // /* friday */
       notificationGenerator(
           localTimeZone, counterID, dayCounter, notification3);
-      counterID++;
-      dayCounter = 1;
     }
   }
 
   /* updates the current progress bar */
   static void updateProgressBar(
       int notificationID, int currentProgress, int totalTickersPulling) async {
+    debugPrint('updateProgressBar**************************');
+
     double progress = currentProgress / totalTickersPulling * 100;
     int estimatedMinsRemaining =
         ((totalTickersPulling - currentProgress) / 8).ceil();

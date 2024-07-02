@@ -166,6 +166,8 @@ class DatabaseRepository {
     int notificationID = prefs.getInt('bearBullNotificationID') ?? 18;
     notificationID++;
 
+    debugPrint('notificationID: $notificationID');
+
     prefs.setInt('lastUpdatedHours', currentTime.hour);
     prefs.setInt('lastUpdatedMinutes', currentTime.minute);
 
@@ -177,6 +179,8 @@ class DatabaseRepository {
     for (var currentTickerIndex = 0;
         currentTickerIndex < watchlistLength;
         currentTickerIndex++) {
+      debugPrint('currentTickerIndex: $currentTickerIndex');
+
       String currentTickerSymbol = prevWatchlist[currentTickerIndex].ticker;
 
       int? errorCode =
@@ -189,6 +193,7 @@ class DatabaseRepository {
       }
       /* else; no errors occured finding ticker on the stock market; minute limit reached though */
       else if (errorCode == 429) {
+        debugPrint('errorCode: 429');
         NotificationService.updateProgressBar(
           notificationID,
           currentTickerIndex,
