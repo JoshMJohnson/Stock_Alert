@@ -157,12 +157,14 @@ class DatabaseRepository {
     return bearStocks;
   }
 
-  /* updates all watchlist stock tickers data */ // todo
-  static Future updateWatchlist(int notificationID) async {
+  /* updates all watchlist stock tickers data */
+  static Future updateWatchlist() async {
     /* update time stamp for last updated */ // todo also pull date
     TimeOfDay currentTime = TimeOfDay.now();
 
     final SharedPreferences prefs = await SharedPreferences.getInstance();
+    int notificationID = prefs.getInt('bearBullNotificationID') ?? 18;
+    notificationID++;
 
     prefs.setInt('lastUpdatedHours', currentTime.hour);
     prefs.setInt('lastUpdatedMinutes', currentTime.minute);

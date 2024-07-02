@@ -3,6 +3,7 @@ import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:stock_alert/database_repository.dart';
 import 'package:stock_alert/pages/homePageWidgets/stock_entity.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class NotificationService {
   /* initializes local notifications */
@@ -29,7 +30,7 @@ class NotificationService {
       ReceivedNotification receivedNotification) async {
     /* 18 = starting at 3, 5 days a week, 3 possible daily reminders */
     if (receivedNotification.id! >= 3 && receivedNotification.id! <= 18) {
-      DatabaseRepository.updateWatchlist(2);
+      DatabaseRepository.updateWatchlist();
     }
   }
 
@@ -277,7 +278,7 @@ class NotificationService {
 
   /* updates the current progress bar */
   static void updateProgressBar(
-      int notificationID, int currentProgress, int totalTickersPulling) {
+      int notificationID, int currentProgress, int totalTickersPulling) async {
     double progress = currentProgress / totalTickersPulling * 100;
     int estimatedMinsRemaining =
         ((totalTickersPulling - currentProgress) / 8).ceil();
@@ -316,8 +317,11 @@ class NotificationService {
   }
 
   /* creates bear and bull display text notifications */
-  static createBearBullNotifications(
-      List<StockEntity> bullTickerList, List<StockEntity> bearTickerList) {
+  static createBearBullNotifications(List<StockEntity> bullTickerList,
+      List<StockEntity> bearTickerList) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    int notificationId = prefs.getInt('bearBullNotificationID') ?? 18;
+
     /* bull stock notification; stocks on watchlist that are up past the threshold value */
     if (bullTickerList.isNotEmpty) {
       String bullTickers = '';
@@ -345,9 +349,11 @@ class NotificationService {
         bullTickers = '$bullTickers$tickerLine\n';
       }
 
+      notificationId++;
+
       AwesomeNotifications().createNotification(
           content: NotificationContent(
-        id: 19, // ! add 1; load from preferences
+        id: notificationId,
         channelKey: 'bull_channel',
         title: 'Bull Stocks',
         body: bullTickers,
@@ -389,9 +395,11 @@ class NotificationService {
         bearTickers = '$bearTickers$tickerLine\n';
       }
 
+      notificationId++;
+
       AwesomeNotifications().createNotification(
           content: NotificationContent(
-        id: 20, // ! add 1; load from preferences
+        id: notificationId,
         channelKey: 'bear_channel',
         title: 'Bear Stocks',
         body: bearTickers,
@@ -401,5 +409,7 @@ class NotificationService {
         wakeUpScreen: true,
       ));
     }
+
+    prefs.setInt('bearBullNotificationID', notificationId);
   }
 }
