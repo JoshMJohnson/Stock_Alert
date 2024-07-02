@@ -11,14 +11,41 @@ class NotificationService {
       onActionReceivedMethod: NotificationService.onActionReceivedMethod,
       onDismissActionReceivedMethod:
           NotificationService.onDismissActionReceivedMethod,
-      onNotificationDisplayedMethod:
-          NotificationService.onNotificationDisplayedMethod,
+      onNotificationDisplayedMethod: onNotificationDisplayedMethod,
       onNotificationCreatedMethod:
           NotificationService.onNotificationCreatedMethod,
     );
 
     channelCreation();
   }
+
+  /// Use this method to detect when a new notification or a schedule is created
+  @pragma("vm:entry-point")
+  static Future<void> onNotificationCreatedMethod(
+      ReceivedNotification receivedNotification) async {}
+
+  /* triggers on notification displayed */ // todo
+  static Future onNotificationDisplayedMethod(
+      ReceivedNotification receivedNotification) async {
+    debugPrint('onNotificationDisplayedMethod!!!!!!!!!!!!!!!!!!!!!!!!!!');
+    debugPrint('receivedNotification.id: ${receivedNotification.id}');
+
+    /* if trigger to start updating watchlist */
+    if (receivedNotification.id == 2) {
+      debugPrint('id...2');
+      DatabaseRepository.updateWatchlist(2);
+    }
+  }
+
+  /// Use this method to detect if the user dismissed a notification
+  @pragma("vm:entry-point")
+  static Future<void> onDismissActionReceivedMethod(
+      ReceivedAction receivedAction) async {}
+
+  /// Use this method to detect when the user taps on a notification or action button
+  @pragma("vm:entry-point")
+  static Future<void> onActionReceivedMethod(
+      ReceivedAction receivedAction) async {}
 
   /* creates the notification channels */
   static Future channelCreation() async {
@@ -36,6 +63,16 @@ class NotificationService {
           enableVibration: false,
           locked: true,
           importance: NotificationImportance.Max,
+        ),
+        NotificationChannel(
+          groupKey: 'schedule_triggered',
+          channelKey: 'schedule_triggered',
+          channelName: 'Update Triggered (Required)',
+          channelDescription: 'Necessary for notification handling',
+          icon: 'resource://drawable/update_icon',
+          importance: NotificationImportance.Min,
+          playSound: false,
+          enableVibration: false,
         ),
         NotificationChannel(
           groupKey: 'updating_stocks',
@@ -113,18 +150,117 @@ class NotificationService {
     TimeOfDay notification1,
     TimeOfDay notification2,
     TimeOfDay notification3,
-  ) {
+  ) async {
+    String localTimeZone =
+        await AwesomeNotifications().getLocalTimeZoneIdentifier();
+
+    debugPrint('localTimeZone: $localTimeZone');
+    debugPrint(
+        'notification1.hour: ${notification1.hour} | notification1.minute: ${notification1.minute}');
+
     /* scheduled daily reminder 1 */ // todo trigger at scheduled time; repeating
-    DatabaseRepository.updateWatchlist(2);
+    /* monday */
+    AwesomeNotifications().createNotification(
+      content: NotificationContent(
+        id: 2,
+        channelKey: 'schedule_triggered',
+        color: const Color.fromARGB(255, 70, 130, 180),
+        actionType: ActionType.Default,
+        category: NotificationCategory.Reminder,
+        title: 'Start of watchlist updating',
+        timeoutAfter: const Duration(seconds: 1),
+      ),
+      schedule: NotificationCalendar(
+        preciseAlarm: true,
+        timeZone: localTimeZone,
+        allowWhileIdle: true,
+        repeats: true,
+        hour: notification1.hour,
+        minute: notification1.minute,
+        second: 0,
+        weekday: 2,
+      ),
+    );
+
+    // /* tuesday */
     // AwesomeNotifications().createNotification(
-    //     content: NotificationContent(
-    //   id: 2,
-    //   channelKey: 'update_progression',
-    //   title: 'Updating watchlist',
-    //   body: 'temp body here',
-    //   autoDismissible: false,
-    //   color: const Color.fromARGB(255, 70, 130, 180),
-    // ));
+    //   content: NotificationContent(
+    //     id: 3,
+    //     channelKey: 'update_progression',
+    //     color: const Color.fromARGB(255, 70, 130, 180),
+    //     actionType: ActionType.SilentBackgroundAction,
+    //     category: NotificationCategory.Reminder,
+    //   ),
+    //   schedule: NotificationCalendar(
+    //     preciseAlarm: true,
+    //     timeZone: localTimeZone,
+    //     allowWhileIdle: true,
+    //     repeats: true,
+    //     hour: notification1.hour,
+    //     minute: notification1.minute,
+    //     weekday: 2,
+    //   ),
+    // );
+
+    // /* wednesday */
+    // AwesomeNotifications().createNotification(
+    //   content: NotificationContent(
+    //     id: 4,
+    //     channelKey: 'update_progression',
+    //     color: const Color.fromARGB(255, 70, 130, 180),
+    //     actionType: ActionType.SilentBackgroundAction,
+    //     category: NotificationCategory.Reminder,
+    //   ),
+    //   schedule: NotificationCalendar(
+    //     preciseAlarm: true,
+    //     timeZone: localTimeZone,
+    //     allowWhileIdle: true,
+    //     repeats: true,
+    //     hour: notification1.hour,
+    //     minute: notification1.minute,
+    //     weekday: 3,
+    //   ),
+    // );
+
+    // /* thursday */
+    // AwesomeNotifications().createNotification(
+    //   content: NotificationContent(
+    //     id: 5,
+    //     channelKey: 'update_progression',
+    //     color: const Color.fromARGB(255, 70, 130, 180),
+    //     actionType: ActionType.SilentBackgroundAction,
+    //     category: NotificationCategory.Reminder,
+    //   ),
+    //   schedule: NotificationCalendar(
+    //     preciseAlarm: true,
+    //     timeZone: localTimeZone,
+    //     allowWhileIdle: true,
+    //     repeats: true,
+    //     hour: notification1.hour,
+    //     minute: notification1.minute,
+    //     weekday: 4,
+    //   ),
+    // );
+
+    // /* friday */
+    // AwesomeNotifications().createNotification(
+    //   content: NotificationContent(
+    //     id: 6,
+    //     channelKey: 'update_progression',
+    //     color: const Color.fromARGB(255, 70, 130, 180),
+    //     actionType: ActionType.SilentBackgroundAction,
+    //     category: NotificationCategory.Reminder,
+    //   ),
+    //   schedule: NotificationCalendar(
+    //     preciseAlarm: true,
+    //     timeZone: localTimeZone,
+    //     allowWhileIdle: true,
+    //     repeats: true,
+    //     hour: notification1.hour,
+    //     minute: notification1.minute,
+    //     weekday: 5,
+    //   ),
+    // );
 
     /* scheduled daily reminder 2 */ // todo
     // if (quanitiyReminders >= 2) {
@@ -156,6 +292,7 @@ class NotificationService {
   /* updates the current progress bar */
   static void updateProgressBar(
       int notificationID, int currentProgress, int totalTickersPulling) {
+    notificationID += 100;
     double progress = currentProgress / totalTickersPulling * 100;
     int estimatedMinsRemaining =
         ((totalTickersPulling - currentProgress) / 8).ceil();
@@ -232,6 +369,7 @@ class NotificationService {
         autoDismissible: false,
         notificationLayout: NotificationLayout.Inbox,
         color: const Color.fromARGB(255, 22, 129, 24),
+        wakeUpScreen: true,
       ));
     }
 
@@ -275,27 +413,8 @@ class NotificationService {
         autoDismissible: false,
         notificationLayout: NotificationLayout.Inbox,
         color: const Color.fromARGB(255, 255, 0, 0),
+        wakeUpScreen: true,
       ));
     }
   }
-
-  /// Use this method to detect when a new notification or a schedule is created
-  @pragma("vm:entry-point")
-  static Future<void> onNotificationCreatedMethod(
-      ReceivedNotification receivedNotification) async {}
-
-  /// Use this method to detect every time that a new notification is displayed
-  @pragma("vm:entry-point")
-  static Future<void> onNotificationDisplayedMethod(
-      ReceivedNotification receivedNotification) async {}
-
-  /// Use this method to detect if the user dismissed a notification
-  @pragma("vm:entry-point")
-  static Future<void> onDismissActionReceivedMethod(
-      ReceivedAction receivedAction) async {}
-
-  /// Use this method to detect when the user taps on a notification or action button
-  @pragma("vm:entry-point")
-  static Future<void> onActionReceivedMethod(
-      ReceivedAction receivedAction) async {}
 }

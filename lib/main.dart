@@ -11,7 +11,6 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   // * local notifications
-  // todo
   await NotificationService.init();
 
   // * preferences
