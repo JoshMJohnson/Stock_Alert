@@ -24,15 +24,11 @@ class NotificationService {
   static Future<void> onNotificationCreatedMethod(
       ReceivedNotification receivedNotification) async {}
 
-  /* triggers on notification displayed */ // todo
+  /* triggers on notification displayed */
   static Future onNotificationDisplayedMethod(
       ReceivedNotification receivedNotification) async {
-    debugPrint('onNotificationDisplayedMethod!!!!!!!!!!!!!!!!!!!!!!!!!!');
-    debugPrint('receivedNotification.id: ${receivedNotification.id}');
-
-    /* if trigger to start updating watchlist */
-    if (receivedNotification.id == 2) {
-      debugPrint('id...2');
+    /* 18 = starting at 3, 5 days a week, 3 possible daily reminders */
+    if (receivedNotification.id! >= 3 && receivedNotification.id! <= 18) {
       DatabaseRepository.updateWatchlist(2);
     }
   }
@@ -141,28 +137,16 @@ class NotificationService {
     AwesomeNotifications().cancelAll();
   }
 
-  /* 
-    creates a progression notification for pulling 
-    updated watchlist ticker data scheduled for a specific time 
-  */ // todo create repeating progression notification for pulling watchlist data
-  static createScheduledProgression(
-    int quanitiyReminders,
-    TimeOfDay notification1,
-    TimeOfDay notification2,
-    TimeOfDay notification3,
-  ) async {
-    String localTimeZone =
-        await AwesomeNotifications().getLocalTimeZoneIdentifier();
-
-    debugPrint('localTimeZone: $localTimeZone');
-    debugPrint(
-        'notification1.hour: ${notification1.hour} | notification1.minute: ${notification1.minute}');
-
-    /* scheduled daily reminder 1 */ // todo trigger at scheduled time; repeating
-    /* monday */
+  /* creates scheduled notification */ // todo
+  static notificationGenerator(
+    String localTimeZone,
+    int notificationID,
+    int weekdayValue,
+    TimeOfDay tod,
+  ) {
     AwesomeNotifications().createNotification(
       content: NotificationContent(
-        id: 2,
+        id: notificationID,
         channelKey: 'schedule_triggered',
         color: const Color.fromARGB(255, 70, 130, 180),
         actionType: ActionType.Default,
@@ -175,123 +159,125 @@ class NotificationService {
         timeZone: localTimeZone,
         allowWhileIdle: true,
         repeats: true,
-        hour: notification1.hour,
-        minute: notification1.minute,
-        weekday: 2,
+        hour: tod.hour,
+        minute: tod.minute,
+        weekday: weekdayValue,
       ),
     );
+  }
+
+  /* 
+    creates a progression notification for pulling 
+    updated watchlist ticker data scheduled for a specific time 
+  */
+  static createScheduledProgression(
+    int quanitiyReminders,
+    TimeOfDay notification1,
+    TimeOfDay notification2,
+    TimeOfDay notification3,
+  ) async {
+    String localTimeZone = await AwesomeNotifications()
+        .getLocalTimeZoneIdentifier(); // ! use same time zone; adjust to not changed based on time zone currently in; messes with market open/close times
+
+    int counterID = 3;
+    int dayCounter = 1;
+
+    /* scheduled daily reminder 1 */
+    /* monday */
+    notificationGenerator(localTimeZone, counterID, dayCounter, notification1);
+    counterID++;
+    dayCounter++;
 
     // /* tuesday */
-    // AwesomeNotifications().createNotification(
-    //   content: NotificationContent(
-    //     id: 3,
-    //     channelKey: 'update_progression',
-    //     color: const Color.fromARGB(255, 70, 130, 180),
-    //     actionType: ActionType.SilentBackgroundAction,
-    //     category: NotificationCategory.Reminder,
-    //   ),
-    //   schedule: NotificationCalendar(
-    //     preciseAlarm: true,
-    //     timeZone: localTimeZone,
-    //     allowWhileIdle: true,
-    //     repeats: true,
-    //     hour: notification1.hour,
-    //     minute: notification1.minute,
-    //     weekday: 2,
-    //   ),
-    // );
+    notificationGenerator(localTimeZone, counterID, dayCounter, notification1);
+    counterID++;
+    dayCounter++;
 
     // /* wednesday */
-    // AwesomeNotifications().createNotification(
-    //   content: NotificationContent(
-    //     id: 4,
-    //     channelKey: 'update_progression',
-    //     color: const Color.fromARGB(255, 70, 130, 180),
-    //     actionType: ActionType.SilentBackgroundAction,
-    //     category: NotificationCategory.Reminder,
-    //   ),
-    //   schedule: NotificationCalendar(
-    //     preciseAlarm: true,
-    //     timeZone: localTimeZone,
-    //     allowWhileIdle: true,
-    //     repeats: true,
-    //     hour: notification1.hour,
-    //     minute: notification1.minute,
-    //     weekday: 3,
-    //   ),
-    // );
+    notificationGenerator(localTimeZone, counterID, dayCounter, notification1);
+    counterID++;
+    dayCounter++;
 
     // /* thursday */
-    // AwesomeNotifications().createNotification(
-    //   content: NotificationContent(
-    //     id: 5,
-    //     channelKey: 'update_progression',
-    //     color: const Color.fromARGB(255, 70, 130, 180),
-    //     actionType: ActionType.SilentBackgroundAction,
-    //     category: NotificationCategory.Reminder,
-    //   ),
-    //   schedule: NotificationCalendar(
-    //     preciseAlarm: true,
-    //     timeZone: localTimeZone,
-    //     allowWhileIdle: true,
-    //     repeats: true,
-    //     hour: notification1.hour,
-    //     minute: notification1.minute,
-    //     weekday: 4,
-    //   ),
-    // );
+    notificationGenerator(localTimeZone, counterID, dayCounter, notification1);
+    counterID++;
+    dayCounter++;
 
     // /* friday */
-    // AwesomeNotifications().createNotification(
-    //   content: NotificationContent(
-    //     id: 6,
-    //     channelKey: 'update_progression',
-    //     color: const Color.fromARGB(255, 70, 130, 180),
-    //     actionType: ActionType.SilentBackgroundAction,
-    //     category: NotificationCategory.Reminder,
-    //   ),
-    //   schedule: NotificationCalendar(
-    //     preciseAlarm: true,
-    //     timeZone: localTimeZone,
-    //     allowWhileIdle: true,
-    //     repeats: true,
-    //     hour: notification1.hour,
-    //     minute: notification1.minute,
-    //     weekday: 5,
-    //   ),
-    // );
+    notificationGenerator(localTimeZone, counterID, dayCounter, notification1);
+    counterID++;
+    dayCounter = 1;
 
-    /* scheduled daily reminder 2 */ // todo
-    // if (quanitiyReminders >= 2) {
-    //   AwesomeNotifications().createNotification(
-    //       content: NotificationContent(
-    //     id: 3,
-    //     channelKey: 'update_progression',
-    //     title: 'Updating watchlist',
-    //     body: 'temp body here',
-    //     autoDismissible: false,
-    //     color: const Color.fromARGB(255, 70, 130, 180),
-    //   ));
-    // }
+    /* scheduled daily reminder 2 */
+    if (quanitiyReminders >= 2) {
+      /* monday */
+      notificationGenerator(
+          localTimeZone, counterID, dayCounter, notification2);
+      counterID++;
+      dayCounter++;
 
-    /* scheduled daily reminder 3 */ // todo
-    // if (quanitiyReminders == 3) {
-    //   AwesomeNotifications().createNotification(
-    //       content: NotificationContent(
-    //     id: 4,
-    //     channelKey: 'update_progression',
-    //     title: 'Updating watchlist',
-    //     body: 'temp body here',
-    //     autoDismissible: false,
-    //     color: const Color.fromARGB(255, 70, 130, 180),
-    //   ));
-    // }
+      // /* tuesday */
+      notificationGenerator(
+          localTimeZone, counterID, dayCounter, notification2);
+      counterID++;
+      dayCounter++;
+
+      // /* wednesday */
+      notificationGenerator(
+          localTimeZone, counterID, dayCounter, notification2);
+      counterID++;
+      dayCounter++;
+
+      // /* thursday */
+      notificationGenerator(
+          localTimeZone, counterID, dayCounter, notification2);
+      counterID++;
+      dayCounter++;
+
+      // /* friday */
+      notificationGenerator(
+          localTimeZone, counterID, dayCounter, notification2);
+      counterID++;
+      dayCounter = 1;
+    }
+
+    /* scheduled daily reminder 3 */
+    if (quanitiyReminders == 3) {
+      /* monday */
+      notificationGenerator(
+          localTimeZone, counterID, dayCounter, notification3);
+      counterID++;
+      dayCounter++;
+
+      // /* tuesday */
+      notificationGenerator(
+          localTimeZone, counterID, dayCounter, notification3);
+      counterID++;
+      dayCounter++;
+
+      // /* wednesday */
+      notificationGenerator(
+          localTimeZone, counterID, dayCounter, notification3);
+      counterID++;
+      dayCounter++;
+
+      // /* thursday */
+      notificationGenerator(
+          localTimeZone, counterID, dayCounter, notification3);
+      counterID++;
+      dayCounter++;
+
+      // /* friday */
+      notificationGenerator(
+          localTimeZone, counterID, dayCounter, notification3);
+      counterID++;
+      dayCounter = 1;
+    }
   }
 
   /* updates the current progress bar */
   static void updateProgressBar(
       int notificationID, int currentProgress, int totalTickersPulling) {
-    notificationID += 100;
     double progress = currentProgress / totalTickersPulling * 100;
     int estimatedMinsRemaining =
         ((totalTickersPulling - currentProgress) / 8).ceil();
@@ -361,7 +347,7 @@ class NotificationService {
 
       AwesomeNotifications().createNotification(
           content: NotificationContent(
-        id: 5,
+        id: 19, // ! add 1; load from preferences
         channelKey: 'bull_channel',
         title: 'Bull Stocks',
         body: bullTickers,
@@ -405,7 +391,7 @@ class NotificationService {
 
       AwesomeNotifications().createNotification(
           content: NotificationContent(
-        id: 6,
+        id: 20, // ! add 1; load from preferences
         channelKey: 'bear_channel',
         title: 'Bear Stocks',
         body: bearTickers,

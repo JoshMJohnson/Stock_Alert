@@ -157,7 +157,7 @@ class DatabaseRepository {
     return bearStocks;
   }
 
-  /* updates all watchlist stock tickers data */
+  /* updates all watchlist stock tickers data */ // todo
   static Future updateWatchlist(int notificationID) async {
     /* update time stamp for last updated */ // todo also pull date
     TimeOfDay currentTime = TimeOfDay.now();
