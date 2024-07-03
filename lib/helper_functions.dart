@@ -27,12 +27,17 @@ class HelperFunctions {
 
     /* prepares string statement that displays the chosen time */
     if (isAM) {
-      standardTime = '$todHours:$todMinutes2Digits am';
+      standardTime = '$todHours:${todMinutes2Digits}am';
     } else {
-      standardTime = '$todHours:$todMinutes2Digits pm';
+      standardTime = '$todHours:${todMinutes2Digits}pm';
     }
 
     return standardTime;
+  }
+
+  /* returns a string of a month/date representation */
+  String createDateDisplay(int month, int day) {
+    return '$month/$day';
   }
 }
 

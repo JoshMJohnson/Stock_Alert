@@ -64,7 +64,7 @@ class _HomePageState extends State<HomePage> {
 
   final HelperFunctions helperFunctions = HelperFunctions();
 
-  String lastUpdatedTimeDisplay = '--:--';
+  String lastUpdatedTimeDateDisplay = '--:-- --/--';
 
   @override
   void initState() {
@@ -75,13 +75,25 @@ class _HomePageState extends State<HomePage> {
       /* last updated time stamp */
       final int? lastUpdatedHours = prefs.getInt('lastUpdatedHours');
       final int? lastUpdatedMinutes = prefs.getInt('lastUpdatedMinutes');
+      final int? lastUpdatedMonth = prefs.getInt('lastUpdatedMonth');
+      final int? lastUpdatedDay = prefs.getInt('lastUpdatedDay');
 
-      if (lastUpdatedHours != null && lastUpdatedMinutes != null) {
-        TimeOfDay lastUpdatedTime =
-            TimeOfDay(hour: lastUpdatedHours, minute: lastUpdatedMinutes);
+      if (lastUpdatedHours != null &&
+          lastUpdatedMinutes != null &&
+          lastUpdatedMonth != null &&
+          lastUpdatedDay != null) {
+        TimeOfDay lastUpdatedTime = TimeOfDay(
+          hour: lastUpdatedHours,
+          minute: lastUpdatedMinutes,
+        );
 
-        lastUpdatedTimeDisplay =
+        lastUpdatedTimeDateDisplay =
             helperFunctions.standardTimeConvertionHandler(lastUpdatedTime);
+
+        lastUpdatedTimeDateDisplay += ' ';
+
+        lastUpdatedTimeDateDisplay +=
+            helperFunctions.createDateDisplay(lastUpdatedMonth, lastUpdatedDay);
       }
     }
 
@@ -624,7 +636,7 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           Text(
-            'Last Updated: $lastUpdatedTimeDisplay',
+            'Last Updated: $lastUpdatedTimeDateDisplay',
             style: TextStyle(
               color: Theme.of(context).textTheme.bodyMedium!.color,
               fontSize: 18,
