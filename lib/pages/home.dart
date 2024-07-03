@@ -326,9 +326,14 @@ class _HomePageState extends State<HomePage> {
 
   /* show info dialog */
   void showInfoDialog() {
+    /* setup steps */
+    String section1Header = 'Setup';
+    String section1Body = 'Turn off battery optimization\n\n'
+        'Device Settings -> Apps -> Stock Alert -> Battery -> Unrestricted';
+
     /* possible delays */
-    String section1Header = 'Possible Delays';
-    String section1Body =
+    String section2Header = 'Possible Delays';
+    String section2Body =
         'Stock Alert uses Twelve Data API to access the stock market which has '
         'a limit of 8 ticker symbol lookups per minute.\n\n'
         'The limit may be encountered while adding stocks to the watchlist '
@@ -336,14 +341,14 @@ class _HomePageState extends State<HomePage> {
         'Notifications will also be delayed 1 minute for every 8 stocks on your watchlist.';
 
     /* holiday notification deliveries when market is closed */
-    String section2Header = 'Notification Exceptions';
-    String section2Body =
+    String section3Header = 'Notification Exceptions';
+    String section3Body =
         'Occasional holidays may not be registered for a closed market by Twelve Data API '
         'and may trigger a notification containing data from the last closing bell.';
 
     /* isActive ticker toggle on watchlist */
-    String section3Header = 'Ticker Symbol Tracking';
-    String section3Body =
+    String section4Header = 'Ticker Symbol Tracking';
+    String section4Body =
         'The switch on the left side of each stock on the watchlist '
         'determines if that ticker symbol will be included in the bear/bull notifications '
         '(i.e. Turns on/off alerts for that ticker specifically).';
@@ -458,6 +463,38 @@ class _HomePageState extends State<HomePage> {
                   padding: const EdgeInsets.all(20),
                   child: Text(
                     section3Body,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.tertiary,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                      fontStyle: FontStyle.normal,
+                    ),
+                  ),
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border(
+                      bottom: BorderSide(
+                        color: (Theme.of(context).cardTheme.color)!,
+                      ),
+                    ),
+                  ),
+                  child: Text(
+                    section4Header,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.tertiary,
+                      fontSize: 22,
+                      fontWeight: FontWeight.w700,
+                      fontStyle: FontStyle.normal,
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: Text(
+                    section4Body,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.tertiary,
