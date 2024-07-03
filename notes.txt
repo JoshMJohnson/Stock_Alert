@@ -8,6 +8,8 @@ Bugs:
 - Handle when pulling data for notification from watchlist and connection is lost
 - Use EST for scheduled notification timezone for consistency based on market open/closed
 no matter where you are at the time
+- Loading into Ticker page from loading app from close glitches quickly
+dimension issues
 
 To Do:
 - Turn off battery optimization for foreground service delay prevention
@@ -15,6 +17,7 @@ To Do:
 - Android -> App -> Build.Gradle
     
 Feature Additions:
+- Widget option of watchlist
 - ticker page
     - industries
 - Possibly use http flutter request to access stock tickers directly somehow
