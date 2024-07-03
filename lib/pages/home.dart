@@ -64,7 +64,7 @@ class _HomePageState extends State<HomePage> {
 
   final HelperFunctions helperFunctions = HelperFunctions();
 
-  String lastUpdatedTimeDateDisplay = '--:-- --/--';
+  String lastUpdatedTimeDateDisplay = '--/-- --:--';
 
   @override
   void initState() {
