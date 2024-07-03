@@ -274,8 +274,6 @@ class DatabaseRepository {
     String companyDescription = 'Here is company description'; // todo
     String exchange = tickerJSON['exchange'];
 
-    debugPrint('*** exchange: $exchange');
-
     final db = await database;
     await db.insert(
       stocksTable,

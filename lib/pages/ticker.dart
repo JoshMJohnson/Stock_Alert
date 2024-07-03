@@ -13,6 +13,7 @@ class TickerPage extends StatelessWidget {
 
   /* returns an image asset representing the exchange logo */ // todo
   getExchangeLogo() {
+    debugPrint('*** stock.exchange: ${stock.exchange}');
     return Image.asset('assets/market_logos/NASDAQ.png');
   }
 
