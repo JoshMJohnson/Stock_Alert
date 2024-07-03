@@ -28,6 +28,7 @@ class NotificationService {
   /* triggers on notification displayed */
   static Future onNotificationDisplayedMethod(
       ReceivedNotification receivedNotification) async {
+    /* if scheduled notification; begin pulling data from watchlist */
     /* 18 = starting at 3, 5 days a week, 3 possible daily reminders */
     if (receivedNotification.id! >= 3 && receivedNotification.id! <= 18) {
       DatabaseRepository.updateWatchlist();
