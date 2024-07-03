@@ -88,12 +88,12 @@ class _HomePageState extends State<HomePage> {
         );
 
         lastUpdatedTimeDateDisplay =
-            helperFunctions.standardTimeConvertionHandler(lastUpdatedTime);
+            helperFunctions.createDateDisplay(lastUpdatedMonth, lastUpdatedDay);
 
         lastUpdatedTimeDateDisplay += ' ';
 
         lastUpdatedTimeDateDisplay +=
-            helperFunctions.createDateDisplay(lastUpdatedMonth, lastUpdatedDay);
+            helperFunctions.standardTimeConvertionHandler(lastUpdatedTime);
       }
     }
 
