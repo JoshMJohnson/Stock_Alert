@@ -214,13 +214,13 @@ class DatabaseRepository {
       List<StockEntity> bullStocks = await getBullStocks();
       List<StockEntity> bearStocks = await getBearStocks();
       NotificationService.createBearBullNotifications(bullStocks, bearStocks);
+    } else {
+      // ! begin of testing
+      List<StockEntity> bullStocks = await getBullStocks();
+      List<StockEntity> bearStocks = await getBearStocks();
+      NotificationService.createBearBullNotifications(bullStocks, bearStocks);
+      // ! end of testing
     }
-
-    // ! begin of testing
-    List<StockEntity> bullStocks = await getBullStocks();
-    List<StockEntity> bearStocks = await getBearStocks();
-    NotificationService.createBearBullNotifications(bullStocks, bearStocks);
-    // ! end of testing
   }
 
   /* adds a stock symbol to the watchlist; gets data from twelve data api */
