@@ -159,7 +159,7 @@ class DatabaseRepository {
 
   /* updates all watchlist stock tickers data */
   static Future updateWatchlist() async {
-    /* update time stamp for last updated */ // todo also pull date
+    /* update time stamp for last updated */
     DateTime currentTime = DateTime.now();
 
     final SharedPreferences prefs = await SharedPreferences.getInstance();
