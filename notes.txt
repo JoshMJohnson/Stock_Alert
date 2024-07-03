@@ -4,6 +4,7 @@ Bugs:
     - needs to update text display on trigger if app is open in the background
 - ticker page
     - description
+    - logo
 - Handle when pulling data for notification from watchlist and connection is lost
 - Use EST for scheduled notification timezone for consistency based on market open/closed
 no matter where you are at the time
@@ -14,7 +15,6 @@ To Do:
     
 Feature Additions:
 - ticker page
-    - logo
     - industries
 - Possibly use http flutter request to access stock tickers directly somehow
     - Allows app to go on app store
