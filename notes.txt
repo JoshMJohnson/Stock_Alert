@@ -18,6 +18,7 @@ Bugs
 - Ticker page description
 - Loading into Ticker page from loading app from closed glitches quickly
 dimension issues
+- Sort notification bear/bull tickers based on Home page sort option selected
 
 Additional Features
 - Company logo on ticker page
