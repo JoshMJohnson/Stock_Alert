@@ -640,7 +640,7 @@ class _HomePageState extends State<HomePage> {
             style: TextStyle(
               color: Theme.of(context).textTheme.bodyMedium!.color,
               fontSize: 18,
-              fontWeight: FontWeight.normal,
+              fontWeight: FontWeight.w600,
             ),
           )
         ]),
