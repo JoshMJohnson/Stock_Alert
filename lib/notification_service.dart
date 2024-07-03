@@ -25,7 +25,7 @@ class NotificationService {
   static Future<void> onNotificationCreatedMethod(
       ReceivedNotification receivedNotification) async {}
 
-  /* triggers on notification displayed */ // ! called endless loop
+  /* triggers on notification displayed */
   static Future onNotificationDisplayedMethod(
       ReceivedNotification receivedNotification) async {
     /* 18 = starting at 3, 5 days a week, 3 possible daily reminders */
@@ -139,7 +139,7 @@ class NotificationService {
     AwesomeNotifications().cancelAll();
   }
 
-  /* creates scheduled notification */ // todo
+  /* creates scheduled notification */
   static notificationGenerator(
     String localTimeZone,
     int notificationID,
