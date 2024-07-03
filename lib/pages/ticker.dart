@@ -11,6 +11,11 @@ class TickerPage extends StatelessWidget {
     return Scaffold(appBar: header(context), body: tickerBody(context));
   }
 
+  /* returns an image asset representing the exchange logo */ // todo
+  getExchangeLogo() {
+    return Image.asset('assets/market_logos/NASDAQ.png');
+  }
+
   /* header of the Ticker page */
   AppBar header(BuildContext context) {
     return AppBar(
@@ -168,8 +173,7 @@ class TickerPage extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 10),
             child: SizedBox(
               height: 75,
-              child:
-                  Image.asset('assets/market_logos/NASDAQ.png'), // ! temp value
+              child: getExchangeLogo(),
             ),
           ),
           Center(
