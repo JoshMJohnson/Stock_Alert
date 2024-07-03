@@ -184,10 +184,9 @@ class DatabaseRepository {
       int? errorCode =
           await retrieveStockDataFromTwelveDataAPI(currentTickerSymbol);
 
+      /* if current ticker was removed or not found; remove ticker from watchlist */
       if (errorCode == 400 || errorCode == 404) {
-        /* if current ticker was removed or not found; remove ticker from watchlist */ // todo
-        debugPrint(
-            '************Ticker Error; removing ticker from watchlist**************');
+        removeSymbol(prevWatchlist[currentTickerIndex].ticker);
       }
       /* else; no errors occured finding ticker on the stock market; minute limit reached though */
       else if (errorCode == 429) {
@@ -209,7 +208,7 @@ class DatabaseRepository {
       watchlistLength,
     );
 
-    // todo update Home Page watchlist AND last updated
+    // todo update Home Page watchlist AND last updated displays
 
     /* gather bull and bear stocks that meet notification specs in settings */
     if (isMarketOpen) {
