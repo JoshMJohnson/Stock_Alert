@@ -156,7 +156,7 @@ class NotificationService {
         actionType: ActionType.Default,
         category: NotificationCategory.Reminder,
         title: 'Updating watchlist',
-        timeoutAfter: const Duration(seconds: 2),
+        timeoutAfter: const Duration(seconds: 1),
       ),
       schedule: NotificationCalendar(
         preciseAlarm: true,
@@ -165,6 +165,7 @@ class NotificationService {
         repeats: true,
         hour: tod.hour,
         minute: tod.minute,
+        second: 0,
         weekday: weekdayValue,
       ),
     );
