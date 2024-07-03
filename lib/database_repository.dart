@@ -189,7 +189,6 @@ class DatabaseRepository {
       }
       /* else; no errors occured finding ticker on the stock market; minute limit reached though */
       else if (errorCode == 429) {
-        debugPrint('errorCode: 429');
         NotificationService.updateProgressBar(
           notificationID,
           currentTickerIndex,
