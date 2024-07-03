@@ -12,6 +12,7 @@ no matter where you are at the time
 To Do:
 - Turn off battery optimization for foreground service delay prevention
 - Handle font scaling
+- Android -> App -> Build.Gradle
     
 Feature Additions:
 - ticker page
