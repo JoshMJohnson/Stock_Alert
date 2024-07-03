@@ -1,12 +1,9 @@
 Bugs:
-- Toggling ticker symbols on watchlist doesn't turn off request for that entity yet
-    - Stop api get request
-    - Ignore on notification description
 - Ticker page market logo responsive (example: NASDAQ, NYSE)
 - Last Updated feature only refreshes on application initial load.
     - needs to update text display on trigger if app is open in the background
-    - include time and date of last updated
-- ticker page description
+- ticker page
+    - description
 - Handle when pulling data for notification from watchlist and connection is lost
 - Use EST for scheduled notification timezone for consistency based on market open/closed
 no matter where you are at the time
@@ -14,17 +11,13 @@ no matter where you are at the time
 To Do:
 - Turn off battery optimization for foreground service delay prevention
 - Handle font scaling
-- Create notifications when save pressed within Settings page
-- Handle foreground service on save pressed within Settings page
-    - Start service
-    - Terminate service
-- Create a notification for progress bar of pulling stocks from watchlist
-    - Shows progress bar of stocks pulled when over 8
     
 Feature Additions:
+- ticker page
+    - logo
+    - industries
 - Possibly use http flutter request to access stock tickers directly somehow
     - Allows app to go on app store
-- Include industries that the ticker company is involved in on the Ticker page
 - Implement an first time app use intro directions
     - use flutter name: IntroductionScreen
 - API get request for logo on adding symbol to watchlist
@@ -33,14 +26,3 @@ Feature Additions:
 
 GitHub:
 - 
-
-Ticker Page:
-- x | Ticker
-- x | Company Name
-- x | Company Description
-- x | Ticker Price (since last api request)
-- x | Day Dollar Change
-- x | Day Percentage Change
-- x | 52 Week High
-- x | 52 Week Low
--  | Industries
