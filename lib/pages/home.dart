@@ -46,7 +46,7 @@ class HomePage extends StatefulWidget {
       );
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   final tickerTextController = TextEditingController();
 
   /* home page variables */
@@ -109,7 +109,25 @@ class _HomePageState extends State<HomePage> {
     loadLastUpdatedTime();
     loadWatchlist();
 
+    WidgetsBinding.instance.addObserver(this);
+
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    WidgetsBinding.instance.removeObserver(this);
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+
+    /* if bringing app into foreground focus from background */
+    if (state == AppLifecycleState.resumed) {
+      refreshHomePage();
+    }
   }
 
   _HomePageState(
@@ -334,6 +352,11 @@ class _HomePageState extends State<HomePage> {
       appBar: header(context),
       body: homeBody(context),
     );
+  }
+
+  /* refresh watchlist and last updated after notification triggered */ // todo
+  void refreshHomePage() {
+    debugPrint('*** refreshHomePage ***');
   }
 
   /* show info dialog */
