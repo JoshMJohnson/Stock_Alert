@@ -338,8 +338,6 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
 
   /* refresh watchlist and last updated after notification triggered */
   void refreshHomePage() async {
-    debugPrint('*** refreshHomePage ***');
-
     /* refresh 'Last Updated' display */ // todo test
     loadLastUpdatedTime();
 

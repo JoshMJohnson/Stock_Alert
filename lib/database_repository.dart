@@ -207,8 +207,6 @@ class DatabaseRepository {
       watchlistLength,
     );
 
-    // todo update Home Page watchlist AND last updated displays
-
     /* gather bull and bear stocks that meet notification specs in settings */
     if (isMarketOpen) {
       List<StockEntity> bullStocks = await getBullStocks();

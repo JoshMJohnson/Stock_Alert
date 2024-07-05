@@ -1,8 +1,6 @@
 Pre-Release:
 
 Bugs
-- Last Updated feature only refreshes on application initial load.
-    - needs to update text display on trigger if app is open in the background
 - Handle when pulling data for notification from watchlist and connection is lost
 - Use EST for scheduled notification timezone for consistency based on market open/closed
     no matter where you are at the time
