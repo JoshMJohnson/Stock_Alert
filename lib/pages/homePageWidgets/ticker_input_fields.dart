@@ -118,6 +118,7 @@ class _TickerInputFieldsState extends State<TickerInputFields> {
                               Theme.of(context).scaffoldBackgroundColor,
                           title: Text(
                             'Failed Add',
+                            textScaler: TextScaler.noScaling,
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               color: Theme.of(context)
@@ -142,6 +143,7 @@ class _TickerInputFieldsState extends State<TickerInputFields> {
                                 ),
                                 child: Text(
                                   widget.currentTicker,
+                                  textScaler: TextScaler.noScaling,
                                   style: TextStyle(
                                     color:
                                         Theme.of(context).colorScheme.tertiary,
@@ -155,6 +157,7 @@ class _TickerInputFieldsState extends State<TickerInputFields> {
                                 padding: const EdgeInsets.only(top: 20),
                                 child: Text(
                                   'Ticker symbol is already on the watchlist',
+                                  textScaler: TextScaler.noScaling,
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                     color:
@@ -187,6 +190,7 @@ class _TickerInputFieldsState extends State<TickerInputFields> {
                               Theme.of(context).scaffoldBackgroundColor,
                           title: Text(
                             'Add\nTicker Symbol',
+                            textScaler: TextScaler.noScaling,
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               color: Theme.of(context)
@@ -211,6 +215,7 @@ class _TickerInputFieldsState extends State<TickerInputFields> {
                                 ),
                                 child: Text(
                                   widget.currentTicker,
+                                  textScaler: TextScaler.noScaling,
                                   style: TextStyle(
                                     color:
                                         Theme.of(context).colorScheme.tertiary,
@@ -285,6 +290,7 @@ class _TickerInputFieldsState extends State<TickerInputFields> {
                             Theme.of(context).scaffoldBackgroundColor,
                         title: Text(
                           'Failed Remove',
+                          textScaler: TextScaler.noScaling,
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             color: Theme.of(context)
@@ -308,6 +314,7 @@ class _TickerInputFieldsState extends State<TickerInputFields> {
                               ),
                               child: Text(
                                 widget.currentTicker,
+                                textScaler: TextScaler.noScaling,
                                 style: TextStyle(
                                   color: Theme.of(context).colorScheme.tertiary,
                                   fontSize: 30,
@@ -320,6 +327,7 @@ class _TickerInputFieldsState extends State<TickerInputFields> {
                               padding: const EdgeInsets.only(top: 20),
                               child: Text(
                                 'Ticker symbol is not on the watchlist',
+                                textScaler: TextScaler.noScaling,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   color: Theme.of(context).colorScheme.tertiary,
@@ -351,6 +359,7 @@ class _TickerInputFieldsState extends State<TickerInputFields> {
                             Theme.of(context).scaffoldBackgroundColor,
                         title: Text(
                           'Remove\nTicker Symbol',
+                          textScaler: TextScaler.noScaling,
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             color: Theme.of(context)
@@ -374,6 +383,7 @@ class _TickerInputFieldsState extends State<TickerInputFields> {
                               ),
                               child: Text(
                                 widget.currentTicker,
+                                textScaler: TextScaler.noScaling,
                                 style: TextStyle(
                                   color: Theme.of(context).colorScheme.tertiary,
                                   fontSize: 30,

@@ -66,6 +66,7 @@ class StockWatchlist extends StatelessWidget {
                       children: [
                         Text(
                           watchlist[index].ticker,
+                          textScaler: TextScaler.noScaling,
                           style: TextStyle(
                             color: Theme.of(context).colorScheme.tertiary,
                             fontSize: 20,
@@ -74,6 +75,7 @@ class StockWatchlist extends StatelessWidget {
                         ),
                         Text(
                           watchlist[index].companyName,
+                          textScaler: TextScaler.noScaling,
                           style: TextStyle(
                             overflow: TextOverflow.ellipsis,
                             color: Theme.of(context).colorScheme.tertiary,
@@ -87,6 +89,7 @@ class StockWatchlist extends StatelessWidget {
                   ),
                   Text(
                     watchlist[index].tickerPrice.toStringAsFixed(2),
+                    textScaler: TextScaler.noScaling,
                     style: TextStyle(
                         color: Theme.of(context).colorScheme.tertiary,
                         fontSize: 20,
@@ -102,6 +105,7 @@ class StockWatchlist extends StatelessWidget {
                   children: [
                     Text(
                       '${watchlist[index].dayChangePercentage.toStringAsFixed(2)} (%)',
+                      textScaler: TextScaler.noScaling,
                       style: TextStyle(
                           color: watchlist[index].dayChangePercentage >= 0
                               ? Theme.of(context).textTheme.bodyLarge!.color
@@ -111,6 +115,7 @@ class StockWatchlist extends StatelessWidget {
                     ),
                     Text(
                       '${watchlist[index].dayChangeDollars.toStringAsFixed(2)}  (\$)',
+                      textScaler: TextScaler.noScaling,
                       style: TextStyle(
                           color: watchlist[index].dayChangeDollars >= 0
                               ? Theme.of(context).textTheme.bodyLarge!.color

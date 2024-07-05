@@ -11,11 +11,15 @@ class SortInputFields extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(sortAlgorithm,
-            style: TextStyle(
-                color: Theme.of(context).textTheme.bodyMedium!.color,
-                fontSize: 22,
-                fontWeight: FontWeight.w600)),
+        Text(
+          sortAlgorithm,
+          textScaler: TextScaler.noScaling,
+          style: TextStyle(
+            color: Theme.of(context).textTheme.bodyMedium!.color,
+            fontSize: 22,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
         GestureDetector(
             onTap: () {
               sortChangeHandler();

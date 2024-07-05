@@ -29,6 +29,7 @@ class QuantityNotificationsSelector extends StatelessWidget {
           children: [
             Text(
               'Quantity of\nDaily Notifications:',
+              textScaler: TextScaler.noScaling,
               style: TextStyle(
                 color: Theme.of(context).textTheme.bodyMedium!.color,
                 fontSize: 20,
@@ -42,6 +43,7 @@ class QuantityNotificationsSelector extends StatelessWidget {
                   child: Center(
                     child: Text(
                       option.toString(),
+                      textScaler: TextScaler.noScaling,
                       style: TextStyle(
                         color: Theme.of(context).textTheme.bodyMedium!.color,
                         fontSize: 20,
@@ -81,6 +83,7 @@ class QuantityNotificationsSelector extends StatelessWidget {
             alignment: Alignment.bottomRight,
             child: Text(
               'Eastern Daylight Time (EDT)',
+              textScaler: TextScaler.noScaling,
               style: TextStyle(
                 color: Theme.of(context).textTheme.bodyMedium!.color,
                 fontSize: 16,

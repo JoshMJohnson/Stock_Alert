@@ -19,6 +19,7 @@ class ClearWatchlist extends StatelessWidget {
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           title: Text(
             'Clear Watchlist',
+            textScaler: TextScaler.noScaling,
             textAlign: TextAlign.center,
             style: TextStyle(
               color: Theme.of(context).textTheme.headlineMedium!.color,
@@ -33,6 +34,7 @@ class ClearWatchlist extends StatelessWidget {
                 padding: const EdgeInsets.fromLTRB(10, 10, 10, 20),
                 child: Text(
                   'Are you sure?',
+                  textScaler: TextScaler.noScaling,
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.tertiary,
                     fontSize: 30,
@@ -74,6 +76,7 @@ class ClearWatchlist extends StatelessWidget {
           foregroundColor: const Color(0xFF800000)),
       child: const Text(
         'Clear\nWatchlist',
+        textScaler: TextScaler.noScaling,
         textAlign: TextAlign.center,
         style: TextStyle(
           color: Colors.white,

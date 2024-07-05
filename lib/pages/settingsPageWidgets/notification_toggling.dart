@@ -17,6 +17,7 @@ class NotificationToggle extends StatelessWidget {
         children: [
           Text(
             'Notifications:',
+            textScaler: TextScaler.noScaling,
             style: TextStyle(
                 color: Theme.of(context).textTheme.bodyMedium!.color,
                 fontSize: 20,
@@ -35,6 +36,7 @@ class NotificationToggle extends StatelessWidget {
                 ),
                 Text(
                   'On',
+                  textScaler: TextScaler.noScaling,
                   style: TextStyle(
                       color: Theme.of(context).textTheme.bodyMedium!.color,
                       fontSize: 20,
@@ -56,6 +58,7 @@ class NotificationToggle extends StatelessWidget {
                     ),
                     Text(
                       'Off',
+                      textScaler: TextScaler.noScaling,
                       style: TextStyle(
                           color: Theme.of(context).textTheme.bodyMedium!.color,
                           fontSize: 20,

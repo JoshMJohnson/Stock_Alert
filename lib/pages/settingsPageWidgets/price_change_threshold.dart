@@ -15,6 +15,7 @@ class PriceChangeThreshold extends StatelessWidget {
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         Text(
           'Day Change\nThreshold (%):',
+          textScaler: TextScaler.noScaling,
           style: TextStyle(
               color: Theme.of(context).textTheme.bodyMedium!.color,
               fontSize: 20,
@@ -33,6 +34,7 @@ class PriceChangeThreshold extends StatelessWidget {
               }),
           Text(
             '$thresholdValue',
+            textScaler: TextScaler.noScaling,
             style: TextStyle(
                 color: Theme.of(context).textTheme.bodyMedium!.color,
                 fontSize: 20,

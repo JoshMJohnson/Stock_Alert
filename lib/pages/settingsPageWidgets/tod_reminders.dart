@@ -41,6 +41,7 @@ class TODReminders extends StatelessWidget {
           children: [
             Text(
               'Daily Notification:',
+              textScaler: TextScaler.noScaling,
               style: TextStyle(
                 color: Theme.of(context).textTheme.bodyMedium!.color,
                 fontSize: 20,
@@ -77,6 +78,7 @@ class TODReminders extends StatelessWidget {
 
     Text displayedTime = Text(
       standardTime,
+      textScaler: TextScaler.noScaling,
       style: TextStyle(
           color: Theme.of(context).buttonTheme.colorScheme!.secondary,
           fontSize: 20,

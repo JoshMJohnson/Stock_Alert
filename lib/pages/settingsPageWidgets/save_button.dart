@@ -15,6 +15,7 @@ class SaveButton extends StatelessWidget {
             backgroundColor: Theme.of(context).scaffoldBackgroundColor,
             title: Text(
               'Settings Saved',
+              textScaler: TextScaler.noScaling,
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: Theme.of(context).textTheme.headlineMedium!.color,
@@ -39,6 +40,7 @@ class SaveButton extends StatelessWidget {
       ),
       child: Text(
         'Save\nSettings',
+        textScaler: TextScaler.noScaling,
         textAlign: TextAlign.center,
         style: TextStyle(
           color: Theme.of(context).buttonTheme.colorScheme!.secondary,

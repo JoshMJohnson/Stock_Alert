@@ -22,6 +22,7 @@ class TickerPage extends StatelessWidget {
     return AppBar(
         title: Text(
           stock.ticker,
+          textScaler: TextScaler.noScaling,
           style: TextStyle(
             color: Theme.of(context).textTheme.headlineMedium!.color,
             fontSize: 28,
@@ -50,6 +51,7 @@ class TickerPage extends StatelessWidget {
                     backgroundColor: Theme.of(context).scaffoldBackgroundColor,
                     title: Text(
                       'Remove\nTicker Symbol',
+                      textScaler: TextScaler.noScaling,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color:
@@ -71,6 +73,7 @@ class TickerPage extends StatelessWidget {
                           ),
                           child: Text(
                             stock.ticker,
+                            textScaler: TextScaler.noScaling,
                             style: TextStyle(
                               color: Theme.of(context).colorScheme.tertiary,
                               fontSize: 30,
@@ -151,6 +154,7 @@ class TickerPage extends StatelessWidget {
             ),
             child: Text(
               stock.companyName,
+              textScaler: TextScaler.noScaling,
               style: TextStyle(
                 color: Theme.of(context).textTheme.headlineMedium!.color,
                 fontSize: 20,
@@ -161,6 +165,7 @@ class TickerPage extends StatelessWidget {
           Expanded(
             child: Text(
               stock.companyDescription,
+              textScaler: TextScaler.noScaling,
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: Theme.of(context).textTheme.bodyMedium!.color,
@@ -180,6 +185,7 @@ class TickerPage extends StatelessWidget {
           Center(
             child: Text(
               '52 Week Range',
+              textScaler: TextScaler.noScaling,
               style: TextStyle(
                 color: Theme.of(context).textTheme.headlineMedium!.color,
                 fontSize: 20,
@@ -191,6 +197,7 @@ class TickerPage extends StatelessWidget {
             Center(
               child: Text(
                 '\$${stock.low52Week.toStringAsFixed(2)}',
+                textScaler: TextScaler.noScaling,
                 style: TextStyle(
                   color: Theme.of(context).textTheme.bodyMedium!.color,
                   fontSize: 20,
@@ -221,6 +228,7 @@ class TickerPage extends StatelessWidget {
             Center(
               child: Text(
                 '\$${stock.high52Week.toStringAsFixed(2)}',
+                textScaler: TextScaler.noScaling,
                 style: TextStyle(
                   color: Theme.of(context).textTheme.bodyMedium!.color,
                   fontSize: 20,
@@ -260,6 +268,7 @@ class TickerPage extends StatelessWidget {
                                 child: Center(
                                   child: Text(
                                     'Day Change',
+                                    textScaler: TextScaler.noScaling,
                                     style: TextStyle(
                                       color: Theme.of(context)
                                           .textTheme
@@ -282,6 +291,7 @@ class TickerPage extends StatelessWidget {
                                     stock.dayChangePercentage >= 0
                                         ? '${stock.dayChangePercentage.toStringAsFixed(2)}%'
                                         : '-${stock.dayChangePercentage.abs().toStringAsFixed(2)}%',
+                                    textScaler: TextScaler.noScaling,
                                     style: TextStyle(
                                       color: stock.dayChangePercentage >= 0
                                           ? Theme.of(context)
@@ -309,6 +319,7 @@ class TickerPage extends StatelessWidget {
                                     stock.dayChangeDollars >= 0
                                         ? '\$${stock.dayChangeDollars.toStringAsFixed(2)}'
                                         : '-\$${stock.dayChangeDollars.abs().toStringAsFixed(2)}',
+                                    textScaler: TextScaler.noScaling,
                                     style: TextStyle(
                                       color: stock.dayChangePercentage >= 0
                                           ? Theme.of(context)
@@ -355,6 +366,7 @@ class TickerPage extends StatelessWidget {
                                 child: Center(
                                   child: Text(
                                     'PPS',
+                                    textScaler: TextScaler.noScaling,
                                     style: TextStyle(
                                       color: Theme.of(context)
                                           .textTheme
@@ -375,6 +387,7 @@ class TickerPage extends StatelessWidget {
                                 child: Center(
                                   child: Text(
                                     '\$${stock.tickerPrice.toStringAsFixed(2)}',
+                                    textScaler: TextScaler.noScaling,
                                     style: TextStyle(
                                       color: Theme.of(context)
                                           .textTheme

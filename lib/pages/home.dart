@@ -202,6 +202,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         title: Text(
           'Failed Add',
+          textScaler: TextScaler.noScaling,
           textAlign: TextAlign.center,
           style: TextStyle(
             color: Theme.of(context).textTheme.headlineMedium!.color,
@@ -222,6 +223,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
               ),
               child: Text(
                 currentTicker,
+                textScaler: TextScaler.noScaling,
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.tertiary,
                   fontSize: 30,
@@ -234,6 +236,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
               padding: const EdgeInsets.only(top: 20),
               child: Text(
                 apiErrorMessage(errorCode),
+                textScaler: TextScaler.noScaling,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.tertiary,
@@ -380,6 +383,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         title: Text(
           'Quick Info',
+          textScaler: TextScaler.noScaling,
           textAlign: TextAlign.center,
           style: TextStyle(
             color: Theme.of(context).textTheme.headlineMedium!.color,
@@ -407,6 +411,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                   ),
                   child: Text(
                     section1Header,
+                    textScaler: TextScaler.noScaling,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.tertiary,
@@ -420,6 +425,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                   padding: const EdgeInsets.all(20),
                   child: Text(
                     section1Body,
+                    textScaler: TextScaler.noScaling,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.tertiary,
@@ -439,6 +445,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                   ),
                   child: Text(
                     section2Header,
+                    textScaler: TextScaler.noScaling,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.tertiary,
@@ -452,6 +459,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                   padding: const EdgeInsets.all(20),
                   child: Text(
                     section2Body,
+                    textScaler: TextScaler.noScaling,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.tertiary,
@@ -471,6 +479,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                   ),
                   child: Text(
                     section3Header,
+                    textScaler: TextScaler.noScaling,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.tertiary,
@@ -484,6 +493,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                   padding: const EdgeInsets.all(20),
                   child: Text(
                     section3Body,
+                    textScaler: TextScaler.noScaling,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.tertiary,
@@ -503,6 +513,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                   ),
                   child: Text(
                     section4Header,
+                    textScaler: TextScaler.noScaling,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.tertiary,
@@ -516,6 +527,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                   padding: const EdgeInsets.all(20),
                   child: Text(
                     section4Body,
+                    textScaler: TextScaler.noScaling,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.tertiary,
@@ -563,6 +575,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
         ),
         title: Text(
           'Stock Alert',
+          textScaler: TextScaler.noScaling,
           style: TextStyle(
             color: Theme.of(context).textTheme.headlineMedium!.color,
             fontSize: 28,
@@ -654,6 +667,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
           ),
           Text(
             'Last Updated: $lastUpdatedTimeDateDisplay',
+            textScaler: TextScaler.noScaling,
             style: TextStyle(
               color: Theme.of(context).textTheme.bodyMedium!.color,
               fontSize: 18,

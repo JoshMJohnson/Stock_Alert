@@ -192,6 +192,7 @@ class _SettingsPageState extends State<SettingsPage> {
     return AppBar(
       title: Text(
         'Settings',
+        textScaler: TextScaler.noScaling,
         style: TextStyle(
           color: Theme.of(context).textTheme.bodyMedium!.color,
           fontSize: 28,
