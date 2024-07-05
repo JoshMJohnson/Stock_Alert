@@ -49,16 +49,21 @@ class TODReminders extends StatelessWidget {
               ),
             ),
             ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor:
-                      Theme.of(context).buttonTheme.colorScheme!.background,
-                  foregroundColor:
-                      Theme.of(context).buttonTheme.colorScheme!.primary,
-                ),
-                onPressed: () async {
-                  changeTODHandler(todID);
-                },
-                child: getCurrentTOD(context, todID))
+              style: ElevatedButton.styleFrom(
+                backgroundColor:
+                    Theme.of(context).buttonTheme.colorScheme!.background,
+                foregroundColor:
+                    Theme.of(context).buttonTheme.colorScheme!.primary,
+              ),
+              onPressed: () async {
+                changeTODHandler(todID);
+              },
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                child: getCurrentTOD(context, todID),
+              ),
+            )
           ],
         ));
   }

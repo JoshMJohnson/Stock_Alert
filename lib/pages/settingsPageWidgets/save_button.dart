@@ -38,14 +38,17 @@ class SaveButton extends StatelessWidget {
         backgroundColor: Theme.of(context).buttonTheme.colorScheme!.background,
         foregroundColor: Theme.of(context).buttonTheme.colorScheme!.primary,
       ),
-      child: Text(
-        'Save\nSettings',
-        textScaler: TextScaler.noScaling,
-        textAlign: TextAlign.center,
-        style: TextStyle(
-          color: Theme.of(context).buttonTheme.colorScheme!.secondary,
-          fontSize: 20,
-          fontWeight: FontWeight.w600,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+        child: Text(
+          'Save\nSettings',
+          textScaler: TextScaler.noScaling,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            color: Theme.of(context).buttonTheme.colorScheme!.secondary,
+            fontSize: 20,
+            fontWeight: FontWeight.w600,
+          ),
         ),
       ),
     );
