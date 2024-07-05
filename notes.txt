@@ -12,8 +12,7 @@ Bugs
 - Ticker page stock exchange logo responsive (example: NASDAQ, NYSE)
 - Ticker page description
 - Loading into Ticker page from loading app from closed glitches quickly
-dimension issues
-- Sort notification bear/bull tickers based on Home page sort option selected
+    dimension issues
 
 Additional Features
 - Company logo on ticker page
