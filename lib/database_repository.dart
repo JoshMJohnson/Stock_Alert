@@ -128,6 +128,18 @@ class DatabaseRepository {
       }
     }
 
+    /* sort notification ticker symbols */
+    final String sortAlgorithm = prefs.getString('watchlistSort')!;
+
+    if (sortAlgorithm == 'Alphabetically') {
+      bullStocks.sort((a, b) => a.ticker.compareTo(b.ticker));
+    } else if (sortAlgorithm == 'Ticker Price') {
+      bullStocks.sort((a, b) => b.tickerPrice.compareTo(a.tickerPrice));
+    } else {
+      bullStocks.sort(
+          (a, b) => b.dayChangePercentage.compareTo(a.dayChangePercentage));
+    }
+
     return bullStocks;
   }
 
@@ -151,6 +163,18 @@ class DatabaseRepository {
           allStocks[ticker].dayChangePercentage.abs() > thresholdValue) {
         bearStocks.add(allStocks[ticker]);
       }
+    }
+
+    /* sort notification ticker symbols */
+    final String sortAlgorithm = prefs.getString('watchlistSort')!;
+
+    if (sortAlgorithm == 'Alphabetically') {
+      bearStocks.sort((a, b) => a.ticker.compareTo(b.ticker));
+    } else if (sortAlgorithm == 'Ticker Price') {
+      bearStocks.sort((a, b) => b.tickerPrice.compareTo(a.tickerPrice));
+    } else {
+      bearStocks.sort(
+          (a, b) => b.dayChangePercentage.compareTo(a.dayChangePercentage));
     }
 
     return bearStocks;
@@ -209,7 +233,6 @@ class DatabaseRepository {
 
     /* gather bull and bear stocks that meet notification specs in settings */
     if (isMarketOpen) {
-      // todo sort tickers in bear/bull notifications based on sort algorithm chosen
       List<StockEntity> bullStocks = await getBullStocks();
       List<StockEntity> bearStocks = await getBearStocks();
       NotificationService.createBearBullNotifications(bullStocks, bearStocks);
