@@ -89,6 +89,7 @@ class NotificationService {
           channelDescription: 'Provides alerts for stocks that are up.',
           icon: 'resource://drawable/bull_icon',
           defaultPrivacy: NotificationPrivacy.Public,
+          importance: NotificationImportance.Max,
         ),
         NotificationChannel(
           groupKey: 'bear_stocks',
@@ -97,6 +98,7 @@ class NotificationService {
           channelDescription: 'Provides alerts for stocks that are down.',
           icon: 'resource://drawable/bear_icon',
           defaultPrivacy: NotificationPrivacy.Public,
+          importance: NotificationImportance.Max,
         ),
       ],
     );
