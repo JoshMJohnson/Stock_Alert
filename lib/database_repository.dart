@@ -209,6 +209,7 @@ class DatabaseRepository {
 
     /* gather bull and bear stocks that meet notification specs in settings */
     if (isMarketOpen) {
+      // todo sort tickers in bear/bull notifications based on sort algorithm chosen
       List<StockEntity> bullStocks = await getBullStocks();
       List<StockEntity> bearStocks = await getBearStocks();
       NotificationService.createBearBullNotifications(bullStocks, bearStocks);
