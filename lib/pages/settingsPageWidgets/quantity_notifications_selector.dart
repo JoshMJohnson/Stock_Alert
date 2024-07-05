@@ -75,6 +75,20 @@ class QuantityNotificationsSelector extends StatelessWidget {
             ),
           ],
         ),
+        Container(
+          margin: const EdgeInsets.only(top: 10),
+          child: Align(
+            alignment: Alignment.bottomRight,
+            child: Text(
+              'Eastern Daylight Time (EDT)',
+              style: TextStyle(
+                color: Theme.of(context).textTheme.bodyMedium!.color,
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
+        ),
         TODReminders(
           changeTODHandler: changeTODHandler,
           notificationQuantity: notificationQuantity,
