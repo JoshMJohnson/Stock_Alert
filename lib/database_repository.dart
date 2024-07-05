@@ -173,8 +173,8 @@ class DatabaseRepository {
     } else if (sortAlgorithm == 'Ticker Price') {
       bearStocks.sort((a, b) => b.tickerPrice.compareTo(a.tickerPrice));
     } else {
-      bearStocks.sort(
-          (a, b) => b.dayChangePercentage.compareTo(a.dayChangePercentage));
+      bearStocks.sort((a, b) =>
+          b.dayChangePercentage.abs().compareTo(a.dayChangePercentage.abs()));
     }
 
     return bearStocks;
