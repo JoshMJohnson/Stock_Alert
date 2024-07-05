@@ -62,52 +62,25 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   TimeOfDay notification2;
   TimeOfDay notification3;
 
+  String lastUpdatedTimeDateDisplay = '--/-- --:--';
+
   final HelperFunctions helperFunctions = HelperFunctions();
 
-  String lastUpdatedTimeDateDisplay = '--/-- --:--';
+  _HomePageState(
+    this.sortAlgorithm,
+    this.notificationToggledOn,
+    this.thresholdValue,
+    this.notificationQuantity,
+    this.notification1,
+    this.notification2,
+    this.notification3,
+    this.watchlist,
+  );
 
   @override
   void initState() {
-    // ! doesnt refresh unless app is fully closed
-    void loadLastUpdatedTime() async {
-      final SharedPreferences prefs = await SharedPreferences.getInstance();
-
-      /* last updated time stamp */
-      final int? lastUpdatedHours = prefs.getInt('lastUpdatedHours');
-      final int? lastUpdatedMinutes = prefs.getInt('lastUpdatedMinutes');
-      final int? lastUpdatedMonth = prefs.getInt('lastUpdatedMonth');
-      final int? lastUpdatedDay = prefs.getInt('lastUpdatedDay');
-
-      if (lastUpdatedHours != null &&
-          lastUpdatedMinutes != null &&
-          lastUpdatedMonth != null &&
-          lastUpdatedDay != null) {
-        TimeOfDay lastUpdatedTime = TimeOfDay(
-          hour: lastUpdatedHours,
-          minute: lastUpdatedMinutes,
-        );
-
-        lastUpdatedTimeDateDisplay =
-            helperFunctions.createDateDisplay(lastUpdatedMonth, lastUpdatedDay);
-
-        lastUpdatedTimeDateDisplay += ' ';
-
-        lastUpdatedTimeDateDisplay +=
-            helperFunctions.standardTimeConvertionHandler(lastUpdatedTime);
-      }
-    }
-
-    /* loads current watchlist data */
-    void loadWatchlist() async {
-      watchlist = await DatabaseRepository.getStockSymbols();
-
-      setState(() {
-        watchlist = watchlist;
-      });
-    }
-
     loadLastUpdatedTime();
-    loadWatchlist();
+    updateWatchlistData();
 
     WidgetsBinding.instance.addObserver(this);
 
@@ -130,16 +103,33 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     }
   }
 
-  _HomePageState(
-    this.sortAlgorithm,
-    this.notificationToggledOn,
-    this.thresholdValue,
-    this.notificationQuantity,
-    this.notification1,
-    this.notification2,
-    this.notification3,
-    this.watchlist,
-  );
+  void loadLastUpdatedTime() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    /* last updated time stamp */
+    final int? lastUpdatedHours = prefs.getInt('lastUpdatedHours');
+    final int? lastUpdatedMinutes = prefs.getInt('lastUpdatedMinutes');
+    final int? lastUpdatedMonth = prefs.getInt('lastUpdatedMonth');
+    final int? lastUpdatedDay = prefs.getInt('lastUpdatedDay');
+
+    if (lastUpdatedHours != null &&
+        lastUpdatedMinutes != null &&
+        lastUpdatedMonth != null &&
+        lastUpdatedDay != null) {
+      TimeOfDay lastUpdatedTime = TimeOfDay(
+        hour: lastUpdatedHours,
+        minute: lastUpdatedMinutes,
+      );
+
+      lastUpdatedTimeDateDisplay =
+          helperFunctions.createDateDisplay(lastUpdatedMonth, lastUpdatedDay);
+
+      lastUpdatedTimeDateDisplay += ' ';
+
+      lastUpdatedTimeDateDisplay +=
+          helperFunctions.standardTimeConvertionHandler(lastUpdatedTime);
+    }
+  }
 
   /* executes when navigator pops Settings -> Home; updates preference variables */
   settingsToHomeHandler() async {
@@ -346,17 +336,15 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     });
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: header(context),
-      body: homeBody(context),
-    );
-  }
-
-  /* refresh watchlist and last updated after notification triggered */ // todo
-  void refreshHomePage() {
+  /* refresh watchlist and last updated after notification triggered */
+  void refreshHomePage() async {
     debugPrint('*** refreshHomePage ***');
+
+    /* refresh 'Last Updated' display */ // todo test
+    loadLastUpdatedTime();
+
+    /* refresh watchlist display */ // todo test
+    updateWatchlistData();
   }
 
   /* show info dialog */
@@ -552,6 +540,14 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
           ),
         ),
       ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: header(context),
+      body: homeBody(context),
     );
   }
 
