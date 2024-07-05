@@ -40,43 +40,46 @@ class _TickerInputFieldsState extends State<TickerInputFields> {
     return SizedBox(
       width: 150,
       height: 50,
-      child: TextField(
-        controller: widget.tickerTextController,
-        inputFormatters: [
-          ChangeToUpperCaseText(),
-        ],
-        onChanged: (updatedTickerValue) =>
-            widget.tickerFieldHandler(updatedTickerValue),
-        cursorColor: Theme.of(context).colorScheme.primary,
-        textAlign: TextAlign.center,
-        maxLength: 5,
-        autocorrect: false,
-        enableSuggestions: false,
-        style: TextStyle(
-          color: Theme.of(context).textTheme.bodyMedium!.color,
-          fontSize: 22,
-          fontWeight: FontWeight.w600,
-        ),
-        decoration: InputDecoration(
-          counterText: '',
-          border: InputBorder.none,
-          enabledBorder: UnderlineInputBorder(
-            borderSide: BorderSide(
-              color: Theme.of(context).colorScheme.secondary,
-              width: 3,
-            ),
-          ),
-          focusedBorder: UnderlineInputBorder(
-            borderSide: BorderSide(
-              color: Theme.of(context).colorScheme.primary,
-              width: 3,
-            ),
-          ),
-          hintText: 'Ticker Symbol',
-          hintStyle: TextStyle(
-            color: Theme.of(context).hintColor,
+      child: MediaQuery(
+        data: MediaQuery.of(context).copyWith(textScaler: TextScaler.noScaling),
+        child: TextField(
+          controller: widget.tickerTextController,
+          inputFormatters: [
+            ChangeToUpperCaseText(),
+          ],
+          onChanged: (updatedTickerValue) =>
+              widget.tickerFieldHandler(updatedTickerValue),
+          cursorColor: Theme.of(context).colorScheme.primary,
+          textAlign: TextAlign.center,
+          maxLength: 5,
+          autocorrect: false,
+          enableSuggestions: false,
+          style: TextStyle(
+            color: Theme.of(context).textTheme.bodyMedium!.color,
             fontSize: 22,
-            fontWeight: FontWeight.normal,
+            fontWeight: FontWeight.w600,
+          ),
+          decoration: InputDecoration(
+            counterText: '',
+            border: InputBorder.none,
+            enabledBorder: UnderlineInputBorder(
+              borderSide: BorderSide(
+                color: Theme.of(context).colorScheme.secondary,
+                width: 3,
+              ),
+            ),
+            focusedBorder: UnderlineInputBorder(
+              borderSide: BorderSide(
+                color: Theme.of(context).colorScheme.primary,
+                width: 3,
+              ),
+            ),
+            hintText: 'Ticker Symbol',
+            hintStyle: TextStyle(
+              color: Theme.of(context).hintColor,
+              fontSize: 22,
+              fontWeight: FontWeight.normal,
+            ),
           ),
         ),
       ),
