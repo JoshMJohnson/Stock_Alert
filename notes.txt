@@ -2,8 +2,6 @@ Pre-Release:
 
 Bugs
 - Handle when pulling data for notification from watchlist and connection is lost
-- Use EST for scheduled notification timezone for consistency based on market open/closed
-    no matter where you are at the time
 - Handle font scaling
 - Android -> App -> Build.Gradle
 
