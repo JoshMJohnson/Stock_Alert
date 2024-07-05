@@ -2,7 +2,6 @@ Pre-Release:
 
 Bugs
 - Handle when pulling data for notification from watchlist and connection is lost
-- Handle font scaling
 - Android -> App -> Build.Gradle
 
 -------------------------------------------------------------------------
