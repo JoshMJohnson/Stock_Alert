@@ -18,16 +18,16 @@ class TODReminders extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: const EdgeInsets.fromLTRB(0, 20, 0, 20),
+        margin: const EdgeInsets.symmetric(vertical: 20),
         child: Column(children: [
           Padding(
-              padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+              padding: const EdgeInsets.only(bottom: 10),
               child: todInstance(context, 0)),
           Padding(
-              padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+              padding: const EdgeInsets.symmetric(vertical: 10),
               child: todInstance(context, 1)),
           Padding(
-              padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+              padding: const EdgeInsets.only(top: 10),
               child: todInstance(context, 2))
         ]));
   }
