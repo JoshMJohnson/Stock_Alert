@@ -141,7 +141,7 @@ class NotificationService {
 
   /* creates scheduled notification */
   static notificationGenerator(
-    String localTimeZone,
+    String easternTimeZone,
     int notificationID,
     int weekdayValue,
     TimeOfDay tod,
@@ -158,7 +158,7 @@ class NotificationService {
       ),
       schedule: NotificationCalendar(
         preciseAlarm: true,
-        timeZone: localTimeZone,
+        timeZone: easternTimeZone,
         allowWhileIdle: true,
         repeats: true,
         hour: tod.hour,
@@ -179,35 +179,39 @@ class NotificationService {
     TimeOfDay notification2,
     TimeOfDay notification3,
   ) async {
-    String localTimeZone = await AwesomeNotifications()
-        .getLocalTimeZoneIdentifier(); // ! use same time zone; adjust to not changed based on time zone currently in; messes with market open/close times
+    String easternTimeZone = 'America/New_York';
 
     int counterID = 3;
     int dayCounter = 1;
 
     /* scheduled daily reminder 1 */
     /* monday */
-    notificationGenerator(localTimeZone, counterID, dayCounter, notification1);
+    notificationGenerator(
+        easternTimeZone, counterID, dayCounter, notification1);
     counterID++;
     dayCounter++;
 
     // /* tuesday */
-    notificationGenerator(localTimeZone, counterID, dayCounter, notification1);
+    notificationGenerator(
+        easternTimeZone, counterID, dayCounter, notification1);
     counterID++;
     dayCounter++;
 
     // /* wednesday */
-    notificationGenerator(localTimeZone, counterID, dayCounter, notification1);
+    notificationGenerator(
+        easternTimeZone, counterID, dayCounter, notification1);
     counterID++;
     dayCounter++;
 
     // /* thursday */
-    notificationGenerator(localTimeZone, counterID, dayCounter, notification1);
+    notificationGenerator(
+        easternTimeZone, counterID, dayCounter, notification1);
     counterID++;
     dayCounter++;
 
     // /* friday */
-    notificationGenerator(localTimeZone, counterID, dayCounter, notification1);
+    notificationGenerator(
+        easternTimeZone, counterID, dayCounter, notification1);
     counterID++;
     dayCounter = 1;
 
@@ -215,31 +219,31 @@ class NotificationService {
     if (quanitiyReminders >= 2) {
       /* monday */
       notificationGenerator(
-          localTimeZone, counterID, dayCounter, notification2);
+          easternTimeZone, counterID, dayCounter, notification2);
       counterID++;
       dayCounter++;
 
       // /* tuesday */
       notificationGenerator(
-          localTimeZone, counterID, dayCounter, notification2);
+          easternTimeZone, counterID, dayCounter, notification2);
       counterID++;
       dayCounter++;
 
       // /* wednesday */
       notificationGenerator(
-          localTimeZone, counterID, dayCounter, notification2);
+          easternTimeZone, counterID, dayCounter, notification2);
       counterID++;
       dayCounter++;
 
       // /* thursday */
       notificationGenerator(
-          localTimeZone, counterID, dayCounter, notification2);
+          easternTimeZone, counterID, dayCounter, notification2);
       counterID++;
       dayCounter++;
 
       // /* friday */
       notificationGenerator(
-          localTimeZone, counterID, dayCounter, notification2);
+          easternTimeZone, counterID, dayCounter, notification2);
       counterID++;
       dayCounter = 1;
     }
@@ -248,31 +252,31 @@ class NotificationService {
     if (quanitiyReminders == 3) {
       /* monday */
       notificationGenerator(
-          localTimeZone, counterID, dayCounter, notification3);
+          easternTimeZone, counterID, dayCounter, notification3);
       counterID++;
       dayCounter++;
 
       // /* tuesday */
       notificationGenerator(
-          localTimeZone, counterID, dayCounter, notification3);
+          easternTimeZone, counterID, dayCounter, notification3);
       counterID++;
       dayCounter++;
 
       // /* wednesday */
       notificationGenerator(
-          localTimeZone, counterID, dayCounter, notification3);
+          easternTimeZone, counterID, dayCounter, notification3);
       counterID++;
       dayCounter++;
 
       // /* thursday */
       notificationGenerator(
-          localTimeZone, counterID, dayCounter, notification3);
+          easternTimeZone, counterID, dayCounter, notification3);
       counterID++;
       dayCounter++;
 
       // /* friday */
       notificationGenerator(
-          localTimeZone, counterID, dayCounter, notification3);
+          easternTimeZone, counterID, dayCounter, notification3);
     }
   }
 
