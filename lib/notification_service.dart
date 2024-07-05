@@ -90,6 +90,8 @@ class NotificationService {
           icon: 'resource://drawable/bull_icon',
           defaultPrivacy: NotificationPrivacy.Public,
           importance: NotificationImportance.Max,
+          playSound: true,
+          enableVibration: true,
         ),
         NotificationChannel(
           groupKey: 'bear_stocks',
@@ -99,6 +101,8 @@ class NotificationService {
           icon: 'resource://drawable/bear_icon',
           defaultPrivacy: NotificationPrivacy.Public,
           importance: NotificationImportance.Max,
+          playSound: true,
+          enableVibration: true,
         ),
       ],
     );
