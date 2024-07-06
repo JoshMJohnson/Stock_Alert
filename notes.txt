@@ -1,7 +1,6 @@
 Pre-Release:
 
 Bugs
-- Handle when pulling data for notification from watchlist and connection is lost
 - Android -> App -> Build.Gradle
 
 -------------------------------------------------------------------------
