@@ -182,26 +182,34 @@ class DatabaseRepository {
     return bearStocks;
   }
 
-  /* checks to ensure the app is able to connect to the internet */
-  static Future<bool> ensureConnection() async {
+  /* checks to ensure the app is able to connect to the internet */ // todo
+  static Future<bool> ensureConnection(int numTriedTimes) async {
     debugPrint('*** ensureConnection ***');
 
-    bool activeConnection = false;
-
+    late bool connectionEstablished;
     try {
       final result = await InternetAddress.lookup('google.com');
       if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
-        activeConnection = true;
+        debugPrint('connection found');
+
+        connectionEstablished = true;
       }
     } on SocketException catch (_) {
-      activeConnection = false;
+      if (numTriedTimes < 2) {
+        debugPrint('no connection');
+        await Future.delayed(const Duration(minutes: 1));
+        return ensureConnection(numTriedTimes++);
+      } else if (numTriedTimes == 2) {
+        debugPrint('no connection');
+        await Future.delayed(const Duration(minutes: 5));
+        return ensureConnection(numTriedTimes++);
+      }
+
+      debugPrint('no connection');
+      connectionEstablished = false;
     }
 
-    debugPrint('activeConnection: $activeConnection');
-
-    // todo delay and try again
-
-    return activeConnection;
+    return connectionEstablished;
   }
 
   /* updates all watchlist stock tickers data */
@@ -222,7 +230,7 @@ class DatabaseRepository {
     List<StockEntity> prevWatchlist = await getStockSymbols();
     int watchlistLength = prevWatchlist.length;
 
-    bool connectionEstablished = await ensureConnection();
+    bool connectionEstablished = await ensureConnection(0);
 
     /* if no connection established */
     if (!connectionEstablished) {
@@ -253,7 +261,7 @@ class DatabaseRepository {
         await Future.delayed(const Duration(seconds: 61));
         currentTickerIndex--; /* retry ticker that failed */
 
-        bool connectionEstablished = await ensureConnection();
+        bool connectionEstablished = await ensureConnection(0);
 
         /* if no connection established */
         if (!connectionEstablished) {
@@ -286,7 +294,7 @@ class DatabaseRepository {
 
   /* adds a stock symbol to the watchlist; gets data from twelve data api */
   static Future addSymbol(String tickerSymbol) async {
-    bool connectionEstablished = await ensureConnection();
+    bool connectionEstablished = await ensureConnection(0);
 
     /* if no connection established */
     if (!connectionEstablished) {
