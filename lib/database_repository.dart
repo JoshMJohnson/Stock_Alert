@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'dart:io';
+import 'package:flutter/foundation.dart';
 import 'package:path/path.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sqflite/sqflite.dart';
@@ -180,6 +182,28 @@ class DatabaseRepository {
     return bearStocks;
   }
 
+  /* checks to ensure the app is able to connect to the internet */
+  static Future<bool> ensureConnection() async {
+    debugPrint('*** ensureConnection ***');
+
+    bool activeConnection = false;
+
+    try {
+      final result = await InternetAddress.lookup('google.com');
+      if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
+        activeConnection = true;
+      }
+    } on SocketException catch (_) {
+      activeConnection = false;
+    }
+
+    debugPrint('activeConnection: $activeConnection');
+
+    // todo delay and try again
+
+    return activeConnection;
+  }
+
   /* updates all watchlist stock tickers data */
   static Future updateWatchlist() async {
     /* update time stamp for last updated */
@@ -198,12 +222,19 @@ class DatabaseRepository {
     List<StockEntity> prevWatchlist = await getStockSymbols();
     int watchlistLength = prevWatchlist.length;
 
+    bool connectionEstablished = await ensureConnection();
+
+    /* if no connection established */
+    if (!connectionEstablished) {
+      debugPrint('NO CONNECTION ESTABLISHED... CANCELING');
+      return -1;
+    }
+
     /* loop through watchlist and update the data */
     for (var currentTickerIndex = 0;
         currentTickerIndex < watchlistLength;
         currentTickerIndex++) {
       String currentTickerSymbol = prevWatchlist[currentTickerIndex].ticker;
-
       int? errorCode =
           await retrieveStockDataFromTwelveDataAPI(currentTickerSymbol);
 
@@ -221,7 +252,15 @@ class DatabaseRepository {
 
         await Future.delayed(const Duration(seconds: 61));
         currentTickerIndex--; /* retry ticker that failed */
-      } // todo delay if no connection and continue; handle connection loss mid pull
+
+        bool connectionEstablished = await ensureConnection();
+
+        /* if no connection established */
+        if (!connectionEstablished) {
+          debugPrint('NO CONNECTION ESTABLISHED... CANCELING');
+          return -1;
+        }
+      }
     }
 
     /* display finished pulling updated ticker data notification */
@@ -247,6 +286,14 @@ class DatabaseRepository {
 
   /* adds a stock symbol to the watchlist; gets data from twelve data api */
   static Future addSymbol(String tickerSymbol) async {
+    bool connectionEstablished = await ensureConnection();
+
+    /* if no connection established */
+    if (!connectionEstablished) {
+      debugPrint('NO CONNECTION ESTABLISHED... CANCELING');
+      return -1;
+    }
+
     final tickerURL = Uri.parse(
         'https://api.twelvedata.com/quote?symbol=$tickerSymbol&apikey=$apiCode');
     final tickerData = await http.get(tickerURL);
@@ -311,8 +358,6 @@ class DatabaseRepository {
         'activeTracking': 1,
       },
     );
-
-    return -1;
   }
 
   /* updates the stock toggle within the database */

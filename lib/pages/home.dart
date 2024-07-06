@@ -265,7 +265,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
 
   /* handles adding ticker from text field to watchlist */
   void addTicker() async {
-    int errorCode = await DatabaseRepository.addSymbol(currentTicker);
+    int? errorCode = await DatabaseRepository.addSymbol(currentTicker);
     if (errorCode == 400) {
       /* bad request; ticker went bankrupt */
       errorAlertWithAPI(400);
