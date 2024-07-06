@@ -182,7 +182,7 @@ class DatabaseRepository {
     return bearStocks;
   }
 
-  /* checks to ensure the app is able to connect to the internet */ // todo
+  /* checks to ensure the app is able to connect to the internet */ // todo test; shoud be working. doesnt go off weekends
   static Future<bool> ensureConnection(int numTriedTimes) async {
     debugPrint('*** ensureConnection ***');
 
