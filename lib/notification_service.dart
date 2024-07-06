@@ -221,11 +221,6 @@ class NotificationService {
     counterID++;
     dayCounter = 1;
 
-    // ! testing start
-    notificationGenerator(easternTimeZone, counterID, 6, notification1);
-    counterID++;
-    // ! testing ending
-
     /* scheduled daily reminder 2 */
     if (quanitiyReminders >= 2) {
       /* monday */
