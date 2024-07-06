@@ -291,12 +291,6 @@ class DatabaseRepository {
       List<StockEntity> bullStocks = await getBullStocks();
       List<StockEntity> bearStocks = await getBearStocks();
       NotificationService.createBearBullNotifications(bullStocks, bearStocks);
-    } else {
-      // ! begin of testing
-      List<StockEntity> bullStocks = await getBullStocks();
-      List<StockEntity> bearStocks = await getBearStocks();
-      NotificationService.createBearBullNotifications(bullStocks, bearStocks);
-      // ! end of testing
     }
   }
 
@@ -306,7 +300,6 @@ class DatabaseRepository {
 
     /* if no connection established */
     if (!connectionEstablished) {
-      debugPrint('NO CONNECTION ESTABLISHED... CANCELING');
       return 1;
     }
 
