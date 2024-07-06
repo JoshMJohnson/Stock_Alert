@@ -221,6 +221,11 @@ class NotificationService {
     counterID++;
     dayCounter = 1;
 
+    // ! testing start
+    notificationGenerator(easternTimeZone, counterID, 6, notification1);
+    counterID++;
+    // ! testing ending
+
     /* scheduled daily reminder 2 */
     if (quanitiyReminders >= 2) {
       /* monday */
@@ -310,7 +315,7 @@ class NotificationService {
         progress: progress,
         locked: true,
       ));
-    } else {
+    } else if (currentProgress == totalTickersPulling) {
       /* finished pulling ticker data from watchlist */
       AwesomeNotifications().createNotification(
           content: NotificationContent(
@@ -318,6 +323,19 @@ class NotificationService {
         channelKey: 'update_progression',
         title: 'Watchlist updated',
         body: 'Finished gathering watchlist data',
+        autoDismissible: true,
+        color: const Color.fromARGB(255, 70, 130, 180),
+        category: NotificationCategory.Progress,
+        locked: false,
+      ));
+    } else {
+      /* connection lost and could not get back */
+      AwesomeNotifications().createNotification(
+          content: NotificationContent(
+        id: notificationID,
+        channelKey: 'update_progression',
+        title: 'Watchlist update failed',
+        body: 'Internet connection was lost',
         autoDismissible: true,
         color: const Color.fromARGB(255, 70, 130, 180),
         category: NotificationCategory.Progress,

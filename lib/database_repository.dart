@@ -274,6 +274,11 @@ class DatabaseRepository {
 
         /* if no connection established */
         if (!connectionEstablished) {
+          NotificationService.updateProgressBar(
+            notificationID,
+            watchlistLength + 1,
+            watchlistLength,
+          );
           return -1;
         }
       }
