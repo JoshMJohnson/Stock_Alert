@@ -188,6 +188,9 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     } else if (errorCode == 500) {
       /* tweleve data having issues; try again later message needed */
       return 'Twelve Data API is having server side issues. Try again later';
+    } else if (errorCode == 1) {
+      /* no internet connection */
+      return 'No internet connection';
     } else {
       /* unknown error with twelve data api */
       return 'Unknown error with Twelve Data API';
@@ -287,6 +290,9 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     } else if (errorCode == 501) {
       /* unknown error with twelve data api */
       errorAlertWithAPI(501);
+    } else if (errorCode == 1) {
+      /* no internet connection */
+      errorAlertWithAPI(1);
     } else {
       updateWatchlistData();
     }

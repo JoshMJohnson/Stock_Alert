@@ -182,30 +182,40 @@ class DatabaseRepository {
     return bearStocks;
   }
 
-  /* checks to ensure the app is able to connect to the internet */ // todo test; shoud be working. doesnt go off weekends
-  static Future<bool> ensureConnection(int numTriedTimes) async {
-    debugPrint('*** ensureConnection ***');
-
+  /* checks to ensure the app is able to connect to the internet and rechecking */
+  static Future<bool> ensureConnectionUpdate(int numTriedTimes) async {
     late bool connectionEstablished;
     try {
       final result = await InternetAddress.lookup('google.com');
       if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
-        debugPrint('connection found');
-
         connectionEstablished = true;
       }
     } on SocketException catch (_) {
       if (numTriedTimes < 2) {
-        debugPrint('no connection');
         await Future.delayed(const Duration(minutes: 1));
-        return ensureConnection(numTriedTimes++);
+        numTriedTimes++;
+        return ensureConnectionUpdate(numTriedTimes);
       } else if (numTriedTimes == 2) {
-        debugPrint('no connection');
         await Future.delayed(const Duration(minutes: 5));
-        return ensureConnection(numTriedTimes++);
+        numTriedTimes++;
+        return ensureConnectionUpdate(numTriedTimes);
       }
 
-      debugPrint('no connection');
+      connectionEstablished = false;
+    }
+
+    return connectionEstablished;
+  }
+
+  /* checks to ensure the app is able to connect to the internet once */
+  static Future<bool> ensureConnection() async {
+    late bool connectionEstablished;
+    try {
+      final result = await InternetAddress.lookup('google.com');
+      if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
+        connectionEstablished = true;
+      }
+    } on SocketException catch (_) {
       connectionEstablished = false;
     }
 
@@ -230,11 +240,10 @@ class DatabaseRepository {
     List<StockEntity> prevWatchlist = await getStockSymbols();
     int watchlistLength = prevWatchlist.length;
 
-    bool connectionEstablished = await ensureConnection(0);
+    bool connectionEstablished = await ensureConnectionUpdate(0);
 
     /* if no connection established */
     if (!connectionEstablished) {
-      debugPrint('NO CONNECTION ESTABLISHED... CANCELING');
       return -1;
     }
 
@@ -261,11 +270,10 @@ class DatabaseRepository {
         await Future.delayed(const Duration(seconds: 61));
         currentTickerIndex--; /* retry ticker that failed */
 
-        bool connectionEstablished = await ensureConnection(0);
+        bool connectionEstablished = await ensureConnectionUpdate(0);
 
         /* if no connection established */
         if (!connectionEstablished) {
-          debugPrint('NO CONNECTION ESTABLISHED... CANCELING');
           return -1;
         }
       }
@@ -294,12 +302,12 @@ class DatabaseRepository {
 
   /* adds a stock symbol to the watchlist; gets data from twelve data api */
   static Future addSymbol(String tickerSymbol) async {
-    bool connectionEstablished = await ensureConnection(0);
+    bool connectionEstablished = await ensureConnection();
 
     /* if no connection established */
     if (!connectionEstablished) {
       debugPrint('NO CONNECTION ESTABLISHED... CANCELING');
-      return -1;
+      return 1;
     }
 
     final tickerURL = Uri.parse(
