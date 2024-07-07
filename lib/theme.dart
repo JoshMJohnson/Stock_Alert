@@ -18,15 +18,12 @@ ThemeData lightMode = ThemeData(
       color: Color(0xFF01579B),
     ),
     bodyMedium: TextStyle(
-      // normal font
       color: Color(0xFF0D47A1),
     ),
     bodySmall: TextStyle(
-      // bear red
       color: Color(0xFFD50000),
     ),
     bodyLarge: TextStyle(
-      // bull green
       color: Color(0xFF1B5E20),
     ),
   ),
@@ -83,31 +80,39 @@ ThemeData lightMode = ThemeData(
 ThemeData darkMode = ThemeData(
   brightness: Brightness.dark,
   fontFamily: 'EBGaramond',
-  scaffoldBackgroundColor: const Color(0xFF0B290A), // bottom background color
+  // bottom background color
+  scaffoldBackgroundColor: const Color(0xFF0B290A),
   colorScheme: const ColorScheme.dark(
-    background: Color(0xFF145714), // top background color
-    primary:
-        Color.fromARGB(255, 201, 201, 201), // bottom watchlist background color
-    secondary: Color.fromARGB(255, 96, 7, 7), // top watchlist background color
-    tertiary: Color(0xFFE8EAF6), // todo discover where used
+    // top background color
+    background: Color(0xFF145714),
+    // bottom watchlist background color
+    primary: Color.fromARGB(255, 201, 201, 201),
+    // top watchlist background color
+    secondary: Color.fromARGB(255, 96, 7, 7),
+    // todo discover where used
+    tertiary: Color(0xFFE8EAF6),
   ),
   dividerColor: const Color(0xFF90CAF9),
   textTheme: const TextTheme(
+    // header font
     headlineMedium: TextStyle(
-      color: Color.fromARGB(255, 154, 255, 154), // header font
+      color: Color.fromARGB(255, 154, 255, 154),
     ),
+    // normal font
     bodyMedium: TextStyle(
-      color: Color.fromARGB(255, 154, 255, 154), // normal font
+      color: Color.fromARGB(255, 154, 255, 154),
     ),
+    // bear red
     bodySmall: TextStyle(
-      color: Color(0xFFE57373), // bear red
+      color: Color(0xFFE57373),
     ),
+    // bull green
     bodyLarge: TextStyle(
-      color: Color(0xFF81C784), // bull green
+      color: Color(0xFF81C784),
     ),
   ),
-  hintColor: const Color.fromARGB(
-      255, 154, 255, 154), // text input field untouched - home page
+  // text input field untouched - home page
+  hintColor: const Color.fromARGB(255, 154, 255, 154),
   // ticker symbol input field - home page
   inputDecorationTheme: const InputDecorationTheme(
     focusedBorder: UnderlineInputBorder(
@@ -145,17 +150,20 @@ ThemeData darkMode = ThemeData(
       fillColor: Colors.black,
     ),
   ),
+  // radio buttons in settings
   radioTheme: RadioThemeData(fillColor:
       MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
     return const Color(0xFFBBDEFB);
   })),
+  // icons
   iconTheme: const IconThemeData(
-    color: Color.fromARGB(255, 154, 255, 154), // icons
+    color: Color.fromARGB(255, 154, 255, 154),
   ),
   cardTheme: const CardTheme(
     color: Color(0xFFE0E0E0),
   ),
+  // popup displays
   dialogTheme: const DialogTheme(
-    backgroundColor: Color(0xFF0B290A), // popup displays
+    backgroundColor: Color(0xFF0B290A),
   ),
 );
