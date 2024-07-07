@@ -92,6 +92,7 @@ ThemeData darkMode = ThemeData(
     // todo discover where used
     tertiary: Color(0xFFE8EAF6),
   ),
+  // watchlist divider
   dividerColor: const Color(0xFF90CAF9),
   textTheme: const TextTheme(
     // header font
@@ -115,11 +116,13 @@ ThemeData darkMode = ThemeData(
   hintColor: const Color.fromARGB(255, 154, 255, 154),
   // ticker symbol input field - home page
   inputDecorationTheme: const InputDecorationTheme(
+    // text field selected
     focusedBorder: UnderlineInputBorder(
       borderSide: BorderSide(
         color: Color.fromARGB(255, 154, 255, 154),
       ),
     ),
+    // text field not selected
     enabledBorder: UnderlineInputBorder(
       borderSide: BorderSide(
         color: Color.fromARGB(255, 7, 88, 7),
@@ -159,6 +162,7 @@ ThemeData darkMode = ThemeData(
   iconTheme: const IconThemeData(
     color: Color.fromARGB(255, 154, 255, 154),
   ),
+  // todo discover where used
   cardTheme: const CardTheme(
     color: Color(0xFFE0E0E0),
   ),
