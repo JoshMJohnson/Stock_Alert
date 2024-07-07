@@ -31,6 +31,18 @@ ThemeData lightMode = ThemeData(
     ),
   ),
   hintColor: const Color(0xFF0D47A1),
+  inputDecorationTheme: const InputDecorationTheme(
+    focusedBorder: UnderlineInputBorder(
+      borderSide: BorderSide(
+        color: Color.fromARGB(255, 154, 255, 154),
+      ),
+    ),
+    enabledBorder: UnderlineInputBorder(
+      borderSide: BorderSide(
+        color: Color.fromARGB(255, 7, 88, 7),
+      ),
+    ),
+  ),
   buttonTheme: const ButtonThemeData(
     colorScheme: ColorScheme.light(
       background: Color(0xFF0D47A1),
@@ -64,18 +76,6 @@ ThemeData lightMode = ThemeData(
   ),
   dialogTheme: const DialogTheme(
     backgroundColor: Color(0xFF0B290A),
-  ),
-  inputDecorationTheme: const InputDecorationTheme(
-    focusedBorder: UnderlineInputBorder(
-      borderSide: BorderSide(
-        color: Color.fromARGB(255, 154, 255, 154),
-      ),
-    ),
-    enabledBorder: UnderlineInputBorder(
-      borderSide: BorderSide(
-        color: Color.fromARGB(255, 7, 88, 7),
-      ),
-    ),
   ),
 );
 
