@@ -42,6 +42,14 @@ dependencies:
   awesome_notifications: any # <~ this version is managed by awesome_notifications_core package
   http: ^1.2.1
   fading_edge_scrollview: ^4.1.1
+  flutter_launcher_icons: ^0.13.1
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/icon.png"
+  adaptive_icon_background: "#0B290A"
+  adaptive_icon_foreground: "assets/foreground_service_icon.png"
 
 dev_dependencies:
   flutter_test:
