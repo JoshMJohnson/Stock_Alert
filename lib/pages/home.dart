@@ -202,7 +202,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     showDialog(
       context: context,
       builder: (_) => AlertDialog(
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        backgroundColor: Theme.of(context).dialogTheme.backgroundColor,
         title: Text(
           'Failed Add',
           textScaler: TextScaler.noScaling,
@@ -220,7 +220,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
                 border: Border.all(
-                  color: Theme.of(context).colorScheme.primary,
+                  color: Theme.of(context).textTheme.headlineMedium!.color!,
                   width: 5,
                 ),
               ),
@@ -386,7 +386,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     showDialog(
       context: context,
       builder: (_) => AlertDialog(
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        backgroundColor: Theme.of(context).dialogTheme.backgroundColor,
         title: Text(
           'Quick Info',
           textScaler: TextScaler.noScaling,

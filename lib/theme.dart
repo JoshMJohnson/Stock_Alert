@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+// * light theme
+// todo
 ThemeData lightMode = ThemeData(
   brightness: Brightness.light,
   fontFamily: 'EBGaramond',
@@ -60,25 +62,41 @@ ThemeData lightMode = ThemeData(
   cardTheme: const CardTheme(
     color: Color(0xFF2962FF),
   ),
+  dialogTheme: const DialogTheme(
+    backgroundColor: Color(0xFF0B290A),
+  ),
+  inputDecorationTheme: const InputDecorationTheme(
+    focusedBorder: UnderlineInputBorder(
+      borderSide: BorderSide(
+        color: Color.fromARGB(255, 154, 255, 154),
+      ),
+    ),
+    enabledBorder: UnderlineInputBorder(
+      borderSide: BorderSide(
+        color: Color.fromARGB(255, 7, 88, 7),
+      ),
+    ),
+  ),
 );
 
+// * dark theme
 ThemeData darkMode = ThemeData(
   brightness: Brightness.dark,
   fontFamily: 'EBGaramond',
-  scaffoldBackgroundColor: const Color(0xFF0D47A1),
+  scaffoldBackgroundColor: const Color(0xFF0B290A),
   colorScheme: const ColorScheme.dark(
-    background: Color(0xFF1A237E),
-    primary: Color(0xFFBBDEFB),
-    secondary: Color.fromARGB(255, 141, 160, 255),
+    background: Color(0xFF145714),
+    primary: Color.fromARGB(255, 245, 32, 32),
+    secondary: Color.fromARGB(255, 96, 7, 7),
     tertiary: Color(0xFFE8EAF6),
   ),
   dividerColor: const Color(0xFF90CAF9),
   textTheme: const TextTheme(
     headlineMedium: TextStyle(
-      color: Color(0xFFB3E5FC),
+      color: Color.fromARGB(255, 154, 255, 154),
     ),
     bodyMedium: TextStyle(
-      color: Color(0xFFE3F2FD),
+      color: Color.fromARGB(255, 154, 255, 154),
       // normal font
     ),
     bodySmall: TextStyle(
@@ -90,7 +108,7 @@ ThemeData darkMode = ThemeData(
       color: Color(0xFF81C784),
     ),
   ),
-  hintColor: const Color(0xFFE3F2FD),
+  hintColor: const Color.fromARGB(255, 154, 255, 154),
   buttonTheme: const ButtonThemeData(
     colorScheme: ColorScheme.light(
       background: Colors.black,
@@ -117,9 +135,24 @@ ThemeData darkMode = ThemeData(
     return const Color(0xFFBBDEFB);
   })),
   iconTheme: const IconThemeData(
-    color: Color(0xFFBBDEFB),
+    color: Color.fromARGB(255, 154, 255, 154),
   ),
   cardTheme: const CardTheme(
     color: Color(0xFFE0E0E0),
+  ),
+  dialogTheme: const DialogTheme(
+    backgroundColor: Color(0xFF0B290A),
+  ),
+  inputDecorationTheme: const InputDecorationTheme(
+    focusedBorder: UnderlineInputBorder(
+      borderSide: BorderSide(
+        color: Color.fromARGB(255, 154, 255, 154),
+      ),
+    ),
+    enabledBorder: UnderlineInputBorder(
+      borderSide: BorderSide(
+        color: Color.fromARGB(255, 7, 88, 7),
+      ),
+    ),
   ),
 );

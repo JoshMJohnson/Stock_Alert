@@ -49,7 +49,11 @@ class _TickerInputFieldsState extends State<TickerInputFields> {
           ],
           onChanged: (updatedTickerValue) =>
               widget.tickerFieldHandler(updatedTickerValue),
-          cursorColor: Theme.of(context).colorScheme.primary,
+          cursorColor: Theme.of(context)
+              .inputDecorationTheme
+              .focusedBorder!
+              .borderSide
+              .color,
           textAlign: TextAlign.center,
           maxLength: 5,
           autocorrect: false,
@@ -64,13 +68,21 @@ class _TickerInputFieldsState extends State<TickerInputFields> {
             border: InputBorder.none,
             enabledBorder: UnderlineInputBorder(
               borderSide: BorderSide(
-                color: Theme.of(context).colorScheme.secondary,
+                color: Theme.of(context)
+                    .inputDecorationTheme
+                    .enabledBorder!
+                    .borderSide
+                    .color,
                 width: 3,
               ),
             ),
             focusedBorder: UnderlineInputBorder(
               borderSide: BorderSide(
-                color: Theme.of(context).colorScheme.primary,
+                color: Theme.of(context)
+                    .inputDecorationTheme
+                    .focusedBorder!
+                    .borderSide
+                    .color,
                 width: 3,
               ),
             ),
@@ -118,7 +130,7 @@ class _TickerInputFieldsState extends State<TickerInputFields> {
                         context: context,
                         builder: (_) => AlertDialog(
                           backgroundColor:
-                              Theme.of(context).scaffoldBackgroundColor,
+                              Theme.of(context).dialogTheme.backgroundColor,
                           title: Text(
                             'Failed Add',
                             textScaler: TextScaler.noScaling,
@@ -139,8 +151,10 @@ class _TickerInputFieldsState extends State<TickerInputFields> {
                                 padding: const EdgeInsets.all(20),
                                 decoration: BoxDecoration(
                                   border: Border.all(
-                                    color:
-                                        Theme.of(context).colorScheme.primary,
+                                    color: Theme.of(context)
+                                        .textTheme
+                                        .headlineMedium!
+                                        .color!,
                                     width: 5,
                                   ),
                                 ),
@@ -190,7 +204,7 @@ class _TickerInputFieldsState extends State<TickerInputFields> {
                         context: context,
                         builder: (_) => AlertDialog(
                           backgroundColor:
-                              Theme.of(context).scaffoldBackgroundColor,
+                              Theme.of(context).dialogTheme.backgroundColor,
                           title: Text(
                             'Add\nTicker Symbol',
                             textScaler: TextScaler.noScaling,
@@ -211,8 +225,10 @@ class _TickerInputFieldsState extends State<TickerInputFields> {
                                 padding: const EdgeInsets.all(20),
                                 decoration: BoxDecoration(
                                   border: Border.all(
-                                    color:
-                                        Theme.of(context).colorScheme.primary,
+                                    color: Theme.of(context)
+                                        .textTheme
+                                        .headlineMedium!
+                                        .color!,
                                     width: 5,
                                   ),
                                 ),
@@ -290,7 +306,7 @@ class _TickerInputFieldsState extends State<TickerInputFields> {
                       context: context,
                       builder: (_) => AlertDialog(
                         backgroundColor:
-                            Theme.of(context).scaffoldBackgroundColor,
+                            Theme.of(context).dialogTheme.backgroundColor,
                         title: Text(
                           'Failed Remove',
                           textScaler: TextScaler.noScaling,
@@ -311,7 +327,10 @@ class _TickerInputFieldsState extends State<TickerInputFields> {
                               padding: const EdgeInsets.all(20),
                               decoration: BoxDecoration(
                                 border: Border.all(
-                                  color: Theme.of(context).colorScheme.primary,
+                                  color: Theme.of(context)
+                                      .textTheme
+                                      .headlineMedium!
+                                      .color!,
                                   width: 5,
                                 ),
                               ),
@@ -359,7 +378,7 @@ class _TickerInputFieldsState extends State<TickerInputFields> {
                       context: context,
                       builder: (_) => AlertDialog(
                         backgroundColor:
-                            Theme.of(context).scaffoldBackgroundColor,
+                            Theme.of(context).dialogTheme.backgroundColor,
                         title: Text(
                           'Remove\nTicker Symbol',
                           textScaler: TextScaler.noScaling,
@@ -380,7 +399,10 @@ class _TickerInputFieldsState extends State<TickerInputFields> {
                               padding: const EdgeInsets.all(20),
                               decoration: BoxDecoration(
                                 border: Border.all(
-                                  color: Theme.of(context).colorScheme.primary,
+                                  color: Theme.of(context)
+                                      .textTheme
+                                      .headlineMedium!
+                                      .color!,
                                   width: 5,
                                 ),
                               ),
