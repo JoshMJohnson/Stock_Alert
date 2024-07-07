@@ -83,11 +83,12 @@ ThemeData lightMode = ThemeData(
 ThemeData darkMode = ThemeData(
   brightness: Brightness.dark,
   fontFamily: 'EBGaramond',
-  scaffoldBackgroundColor: const Color(0xFF0B290A),
+  scaffoldBackgroundColor: const Color(0xFF0B290A), // bottom background color
   colorScheme: const ColorScheme.dark(
-    background: Color(0xFF145714),
-    primary: Color.fromARGB(255, 245, 32, 32),
-    secondary: Color.fromARGB(255, 96, 7, 7),
+    background: Color(0xFF145714), // top background color
+    primary:
+        Color.fromARGB(255, 201, 201, 201), // bottom watchlist background color
+    secondary: Color.fromARGB(255, 96, 7, 7), // top watchlist background color
     tertiary: Color(0xFFE8EAF6),
   ),
   dividerColor: const Color(0xFF90CAF9),
