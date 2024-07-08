@@ -87,11 +87,11 @@ ThemeData lightMode = ThemeData(
   ),
   // border; popup/tickerPage
   cardTheme: const CardTheme(
-    color: Color(0xFF2962FF),
+    color: Color.fromARGB(255, 8, 146, 35),
   ),
   // popup displays
   dialogTheme: const DialogTheme(
-    backgroundColor: Color.fromARGB(255, 255, 48, 48),
+    backgroundColor: Color.fromARGB(255, 97, 236, 102),
   ),
 );
 
