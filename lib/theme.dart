@@ -11,18 +11,18 @@ ThemeData lightMode = ThemeData(
     // top background color
     background: Color.fromARGB(255, 157, 255, 157),
     // bottom watchlist background color
-    primary: Color.fromARGB(255, 232, 79, 79),
+    primary: Color.fromARGB(255, 103, 12, 12),
     // top watchlist background color
-    secondary: Color.fromARGB(255, 209, 24, 24),
+    secondary: Color.fromARGB(255, 57, 0, 0),
     // basic text; watchlist/popup
     tertiary: Color(0xFFFFFFFF),
   ),
   // watchlist divider
-  dividerColor: const Color(0xFF2962FF),
+  dividerColor: const Color.fromARGB(255, 255, 0, 0),
   textTheme: const TextTheme(
     // header font
     headlineMedium: TextStyle(
-      color: Color(0xFF01579B),
+      color: Color.fromARGB(255, 79, 4, 4),
     ),
     // display text
     bodyMedium: TextStyle(
@@ -30,11 +30,11 @@ ThemeData lightMode = ThemeData(
     ),
     // bear red
     bodySmall: TextStyle(
-      color: Color(0xFFD50000),
+      color: Color.fromARGB(255, 255, 129, 129),
     ),
     // bull green
     bodyLarge: TextStyle(
-      color: Color(0xFF1B5E20),
+      color: Color.fromARGB(255, 162, 255, 167),
     ),
   ),
   // text input field untouched - home page
@@ -91,7 +91,7 @@ ThemeData lightMode = ThemeData(
   ),
   // popup displays
   dialogTheme: const DialogTheme(
-    backgroundColor: Color.fromARGB(255, 57, 0, 0),
+    backgroundColor: Color.fromARGB(255, 255, 48, 48),
   ),
 );
 
