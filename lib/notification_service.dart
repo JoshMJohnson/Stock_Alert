@@ -345,6 +345,48 @@ class NotificationService {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     int notificationId = prefs.getInt('bearBullNotificationID') ?? 18;
 
+    /* bull stock notification; stocks on watchlist that are up past the threshold value */
+    if (bullTickerList.isNotEmpty) {
+      String bullTickers = '';
+
+      for (var tempTicker = 0;
+          tempTicker < bullTickerList.length;
+          tempTicker++) {
+        String tempTickerSymbol = bullTickerList[tempTicker].ticker;
+        String tempDayChange =
+            bullTickerList[tempTicker].dayChangeDollars.toStringAsFixed(2);
+        String tempPercentChange =
+            bullTickerList[tempTicker].dayChangePercentage.toStringAsFixed(2);
+        String tempPPS =
+            bullTickerList[tempTicker].tickerPrice.toStringAsFixed(2);
+
+        String tickerLine =
+            '${Emojis.office_chart_increasing} $tempTickerSymbol \$$tempDayChange ($tempPercentChange%) (\$$tempPPS) ${Emojis.office_chart_increasing}';
+
+        /* if last ticker in list of bull stocks given */
+        if (tempTicker == bullTickerList.length - 1) {
+          bullTickers = '$bullTickers$tickerLine';
+          break;
+        }
+
+        bullTickers = '$bullTickers$tickerLine\n';
+      }
+
+      notificationId++;
+
+      AwesomeNotifications().createNotification(
+          content: NotificationContent(
+        id: notificationId,
+        channelKey: 'bull_channel',
+        title: 'Bull Stocks',
+        body: bullTickers,
+        autoDismissible: false,
+        notificationLayout: NotificationLayout.Inbox,
+        color: const Color.fromARGB(255, 22, 129, 24),
+        wakeUpScreen: true,
+      ));
+    }
+
     /* bear stock notification; stocks on watchlist that are down past the threshold value */
     if (bearTickerList.isNotEmpty) {
       String bearTickers = '';
@@ -387,48 +429,6 @@ class NotificationService {
         autoDismissible: false,
         notificationLayout: NotificationLayout.Inbox,
         color: const Color.fromARGB(255, 255, 0, 0),
-        wakeUpScreen: true,
-      ));
-    }
-
-    /* bull stock notification; stocks on watchlist that are up past the threshold value */
-    if (bullTickerList.isNotEmpty) {
-      String bullTickers = '';
-
-      for (var tempTicker = 0;
-          tempTicker < bullTickerList.length;
-          tempTicker++) {
-        String tempTickerSymbol = bullTickerList[tempTicker].ticker;
-        String tempDayChange =
-            bullTickerList[tempTicker].dayChangeDollars.toStringAsFixed(2);
-        String tempPercentChange =
-            bullTickerList[tempTicker].dayChangePercentage.toStringAsFixed(2);
-        String tempPPS =
-            bullTickerList[tempTicker].tickerPrice.toStringAsFixed(2);
-
-        String tickerLine =
-            '${Emojis.office_chart_increasing} $tempTickerSymbol \$$tempDayChange ($tempPercentChange%) (\$$tempPPS) ${Emojis.office_chart_increasing}';
-
-        /* if last ticker in list of bull stocks given */
-        if (tempTicker == bullTickerList.length - 1) {
-          bullTickers = '$bullTickers$tickerLine';
-          break;
-        }
-
-        bullTickers = '$bullTickers$tickerLine\n';
-      }
-
-      notificationId++;
-
-      AwesomeNotifications().createNotification(
-          content: NotificationContent(
-        id: notificationId,
-        channelKey: 'bull_channel',
-        title: 'Bull Stocks',
-        body: bullTickers,
-        autoDismissible: false,
-        notificationLayout: NotificationLayout.Inbox,
-        color: const Color.fromARGB(255, 22, 129, 24),
         wakeUpScreen: true,
       ));
     }
