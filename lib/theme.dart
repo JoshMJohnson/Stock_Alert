@@ -97,11 +97,11 @@ ThemeData darkMode = ThemeData(
   textTheme: const TextTheme(
     // header font
     headlineMedium: TextStyle(
-      color: Color.fromARGB(255, 154, 255, 154),
+      color: Color.fromARGB(255, 208, 255, 208),
     ),
-    // normal font
+    // display text
     bodyMedium: TextStyle(
-      color: Color.fromARGB(255, 154, 255, 154),
+      color: Color.fromARGB(255, 208, 255, 208),
     ),
     // bear red
     bodySmall: TextStyle(
@@ -113,13 +113,13 @@ ThemeData darkMode = ThemeData(
     ),
   ),
   // text input field untouched - home page
-  hintColor: const Color.fromARGB(255, 154, 255, 154),
+  hintColor: const Color.fromARGB(255, 208, 255, 208),
   // ticker symbol input field - home page
   inputDecorationTheme: const InputDecorationTheme(
     // text field selected
     focusedBorder: UnderlineInputBorder(
       borderSide: BorderSide(
-        color: Color.fromARGB(255, 255, 255, 255),
+        color: Color.fromARGB(255, 208, 255, 208),
       ),
     ),
     // text field not selected
