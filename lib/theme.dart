@@ -6,14 +6,14 @@ ThemeData lightMode = ThemeData(
   brightness: Brightness.light,
   fontFamily: 'EBGaramond',
   // bottom background color
-  scaffoldBackgroundColor: const Color(0xFF80D8FF),
+  scaffoldBackgroundColor: const Color.fromARGB(255, 0, 136, 14),
   colorScheme: const ColorScheme.light(
     // top background color
-    background: Color(0xFFB3E5FC),
+    background: Color.fromARGB(255, 157, 255, 157),
     // bottom watchlist background color
-    primary: Color(0xFF2979FF),
+    primary: Color.fromARGB(255, 255, 134, 134),
     // top watchlist background color
-    secondary: Color(0xFF82B1FF),
+    secondary: Color.fromARGB(255, 155, 0, 0),
     // basic text; watchlist/popup
     tertiary: Color(0xFF01579B),
   ),
