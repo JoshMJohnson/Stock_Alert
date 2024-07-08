@@ -45,7 +45,7 @@ class QuantityNotificationsSelector extends StatelessWidget {
                       option.toString(),
                       textScaler: TextScaler.noScaling,
                       style: TextStyle(
-                        color: Theme.of(context).textTheme.bodyMedium!.color,
+                        color: Theme.of(context).colorScheme.tertiary,
                         fontSize: 20,
                         fontWeight: FontWeight.normal,
                       ),
