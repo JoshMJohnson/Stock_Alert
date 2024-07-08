@@ -72,8 +72,8 @@ ThemeData lightMode = ThemeData(
   // dropdown - quantity reminders in settings
   dropdownMenuTheme: const DropdownMenuThemeData(
     inputDecorationTheme: InputDecorationTheme(
-      iconColor: Color(0xFF1A237E),
-      fillColor: Color(0xFFB3E5FC),
+      iconColor: Color.fromARGB(255, 3, 46, 4),
+      fillColor: Color.fromARGB(255, 124, 254, 142),
     ),
   ),
   // radio buttons in settings
