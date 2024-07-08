@@ -59,7 +59,7 @@ class _TickerInputFieldsState extends State<TickerInputFields> {
           autocorrect: false,
           enableSuggestions: false,
           style: TextStyle(
-            color: Theme.of(context).textTheme.bodyMedium!.color,
+            color: Theme.of(context).colorScheme.tertiary,
             fontSize: 22,
             fontWeight: FontWeight.w600,
           ),
