@@ -79,7 +79,10 @@ class TickerPage extends StatelessWidget {
                             stock.ticker,
                             textScaler: TextScaler.noScaling,
                             style: TextStyle(
-                              color: Theme.of(context).colorScheme.tertiary,
+                              color: Theme.of(context)
+                                  .textTheme
+                                  .headlineMedium!
+                                  .color,
                               fontSize: 30,
                               fontWeight: FontWeight.w600,
                               fontStyle: FontStyle.italic,
