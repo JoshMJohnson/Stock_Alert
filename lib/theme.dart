@@ -132,16 +132,16 @@ ThemeData darkMode = ThemeData(
   // buttons
   buttonTheme: const ButtonThemeData(
     colorScheme: ColorScheme.light(
-      background: Color.fromARGB(255, 77, 3, 3),
+      background: Color.fromARGB(255, 0, 0, 0),
       primary: Color.fromARGB(255, 4, 160, 67),
       secondary: Colors.white,
     ),
   ),
   // slider - ticker page & settings
   sliderTheme: const SliderThemeData(
-    thumbColor: Color(0xFF42A5F5),
-    activeTrackColor: Color(0xFF9FA8DA),
-    inactiveTrackColor: Color(0xFF3F51B5),
+    thumbColor: Color.fromARGB(255, 83, 219, 83),
+    activeTrackColor: Color.fromARGB(255, 208, 255, 208),
+    inactiveTrackColor: Color.fromARGB(255, 114, 178, 114),
     disabledThumbColor: Color(0xFFE3F2FD),
     disabledActiveTrackColor: Color(0xFF9FA8DA),
     disabledInactiveTrackColor: Color(0xFF9FA8DA),
@@ -149,14 +149,14 @@ ThemeData darkMode = ThemeData(
   // dropdown - quantity reminders in settings
   dropdownMenuTheme: const DropdownMenuThemeData(
     inputDecorationTheme: InputDecorationTheme(
-      iconColor: Color(0xFFBBDEFB),
-      fillColor: Colors.black,
+      iconColor: Color.fromARGB(255, 208, 255, 208),
+      fillColor: Color.fromARGB(255, 0, 0, 0),
     ),
   ),
   // radio buttons in settings
   radioTheme: RadioThemeData(fillColor:
       MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
-    return const Color(0xFFBBDEFB);
+    return const Color.fromARGB(255, 208, 255, 208);
   })),
   // icons
   iconTheme: const IconThemeData(
