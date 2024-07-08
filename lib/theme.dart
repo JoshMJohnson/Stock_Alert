@@ -160,7 +160,7 @@ ThemeData darkMode = ThemeData(
   })),
   // icons
   iconTheme: const IconThemeData(
-    color: Color.fromARGB(255, 154, 255, 154),
+    color: Color.fromARGB(255, 208, 255, 208),
   ),
   // border; popup/tickerPage
   cardTheme: const CardTheme(
