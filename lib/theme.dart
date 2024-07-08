@@ -65,9 +65,9 @@ ThemeData lightMode = ThemeData(
     thumbColor: Color.fromARGB(255, 20, 145, 37),
     activeTrackColor: Color.fromARGB(255, 60, 174, 75),
     inactiveTrackColor: Color.fromARGB(255, 0, 53, 7),
-    disabledThumbColor: Color(0xFF0D47A1),
-    disabledActiveTrackColor: Color(0xFF2196F3),
-    disabledInactiveTrackColor: Color(0xFF2196F3),
+    disabledThumbColor: Color.fromARGB(255, 20, 145, 37),
+    disabledActiveTrackColor: Color.fromARGB(255, 60, 174, 75),
+    disabledInactiveTrackColor: Color.fromARGB(255, 0, 53, 7),
   ),
   // dropdown - quantity reminders in settings
   dropdownMenuTheme: const DropdownMenuThemeData(
