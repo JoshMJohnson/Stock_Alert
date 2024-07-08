@@ -17,6 +17,7 @@ class StockWatchlist extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         decoration: BoxDecoration(
+          borderRadius: const BorderRadius.all(Radius.circular(20)),
           gradient: LinearGradient(
             begin: Alignment.bottomCenter,
             end: Alignment.topCenter,

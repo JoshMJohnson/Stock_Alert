@@ -81,10 +81,10 @@ ThemeData darkMode = ThemeData(
   brightness: Brightness.dark,
   fontFamily: 'EBGaramond',
   // bottom background color
-  scaffoldBackgroundColor: const Color(0xFF0B290A),
+  scaffoldBackgroundColor: const Color.fromARGB(255, 21, 75, 20),
   colorScheme: const ColorScheme.dark(
     // top background color
-    background: Color(0xFF145714),
+    background: Color.fromARGB(124, 125, 182, 76),
     // bottom watchlist background color
     primary: Color.fromARGB(255, 103, 12, 12),
     // top watchlist background color
@@ -132,8 +132,8 @@ ThemeData darkMode = ThemeData(
   // buttons
   buttonTheme: const ButtonThemeData(
     colorScheme: ColorScheme.light(
-      background: Colors.black,
-      primary: Color(0xFF1E88E5),
+      background: Color.fromARGB(255, 77, 3, 3),
+      primary: Color.fromARGB(255, 4, 160, 67),
       secondary: Colors.white,
     ),
   ),
