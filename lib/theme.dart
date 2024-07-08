@@ -6,7 +6,7 @@ ThemeData lightMode = ThemeData(
   brightness: Brightness.light,
   fontFamily: 'EBGaramond',
   // bottom background color
-  scaffoldBackgroundColor: const Color.fromARGB(255, 0, 136, 14),
+  scaffoldBackgroundColor: Color.fromARGB(255, 136, 236, 140),
   colorScheme: const ColorScheme.light(
     // top background color
     background: Color.fromARGB(255, 157, 255, 157),
@@ -22,11 +22,11 @@ ThemeData lightMode = ThemeData(
   textTheme: const TextTheme(
     // header font
     headlineMedium: TextStyle(
-      color: Color.fromARGB(255, 79, 4, 4),
+      color: Color.fromARGB(255, 3, 46, 4),
     ),
     // display text
     bodyMedium: TextStyle(
-      color: Color(0xFF0D47A1),
+      color: Color.fromARGB(255, 3, 46, 4),
     ),
     // bear red
     bodySmall: TextStyle(
