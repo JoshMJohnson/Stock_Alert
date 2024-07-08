@@ -55,8 +55,8 @@ ThemeData lightMode = ThemeData(
   // buttons
   buttonTheme: const ButtonThemeData(
     colorScheme: ColorScheme.light(
-      background: Color(0xFF0D47A1),
-      primary: Color(0xFF81D4FA),
+      background: Color.fromARGB(255, 0, 53, 7),
+      primary: Color.fromARGB(255, 15, 98, 26),
       secondary: Color(0xFFE1F5FE),
     ),
   ),
