@@ -56,15 +56,15 @@ ThemeData lightMode = ThemeData(
   buttonTheme: const ButtonThemeData(
     colorScheme: ColorScheme.light(
       background: Color.fromARGB(255, 0, 53, 7),
-      primary: Color.fromARGB(255, 15, 98, 26),
+      primary: Color.fromARGB(255, 133, 255, 150),
       secondary: Color(0xFFE1F5FE),
     ),
   ),
   // slider - ticker page & settings
   sliderTheme: const SliderThemeData(
-    thumbColor: Color(0xFF0D47A1),
-    activeTrackColor: Color(0xFF2196F3),
-    inactiveTrackColor: Color(0xFF1A237E),
+    thumbColor: Color.fromARGB(255, 20, 145, 37),
+    activeTrackColor: Color.fromARGB(255, 60, 174, 75),
+    inactiveTrackColor: Color.fromARGB(255, 0, 53, 7),
     disabledThumbColor: Color(0xFF0D47A1),
     disabledActiveTrackColor: Color(0xFF2196F3),
     disabledInactiveTrackColor: Color(0xFF2196F3),
