@@ -105,7 +105,7 @@ ThemeData darkMode = ThemeData(
     ),
     // bear red
     bodySmall: TextStyle(
-      color: Color(0xFFE57373),
+      color: Color.fromARGB(255, 255, 129, 129),
     ),
     // bull green
     bodyLarge: TextStyle(
