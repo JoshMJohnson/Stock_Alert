@@ -38,7 +38,7 @@ ThemeData lightMode = ThemeData(
     ),
   ),
   // text input field untouched - home page
-  hintColor: const Color(0xFF0D47A1),
+  hintColor: const Color.fromARGB(255, 3, 46, 4),
   // ticker symbol input field - home page
   inputDecorationTheme: const InputDecorationTheme(
     focusedBorder: UnderlineInputBorder(
@@ -83,7 +83,7 @@ ThemeData lightMode = ThemeData(
   })),
   // icons
   iconTheme: const IconThemeData(
-    color: Color(0xFF1A237E),
+    color: Color.fromARGB(255, 3, 46, 4),
   ),
   // border; popup/tickerPage
   cardTheme: const CardTheme(
