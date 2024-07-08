@@ -28,3 +28,6 @@ doc/api/
 
 # Text Files
 twelve_data_api_codes.txt
+
+# app signing
+upload-keystore.jks
