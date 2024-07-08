@@ -5,29 +5,41 @@ import 'package:flutter/material.dart';
 ThemeData lightMode = ThemeData(
   brightness: Brightness.light,
   fontFamily: 'EBGaramond',
+  // bottom background color
   scaffoldBackgroundColor: const Color(0xFF80D8FF),
   colorScheme: const ColorScheme.light(
+    // top background color
     background: Color(0xFFB3E5FC),
+    // bottom watchlist background color
     primary: Color(0xFF2979FF),
+    // top watchlist background color
     secondary: Color(0xFF82B1FF),
+    // basic text; watchlist/popup
     tertiary: Color(0xFF01579B),
   ),
+  // watchlist divider
   dividerColor: const Color(0xFF2962FF),
   textTheme: const TextTheme(
+    // header font
     headlineMedium: TextStyle(
       color: Color(0xFF01579B),
     ),
+    // display text
     bodyMedium: TextStyle(
       color: Color(0xFF0D47A1),
     ),
+    // bear red
     bodySmall: TextStyle(
       color: Color(0xFFD50000),
     ),
+    // bull green
     bodyLarge: TextStyle(
       color: Color(0xFF1B5E20),
     ),
   ),
+  // text input field untouched - home page
   hintColor: const Color(0xFF0D47A1),
+  // ticker symbol input field - home page
   inputDecorationTheme: const InputDecorationTheme(
     focusedBorder: UnderlineInputBorder(
       borderSide: BorderSide(
@@ -40,6 +52,7 @@ ThemeData lightMode = ThemeData(
       ),
     ),
   ),
+  // buttons
   buttonTheme: const ButtonThemeData(
     colorScheme: ColorScheme.light(
       background: Color(0xFF0D47A1),
@@ -47,6 +60,7 @@ ThemeData lightMode = ThemeData(
       secondary: Color(0xFFE1F5FE),
     ),
   ),
+  // slider - ticker page & settings
   sliderTheme: const SliderThemeData(
     thumbColor: Color(0xFF0D47A1),
     activeTrackColor: Color(0xFF2196F3),
@@ -55,22 +69,27 @@ ThemeData lightMode = ThemeData(
     disabledActiveTrackColor: Color(0xFF2196F3),
     disabledInactiveTrackColor: Color(0xFF2196F3),
   ),
+  // dropdown - quantity reminders in settings
   dropdownMenuTheme: const DropdownMenuThemeData(
     inputDecorationTheme: InputDecorationTheme(
       iconColor: Color(0xFF1A237E),
       fillColor: Color(0xFFB3E5FC),
     ),
   ),
+  // radio buttons in settings
   radioTheme: RadioThemeData(fillColor:
       MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
     return const Color(0xFF1A237E);
   })),
+  // icons
   iconTheme: const IconThemeData(
     color: Color(0xFF1A237E),
   ),
+  // border; popup/tickerPage
   cardTheme: const CardTheme(
     color: Color(0xFF2962FF),
   ),
+  // popup displays
   dialogTheme: const DialogTheme(
     backgroundColor: Color(0xFF0B290A),
   ),
