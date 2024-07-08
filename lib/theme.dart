@@ -11,11 +11,11 @@ ThemeData lightMode = ThemeData(
     // top background color
     background: Color.fromARGB(255, 157, 255, 157),
     // bottom watchlist background color
-    primary: Color.fromARGB(255, 255, 134, 134),
+    primary: Color.fromARGB(255, 232, 79, 79),
     // top watchlist background color
-    secondary: Color.fromARGB(255, 155, 0, 0),
+    secondary: Color.fromARGB(255, 209, 24, 24),
     // basic text; watchlist/popup
-    tertiary: Color(0xFF01579B),
+    tertiary: Color(0xFFFFFFFF),
   ),
   // watchlist divider
   dividerColor: const Color(0xFF2962FF),
@@ -91,7 +91,7 @@ ThemeData lightMode = ThemeData(
   ),
   // popup displays
   dialogTheme: const DialogTheme(
-    backgroundColor: Color(0xFF0B290A),
+    backgroundColor: Color.fromARGB(255, 57, 0, 0),
   ),
 );
 
@@ -187,6 +187,6 @@ ThemeData darkMode = ThemeData(
   ),
   // popup displays
   dialogTheme: const DialogTheme(
-    backgroundColor: Color(0xFF0B290A),
+    backgroundColor: Color.fromARGB(255, 25, 112, 23),
   ),
 );
