@@ -30,7 +30,7 @@ ThemeData lightMode = ThemeData(
     ),
     // bear red
     bodySmall: TextStyle(
-      color: Color.fromARGB(255, 255, 129, 129),
+      color: Color.fromARGB(255, 255, 147, 147),
     ),
     // bull green
     bodyLarge: TextStyle(
@@ -128,7 +128,7 @@ ThemeData darkMode = ThemeData(
     ),
     // bull green
     bodyLarge: TextStyle(
-      color: Color(0xFF81C784),
+      color: Color.fromARGB(255, 162, 255, 167),
     ),
   ),
   // text input field untouched - home page
