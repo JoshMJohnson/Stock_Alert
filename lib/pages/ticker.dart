@@ -297,15 +297,10 @@ class TickerPage extends StatelessWidget {
                                         : '-${stock.dayChangePercentage.abs().toStringAsFixed(2)}%',
                                     textScaler: TextScaler.noScaling,
                                     style: TextStyle(
-                                      color: stock.dayChangePercentage >= 0
-                                          ? Theme.of(context)
-                                              .textTheme
-                                              .bodyLarge!
-                                              .color
-                                          : Theme.of(context)
-                                              .textTheme
-                                              .bodySmall!
-                                              .color,
+                                      color: Theme.of(context)
+                                          .textTheme
+                                          .headlineMedium!
+                                          .color,
                                       fontSize: 28,
                                       fontWeight: FontWeight.w600,
                                     ),
@@ -325,15 +320,10 @@ class TickerPage extends StatelessWidget {
                                         : '-\$${stock.dayChangeDollars.abs().toStringAsFixed(2)}',
                                     textScaler: TextScaler.noScaling,
                                     style: TextStyle(
-                                      color: stock.dayChangePercentage >= 0
-                                          ? Theme.of(context)
-                                              .textTheme
-                                              .bodyLarge!
-                                              .color
-                                          : Theme.of(context)
-                                              .textTheme
-                                              .bodySmall!
-                                              .color,
+                                      color: Theme.of(context)
+                                          .textTheme
+                                          .headlineMedium!
+                                          .color,
                                       fontSize: 28,
                                       fontWeight: FontWeight.w600,
                                     ),
