@@ -59,7 +59,7 @@ class _TickerInputFieldsState extends State<TickerInputFields> {
           autocorrect: false,
           enableSuggestions: false,
           style: TextStyle(
-            color: Theme.of(context).colorScheme.tertiary,
+            color: Theme.of(context).textTheme.bodyMedium!.color,
             fontSize: 22,
             fontWeight: FontWeight.w600,
           ),
@@ -162,8 +162,10 @@ class _TickerInputFieldsState extends State<TickerInputFields> {
                                   widget.currentTicker,
                                   textScaler: TextScaler.noScaling,
                                   style: TextStyle(
-                                    color:
-                                        Theme.of(context).colorScheme.tertiary,
+                                    color: Theme.of(context)
+                                        .textTheme
+                                        .bodyMedium!
+                                        .color,
                                     fontSize: 30,
                                     fontWeight: FontWeight.w600,
                                     fontStyle: FontStyle.italic,
@@ -177,8 +179,10 @@ class _TickerInputFieldsState extends State<TickerInputFields> {
                                   textScaler: TextScaler.noScaling,
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
-                                    color:
-                                        Theme.of(context).colorScheme.tertiary,
+                                    color: Theme.of(context)
+                                        .textTheme
+                                        .bodyMedium!
+                                        .color,
                                     fontSize: 20,
                                     fontWeight: FontWeight.w600,
                                     fontStyle: FontStyle.normal,
@@ -236,8 +240,10 @@ class _TickerInputFieldsState extends State<TickerInputFields> {
                                   widget.currentTicker,
                                   textScaler: TextScaler.noScaling,
                                   style: TextStyle(
-                                    color:
-                                        Theme.of(context).colorScheme.tertiary,
+                                    color: Theme.of(context)
+                                        .textTheme
+                                        .bodyMedium!
+                                        .color,
                                     fontSize: 30,
                                     fontWeight: FontWeight.w600,
                                     fontStyle: FontStyle.italic,
@@ -338,7 +344,10 @@ class _TickerInputFieldsState extends State<TickerInputFields> {
                                 widget.currentTicker,
                                 textScaler: TextScaler.noScaling,
                                 style: TextStyle(
-                                  color: Theme.of(context).colorScheme.tertiary,
+                                  color: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium!
+                                      .color,
                                   fontSize: 30,
                                   fontWeight: FontWeight.w600,
                                   fontStyle: FontStyle.italic,
@@ -352,7 +361,10 @@ class _TickerInputFieldsState extends State<TickerInputFields> {
                                 textScaler: TextScaler.noScaling,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
-                                  color: Theme.of(context).colorScheme.tertiary,
+                                  color: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium!
+                                      .color,
                                   fontSize: 20,
                                   fontWeight: FontWeight.w600,
                                   fontStyle: FontStyle.normal,
@@ -410,7 +422,10 @@ class _TickerInputFieldsState extends State<TickerInputFields> {
                                 widget.currentTicker,
                                 textScaler: TextScaler.noScaling,
                                 style: TextStyle(
-                                  color: Theme.of(context).colorScheme.tertiary,
+                                  color: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium!
+                                      .color,
                                   fontSize: 30,
                                   fontWeight: FontWeight.w600,
                                   fontStyle: FontStyle.italic,

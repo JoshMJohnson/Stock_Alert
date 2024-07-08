@@ -6,7 +6,7 @@ ThemeData lightMode = ThemeData(
   brightness: Brightness.light,
   fontFamily: 'EBGaramond',
   // bottom background color
-  scaffoldBackgroundColor: Color.fromARGB(255, 136, 236, 140),
+  scaffoldBackgroundColor: const Color.fromARGB(255, 136, 236, 140),
   colorScheme: const ColorScheme.light(
     // top background color
     background: Color.fromARGB(255, 157, 255, 157),
@@ -43,12 +43,12 @@ ThemeData lightMode = ThemeData(
   inputDecorationTheme: const InputDecorationTheme(
     focusedBorder: UnderlineInputBorder(
       borderSide: BorderSide(
-        color: Color.fromARGB(255, 154, 255, 154),
+        color: Color.fromARGB(255, 7, 88, 7),
       ),
     ),
     enabledBorder: UnderlineInputBorder(
       borderSide: BorderSide(
-        color: Color.fromARGB(255, 7, 88, 7),
+        color: Color.fromARGB(255, 72, 138, 72),
       ),
     ),
   ),
@@ -79,7 +79,7 @@ ThemeData lightMode = ThemeData(
   // radio buttons in settings
   radioTheme: RadioThemeData(fillColor:
       MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
-    return const Color(0xFF1A237E);
+    return const Color.fromARGB(255, 3, 46, 4);
   })),
   // icons
   iconTheme: const IconThemeData(
