@@ -89,7 +89,7 @@ ThemeData darkMode = ThemeData(
     primary: Color.fromARGB(255, 201, 201, 201),
     // top watchlist background color
     secondary: Color.fromARGB(255, 96, 7, 7),
-    // todo discover where used
+    // basic text; watchlist/popup
     tertiary: Color(0xFFE8EAF6),
   ),
   // watchlist divider
@@ -162,7 +162,7 @@ ThemeData darkMode = ThemeData(
   iconTheme: const IconThemeData(
     color: Color.fromARGB(255, 154, 255, 154),
   ),
-  // todo discover where used
+  // border; popup/tickerPage
   cardTheme: const CardTheme(
     color: Color(0xFFE0E0E0),
   ),
