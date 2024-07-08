@@ -86,14 +86,14 @@ ThemeData darkMode = ThemeData(
     // top background color
     background: Color(0xFF145714),
     // bottom watchlist background color
-    primary: Color.fromARGB(255, 201, 201, 201),
+    primary: Color.fromARGB(255, 103, 12, 12),
     // top watchlist background color
-    secondary: Color.fromARGB(255, 96, 7, 7),
+    secondary: Color.fromARGB(255, 57, 0, 0),
     // basic text; watchlist/popup
-    tertiary: Color(0xFFE8EAF6),
+    tertiary: Color.fromARGB(255, 255, 255, 255),
   ),
   // watchlist divider
-  dividerColor: const Color(0xFF90CAF9),
+  dividerColor: const Color.fromARGB(255, 170, 8, 8),
   textTheme: const TextTheme(
     // header font
     headlineMedium: TextStyle(
@@ -119,13 +119,13 @@ ThemeData darkMode = ThemeData(
     // text field selected
     focusedBorder: UnderlineInputBorder(
       borderSide: BorderSide(
-        color: Color.fromARGB(255, 154, 255, 154),
+        color: Color.fromARGB(255, 255, 255, 255),
       ),
     ),
     // text field not selected
     enabledBorder: UnderlineInputBorder(
       borderSide: BorderSide(
-        color: Color.fromARGB(255, 7, 88, 7),
+        color: Color.fromARGB(255, 154, 255, 154),
       ),
     ),
   ),
