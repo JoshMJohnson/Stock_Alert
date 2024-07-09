@@ -126,7 +126,7 @@ class NotificationService {
       content: NotificationContent(
         id: 1,
         channelKey: 'foreground_service',
-        title: 'Stock Alert Active...',
+        title: 'Stock Alert is active...',
         category: NotificationCategory.Service,
         locked: true,
         autoDismissible: false,

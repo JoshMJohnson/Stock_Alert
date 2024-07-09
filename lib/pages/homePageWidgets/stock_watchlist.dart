@@ -95,6 +95,7 @@ class StockWatchlist extends StatelessWidget {
                   Text(
                     watchlist[index].tickerPrice.toStringAsFixed(2),
                     textScaler: TextScaler.noScaling,
+                    textAlign: TextAlign.end,
                     style: TextStyle(
                         color: Theme.of(context).colorScheme.tertiary,
                         fontSize: 20,
