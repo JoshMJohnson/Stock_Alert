@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 import 'package:stock_alert/pages/homePageWidgets/stock_entity.dart';
 import '../ticker.dart';
@@ -59,11 +60,11 @@ class StockWatchlist extends StatelessWidget {
                 onChanged: (bool updatedSwitchValue) => updateActiveTracking(
                     watchlist[index].ticker, updatedSwitchValue),
               ),
+              horizontalTitleGap: 5,
               title: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  SizedBox(
-                    width: 115,
+                  Expanded(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -108,7 +109,7 @@ class StockWatchlist extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Text(
-                      '${watchlist[index].dayChangePercentage.toStringAsFixed(2)} (%)',
+                      '${watchlist[index].dayChangePercentage.toStringAsFixed(2)}%',
                       textScaler: TextScaler.noScaling,
                       style: TextStyle(
                           color: watchlist[index].dayChangePercentage >= 0
@@ -118,7 +119,9 @@ class StockWatchlist extends StatelessWidget {
                           fontWeight: FontWeight.w600),
                     ),
                     Text(
-                      '${watchlist[index].dayChangeDollars.toStringAsFixed(2)}  (\$)',
+                      watchlist[index].dayChangeDollars >= 0
+                          ? '\$${watchlist[index].dayChangeDollars.toStringAsFixed(2)}'
+                          : '-\$${watchlist[index].dayChangeDollars.abs().toStringAsFixed(2)}',
                       textScaler: TextScaler.noScaling,
                       style: TextStyle(
                           color: watchlist[index].dayChangeDollars >= 0
