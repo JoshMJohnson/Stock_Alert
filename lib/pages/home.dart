@@ -140,9 +140,9 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     notificationQuantity = prefs.getInt('notificationQuantity') ?? 3;
 
     /* time of day preference variables */
-    final int tod1Hours = prefs.getInt('tod1Hours') ?? 8;
-    final int tod2Hours = prefs.getInt('tod2Hours') ?? 12;
-    final int tod3Hours = prefs.getInt('tod3Hours') ?? 14;
+    final int tod1Hours = prefs.getInt('tod1Hours') ?? 7;
+    final int tod2Hours = prefs.getInt('tod2Hours') ?? 11;
+    final int tod3Hours = prefs.getInt('tod3Hours') ?? 13;
 
     final int tod1Minutes = prefs.getInt('tod1Minutes') ?? 45;
     final int tod2Minutes = prefs.getInt('tod2Minutes') ?? 0;
