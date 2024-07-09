@@ -104,7 +104,7 @@ class StockWatchlist extends StatelessWidget {
                 ],
               ),
               trailing: SizedBox(
-                width: 75,
+                width: 70,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.end,
