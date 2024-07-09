@@ -6,6 +6,7 @@ import 'package:stock_alert/pages/homePageWidgets/stock_entity.dart';
 import 'pages/home.dart';
 import './theme.dart';
 import 'package:stock_alert/database_repository.dart';
+import 'package:flutter/services.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -81,6 +82,12 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    /* prevents screen rotation */
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: lightMode,
