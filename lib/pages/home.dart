@@ -570,7 +570,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   /* header widget */
   AppBar header(BuildContext context) {
     return AppBar(
-        leadingWidth: 110,
+        leadingWidth: 80,
         leading: IconButton(
           onPressed: showInfoDialog,
           icon: Icon(
