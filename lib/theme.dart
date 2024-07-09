@@ -183,7 +183,7 @@ ThemeData darkMode = ThemeData(
   ),
   // border; popup/tickerPage
   cardTheme: const CardTheme(
-    color: Color(0xFFE0E0E0),
+    color: Color.fromARGB(255, 94, 255, 94),
   ),
   // popup displays
   dialogTheme: const DialogTheme(
