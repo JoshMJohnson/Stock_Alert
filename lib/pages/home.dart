@@ -645,16 +645,13 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
             height: 200,
             fit: BoxFit.fill,
           ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-            child: TickerInputFields(
-              tickerFieldHandler,
-              addTicker,
-              removeTicker,
-              currentTicker,
-              tickerTextController,
-              watchlist,
-            ),
+          TickerInputFields(
+            tickerFieldHandler,
+            addTicker,
+            removeTicker,
+            currentTicker,
+            tickerTextController,
+            watchlist,
           ),
           Padding(
             padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
