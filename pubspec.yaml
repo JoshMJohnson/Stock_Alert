@@ -43,6 +43,7 @@ dependencies:
   http: ^1.2.1
   fading_edge_scrollview: ^4.1.1
   flutter_launcher_icons: ^0.13.1
+  disable_battery_optimization: ^1.1.1
 
 flutter_launcher_icons:
   android: true

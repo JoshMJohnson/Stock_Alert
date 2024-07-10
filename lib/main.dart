@@ -8,6 +8,8 @@ import './theme.dart';
 import 'package:stock_alert/database_repository.dart';
 import 'package:flutter/services.dart';
 
+import 'package:disable_battery_optimization/disable_battery_optimization.dart';
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -42,6 +44,9 @@ Future<void> main() async {
       TimeOfDay(hour: tod2Hours, minute: tod2Minutes);
   final TimeOfDay startupNotification3 =
       TimeOfDay(hour: tod3Hours, minute: tod3Minutes);
+
+  /* turn off battery optimization */
+  await DisableBatteryOptimization.showDisableBatteryOptimizationSettings();
 
   // * database
   List<StockEntity> watchlist = await DatabaseRepository.getStockSymbols();
