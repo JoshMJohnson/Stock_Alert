@@ -29,7 +29,7 @@ Future<void> main() async {
 
   /* loads daily reminder settings */
   final int tod1Hours = prefs.getInt('tod1Hours') ?? 9;
-  final int tod2Hours = prefs.getInt('tod2Hours') ?? 1;
+  final int tod2Hours = prefs.getInt('tod2Hours') ?? 13;
   final int tod3Hours = prefs.getInt('tod3Hours') ?? 15;
 
   final int tod1Minutes = prefs.getInt('tod1Minutes') ?? 45;
