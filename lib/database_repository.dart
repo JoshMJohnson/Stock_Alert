@@ -130,7 +130,8 @@ class DatabaseRepository {
     }
 
     /* sort notification ticker symbols */
-    final String sortAlgorithm = prefs.getString('watchlistSort')!;
+    final String sortAlgorithm =
+        prefs.getString('watchlistSort') ?? 'Alphabetically';
 
     if (sortAlgorithm == 'Alphabetically') {
       bullStocks.sort((a, b) => a.ticker.compareTo(b.ticker));
