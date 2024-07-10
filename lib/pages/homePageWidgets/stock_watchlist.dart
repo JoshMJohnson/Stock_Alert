@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 import 'package:stock_alert/pages/homePageWidgets/stock_entity.dart';
 import '../ticker.dart';
