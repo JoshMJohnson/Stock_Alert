@@ -46,7 +46,11 @@ Future<void> main() async {
       TimeOfDay(hour: tod3Hours, minute: tod3Minutes);
 
   /* turn off battery optimization */
-  await DisableBatteryOptimization.showDisableBatteryOptimizationSettings();
+  bool? isBatteryOptimizationDisabled =
+      await DisableBatteryOptimization.isBatteryOptimizationDisabled;
+  if (isBatteryOptimizationDisabled != null && !isBatteryOptimizationDisabled) {
+    await DisableBatteryOptimization.showDisableBatteryOptimizationSettings();
+  }
 
   // * database
   List<StockEntity> watchlist = await DatabaseRepository.getStockSymbols();
