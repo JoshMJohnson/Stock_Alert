@@ -131,8 +131,6 @@ class NotificationService {
         locked: true,
         autoDismissible: false,
         color: const Color.fromARGB(255, 70, 130, 180),
-        displayOnBackground: true,
-        displayOnForeground: true,
       ),
     );
   }
