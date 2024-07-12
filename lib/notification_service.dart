@@ -407,7 +407,7 @@ class NotificationService {
             bearTickerList[tempTicker].tickerPrice.toStringAsFixed(2);
 
         String tickerLine =
-            '${Emojis.office_chart_decreasing} $tempTickerSymbol -\$$tempPPS (\$$tempDayChange) (-$tempPercentChange%) ${Emojis.office_chart_decreasing}';
+            '${Emojis.office_chart_decreasing} $tempTickerSymbol \$$tempPPS (-\$$tempDayChange) (-$tempPercentChange%) ${Emojis.office_chart_decreasing}';
 
         /* if last ticker in list of bull stocks given */
         if (tempTicker == bearTickerList.length - 1) {
