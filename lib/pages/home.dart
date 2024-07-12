@@ -308,8 +308,8 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   void sortChangeHandler() async {
     setState(() {
       if (sortAlgorithm == 'Alphabetically') {
-        sortAlgorithm = 'Ticker Price';
-      } else if (sortAlgorithm == 'Ticker Price') {
+        sortAlgorithm = 'Ticker Price (PPS)';
+      } else if (sortAlgorithm == 'Ticker Price (PPS)') {
         sortAlgorithm = 'Day Change (%)';
       } else {
         sortAlgorithm = 'Alphabetically';
@@ -324,7 +324,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   void updateWatchlistSortAlgorithm() {
     if (sortAlgorithm == 'Alphabetically') {
       watchlist.sort((a, b) => a.ticker.compareTo(b.ticker));
-    } else if (sortAlgorithm == 'Ticker Price') {
+    } else if (sortAlgorithm == 'Ticker Price (PPS)') {
       watchlist.sort((a, b) => b.tickerPrice.compareTo(a.tickerPrice));
     } else {
       watchlist.sort(
