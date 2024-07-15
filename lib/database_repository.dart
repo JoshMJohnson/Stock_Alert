@@ -135,7 +135,7 @@ class DatabaseRepository {
 
     if (sortAlgorithm == 'Alphabetically') {
       bullStocks.sort((a, b) => a.ticker.compareTo(b.ticker));
-    } else if (sortAlgorithm == 'Ticker Price') {
+    } else if (sortAlgorithm == 'Ticker Price (PPS)') {
       bullStocks.sort((a, b) => b.tickerPrice.compareTo(a.tickerPrice));
     } else {
       bullStocks.sort(
@@ -173,7 +173,7 @@ class DatabaseRepository {
 
     if (sortAlgorithm == 'Alphabetically') {
       bearStocks.sort((a, b) => a.ticker.compareTo(b.ticker));
-    } else if (sortAlgorithm == 'Ticker Price') {
+    } else if (sortAlgorithm == 'Ticker Price (PPS)') {
       bearStocks.sort((a, b) => b.tickerPrice.compareTo(a.tickerPrice));
     } else {
       bearStocks.sort((a, b) =>
