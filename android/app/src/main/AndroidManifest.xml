@@ -22,6 +22,10 @@
           android:foregroundServiceType='specialUse'
           tools:replace="android:foregroundServiceType,android:exported,android:stopWithTask"></service>
 
+        <service
+            android:name="id.flutter.flutter_background_service.BackgroundService"
+            android:foregroundServiceType="specialUse" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true"

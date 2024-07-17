@@ -1,33 +1,36 @@
-import 'package:awesome_notifications/android_foreground_service.dart';
+// import 'package:awesome_notifications/android_foreground_service.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:stock_alert/database_repository.dart';
 import 'package:stock_alert/pages/homePageWidgets/stock_entity.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_background_service/flutter_background_service.dart';
 
 class NotificationService {
   /* initializes local notifications */
   static Future init() async {
     AwesomeNotifications().setListeners(
-      onActionReceivedMethod: NotificationService.onActionReceivedMethod,
-      onDismissActionReceivedMethod:
-          NotificationService.onDismissActionReceivedMethod,
+      onActionReceivedMethod: onActionReceivedMethod,
+      onDismissActionReceivedMethod: onDismissActionReceivedMethod,
       onNotificationDisplayedMethod: onNotificationDisplayedMethod,
-      onNotificationCreatedMethod:
-          NotificationService.onNotificationCreatedMethod,
+      onNotificationCreatedMethod: onNotificationCreatedMethod,
     );
 
     channelCreation();
+    initializeService();
   }
 
   /// Use this method to detect when a new notification or a schedule is created
   @pragma("vm:entry-point")
   static Future<void> onNotificationCreatedMethod(
-      ReceivedNotification receivedNotification) async {}
+      ReceivedNotification receivedNotification) async {
+    debugPrint('**********************************2');
+  }
 
   /* triggers on notification displayed */
   static Future onNotificationDisplayedMethod(
       ReceivedNotification receivedNotification) async {
+    debugPrint('**********************************1');
     /* if scheduled notification; begin pulling data from watchlist */
     /* 18 = starting at 3, 5 days a week, 3 possible daily reminders */
     if (receivedNotification.id! >= 3 && receivedNotification.id! <= 18) {
@@ -38,12 +41,16 @@ class NotificationService {
   /// Use this method to detect if the user dismissed a notification
   @pragma("vm:entry-point")
   static Future<void> onDismissActionReceivedMethod(
-      ReceivedAction receivedAction) async {}
+      ReceivedAction receivedAction) async {
+    debugPrint('**********************************3');
+  }
 
   /// Use this method to detect when the user taps on a notification or action button
   @pragma("vm:entry-point")
   static Future<void> onActionReceivedMethod(
-      ReceivedAction receivedAction) async {}
+      ReceivedAction receivedAction) async {
+    debugPrint('**********************************4');
+  }
 
   /* creates the notification channels */
   static Future channelCreation() async {
@@ -118,26 +125,89 @@ class NotificationService {
     return await AwesomeNotifications().requestPermissionToSendNotifications();
   }
 
-  /* starts the foreground service */
-  static startForegroundService() {
-    AndroidForegroundService.startAndroidForegroundService(
-      foregroundStartMode: ForegroundStartMode.stick,
-      foregroundServiceType: ForegroundServiceType.none,
-      content: NotificationContent(
-        id: 1,
-        channelKey: 'foreground_service',
-        title: 'Stock Alert is active...',
-        category: NotificationCategory.Service,
-        locked: true,
-        autoDismissible: false,
-        color: const Color.fromARGB(255, 70, 130, 180),
+  static Future<void> initializeService() async {
+    final service = FlutterBackgroundService();
+
+    await service.configure(
+      iosConfiguration: IosConfiguration(),
+      androidConfiguration: AndroidConfiguration(
+        autoStart: false,
+        onStart: onStart,
+        isForegroundMode: true,
+        autoStartOnBoot: true,
+        notificationChannelId: 'foreground_service',
+        // initialNotificationTitle: 'yayayayya',
+        foregroundServiceNotificationId: 1,
       ),
     );
   }
 
+  /* brings app from background to foreground */
+  @pragma("vm:entry-point")
+  static onStart(ServiceInstance service) async {
+    if (service is AndroidServiceInstance) {
+      service.on('setAsForeground').listen((event) {
+        service.setAsForegroundService();
+      });
+
+      service.on('setAsBackground').listen((event) {
+        service.setAsBackgroundService();
+      });
+    }
+
+    service.on('stopService').listen((event) {
+      service.stopSelf();
+    });
+
+    AwesomeNotifications().createNotification(
+        content: NotificationContent(
+      id: 1,
+      channelKey: 'foreground_service',
+      title: 'Stock Alert is active...',
+      category: NotificationCategory.Service,
+      actionType: ActionType.SilentBackgroundAction,
+      locked: true,
+      autoDismissible: false,
+      color: const Color.fromARGB(255, 70, 130, 180),
+    ));
+
+    // NotificationContent(
+    //   id: 1,
+    //   channelKey: 'foreground_service',
+    //   title: 'Stock Alert is active...',
+    //   category: NotificationCategory.Service,
+    //   locked: true,
+    //   autoDismissible: false,
+    //   color: const Color.fromARGB(255, 70, 130, 180),
+    // );
+  }
+
+  /* starts the foreground service */
+  static startForegroundService() {
+    // AndroidForegroundService.startAndroidForegroundService(
+    //   foregroundStartMode: ForegroundStartMode.stick,
+    //   foregroundServiceType: ForegroundServiceType.none,
+    //   content: NotificationContent(
+    //     id: 1,
+    //     channelKey: 'foreground_service',
+    //     title: 'Stock Alert is active...',
+    //     category: NotificationCategory.Service,
+    //     locked: true,
+    //     autoDismissible: false,
+    //     color: const Color.fromARGB(255, 70, 130, 180),
+    //   ),
+    // );
+
+    final service = FlutterBackgroundService();
+    service.startService();
+  }
+
   /* terminates the foreground service */
   static terminateForegroundService() {
-    AndroidForegroundService.stopForeground(1);
+    // AndroidForegroundService.stopForeground(1);
+
+    final service = FlutterBackgroundService();
+    service.invoke("stopService");
   }
 
   /* terminates all previous scheduled notifications */
