@@ -166,21 +166,11 @@ class NotificationService {
       channelKey: 'foreground_service',
       title: 'Stock Alert is active...',
       category: NotificationCategory.Service,
-      actionType: ActionType.SilentBackgroundAction,
+      actionType: ActionType.Default,
       locked: true,
       autoDismissible: false,
       color: const Color.fromARGB(255, 70, 130, 180),
     ));
-
-    // NotificationContent(
-    //   id: 1,
-    //   channelKey: 'foreground_service',
-    //   title: 'Stock Alert is active...',
-    //   category: NotificationCategory.Service,
-    //   locked: true,
-    //   autoDismissible: false,
-    //   color: const Color.fromARGB(255, 70, 130, 180),
-    // );
   }
 
   /* starts the foreground service */
