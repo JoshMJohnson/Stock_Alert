@@ -125,6 +125,7 @@ class NotificationService {
     return await AwesomeNotifications().requestPermissionToSendNotifications();
   }
 
+  /* initializes the background service */
   static Future<void> initializeService() async {
     final service = FlutterBackgroundService();
 
