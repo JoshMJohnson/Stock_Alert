@@ -1,10 +1,10 @@
-// import 'package:awesome_notifications/android_foreground_service.dart';
+import 'package:awesome_notifications/android_foreground_service.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:stock_alert/database_repository.dart';
 import 'package:stock_alert/pages/homePageWidgets/stock_entity.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:flutter_background_service/flutter_background_service.dart';
+// import 'package:flutter_background_service/flutter_background_service.dart';
 
 class NotificationService {
   /* initializes local notifications */
@@ -17,7 +17,7 @@ class NotificationService {
     );
 
     channelCreation();
-    initializeService();
+    // initializeService();
   }
 
   /// Use this method to detect when a new notification or a schedule is created
@@ -126,79 +126,79 @@ class NotificationService {
   }
 
   /* initializes the background service */
-  static Future<void> initializeService() async {
-    final service = FlutterBackgroundService();
+  // static Future<void> initializeService() async {
+  //   final service = FlutterBackgroundService();
 
-    await service.configure(
-      iosConfiguration: IosConfiguration(),
-      androidConfiguration: AndroidConfiguration(
-        autoStart: false,
-        onStart: onStart,
-        isForegroundMode: true,
-        autoStartOnBoot: true,
-        notificationChannelId: 'foreground_service',
-        // initialNotificationTitle: 'yayayayya',
-        foregroundServiceNotificationId: 1,
-      ),
-    );
-  }
+  //   await service.configure(
+  //     iosConfiguration: IosConfiguration(),
+  //     androidConfiguration: AndroidConfiguration(
+  //       autoStart: false,
+  //       onStart: onStart,
+  //       isForegroundMode: true,
+  //       autoStartOnBoot: true,
+  //       notificationChannelId: 'foreground_service',
+  //       // initialNotificationTitle: 'yayayayya',
+  //       foregroundServiceNotificationId: 1,
+  //     ),
+  //   );
+  // }
 
   /* brings app from background to foreground */
-  @pragma("vm:entry-point")
-  static onStart(ServiceInstance service) async {
-    if (service is AndroidServiceInstance) {
-      service.on('setAsForeground').listen((event) {
-        service.setAsForegroundService();
-      });
+  // @pragma("vm:entry-point")
+  // static onStart(ServiceInstance service) async {
+  //   if (service is AndroidServiceInstance) {
+  //     service.on('setAsForeground').listen((event) {
+  //       service.setAsForegroundService();
+  //     });
 
-      service.on('setAsBackground').listen((event) {
-        service.setAsBackgroundService();
-      });
-    }
+  //     service.on('setAsBackground').listen((event) {
+  //       service.setAsBackgroundService();
+  //     });
+  //   }
 
-    service.on('stopService').listen((event) {
-      service.stopSelf();
-    });
+  //   service.on('stopService').listen((event) {
+  //     service.stopSelf();
+  //   });
 
-    AwesomeNotifications().createNotification(
-        content: NotificationContent(
-      id: 1,
-      channelKey: 'foreground_service',
-      title: 'Stock Alert is active...',
-      category: NotificationCategory.Service,
-      actionType: ActionType.Default,
-      locked: true,
-      autoDismissible: false,
-      color: const Color.fromARGB(255, 70, 130, 180),
-    ));
-  }
+  //   AwesomeNotifications().createNotification(
+  //       content: NotificationContent(
+  //     id: 1,
+  //     channelKey: 'foreground_service',
+  //     title: 'Stock Alert is active...',
+  //     category: NotificationCategory.Service,
+  //     actionType: ActionType.Default,
+  //     locked: true,
+  //     autoDismissible: false,
+  //     color: const Color.fromARGB(255, 70, 130, 180),
+  //   ));
+  // }
 
   /* starts the foreground service */
   static startForegroundService() {
-    // AndroidForegroundService.startAndroidForegroundService(
-    //   foregroundStartMode: ForegroundStartMode.stick,
-    //   foregroundServiceType: ForegroundServiceType.none,
-    //   content: NotificationContent(
-    //     id: 1,
-    //     channelKey: 'foreground_service',
-    //     title: 'Stock Alert is active...',
-    //     category: NotificationCategory.Service,
-    //     locked: true,
-    //     autoDismissible: false,
-    //     color: const Color.fromARGB(255, 70, 130, 180),
-    //   ),
-    // );
+    AndroidForegroundService.startAndroidForegroundService(
+      foregroundStartMode: ForegroundStartMode.stick,
+      foregroundServiceType: ForegroundServiceType.none,
+      content: NotificationContent(
+        id: 1,
+        channelKey: 'foreground_service',
+        title: 'Stock Alert is active...',
+        category: NotificationCategory.Service,
+        locked: true,
+        autoDismissible: false,
+        color: const Color.fromARGB(255, 70, 130, 180),
+      ),
+    );
 
-    final service = FlutterBackgroundService();
-    service.startService();
+    // final service = FlutterBackgroundService();
+    // service.startService();
   }
 
   /* terminates the foreground service */
   static terminateForegroundService() {
-    // AndroidForegroundService.stopForeground(1);
+    AndroidForegroundService.stopForeground(1);
 
-    final service = FlutterBackgroundService();
-    service.invoke("stopService");
+    // final service = FlutterBackgroundService();
+    // service.invoke("stopService");
   }
 
   /* terminates all previous scheduled notifications */
@@ -218,7 +218,7 @@ class NotificationService {
         id: notificationID,
         channelKey: 'schedule_triggered',
         color: const Color.fromARGB(255, 70, 130, 180),
-        actionType: ActionType.SilentBackgroundAction,
+        actionType: ActionType.SilentAction,
         category: NotificationCategory.Reminder,
         title: 'Updating watchlist',
         timeoutAfter: const Duration(seconds: 1),
@@ -281,6 +281,13 @@ class NotificationService {
         easternTimeZone, counterID, dayCounter, notification1);
     counterID++;
     dayCounter = 1;
+
+    // ! testing start
+    notificationGenerator(easternTimeZone, counterID, 6, notification1);
+    counterID++;
+    notificationGenerator(easternTimeZone, counterID, 7, notification1);
+    counterID++;
+    // ! testing end
 
     /* scheduled daily reminder 2 */
     if (quanitiyReminders >= 2) {
