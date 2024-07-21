@@ -1,27 +1,20 @@
-import 'dart:isolate';
-import 'dart:ui';
-
-import 'package:awesome_notifications/android_foreground_service.dart';
+// import 'package:awesome_notifications/android_foreground_service.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:stock_alert/database_repository.dart';
 import 'package:stock_alert/pages/homePageWidgets/stock_entity.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_background_service/flutter_background_service.dart';
+import 'dart:isolate';
+import 'dart:ui';
 
 class NotificationService {
   /* initializes local notifications */
   static Future init() async {
-    AwesomeNotifications().setListeners(
-      onActionReceivedMethod: onActionReceivedMethod,
-      onDismissActionReceivedMethod: onDismissActionReceivedMethod,
-      onNotificationDisplayedMethod: onNotificationDisplayedMethod,
-      onNotificationCreatedMethod: onNotificationCreatedMethod,
-    );
-
-    channelCreation();
-    initializeService();
-    initializePorts();
+    await initializePorts();
+    await channelCreation();
+    await createListeners();
+    await initializeService();
   }
 
   /// Use this method to detect when a new notification or a schedule is created
@@ -65,6 +58,7 @@ class NotificationService {
     debugPrint('**********************************4');
   }
 
+  /* creates the receive port for notifications in the background */
   static Future initializePorts() async {
     ReceivePort receivePort = ReceivePort();
 
@@ -142,6 +136,16 @@ class NotificationService {
           enableVibration: true,
         ),
       ],
+    );
+  }
+
+  /* creates the event listeners for the notifications */
+  static Future createListeners() async {
+    AwesomeNotifications().setListeners(
+      onActionReceivedMethod: onActionReceivedMethod,
+      onDismissActionReceivedMethod: onDismissActionReceivedMethod,
+      onNotificationDisplayedMethod: onNotificationDisplayedMethod,
+      onNotificationCreatedMethod: onNotificationCreatedMethod,
     );
   }
 
