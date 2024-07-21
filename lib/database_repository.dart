@@ -15,7 +15,7 @@ class DatabaseRepository {
   static final DatabaseRepository instance = DatabaseRepository._constructor();
   static const String stocksTable = 'stocks';
   static const String apiCode =
-      '1a5736c710a640679295533e0c6a53ca'; /* Twelve Data API currently */
+      'b621e679c4744860a830188951a1a427'; /* Twelve Data API currently */
   static bool isMarketOpen = false;
 
   DatabaseRepository._constructor();
