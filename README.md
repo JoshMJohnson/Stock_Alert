@@ -19,12 +19,12 @@ Provides stock alerts of major changes in the market<br>
 
 <br>
 
-<img src="/project_screenshots/ticker_light.png" alt="Home page light mode" width="250" height="500" align="left">
-<img src="/project_screenshots/ticker_dark.png" alt="Home page dark mode" width="250" height="500" align="right">
+<img src="/project_screenshots/ticker_light.png" alt="Ticker page light mode" width="250" height="500" align="left">
+<img src="/project_screenshots/ticker_dark.png" alt="Ticker page dark mode" width="250" height="500" align="right">
 
 <br>
 
-<img src="/project_screenshots/settings_light_mode.jpg" alt="Home page light mode" width="250" height="500" align="left">
-<img src="/project_screenshots/settings_dark_mode.jpg" alt="Home page dark mode" width="250" height="500" align="right">
+<img src="/project_screenshots/settings_light_mode.jpg" alt="Settings page light mode" width="250" height="500" align="left">
+<!-- <img src="/project_screenshots/settings_dark_mode.jpg" alt="Settings page dark mode" width="250" height="500" align="right"> -->
 
 </div>
