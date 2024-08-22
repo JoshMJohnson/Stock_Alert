@@ -24,8 +24,8 @@ Provides stock alerts of major changes in the market<br>
 
 <br>
 
-<img src="/project_screenshots/bear_bull_notifications.png" alt="Bear/Bull notifications" width="250" height="500" align="left">
-<img src="/project_screenshots/updating_watchlist_notification.png" alt="Updating watchlist" width="250" height="500" align="right">
+<img src="/project_screenshots/bear_bull_notifications.jpg" alt="Bear/Bull notifications" width="250" height="500" align="left">
+<img src="/project_screenshots/updating_watchlist_notification.jpg" alt="Updating watchlist" width="250" height="500" align="right">
 
 <br>
 
