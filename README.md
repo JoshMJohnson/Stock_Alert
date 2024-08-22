@@ -14,8 +14,8 @@ Provides stock alerts of major changes in the market<br>
 
 <div align='center'>
 
-<img src="/project_screenshots/home_light.jpg" alt="Home page light mode" width="250" height="500" align="left">
-<img src="/project_screenshots/home_dark.jpg" alt="Home page dark mode" width="250" height="500" align="right">
+<img src="/project_screenshots/home_light_mode.jpg" alt="Home page light mode" width="250" height="500" align="left">
+<img src="/project_screenshots/home_dark_mode.jpg" alt="Home page dark mode" width="250" height="500" align="right">
 
 <br>
 
@@ -24,7 +24,7 @@ Provides stock alerts of major changes in the market<br>
 
 <br>
 
-<img src="/project_screenshots/settings_light.jpg" alt="Home page light mode" width="250" height="500" align="left">
-<img src="/project_screenshots/settings_dark.jpg" alt="Home page dark mode" width="250" height="500" align="right">
+<img src="/project_screenshots/settings_light_mode.jpg" alt="Home page light mode" width="250" height="500" align="left">
+<img src="/project_screenshots/settings_dark_mode.jpg" alt="Home page dark mode" width="250" height="500" align="right">
 
 </div>
