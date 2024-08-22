@@ -5,11 +5,8 @@
 <i>Still in development</i>
 
 Provides stock alerts of major changes in the market.
-
-<br><br>
-
+<br>
 Developed using the Flutter framework and programmed using the Dart language.
-
 <br>
 
 </div>
