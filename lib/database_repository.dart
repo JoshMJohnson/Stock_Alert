@@ -298,6 +298,13 @@ class DatabaseRepository {
       List<StockEntity> bearStocks = await getBearStocks();
       NotificationService.createBearBullNotifications(bullStocks, bearStocks);
     }
+    // ! testing start
+    else {
+      List<StockEntity> bullStocks = await getBullStocks();
+      List<StockEntity> bearStocks = await getBearStocks();
+      NotificationService.createBearBullNotifications(bullStocks, bearStocks);
+    }
+    // ! testing end
   }
 
   /* adds a stock symbol to the watchlist; gets data from twelve data api */

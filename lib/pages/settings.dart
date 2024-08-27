@@ -174,6 +174,7 @@ class _SettingsPageState extends State<SettingsPage> {
   }
 
   /* updates/creates daily notifications */
+  // ! foreground service doesnt start sometimes; may not start until leaving settings page
   saveButtonHandler() {
     savePreferences();
     updateNotificationSettings(false);

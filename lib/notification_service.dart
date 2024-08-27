@@ -64,6 +64,7 @@ class NotificationService {
 
     bool result = IsolateNameServer.registerPortWithName(
         receivePort.sendPort, 'notificationPort');
+
     debugPrint('*** result: $result');
 
     if (result) {
@@ -307,10 +308,10 @@ class NotificationService {
     dayCounter = 1;
 
     // ! testing start
-    // notificationGenerator(easternTimeZone, counterID, 6, notification1);
-    // counterID++;
-    // notificationGenerator(easternTimeZone, counterID, 7, notification1);
-    // counterID++;
+    notificationGenerator(easternTimeZone, counterID, 6, notification1);
+    counterID++;
+    notificationGenerator(easternTimeZone, counterID, 7, notification1);
+    counterID++;
     // ! testing end
 
     /* scheduled daily reminder 2 */
