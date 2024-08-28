@@ -141,6 +141,14 @@ class _SettingsPageState extends State<SettingsPage> {
 
   /* updates the notification settings */
   updateNotificationSettings(bool permissionsChecked) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    debugPrint(
+        'updateNotificationSettings... permissionsChecked: $permissionsChecked');
+
+    debugPrint(
+        'updateNotificationSettings... notificationToggledOn: $notificationToggledOn');
+
     if (notificationToggledOn) {
       /* notifications are turned on */
       bool isAllowedToSendNotification =
@@ -150,31 +158,45 @@ class _SettingsPageState extends State<SettingsPage> {
         await NotificationService.requestPermissions();
         updateNotificationSettings(true);
       } else if (!isAllowedToSendNotification && permissionsChecked) {
-        SharedPreferences prefs = await SharedPreferences.getInstance();
-
         setState(() {
           notificationToggledOn = false;
           prefs.setBool('notificationToggle', false);
         });
       } else {
-        /* terminate previous notifications; foreground and reminders */
-        NotificationService.terminateForegroundService();
-        NotificationService.terminateScheduledNotifications();
+        final bool isForegroundServiceOn =
+            prefs.getBool('isForegroundServiceOn') ?? false;
 
-        /* turns Stock Alert active */
-        NotificationService.startForegroundService();
+        debugPrint('isForegroundServiceOn: $isForegroundServiceOn');
+
+        /* if foreground service was previously on */
+        if (isForegroundServiceOn) {
+          NotificationService.terminateScheduledNotifications();
+        } else {
+          NotificationService.startForegroundService();
+        }
+
+        prefs.setBool('isForegroundServiceOn', true);
+
         NotificationService.createScheduledProgression(
             notificationQuantity, notification1, notification2, notification3);
       }
     } else {
-      /* notifications turned off; terminate all existing notifications */
-      NotificationService.terminateForegroundService();
-      NotificationService.terminateScheduledNotifications();
+      final bool isForegroundServiceOn =
+          prefs.getBool('isForegroundServiceOn') ?? false;
+
+      debugPrint('isForegroundServiceOn: $isForegroundServiceOn');
+
+      /* if foreground service was previously on */
+      if (isForegroundServiceOn) {
+        NotificationService.terminateForegroundService();
+        NotificationService.terminateScheduledNotifications();
+      }
+
+      prefs.setBool('isForegroundServiceOn', false);
     }
   }
 
   /* updates/creates daily notifications */
-  // ! foreground service doesnt start sometimes; may not start until leaving settings page
   saveButtonHandler() {
     savePreferences();
     updateNotificationSettings(false);

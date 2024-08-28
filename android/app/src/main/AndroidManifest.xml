@@ -16,9 +16,16 @@
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
 
-        <service
+        <!-- <service
             android:name="id.flutter.flutter_background_service.BackgroundService"
-            android:foregroundServiceType="specialUse"/>
+            android:foregroundServiceType="specialUse"/> -->
+
+        <service android:name="me.carda.awesome_notifications.core.services.ForegroundService"
+          android:enabled="true"            
+          android:exported="false"
+          android:stopWithTask="true"
+          android:foregroundServiceType="specialUse"
+          tools:replace="android:foregroundServiceType"></service>
 
         <activity
             android:name=".MainActivity"

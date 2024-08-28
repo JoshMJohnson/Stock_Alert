@@ -1,12 +1,13 @@
-// import 'package:awesome_notifications/android_foreground_service.dart';
+import 'package:awesome_notifications/android_foreground_service.dart';
+import 'dart:async';
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:stock_alert/database_repository.dart';
 import 'package:stock_alert/pages/homePageWidgets/stock_entity.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:flutter_background_service/flutter_background_service.dart';
-import 'dart:isolate';
-import 'dart:ui';
+// import 'package:flutter_background_service/flutter_background_service.dart';
+// import 'dart:isolate';
+// import 'dart:ui';
 
 class NotificationService {
   /* initializes local notifications */
@@ -28,15 +29,22 @@ class NotificationService {
   @pragma("vm:entry-point")
   static Future onNotificationDisplayedMethod(
       ReceivedNotification receivedNotification) async {
-    try {
-      final SendPort? sendPort =
-          IsolateNameServer.lookupPortByName('notificationPort');
-      sendPort?.send('');
-    } catch (e) {
-      debugPrint('** $e');
-    }
+    // try {
+    //   final SendPort? sendPort =
+    //       IsolateNameServer.lookupPortByName('notificationPort');
+
+    //   if (receivedNotification.id! >= 3 && receivedNotification.id! <= 18) {
+    //     // DatabaseRepository.updateWatchlist();
+    //     sendPort?.send('update');
+    //   }
+
+    //   // sendPort?.send('sent from ya hommie port side');
+    // } catch (e) {
+    //   debugPrint('** $e');
+    // }
 
     debugPrint('**********************************1');
+
     /* if scheduled notification; begin pulling data from watchlist */
     /* 18 = starting at 3, 5 days a week, 3 possible daily reminders */
     if (receivedNotification.id! >= 3 && receivedNotification.id! <= 18) {
@@ -60,21 +68,28 @@ class NotificationService {
 
   /* creates the receive port for notifications in the background */
   static Future initializePorts() async {
-    ReceivePort receivePort = ReceivePort();
+    // ReceivePort receivePort = ReceivePort();
 
-    bool result = IsolateNameServer.registerPortWithName(
-        receivePort.sendPort, 'notificationPort');
+    // bool result = IsolateNameServer.registerPortWithName(
+    //     receivePort.sendPort, 'notificationPort');
 
-    debugPrint('*** result: $result');
+    // debugPrint(
+    //     '*** result: $result'); // !terminate app, reopen with icon, returns false
 
-    if (result) {
-      debugPrint('*** port created successfully');
-      receivePort.listen((dynamic data) {
-        debugPrint('*** port: ${data.toString()}');
-      }, onError: (e) {
-        debugPrint('*** error: $e');
-      });
-    }
+    // if (result) {
+    //   debugPrint('*** port created successfully');
+    //   receivePort.listen((dynamic data) {
+    //     debugPrint('*** port data: $data');
+    //     debugPrint('*** port: ${data.toString()}');
+
+    //     if (data.toString() == 'update') {
+    //       debugPrint('updating');
+    //       DatabaseRepository.updateWatchlist();
+    //     }
+    //   }, onError: (e) {
+    //     debugPrint('*** error: $e');
+    //   });
+    // }
   }
 
   /* creates the notification channels */
@@ -162,72 +177,86 @@ class NotificationService {
 
   /* initializes the background service */
   static Future<void> initializeService() async {
-    final service = FlutterBackgroundService();
+    debugPrint('initializeService');
 
-    await service.configure(
-      iosConfiguration: IosConfiguration(),
-      androidConfiguration: AndroidConfiguration(
-        autoStart: false,
-        onStart: onStart,
-        isForegroundMode: true,
-        autoStartOnBoot: true,
-        notificationChannelId: 'foreground_service',
-        initialNotificationTitle: 'Stock Alert is active...',
-        initialNotificationContent: '',
-        foregroundServiceNotificationId: 1,
-      ),
-    );
+    // final service = FlutterBackgroundService();
+
+    // await service.configure(
+    //   iosConfiguration: IosConfiguration(),
+    //   androidConfiguration: AndroidConfiguration(
+    //     autoStart: false,
+    //     onStart: onStart,
+    //     isForegroundMode: true,
+    //     autoStartOnBoot: true,
+    //     notificationChannelId: 'foreground_service',
+    //     initialNotificationTitle: 'Stock Alert is active...',
+    //     initialNotificationContent: '',
+    //     foregroundServiceNotificationId: 1,
+    //   ),
+    // );
   }
 
   /* brings app from background to foreground */
   @pragma("vm:entry-point")
-  static onStart(ServiceInstance service) {
-    if (service is AndroidServiceInstance) {
-      service.on('setAsForeground').listen((event) {
-        service.setAsForegroundService();
-      });
+  // static onStart(ServiceInstance service) {
+  //   debugPrint('onStart');
 
-      service.on('setAsBackground').listen((event) {
-        service.setAsBackgroundService();
-      });
-    }
+  //   AndroidForegroundService.startAndroidForegroundService(
+  //     foregroundStartMode: ForegroundStartMode.stick,
+  //     foregroundServiceType: ForegroundServiceType.none,
+  //     content: NotificationContent(
+  //       id: 1,
+  //       channelKey: 'foreground_service',
+  //       title: 'Stock Alert is active....................',
+  //       category: NotificationCategory.Service,
+  //       locked: true,
+  //       autoDismissible: false,
+  //       color: const Color.fromARGB(255, 70, 130, 180),
+  //     ),
+  //   );
 
-    service.on('stopService').listen((event) {
-      service.stopSelf();
-      debugPrint('stopping service!!!!');
-    });
-  }
+  //   service.on('stopService').listen((event) {
+  //     service.stopSelf();
+  //     debugPrint('stopping service!!!!');
+  //   });
+  // }
 
   /* starts the foreground service */
   static startForegroundService() {
-    // AndroidForegroundService.startAndroidForegroundService(
-    //   foregroundStartMode: ForegroundStartMode.stick,
-    //   foregroundServiceType: ForegroundServiceType.none,
-    //   content: NotificationContent(
-    //     id: 1,
-    //     channelKey: 'foreground_service',
-    //     title: 'Stock Alert is active...',
-    //     category: NotificationCategory.Service,
-    //     locked: true,
-    //     autoDismissible: false,
-    //     color: const Color.fromARGB(255, 70, 130, 180),
-    //   ),
-    // );
+    debugPrint('startForegroundService');
 
-    final service = FlutterBackgroundService();
-    service.startService();
+    AndroidForegroundService.startAndroidForegroundService(
+      foregroundStartMode: ForegroundStartMode.stick,
+      foregroundServiceType: ForegroundServiceType.none,
+      content: NotificationContent(
+        id: 1,
+        channelKey: 'foreground_service',
+        title: 'Stock Alert is active...',
+        category: NotificationCategory.Service,
+        locked: true,
+        autoDismissible: false,
+        color: const Color.fromARGB(255, 70, 130, 180),
+      ),
+    );
+
+    // final service = FlutterBackgroundService();
+    // service.startService();
   }
 
   /* terminates the foreground service */
   static terminateForegroundService() {
-    // AndroidForegroundService.stopForeground(1);
+    debugPrint('terminateForegroundService');
 
-    final service = FlutterBackgroundService();
-    service.invoke("stopService");
+    AndroidForegroundService.stopForeground(1);
+
+    // final service = FlutterBackgroundService();
+    // service.invoke("stopService");
   }
 
   /* terminates all previous scheduled notifications */
   static terminateScheduledNotifications() {
+    debugPrint('terminateScheduledNotifications');
+
     AwesomeNotifications().cancelAll();
   }
 
@@ -271,6 +300,8 @@ class NotificationService {
     TimeOfDay notification2,
     TimeOfDay notification3,
   ) async {
+    debugPrint('createScheduledProgression');
+
     String easternTimeZone = 'America/New_York';
 
     int counterID = 3;
