@@ -22,7 +22,7 @@ class NotificationService {
   @pragma("vm:entry-point")
   static Future<void> onNotificationCreatedMethod(
       ReceivedNotification receivedNotification) async {
-    debugPrint('**********************************2');
+    debugPrint('** onNotificationCreatedMethod');
   }
 
   /* triggers on notification displayed */
@@ -43,7 +43,7 @@ class NotificationService {
     //   debugPrint('** $e');
     // }
 
-    debugPrint('**********************************1');
+    debugPrint('** onNotificationDisplayedMethod');
 
     /* if scheduled notification; begin pulling data from watchlist */
     /* 18 = starting at 3, 5 days a week, 3 possible daily reminders */
@@ -56,14 +56,14 @@ class NotificationService {
   @pragma("vm:entry-point")
   static Future<void> onDismissActionReceivedMethod(
       ReceivedAction receivedAction) async {
-    debugPrint('**********************************3');
+    debugPrint('** onDismissActionReceivedMethod');
   }
 
   /// Use this method to detect when the user taps on a notification or action button
   @pragma("vm:entry-point")
   static Future<void> onActionReceivedMethod(
       ReceivedAction receivedAction) async {
-    debugPrint('**********************************4');
+    debugPrint('** onActionReceivedMethod');
   }
 
   /* creates the receive port for notifications in the background */
