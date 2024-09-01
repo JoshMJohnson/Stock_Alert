@@ -1,11 +1,11 @@
-import 'package:awesome_notifications/android_foreground_service.dart';
+// import 'package:awesome_notifications/android_foreground_service.dart';
 import 'dart:async';
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:stock_alert/database_repository.dart';
 import 'package:stock_alert/pages/homePageWidgets/stock_entity.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-// import 'package:flutter_background_service/flutter_background_service.dart';
+import 'package:flutter_background_service/flutter_background_service.dart';
 // import 'dart:isolate';
 // import 'dart:ui';
 
@@ -179,78 +179,64 @@ class NotificationService {
   static Future<void> initializeService() async {
     debugPrint('initializeService');
 
-    // final service = FlutterBackgroundService();
+    final service = FlutterBackgroundService();
 
-    // await service.configure(
-    //   iosConfiguration: IosConfiguration(),
-    //   androidConfiguration: AndroidConfiguration(
-    //     autoStart: false,
-    //     onStart: onStart,
-    //     isForegroundMode: true,
-    //     autoStartOnBoot: true,
-    //     notificationChannelId: 'foreground_service',
-    //     initialNotificationTitle: 'Stock Alert is active...',
-    //     initialNotificationContent: '',
-    //     foregroundServiceNotificationId: 1,
-    //   ),
-    // );
+    await service.configure(
+      iosConfiguration: IosConfiguration(),
+      androidConfiguration: AndroidConfiguration(
+        autoStart: false,
+        onStart: onStart,
+        isForegroundMode: true,
+        autoStartOnBoot: true,
+        notificationChannelId: 'foreground_service',
+        initialNotificationTitle: 'Stock Alert is active...',
+        initialNotificationContent: '',
+        foregroundServiceNotificationId: 1,
+      ),
+    );
   }
 
   /* brings app from background to foreground */
   @pragma("vm:entry-point")
-  // static onStart(ServiceInstance service) {
-  //   debugPrint('onStart');
+  static onStart(ServiceInstance service) {
+    debugPrint('onStart');
 
-  //   AndroidForegroundService.startAndroidForegroundService(
-  //     foregroundStartMode: ForegroundStartMode.stick,
-  //     foregroundServiceType: ForegroundServiceType.none,
-  //     content: NotificationContent(
-  //       id: 1,
-  //       channelKey: 'foreground_service',
-  //       title: 'Stock Alert is active....................',
-  //       category: NotificationCategory.Service,
-  //       locked: true,
-  //       autoDismissible: false,
-  //       color: const Color.fromARGB(255, 70, 130, 180),
-  //     ),
-  //   );
-
-  //   service.on('stopService').listen((event) {
-  //     service.stopSelf();
-  //     debugPrint('stopping service!!!!');
-  //   });
-  // }
+    service.on('stopService').listen((event) {
+      service.stopSelf();
+      debugPrint('stopping service!!!!');
+    });
+  }
 
   /* starts the foreground service */
   static startForegroundService() {
     debugPrint('startForegroundService');
 
-    AndroidForegroundService.startAndroidForegroundService(
-      foregroundStartMode: ForegroundStartMode.stick,
-      foregroundServiceType: ForegroundServiceType.none,
-      content: NotificationContent(
-        id: 1,
-        channelKey: 'foreground_service',
-        title: 'Stock Alert is active...',
-        category: NotificationCategory.Service,
-        locked: true,
-        autoDismissible: false,
-        color: const Color.fromARGB(255, 70, 130, 180),
-      ),
-    );
+    // AndroidForegroundService.startAndroidForegroundService(
+    //   foregroundStartMode: ForegroundStartMode.stick,
+    //   foregroundServiceType: ForegroundServiceType.none,
+    //   content: NotificationContent(
+    //     id: 1,
+    //     channelKey: 'foreground_service',
+    //     title: 'Stock Alert is active...',
+    //     category: NotificationCategory.Service,
+    //     locked: true,
+    //     autoDismissible: false,
+    //     color: const Color.fromARGB(255, 70, 130, 180),
+    //   ),
+    // );
 
-    // final service = FlutterBackgroundService();
-    // service.startService();
+    final service = FlutterBackgroundService();
+    service.startService();
   }
 
   /* terminates the foreground service */
   static terminateForegroundService() {
     debugPrint('terminateForegroundService');
 
-    AndroidForegroundService.stopForeground(1);
+    // AndroidForegroundService.stopForeground(1);
 
-    // final service = FlutterBackgroundService();
-    // service.invoke("stopService");
+    final service = FlutterBackgroundService();
+    service.invoke("stopService");
   }
 
   /* terminates all previous scheduled notifications */
