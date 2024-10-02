@@ -196,7 +196,7 @@ class NotificationService {
     );
   }
 
-  /* brings app from background to foreground */
+  /* brings app from background to foreground */ // todo
   @pragma("vm:entry-point")
   static onStart(ServiceInstance service) {
     debugPrint('onStart');
@@ -300,25 +300,25 @@ class NotificationService {
     counterID++;
     dayCounter++;
 
-    // /* tuesday */
+    /* tuesday */
     notificationGenerator(
         easternTimeZone, counterID, dayCounter, notification1);
     counterID++;
     dayCounter++;
 
-    // /* wednesday */
+    /* wednesday */
     notificationGenerator(
         easternTimeZone, counterID, dayCounter, notification1);
     counterID++;
     dayCounter++;
 
-    // /* thursday */
+    /* thursday */
     notificationGenerator(
         easternTimeZone, counterID, dayCounter, notification1);
     counterID++;
     dayCounter++;
 
-    // /* friday */
+    /* friday */
     notificationGenerator(
         easternTimeZone, counterID, dayCounter, notification1);
     counterID++;
@@ -339,25 +339,25 @@ class NotificationService {
       counterID++;
       dayCounter++;
 
-      // /* tuesday */
+      /* tuesday */
       notificationGenerator(
           easternTimeZone, counterID, dayCounter, notification2);
       counterID++;
       dayCounter++;
 
-      // /* wednesday */
+      /* wednesday */
       notificationGenerator(
           easternTimeZone, counterID, dayCounter, notification2);
       counterID++;
       dayCounter++;
 
-      // /* thursday */
+      /* thursday */
       notificationGenerator(
           easternTimeZone, counterID, dayCounter, notification2);
       counterID++;
       dayCounter++;
 
-      // /* friday */
+      /* friday */
       notificationGenerator(
           easternTimeZone, counterID, dayCounter, notification2);
       counterID++;
@@ -372,25 +372,25 @@ class NotificationService {
       counterID++;
       dayCounter++;
 
-      // /* tuesday */
+      /* tuesday */
       notificationGenerator(
           easternTimeZone, counterID, dayCounter, notification3);
       counterID++;
       dayCounter++;
 
-      // /* wednesday */
+      /* wednesday */
       notificationGenerator(
           easternTimeZone, counterID, dayCounter, notification3);
       counterID++;
       dayCounter++;
 
-      // /* thursday */
+      /* thursday */
       notificationGenerator(
           easternTimeZone, counterID, dayCounter, notification3);
       counterID++;
       dayCounter++;
 
-      // /* friday */
+      /* friday */
       notificationGenerator(
           easternTimeZone, counterID, dayCounter, notification3);
     }
