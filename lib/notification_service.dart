@@ -5,14 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:stock_alert/database_repository.dart';
 import 'package:stock_alert/pages/homePageWidgets/stock_entity.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:flutter_background_service/flutter_background_service.dart';
-// import 'dart:isolate';
-// import 'dart:ui';
+// import 'package:flutter_background_service/flutter_background_service.dart';
+import 'package:flutter_background/flutter_background.dart';
 
 class NotificationService {
   /* initializes local notifications */
   static Future init() async {
-    await initializePorts();
     await channelCreation();
     await createListeners();
     await initializeService();
@@ -29,20 +27,6 @@ class NotificationService {
   @pragma("vm:entry-point")
   static Future onNotificationDisplayedMethod(
       ReceivedNotification receivedNotification) async {
-    // try {
-    //   final SendPort? sendPort =
-    //       IsolateNameServer.lookupPortByName('notificationPort');
-
-    //   if (receivedNotification.id! >= 3 && receivedNotification.id! <= 18) {
-    //     // DatabaseRepository.updateWatchlist();
-    //     sendPort?.send('update');
-    //   }
-
-    //   // sendPort?.send('sent from ya hommie port side');
-    // } catch (e) {
-    //   debugPrint('** $e');
-    // }
-
     debugPrint('** onNotificationDisplayedMethod');
 
     /* if scheduled notification; begin pulling data from watchlist */
@@ -64,32 +48,6 @@ class NotificationService {
   static Future<void> onActionReceivedMethod(
       ReceivedAction receivedAction) async {
     debugPrint('** onActionReceivedMethod');
-  }
-
-  /* creates the receive port for notifications in the background */
-  static Future initializePorts() async {
-    // ReceivePort receivePort = ReceivePort();
-
-    // bool result = IsolateNameServer.registerPortWithName(
-    //     receivePort.sendPort, 'notificationPort');
-
-    // debugPrint(
-    //     '*** result: $result'); // !terminate app, reopen with icon, returns false
-
-    // if (result) {
-    //   debugPrint('*** port created successfully');
-    //   receivePort.listen((dynamic data) {
-    //     debugPrint('*** port data: $data');
-    //     debugPrint('*** port: ${data.toString()}');
-
-    //     if (data.toString() == 'update') {
-    //       debugPrint('updating');
-    //       DatabaseRepository.updateWatchlist();
-    //     }
-    //   }, onError: (e) {
-    //     debugPrint('*** error: $e');
-    //   });
-    // }
   }
 
   /* creates the notification channels */
@@ -167,7 +125,8 @@ class NotificationService {
 
   /* checks device settings if notifications are allowed */
   static Future<bool> checkPermissions() async {
-    return await AwesomeNotifications().isNotificationAllowed();
+    return await AwesomeNotifications().isNotificationAllowed() &&
+        await FlutterBackground.hasPermissions;
   }
 
   /* promps user request for permissions */
@@ -175,68 +134,43 @@ class NotificationService {
     return await AwesomeNotifications().requestPermissionToSendNotifications();
   }
 
-  /* initializes the background service */
+  /* initializes the background service */ // todo
   static Future<void> initializeService() async {
     debugPrint('initializeService');
 
-    final service = FlutterBackgroundService();
-
-    await service.configure(
-      iosConfiguration: IosConfiguration(),
-      androidConfiguration: AndroidConfiguration(
-        autoStart: false,
-        onStart: onStart,
-        isForegroundMode: true,
-        autoStartOnBoot: true,
-        notificationChannelId: 'foreground_service',
-        initialNotificationTitle: 'Stock Alert is active...',
-        initialNotificationContent: '',
-        foregroundServiceNotificationId: 1,
-      ),
+    const androidConfig = FlutterBackgroundAndroidConfig(
+      notificationTitle: "flutter_background example app",
+      notificationText:
+          "Background notification for keeping the example app running in the background",
+      notificationImportance: AndroidNotificationImportance.Max,
+      notificationIcon: AndroidResource(
+          name: 'foreground_service_icon',
+          defType: 'drawable'), // Default is ic_launcher from folder mipmap
     );
+
+    bool success =
+        await FlutterBackground.initialize(androidConfig: androidConfig);
+
+    debugPrint(
+        'initializeService ... success: $success'); // ! returns false; needs to return true
   }
 
-  /* brings app from background to foreground */ // todo
-  @pragma("vm:entry-point")
-  static onStart(ServiceInstance service) {
-    debugPrint('onStart');
+  /* starts the foreground service */ // todo
+  static startForegroundService() async {
+    // debugPrint('startForegroundService');
 
-    service.on('stopService').listen((event) {
-      service.stopSelf();
-      debugPrint('stopping service!!!!');
-    });
+    bool success = await FlutterBackground.enableBackgroundExecution();
+    debugPrint('startForegroundService ... success: $success');
   }
 
-  /* starts the foreground service */
-  static startForegroundService() {
-    debugPrint('startForegroundService');
+  /* terminates the foreground service */ // todo
+  static terminateForegroundService() async {
+    bool enabled = FlutterBackground.isBackgroundExecutionEnabled;
 
-    // AndroidForegroundService.startAndroidForegroundService(
-    //   foregroundStartMode: ForegroundStartMode.stick,
-    //   foregroundServiceType: ForegroundServiceType.none,
-    //   content: NotificationContent(
-    //     id: 1,
-    //     channelKey: 'foreground_service',
-    //     title: 'Stock Alert is active...',
-    //     category: NotificationCategory.Service,
-    //     locked: true,
-    //     autoDismissible: false,
-    //     color: const Color.fromARGB(255, 70, 130, 180),
-    //   ),
-    // );
-
-    final service = FlutterBackgroundService();
-    service.startService();
-  }
-
-  /* terminates the foreground service */
-  static terminateForegroundService() {
-    debugPrint('terminateForegroundService');
-
-    // AndroidForegroundService.stopForeground(1);
-
-    final service = FlutterBackgroundService();
-    service.invoke("stopService");
+    if (enabled) {
+      await FlutterBackground.disableBackgroundExecution();
+      debugPrint('terminateForegroundService success');
+    }
   }
 
   /* terminates all previous scheduled notifications */

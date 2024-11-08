@@ -17,8 +17,13 @@
         android:icon="@mipmap/ic_launcher">
 
         <service
+            android:name="de.julianassmann.flutter_background.IsolateHolderService"
+            android:exported="false"
+            android:foregroundServiceType="specialUse" />
+
+        <!-- <service
             android:name="id.flutter.flutter_background_service.BackgroundService"
-            android:foregroundServiceType="specialUse"/>
+            android:foregroundServiceType="specialUse"/> -->
 
         <!-- <service 
           android:name="me.carda.awesome_notifications.core.services.ForegroundService"
