@@ -1,12 +1,10 @@
-// import 'package:awesome_notifications/android_foreground_service.dart';
 import 'dart:async';
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:stock_alert/database_repository.dart';
 import 'package:stock_alert/pages/homePageWidgets/stock_entity.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-// import 'package:flutter_background_service/flutter_background_service.dart';
-import 'package:flutter_background/flutter_background.dart';
+import 'package:awesome_notifications/android_foreground_service.dart';
 
 class NotificationService {
   /* initializes local notifications */
@@ -125,8 +123,7 @@ class NotificationService {
 
   /* checks device settings if notifications are allowed */
   static Future<bool> checkPermissions() async {
-    return await AwesomeNotifications().isNotificationAllowed() &&
-        await FlutterBackground.hasPermissions;
+    return await AwesomeNotifications().isNotificationAllowed();
   }
 
   /* promps user request for permissions */
@@ -137,40 +134,32 @@ class NotificationService {
   /* initializes the background service */ // todo
   static Future<void> initializeService() async {
     debugPrint('initializeService');
-
-    const androidConfig = FlutterBackgroundAndroidConfig(
-      notificationTitle: "flutter_background example app",
-      notificationText:
-          "Background notification for keeping the example app running in the background",
-      notificationImportance: AndroidNotificationImportance.Max,
-      notificationIcon: AndroidResource(
-          name: 'foreground_service_icon',
-          defType: 'drawable'), // Default is ic_launcher from folder mipmap
-    );
-
-    bool success =
-        await FlutterBackground.initialize(androidConfig: androidConfig);
-
-    debugPrint(
-        'initializeService ... success: $success'); // ! returns false; needs to return true
   }
 
   /* starts the foreground service */ // todo
   static startForegroundService() async {
-    // debugPrint('startForegroundService');
+    debugPrint('startForegroundService');
 
-    bool success = await FlutterBackground.enableBackgroundExecution();
-    debugPrint('startForegroundService ... success: $success');
+    AndroidForegroundService.startAndroidForegroundService(
+        foregroundStartMode: ForegroundStartMode.stick,
+        foregroundServiceType: ForegroundServiceType.none,
+        content: NotificationContent(
+          id: 1,
+          body: 'Service is running!',
+          title: 'Foreground Service YA',
+          channelKey: 'foreground_service',
+          category: NotificationCategory.Service,
+        ),
+        actionButtons: [
+          NotificationActionButton(
+              key: 'SHOW_SERVICE_DETAILS', label: 'Show details')
+        ]);
   }
 
   /* terminates the foreground service */ // todo
   static terminateForegroundService() async {
-    bool enabled = FlutterBackground.isBackgroundExecutionEnabled;
-
-    if (enabled) {
-      await FlutterBackground.disableBackgroundExecution();
-      debugPrint('terminateForegroundService success');
-    }
+    debugPrint('terminateForegroundService success');
+    AndroidForegroundService.stopForeground(1);
   }
 
   /* terminates all previous scheduled notifications */
@@ -192,7 +181,7 @@ class NotificationService {
         id: notificationID,
         channelKey: 'schedule_triggered',
         color: const Color.fromARGB(255, 70, 130, 180),
-        actionType: ActionType.SilentAction,
+        actionType: ActionType.Default,
         category: NotificationCategory.Reminder,
         title: 'Updating watchlist',
         timeoutAfter: const Duration(seconds: 1),
