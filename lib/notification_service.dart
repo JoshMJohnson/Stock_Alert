@@ -71,7 +71,7 @@ class NotificationService {
           channelName: 'Update Triggered (Required)',
           channelDescription: 'Necessary for notification handling',
           icon: 'resource://drawable/update_icon',
-          importance: NotificationImportance.Max,
+          importance: NotificationImportance.Min,
           playSound: false,
           enableVibration: false,
         ),
@@ -145,10 +145,10 @@ class NotificationService {
       foregroundServiceType: ForegroundServiceType.none,
       content: NotificationContent(
         id: 1,
-        body: 'Service is running!',
-        title: 'Foreground Service YA',
+        title: 'Stock Alert is active...',
         channelKey: 'foreground_service',
         category: NotificationCategory.Service,
+        autoDismissible: false,
       ),
     );
   }
