@@ -141,19 +141,16 @@ class NotificationService {
     debugPrint('startForegroundService');
 
     AndroidForegroundService.startAndroidForegroundService(
-        foregroundStartMode: ForegroundStartMode.stick,
-        foregroundServiceType: ForegroundServiceType.none,
-        content: NotificationContent(
-          id: 1,
-          body: 'Service is running!',
-          title: 'Foreground Service YA',
-          channelKey: 'foreground_service',
-          category: NotificationCategory.Service,
-        ),
-        actionButtons: [
-          NotificationActionButton(
-              key: 'SHOW_SERVICE_DETAILS', label: 'Show details')
-        ]);
+      foregroundStartMode: ForegroundStartMode.stick,
+      foregroundServiceType: ForegroundServiceType.none,
+      content: NotificationContent(
+        id: 1,
+        body: 'Service is running!',
+        title: 'Foreground Service YA',
+        channelKey: 'foreground_service',
+        category: NotificationCategory.Service,
+      ),
+    );
   }
 
   /* terminates the foreground service */ // todo
