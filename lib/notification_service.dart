@@ -48,6 +48,16 @@ class NotificationService {
     debugPrint('** onActionReceivedMethod');
   }
 
+  /* creates the event listeners for the notifications */
+  static Future createListeners() async {
+    AwesomeNotifications().setListeners(
+      onActionReceivedMethod: onActionReceivedMethod,
+      onDismissActionReceivedMethod: onDismissActionReceivedMethod,
+      onNotificationDisplayedMethod: onNotificationDisplayedMethod,
+      onNotificationCreatedMethod: onNotificationCreatedMethod,
+    );
+  }
+
   /* creates the notification channels */
   static Future channelCreation() async {
     await AwesomeNotifications().initialize(
@@ -111,16 +121,6 @@ class NotificationService {
     );
   }
 
-  /* creates the event listeners for the notifications */
-  static Future createListeners() async {
-    AwesomeNotifications().setListeners(
-      onActionReceivedMethod: onActionReceivedMethod,
-      onDismissActionReceivedMethod: onDismissActionReceivedMethod,
-      onNotificationDisplayedMethod: onNotificationDisplayedMethod,
-      onNotificationCreatedMethod: onNotificationCreatedMethod,
-    );
-  }
-
   /* checks device settings if notifications are allowed */
   static Future<bool> checkPermissions() async {
     return await AwesomeNotifications().isNotificationAllowed();
@@ -149,6 +149,7 @@ class NotificationService {
         channelKey: 'foreground_service',
         category: NotificationCategory.Service,
         autoDismissible: false,
+        locked: true,
       ),
     );
   }
@@ -348,7 +349,7 @@ class NotificationService {
         channelKey: 'update_progression',
         title: 'Watchlist updated',
         body: 'Finished gathering watchlist data',
-        autoDismissible: true,
+        autoDismissible: false,
         color: const Color.fromARGB(255, 70, 130, 180),
         category: NotificationCategory.Progress,
         locked: false,
@@ -361,7 +362,7 @@ class NotificationService {
         channelKey: 'update_progression',
         title: 'Watchlist update failed',
         body: 'Internet connection was lost',
-        autoDismissible: true,
+        autoDismissible: false,
         color: const Color.fromARGB(255, 70, 130, 180),
         category: NotificationCategory.Progress,
         locked: false,
