@@ -171,9 +171,10 @@ class _SettingsPageState extends State<SettingsPage> {
         /* if foreground service was previously on */
         if (isForegroundServiceOn) {
           await NotificationService.terminateScheduledNotifications();
-        } else {
-          NotificationService.startForegroundService();
+          await NotificationService.terminateForegroundService();
         }
+
+        NotificationService.startForegroundService();
 
         prefs.setBool('isForegroundServiceOn', true);
 
