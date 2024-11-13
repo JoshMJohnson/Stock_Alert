@@ -193,7 +193,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
       return 'No internet connection';
     } else {
       /* unknown error with twelve data api */
-      return 'Unknown error with Twelve Data API';
+      return 'Unknown error with Twelve Data API. Try again later';
     }
   }
 

@@ -11,22 +11,17 @@ class NotificationService {
   static Future init() async {
     await channelCreation();
     await createListeners();
-    await initializeService();
   }
 
   /// Use this method to detect when a new notification or a schedule is created
   @pragma("vm:entry-point")
   static Future<void> onNotificationCreatedMethod(
-      ReceivedNotification receivedNotification) async {
-    debugPrint('** onNotificationCreatedMethod');
-  }
+      ReceivedNotification receivedNotification) async {}
 
   /* triggers on notification displayed */
   @pragma("vm:entry-point")
   static Future onNotificationDisplayedMethod(
       ReceivedNotification receivedNotification) async {
-    debugPrint('** onNotificationDisplayedMethod');
-
     /* if scheduled notification; begin pulling data from watchlist */
     /* 18 = starting at 3, 5 days a week, 3 possible daily reminders */
     if (receivedNotification.id! >= 3 && receivedNotification.id! <= 18) {
@@ -37,16 +32,12 @@ class NotificationService {
   /// Use this method to detect if the user dismissed a notification
   @pragma("vm:entry-point")
   static Future<void> onDismissActionReceivedMethod(
-      ReceivedAction receivedAction) async {
-    debugPrint('** onDismissActionReceivedMethod');
-  }
+      ReceivedAction receivedAction) async {}
 
   /// Use this method to detect when the user taps on a notification or action button
   @pragma("vm:entry-point")
   static Future<void> onActionReceivedMethod(
-      ReceivedAction receivedAction) async {
-    debugPrint('** onActionReceivedMethod');
-  }
+      ReceivedAction receivedAction) async {}
 
   /* creates the event listeners for the notifications */
   static Future createListeners() async {
@@ -131,15 +122,8 @@ class NotificationService {
     return await AwesomeNotifications().requestPermissionToSendNotifications();
   }
 
-  /* initializes the background service */ // todo
-  static Future<void> initializeService() async {
-    debugPrint('initializeService');
-  }
-
-  /* starts the foreground service */ // todo
+  /* starts the foreground service */
   static startForegroundService() async {
-    debugPrint('startForegroundService');
-
     AndroidForegroundService.startAndroidForegroundService(
       foregroundStartMode: ForegroundStartMode.stick,
       foregroundServiceType: ForegroundServiceType.dataSync,
@@ -154,16 +138,13 @@ class NotificationService {
     );
   }
 
-  /* terminates the foreground service */ // todo
+  /* terminates the foreground service */
   static terminateForegroundService() async {
-    debugPrint('terminateForegroundService success');
     AndroidForegroundService.stopForeground(1);
   }
 
   /* terminates all previous scheduled notifications */
   static terminateScheduledNotifications() {
-    debugPrint('terminateScheduledNotifications');
-
     AwesomeNotifications().cancelAll();
   }
 
@@ -207,8 +188,6 @@ class NotificationService {
     TimeOfDay notification2,
     TimeOfDay notification3,
   ) async {
-    debugPrint('createScheduledProgression');
-
     String easternTimeZone = 'America/New_York';
 
     int counterID = 3;
@@ -246,10 +225,10 @@ class NotificationService {
     dayCounter = 1;
 
     // ! testing start
-    notificationGenerator(easternTimeZone, counterID, 6, notification1);
-    counterID++;
-    notificationGenerator(easternTimeZone, counterID, 7, notification1);
-    counterID++;
+    // notificationGenerator(easternTimeZone, counterID, 6, notification1);
+    // counterID++;
+    // notificationGenerator(easternTimeZone, counterID, 7, notification1);
+    // counterID++;
     // ! testing end
 
     /* scheduled daily reminder 2 */

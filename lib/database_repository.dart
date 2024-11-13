@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:io';
+import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sqflite/sqflite.dart';
@@ -50,7 +51,16 @@ class DatabaseRepository {
     final tickerURL = Uri.parse(
         'https://api.twelvedata.com/quote?symbol=$tickerSymbol&apikey=$apiCode');
     final tickerData = await http.get(tickerURL);
-    final tickerJSON = json.decode(tickerData.body) as Map<String, dynamic>;
+
+    /* prevents crashing. if error code 524; problem with Twelve Data API */
+    Map<String, dynamic> tickerJSON;
+
+    /* cannot connect to site */
+    try {
+      tickerJSON = json.decode(tickerData.body) as Map<String, dynamic>;
+    } catch (e) {
+      return 501;
+    }
 
     /* handles possible errors */
     var hasError = tickerJSON['code'] != null ? true : false;
@@ -299,11 +309,11 @@ class DatabaseRepository {
       NotificationService.createBearBullNotifications(bullStocks, bearStocks);
     }
     // ! testing start
-    else {
-      List<StockEntity> bullStocks = await getBullStocks();
-      List<StockEntity> bearStocks = await getBearStocks();
-      NotificationService.createBearBullNotifications(bullStocks, bearStocks);
-    }
+    // else {
+    //   List<StockEntity> bullStocks = await getBullStocks();
+    //   List<StockEntity> bearStocks = await getBearStocks();
+    //   NotificationService.createBearBullNotifications(bullStocks, bearStocks);
+    // }
     // ! testing end
   }
 
@@ -319,7 +329,14 @@ class DatabaseRepository {
     final tickerURL = Uri.parse(
         'https://api.twelvedata.com/quote?symbol=$tickerSymbol&apikey=$apiCode');
     final tickerData = await http.get(tickerURL);
-    final tickerJSON = json.decode(tickerData.body) as Map<String, dynamic>;
+    Map<String, dynamic> tickerJSON;
+
+    /* cannot connect to site */
+    try {
+      tickerJSON = json.decode(tickerData.body) as Map<String, dynamic>;
+    } catch (e) {
+      return 501;
+    }
 
     /* handles possible errors */
     var hasError = tickerJSON['code'] != null ? true : false;
