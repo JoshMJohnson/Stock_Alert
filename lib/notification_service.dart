@@ -142,7 +142,7 @@ class NotificationService {
 
     AndroidForegroundService.startAndroidForegroundService(
       foregroundStartMode: ForegroundStartMode.stick,
-      foregroundServiceType: ForegroundServiceType.none,
+      foregroundServiceType: ForegroundServiceType.dataSync,
       content: NotificationContent(
         id: 1,
         title: 'Stock Alert is active...',
