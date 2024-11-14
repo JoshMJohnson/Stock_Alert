@@ -59,7 +59,7 @@ class DatabaseRepository {
     try {
       tickerJSON = json.decode(tickerData.body) as Map<String, dynamic>;
     } catch (e) {
-      return 501;
+      return 500;
     }
 
     /* handles possible errors */
@@ -207,7 +207,8 @@ class DatabaseRepository {
         numTriedTimes++;
         return ensureConnectionUpdate(numTriedTimes);
       } else if (numTriedTimes == 2) {
-        await Future.delayed(const Duration(minutes: 5));
+        await Future.delayed(
+            const Duration(minutes: 1)); // todo change back to 5 min
         numTriedTimes++;
         return ensureConnectionUpdate(numTriedTimes);
       }
@@ -243,17 +244,22 @@ class DatabaseRepository {
     List<StockEntity> prevWatchlist = await getStockSymbols();
     int watchlistLength = prevWatchlist.length;
 
-    bool connectionEstablished = await ensureConnectionUpdate(0);
-
-    /* if no connection established */
-    if (!connectionEstablished) {
-      return -1;
-    }
-
     /* loop through watchlist and update the data */
     for (var currentTickerIndex = 0;
         currentTickerIndex < watchlistLength;
         currentTickerIndex++) {
+      bool connectionEstablished = await ensureConnectionUpdate(0);
+
+      /* if no connection established */
+      if (!connectionEstablished) {
+        NotificationService.updateProgressBar(
+          notificationID,
+          currentTickerIndex,
+          -1,
+        );
+        return -1;
+      }
+
       String currentTickerSymbol = prevWatchlist[currentTickerIndex].ticker;
       int? errorCode =
           await retrieveStockDataFromTwelveDataAPI(currentTickerSymbol);
@@ -272,18 +278,15 @@ class DatabaseRepository {
 
         await Future.delayed(const Duration(seconds: 61));
         currentTickerIndex--; /* retry ticker that failed */
-
-        bool connectionEstablished = await ensureConnectionUpdate(0);
-
-        /* if no connection established */
-        if (!connectionEstablished) {
-          NotificationService.updateProgressBar(
-            notificationID,
-            watchlistLength + 1,
-            watchlistLength,
-          );
-          return -1;
-        }
+      }
+      /* error with Twelve Data API site */ // todo
+      else if (errorCode != null) {
+        NotificationService.updateProgressBar(
+          notificationID,
+          currentTickerIndex,
+          -2,
+        );
+        return -1;
       }
     }
 
@@ -335,7 +338,7 @@ class DatabaseRepository {
     try {
       tickerJSON = json.decode(tickerData.body) as Map<String, dynamic>;
     } catch (e) {
-      return 501;
+      return 500;
     }
 
     /* handles possible errors */

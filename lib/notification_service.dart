@@ -327,13 +327,13 @@ class NotificationService {
         id: notificationID,
         channelKey: 'update_progression',
         title: 'Watchlist updated',
-        body: 'Finished gathering watchlist data',
+        body: 'Successfully updated watchlist',
         autoDismissible: false,
         color: const Color.fromARGB(255, 70, 130, 180),
         category: NotificationCategory.Progress,
         locked: false,
       ));
-    } else {
+    } else if (totalTickersPulling == -1) {
       /* connection lost and could not get back */
       AwesomeNotifications().createNotification(
           content: NotificationContent(
@@ -341,6 +341,19 @@ class NotificationService {
         channelKey: 'update_progression',
         title: 'Watchlist update failed',
         body: 'Internet connection was lost',
+        autoDismissible: false,
+        color: const Color.fromARGB(255, 70, 130, 180),
+        category: NotificationCategory.Progress,
+        locked: false,
+      ));
+    } else if (totalTickersPulling == -2) {
+      /* connection lost and could not get back */
+      AwesomeNotifications().createNotification(
+          content: NotificationContent(
+        id: notificationID,
+        channelKey: 'update_progression',
+        title: 'Watchlist update failed',
+        body: 'Trouble connecting with stock market through api',
         autoDismissible: false,
         color: const Color.fromARGB(255, 70, 130, 180),
         category: NotificationCategory.Progress,
