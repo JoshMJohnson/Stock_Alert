@@ -206,8 +206,7 @@ class DatabaseRepository {
         numTriedTimes++;
         return ensureConnectionUpdate(numTriedTimes);
       } else if (numTriedTimes == 2) {
-        await Future.delayed(
-            const Duration(minutes: 1)); // todo change back to 5 min
+        await Future.delayed(const Duration(minutes: 5));
         numTriedTimes++;
         return ensureConnectionUpdate(numTriedTimes);
       }

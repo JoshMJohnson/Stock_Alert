@@ -299,17 +299,17 @@ class NotificationService {
   /* updates the current progress bar */
   static void updateProgressBar(
       int notificationID, int currentProgress, int totalTickersPulling) async {
-    double progress = currentProgress / totalTickersPulling * 100;
-    int estimatedMinsRemaining =
-        ((totalTickersPulling - currentProgress) / 8).ceil();
-
     /* still pulling; reached api limit; delaying */
     if (currentProgress < totalTickersPulling) {
+      double progress = currentProgress / totalTickersPulling * 100;
+      int estimatedMinsRemaining =
+          ((totalTickersPulling - currentProgress) / 8).ceil();
+
       AwesomeNotifications().createNotification(
           content: NotificationContent(
         id: notificationID,
         channelKey: 'update_progression',
-        title: 'Updating watchlist (${progress.round()}%)',
+        title: 'Updating Watchlist (${progress.round()}%)',
         body: estimatedMinsRemaining == 1
             ? 'Less than a minute remaining'
             : 'Estimated time remaining: $estimatedMinsRemaining mins.',
@@ -326,7 +326,7 @@ class NotificationService {
           content: NotificationContent(
         id: notificationID,
         channelKey: 'update_progression',
-        title: 'Watchlist updated',
+        title: 'Watchlist Updated',
         body: 'Successfully updated watchlist',
         autoDismissible: false,
         color: const Color.fromARGB(255, 70, 130, 180),
@@ -339,7 +339,7 @@ class NotificationService {
           content: NotificationContent(
         id: notificationID,
         channelKey: 'update_progression',
-        title: 'Watchlist update failed',
+        title: 'Watchlist Update Failed',
         body: 'Internet connection was lost',
         autoDismissible: false,
         color: const Color.fromARGB(255, 70, 130, 180),
@@ -347,12 +347,12 @@ class NotificationService {
         locked: false,
       ));
     } else if (totalTickersPulling == -2) {
-      /* connection lost and could not get back */
+      /* Twelve Data API server is down */
       AwesomeNotifications().createNotification(
           content: NotificationContent(
         id: notificationID,
         channelKey: 'update_progression',
-        title: 'Watchlist update failed',
+        title: 'Watchlist Update Failed',
         body: 'Trouble connecting with stock market through api',
         autoDismissible: false,
         color: const Color.fromARGB(255, 70, 130, 180),
