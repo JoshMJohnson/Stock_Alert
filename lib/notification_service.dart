@@ -82,7 +82,7 @@ class NotificationService {
           channelName: 'Update Progression',
           channelDescription: 'Progression on pulling updated ticker data',
           icon: 'resource://drawable/update_icon',
-          importance: NotificationImportance.High,
+          importance: NotificationImportance.Default,
           playSound: false,
           enableVibration: false,
         ),
