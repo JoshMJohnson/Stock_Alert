@@ -246,16 +246,19 @@ class DatabaseRepository {
     for (var currentTickerIndex = 0;
         currentTickerIndex < watchlistLength;
         currentTickerIndex++) {
-      bool connectionEstablished = await ensureConnectionUpdate(0);
+      /* if first stock checked */
+      if (currentTickerIndex == 0) {
+        bool connectionEstablished = await ensureConnectionUpdate(0);
 
-      /* if no connection established */
-      if (!connectionEstablished) {
-        NotificationService.updateProgressBar(
-          notificationID,
-          currentTickerIndex,
-          -1,
-        );
-        return -1;
+        /* if no connection established */
+        if (!connectionEstablished) {
+          NotificationService.updateProgressBar(
+            notificationID,
+            currentTickerIndex,
+            -1,
+          );
+          return;
+        }
       }
 
       String currentTickerSymbol = prevWatchlist[currentTickerIndex].ticker;
@@ -275,16 +278,32 @@ class DatabaseRepository {
         );
 
         await Future.delayed(const Duration(seconds: 61));
-        currentTickerIndex--; /* retry ticker that failed */
+
+        /* if not at first stock item */
+        if (currentTickerIndex > 0) {
+          currentTickerIndex--; /* retry ticker that failed */
+        }
+
+        bool connectionEstablished = await ensureConnectionUpdate(0);
+
+        /* if no connection established */
+        if (!connectionEstablished) {
+          NotificationService.updateProgressBar(
+            notificationID,
+            currentTickerIndex,
+            -1,
+          );
+          return;
+        }
       }
-      /* error with Twelve Data API site */ // todo
+      /* error with Twelve Data API site */
       else if (errorCode != null) {
         NotificationService.updateProgressBar(
           notificationID,
           currentTickerIndex,
           -2,
         );
-        return -1;
+        return;
       }
     }
 
