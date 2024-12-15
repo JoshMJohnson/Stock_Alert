@@ -17,7 +17,7 @@ class TickerPage extends StatelessWidget {
     return Image.asset('assets/market_logos/NASDAQ.png');
   }
 
-  /* header of the Ticker page */
+  /* header of the Ticker page */ // todo include stock type & description
   AppBar header(BuildContext context) {
     return AppBar(
         title: Text(
@@ -304,7 +304,7 @@ class TickerPage extends StatelessWidget {
                                           .textTheme
                                           .headlineMedium!
                                           .color,
-                                      fontSize: 28,
+                                      fontSize: 24,
                                       fontWeight: FontWeight.w600,
                                     ),
                                   ),
@@ -327,7 +327,7 @@ class TickerPage extends StatelessWidget {
                                           .textTheme
                                           .headlineMedium!
                                           .color,
-                                      fontSize: 28,
+                                      fontSize: 24,
                                       fontWeight: FontWeight.w600,
                                     ),
                                   ),
@@ -390,7 +390,7 @@ class TickerPage extends StatelessWidget {
                                           .textTheme
                                           .bodyMedium!
                                           .color,
-                                      fontSize: 28,
+                                      fontSize: 24,
                                       fontWeight: FontWeight.w600,
                                     ),
                                   ),
