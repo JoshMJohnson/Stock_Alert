@@ -143,12 +143,6 @@ class _SettingsPageState extends State<SettingsPage> {
   updateNotificationSettings(bool permissionsChecked) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    debugPrint(
-        'updateNotificationSettings... permissionsChecked: $permissionsChecked');
-
-    debugPrint(
-        'updateNotificationSettings... notificationToggledOn: $notificationToggledOn');
-
     if (notificationToggledOn) {
       /* notifications are turned on */
       bool isAllowedToSendNotification =
