@@ -119,7 +119,20 @@ class NotificationService {
 
   /* promps user request for permissions */
   static Future requestPermissions() async {
-    return await AwesomeNotifications().requestPermissionToSendNotifications();
+    List<NotificationPermission> permissionList = [
+      NotificationPermission.Badge,
+      NotificationPermission.Alert,
+      NotificationPermission.Sound,
+      NotificationPermission.Vibration,
+      NotificationPermission.Light,
+      NotificationPermission.PreciseAlarms,
+      NotificationPermission.FullScreenIntent,
+    ];
+
+    // Check if the basic permission was granted by the user
+    await AwesomeNotifications().requestPermissionToSendNotifications(
+      permissions: permissionList,
+    );
   }
 
   /* starts the foreground service */
