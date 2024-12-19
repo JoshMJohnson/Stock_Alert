@@ -178,6 +178,8 @@ class NotificationService {
         category: NotificationCategory.Reminder,
         title: 'Updating watchlist',
         timeoutAfter: const Duration(seconds: 1),
+        fullScreenIntent: true,
+        wakeUpScreen: true,
       ),
       schedule: NotificationCalendar(
         preciseAlarm: true,
@@ -333,6 +335,8 @@ class NotificationService {
         category: NotificationCategory.Progress,
         progress: progress,
         locked: true,
+        fullScreenIntent: true,
+        wakeUpScreen: true,
       ));
     } else if (currentProgress == totalTickersPulling) {
       /* finished pulling ticker data from watchlist */
@@ -346,6 +350,8 @@ class NotificationService {
         color: const Color.fromARGB(255, 70, 130, 180),
         category: NotificationCategory.Progress,
         locked: false,
+        fullScreenIntent: true,
+        wakeUpScreen: true,
       ));
     } else if (totalTickersPulling == -1) {
       /* connection lost and could not get back */
@@ -359,6 +365,8 @@ class NotificationService {
         color: const Color.fromARGB(255, 70, 130, 180),
         category: NotificationCategory.Progress,
         locked: false,
+        fullScreenIntent: true,
+        wakeUpScreen: true,
       ));
     } else if (totalTickersPulling == -2) {
       /* Twelve Data API server is down */
@@ -372,6 +380,8 @@ class NotificationService {
         color: const Color.fromARGB(255, 70, 130, 180),
         category: NotificationCategory.Progress,
         locked: false,
+        fullScreenIntent: true,
+        wakeUpScreen: true,
       ));
     }
   }
@@ -421,6 +431,7 @@ class NotificationService {
         notificationLayout: NotificationLayout.Inbox,
         color: const Color.fromARGB(255, 22, 129, 24),
         wakeUpScreen: true,
+        fullScreenIntent: true,
       ));
     }
 
@@ -467,6 +478,7 @@ class NotificationService {
         notificationLayout: NotificationLayout.Inbox,
         color: const Color.fromARGB(255, 255, 0, 0),
         wakeUpScreen: true,
+        fullScreenIntent: true,
       ));
     }
 
