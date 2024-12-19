@@ -127,6 +127,7 @@ class NotificationService {
       NotificationPermission.Light,
       NotificationPermission.PreciseAlarms,
       NotificationPermission.FullScreenIntent,
+      NotificationPermission.CriticalAlert,
     ];
 
     // Check if the basic permission was granted by the user
