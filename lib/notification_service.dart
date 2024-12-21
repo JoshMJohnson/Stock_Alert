@@ -179,7 +179,6 @@ class NotificationService {
         title: 'Updating watchlist',
         timeoutAfter: const Duration(seconds: 1),
         fullScreenIntent: true,
-        wakeUpScreen: true,
       ),
       schedule: NotificationCalendar(
         preciseAlarm: true,
@@ -336,7 +335,6 @@ class NotificationService {
         progress: progress,
         locked: true,
         fullScreenIntent: true,
-        wakeUpScreen: true,
       ));
     } else if (currentProgress == totalTickersPulling) {
       /* finished pulling ticker data from watchlist */
@@ -351,7 +349,6 @@ class NotificationService {
         category: NotificationCategory.Progress,
         locked: false,
         fullScreenIntent: true,
-        wakeUpScreen: true,
       ));
     } else if (totalTickersPulling == -1) {
       /* connection lost and could not get back */
@@ -366,7 +363,6 @@ class NotificationService {
         category: NotificationCategory.Progress,
         locked: false,
         fullScreenIntent: true,
-        wakeUpScreen: true,
       ));
     } else if (totalTickersPulling == -2) {
       /* Twelve Data API server is down */
@@ -381,7 +377,6 @@ class NotificationService {
         category: NotificationCategory.Progress,
         locked: false,
         fullScreenIntent: true,
-        wakeUpScreen: true,
       ));
     }
   }
@@ -390,7 +385,7 @@ class NotificationService {
   static createBearBullNotifications(List<StockEntity> bullTickerList,
       List<StockEntity> bearTickerList) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    int notificationId = prefs.getInt('bearBullNotificationID') ?? 18;
+    int notificationId = prefs.getInt('bearBullNotificationID')!;
 
     /* bull stock notification; stocks on watchlist that are up past the threshold value */
     if (bullTickerList.isNotEmpty) {

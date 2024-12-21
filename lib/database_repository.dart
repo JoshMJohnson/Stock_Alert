@@ -242,12 +242,14 @@ class DatabaseRepository {
     List<StockEntity> prevWatchlist = await getStockSymbols();
     int watchlistLength = prevWatchlist.length;
 
+    bool hasCheckedConnection = false;
+
     /* loop through watchlist and update the data */
     for (var currentTickerIndex = 0;
         currentTickerIndex < watchlistLength;
         currentTickerIndex++) {
       /* if first stock checked */
-      if (currentTickerIndex == 0) {
+      if (!hasCheckedConnection) {
         bool connectionEstablished = await ensureConnectionUpdate(0);
 
         /* if no connection established */
@@ -259,6 +261,8 @@ class DatabaseRepository {
           );
           return;
         }
+
+        hasCheckedConnection = true;
       }
 
       String currentTickerSymbol = prevWatchlist[currentTickerIndex].ticker;
@@ -284,17 +288,7 @@ class DatabaseRepository {
           currentTickerIndex--; /* retry ticker that failed */
         }
 
-        bool connectionEstablished = await ensureConnectionUpdate(0);
-
-        /* if no connection established */
-        if (!connectionEstablished) {
-          NotificationService.updateProgressBar(
-            notificationID,
-            currentTickerIndex,
-            -1,
-          );
-          return;
-        }
+        hasCheckedConnection = false;
       }
       /* error with Twelve Data API site */
       else if (errorCode != null) {
@@ -313,6 +307,8 @@ class DatabaseRepository {
       watchlistLength,
       watchlistLength,
     );
+
+    prefs.setInt('bearBullNotificationID', notificationID);
 
     /* update time stamp for last updated */
     DateTime currentTime = DateTime.now();
