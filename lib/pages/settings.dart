@@ -160,8 +160,6 @@ class _SettingsPageState extends State<SettingsPage> {
         final bool isForegroundServiceOn =
             prefs.getBool('isForegroundServiceOn') ?? false;
 
-        debugPrint('isForegroundServiceOn: $isForegroundServiceOn');
-
         /* if foreground service was previously on */
         if (isForegroundServiceOn) {
           await NotificationService.terminateScheduledNotifications();
@@ -178,8 +176,6 @@ class _SettingsPageState extends State<SettingsPage> {
     } else {
       final bool isForegroundServiceOn =
           prefs.getBool('isForegroundServiceOn') ?? false;
-
-      debugPrint('isForegroundServiceOn: $isForegroundServiceOn');
 
       /* if foreground service was previously on */
       if (isForegroundServiceOn) {
