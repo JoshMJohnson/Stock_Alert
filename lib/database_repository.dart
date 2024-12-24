@@ -250,7 +250,7 @@ class DatabaseRepository {
     for (var currentTickerIndex = 0;
         currentTickerIndex < watchlistLength;
         currentTickerIndex++) {
-      /* if first stock checked */
+      /* check if either an internet or wifi connections have been established */
       if (!hasCheckedConnection) {
         bool connectionEstablished = await ensureConnectionUpdate(0);
 
