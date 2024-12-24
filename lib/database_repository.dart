@@ -1,10 +1,12 @@
 import 'dart:async';
 import 'dart:io';
+import 'package:flutter/foundation.dart';
 import 'package:path/path.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:stock_alert/notification_service.dart';
 import 'package:stock_alert/pages/homePageWidgets/stock_entity.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -195,12 +197,12 @@ class DatabaseRepository {
   /* checks to ensure the app is able to connect to the internet and rechecking */
   static Future<bool> ensureConnectionUpdate(int numTriedTimes) async {
     late bool connectionEstablished;
-    try {
-      final result = await InternetAddress.lookup('google.com');
-      if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
-        connectionEstablished = true;
-      }
-    } on SocketException catch (_) {
+    final bool isConnected =
+        await InternetConnectionChecker.instance.hasConnection;
+
+    if (isConnected) {
+      connectionEstablished = true;
+    } else {
       if (numTriedTimes < 2) {
         await Future.delayed(const Duration(minutes: 1));
         numTriedTimes++;
@@ -220,12 +222,12 @@ class DatabaseRepository {
   /* checks to ensure the app is able to connect to the internet once */
   static Future<bool> ensureConnection() async {
     late bool connectionEstablished;
-    try {
-      final result = await InternetAddress.lookup('google.com');
-      if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
-        connectionEstablished = true;
-      }
-    } on SocketException catch (_) {
+    final bool isConnected =
+        await InternetConnectionChecker.instance.hasConnection;
+
+    if (isConnected) {
+      connectionEstablished = true;
+    } else {
       connectionEstablished = false;
     }
 
