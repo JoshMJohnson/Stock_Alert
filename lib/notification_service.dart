@@ -140,7 +140,7 @@ class NotificationService {
   static startForegroundService() async {
     AndroidForegroundService.startAndroidForegroundService(
       foregroundStartMode: ForegroundStartMode.stick,
-      foregroundServiceType: ForegroundServiceType.dataSync,
+      foregroundServiceType: ForegroundServiceType.manifest,
       content: NotificationContent(
         id: 1,
         title: 'Stock Alert is active...',
