@@ -148,6 +148,7 @@ class NotificationService {
         category: NotificationCategory.Service,
         autoDismissible: false,
         locked: true,
+        actionType: ActionType.KeepOnTop,
       ),
     );
   }
