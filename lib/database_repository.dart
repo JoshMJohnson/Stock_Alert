@@ -192,31 +192,6 @@ class DatabaseRepository {
     return bearStocks;
   }
 
-  /* checks to ensure the app is able to connect to the internet and rechecking */
-  static Future<bool> ensureConnectionUpdate(int numTriedTimes) async {
-    late bool connectionEstablished;
-    final bool isConnected =
-        await InternetConnectionChecker.instance.hasConnection;
-
-    if (isConnected) {
-      connectionEstablished = true;
-    } else {
-      if (numTriedTimes < 2) {
-        await Future.delayed(const Duration(minutes: 1));
-        numTriedTimes++;
-        return ensureConnectionUpdate(numTriedTimes);
-      } else if (numTriedTimes == 2) {
-        await Future.delayed(const Duration(minutes: 5));
-        numTriedTimes++;
-        return ensureConnectionUpdate(numTriedTimes);
-      }
-
-      connectionEstablished = false;
-    }
-
-    return connectionEstablished;
-  }
-
   /* checks to ensure the app is able to connect to the internet once */
   static Future<bool> ensureConnection() async {
     late bool connectionEstablished;
@@ -241,19 +216,22 @@ class DatabaseRepository {
     /* update all stock data on watchlist */
     List<StockEntity> prevWatchlist = await getStockSymbols();
     int watchlistLength = prevWatchlist.length;
-
-    bool hasCheckedConnection = false;
+    int triedConnection = 0;
 
     /* loop through watchlist and update the data */
     for (var currentTickerIndex = 0;
         currentTickerIndex < watchlistLength;
         currentTickerIndex++) {
-      /* check if either an internet or wifi connections have been established */
-      if (!hasCheckedConnection) {
-        bool connectionEstablished = await ensureConnectionUpdate(0);
+      String currentTickerSymbol = prevWatchlist[currentTickerIndex].ticker;
+      int? errorCode;
 
-        /* if no connection established */
-        if (!connectionEstablished) {
+      /* try to gather ticker data from the stock market */
+      try {
+        errorCode =
+            await retrieveStockDataFromTwelveDataAPI(currentTickerSymbol);
+      } catch (e) {
+        if (triedConnection == 3) {
+          /* if no internet connection */
           NotificationService.updateProgressBar(
             notificationID,
             currentTickerIndex,
@@ -262,12 +240,26 @@ class DatabaseRepository {
           return;
         }
 
-        hasCheckedConnection = true;
-      }
+        /* show current progress when internet failed */
+        NotificationService.updateProgressBar(
+          notificationID,
+          currentTickerIndex,
+          watchlistLength,
+        );
 
-      String currentTickerSymbol = prevWatchlist[currentTickerIndex].ticker;
-      int? errorCode =
-          await retrieveStockDataFromTwelveDataAPI(currentTickerSymbol);
+        currentTickerIndex--;
+
+        if (triedConnection == 0 || triedConnection == 1) {
+          /* if first 2 attempts */
+          await Future.delayed(const Duration(minutes: 1));
+        } else {
+          /* if last attempt */
+          await Future.delayed(const Duration(minutes: 5));
+        }
+
+        triedConnection++;
+        continue;
+      }
 
       /* if current ticker was removed or not found; remove ticker from watchlist */
       if (errorCode == 400 || errorCode == 404) {
@@ -287,8 +279,6 @@ class DatabaseRepository {
         if (currentTickerIndex > 0) {
           currentTickerIndex--; /* retry ticker that failed */
         }
-
-        hasCheckedConnection = false;
       }
       /* error with Twelve Data API site */
       else if (errorCode != null) {
