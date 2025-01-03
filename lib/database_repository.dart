@@ -4,7 +4,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:stock_alert/notification_service.dart';
 import 'package:stock_alert/pages/homePageWidgets/stock_entity.dart';
-import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -15,7 +14,7 @@ class DatabaseRepository {
   static final DatabaseRepository instance = DatabaseRepository._constructor();
   static const String stocksTable = 'stocks';
   static const String apiCode =
-      'ef193f533d7c4521ab889fb23307a123'; /* Twelve Data API currently */
+      'b621e679c4744860a830188951a1a427'; /* Twelve Data API currently */
   static bool isMarketOpen = false;
 
   DatabaseRepository._constructor();
@@ -190,21 +189,6 @@ class DatabaseRepository {
     }
 
     return bearStocks;
-  }
-
-  /* checks to ensure the app is able to connect to the internet once */
-  static Future<bool> ensureConnection() async {
-    late bool connectionEstablished;
-    final bool isConnected =
-        await InternetConnectionChecker.instance.hasConnection;
-
-    if (isConnected) {
-      connectionEstablished = true;
-    } else {
-      connectionEstablished = false;
-    }
-
-    return connectionEstablished;
   }
 
   /* updates all watchlist stock tickers data */
