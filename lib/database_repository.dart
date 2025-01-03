@@ -15,7 +15,7 @@ class DatabaseRepository {
   static final DatabaseRepository instance = DatabaseRepository._constructor();
   static const String stocksTable = 'stocks';
   static const String apiCode =
-      '1a5736c710a640679295533e0c6a53ca'; /* Twelve Data API currently */
+      'ef193f533d7c4521ab889fb23307a123'; /* Twelve Data API currently */
   static bool isMarketOpen = false;
 
   DatabaseRepository._constructor();
@@ -325,23 +325,18 @@ class DatabaseRepository {
 
   /* adds a stock symbol to the watchlist; gets data from twelve data api */
   static Future addSymbol(String tickerSymbol) async {
-    bool connectionEstablished = await ensureConnection();
-
-    /* if no connection established */
-    if (!connectionEstablished) {
-      return 1;
-    }
-
-    final tickerURL = Uri.parse(
-        'https://api.twelvedata.com/quote?symbol=$tickerSymbol&apikey=$apiCode');
-    final tickerData = await http.get(tickerURL);
+    dynamic tickerURL;
+    dynamic tickerData;
     Map<String, dynamic> tickerJSON;
 
-    /* cannot connect to site */
     try {
+      tickerURL = Uri.parse(
+          'https://api.twelvedata.com/quote?symbol=$tickerSymbol&apikey=$apiCode');
+      tickerData = await http.get(tickerURL);
       tickerJSON = json.decode(tickerData.body) as Map<String, dynamic>;
     } catch (e) {
-      return 500;
+      /* cannot connect to site */
+      return 1;
     }
 
     /* handles possible errors */
