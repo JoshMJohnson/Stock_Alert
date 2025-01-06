@@ -203,7 +203,7 @@ class DatabaseRepository {
     int triedConnection = 0;
 
     /* loop through watchlist and update the data */
-    for (var currentTickerIndex = 0;
+    for (int currentTickerIndex = 0;
         currentTickerIndex < watchlistLength;
         currentTickerIndex++) {
       String currentTickerSymbol = prevWatchlist[currentTickerIndex].ticker;
