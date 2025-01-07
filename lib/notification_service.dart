@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:stock_alert/database_repository.dart';
 import 'package:stock_alert/pages/homePageWidgets/stock_entity.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -119,6 +120,8 @@ class NotificationService {
 
   /* promps user request for permissions */
   static Future requestPermissions() async {
+    await Permission.scheduleExactAlarm.request();
+
     List<NotificationPermission> permissionList = [
       NotificationPermission.Badge,
       NotificationPermission.Alert,
