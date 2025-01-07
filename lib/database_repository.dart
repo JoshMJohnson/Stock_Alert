@@ -258,11 +258,7 @@ class DatabaseRepository {
         );
 
         await Future.delayed(const Duration(seconds: 61));
-
-        /* if not at first stock item */
-        if (currentTickerIndex > 0) {
-          currentTickerIndex--; /* retry ticker that failed */
-        }
+        currentTickerIndex--; /* retry ticker that failed */
       }
       /* error with Twelve Data API site */
       else if (errorCode != null) {
