@@ -121,7 +121,7 @@ class NotificationService {
   /* promps user request for permissions */
   static Future requestPermissions() async {
     await Permission.scheduleExactAlarm
-        .request(); // ! exact alarm already granted automatically even on Android 14 when its not supposed to
+        .request(); // ! exact alarm permissions already granted automatically even on Android 14 when its not supposed to on 13 or 14
 
     List<NotificationPermission> permissionList = [
       NotificationPermission.Badge,
@@ -138,7 +138,7 @@ class NotificationService {
     );
   }
 
-  /* starts the foreground service */ // ! Android 14 issue lies with foreground service OR exact alarm permissions above
+  /* starts the foreground service */ // ! Android 14 issue lies with declaring foreground service type OR exact alarm permissions above
   static startForegroundService() async {
     AndroidForegroundService.startAndroidForegroundService(
       foregroundStartMode: ForegroundStartMode.stick,
