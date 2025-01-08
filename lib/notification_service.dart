@@ -120,8 +120,11 @@ class NotificationService {
 
   /* promps user request for permissions */
   static Future requestPermissions() async {
+    debugPrint('*** before: ${await Permission.scheduleExactAlarm.status}');
     await Permission.scheduleExactAlarm
         .request(); // ! exact alarm permissions already granted automatically even on Android 14 when its not supposed to on 13 or 14
+
+    debugPrint('*** after: ${await Permission.scheduleExactAlarm.status}');
 
     List<NotificationPermission> permissionList = [
       NotificationPermission.Badge,
