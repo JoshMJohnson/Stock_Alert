@@ -4,7 +4,7 @@
     <uses-permission android:name="android.permission.VIBRATE"/>
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
     <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY"/>
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -24,7 +24,7 @@
             android:enabled="true"            
             android:exported="true"
             android:stopWithTask="false"
-            android:foregroundServiceType="specialUse"
+            android:foregroundServiceType="dataSync"
             tools:replace="android:foregroundServiceType,android:exported,android:stopWithTask"/>
 
         <activity
