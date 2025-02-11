@@ -13,7 +13,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 // The callback function should always be a top-level or static function.
 @pragma('vm:entry-point')
 startCallback() {
-  debugPrint('startCallback');
   fgtask.FlutterForegroundTask.setTaskHandler(NotificationService());
 }
 
@@ -24,8 +23,6 @@ class NotificationService extends TaskHandler {
     DateTime timestamp,
     fgtask.TaskStarter starter,
   ) async {
-    debugPrint('onStart');
-
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
     final int quanitiyReminders = prefs.getInt('notificationQuantity') ?? 3;
@@ -48,13 +45,6 @@ class NotificationService extends TaskHandler {
 
     // todo begin scheduled tasks
     // createScheduledProgression();
-
-    debugPrint('createScheduledProgression ... quanitiyReminders: * before');
-
-    debugPrint(
-        'createScheduledProgression ... quanitiyReminders: $quanitiyReminders');
-
-    debugPrint('createScheduledProgression ... quanitiyReminders: * after');
 
     String easternTimeZone = 'America/New_York';
 
@@ -163,20 +153,19 @@ class NotificationService extends TaskHandler {
           easternTimeZone, counterID, dayCounter, notification3);
     }
 
-    throw UnimplementedError();
+    // throw UnimplementedError();
   }
 
   // Called based on the eventAction set in ForegroundTaskOptions.
   @override
-  void onRepeatEvent(DateTime timestamp) {
-    debugPrint('onRepeatEvent');
-  }
+  void onRepeatEvent(DateTime timestamp) {}
 
-  // Called when the task is destroyed.
+  // Called when the foreground service is destroyed.
   @override
-  Future<void> onDestroy(DateTime timestamp) {
-    debugPrint('onDestroy');
-    throw UnimplementedError();
+  Future<void> onDestroy(DateTime timestamp) async {
+    debugPrint('***** onDestroy');
+
+    // throw UnimplementedError();
   }
 
   /* initializes local notifications */
@@ -357,7 +346,7 @@ class NotificationService extends TaskHandler {
   /* terminates the foreground service */
   static terminateForegroundService() async {
     // AndroidForegroundService.stopForeground(1);
-    fgtask.FlutterForegroundTask.stopService();
+    await fgtask.FlutterForegroundTask.stopService();
   }
 
   /* terminates all previous scheduled notifications */
