@@ -292,16 +292,7 @@ class NotificationService extends TaskHandler {
 
   /* promps user request for permissions */
   static Future requestPermissions() async {
-    await fgtask.FlutterForegroundTask.requestNotificationPermission();
-
-    if (!await fgtask.FlutterForegroundTask.canScheduleExactAlarms) {
-      // When you call this function, will be gone to the settings page.
-      // So you need to explain to the user why set it.
-      await fgtask.FlutterForegroundTask.openAlarmsAndRemindersSettings();
-    }
-
-    await Permission.scheduleExactAlarm
-        .request(); // ! exact alarm permissions being revoked maybe
+    await Permission.scheduleExactAlarm.request();
 
     List<NotificationPermission> permissionList = [
       NotificationPermission.Badge,
@@ -318,7 +309,7 @@ class NotificationService extends TaskHandler {
     );
   }
 
-  /* starts the foreground service */ // ! Android 14 issue lies with declaring foreground service type OR exact alarm permissions above
+  /* starts the foreground service */
   static startForegroundService() async {
     // AndroidForegroundService.startAndroidForegroundService(
     //   foregroundStartMode: ForegroundStartMode.stick,
