@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_foreground_task/flutter_foreground_task.dart' as fgtask;
 import 'package:flutter_foreground_task/models/notification_icon.dart';
 import 'package:flutter_foreground_task/task_handler.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:stock_alert/database_repository.dart';
 import 'package:stock_alert/pages/homePageWidgets/stock_entity.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -42,9 +41,6 @@ class NotificationService extends TaskHandler {
         TimeOfDay(hour: tod2Hours, minute: tod2Minutes);
     final TimeOfDay notification3 =
         TimeOfDay(hour: tod3Hours, minute: tod3Minutes);
-
-    // todo begin scheduled tasks
-    // createScheduledProgression();
 
     String easternTimeZone = 'America/New_York';
 
@@ -292,15 +288,12 @@ class NotificationService extends TaskHandler {
 
   /* promps user request for permissions */
   static Future requestPermissions() async {
-    await Permission.scheduleExactAlarm.request();
-
     List<NotificationPermission> permissionList = [
       NotificationPermission.Badge,
       NotificationPermission.Alert,
       NotificationPermission.Sound,
       NotificationPermission.Vibration,
       NotificationPermission.Light,
-      NotificationPermission.PreciseAlarms,
     ];
 
     // Check if the basic permission was granted by the user
