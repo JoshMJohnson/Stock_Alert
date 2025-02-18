@@ -10,8 +10,6 @@ import 'package:stock_alert/pages/homePageWidgets/sort_input_fields.dart';
 import 'package:stock_alert/pages/homePageWidgets/stock_entity.dart';
 import 'package:stock_alert/database_repository.dart';
 
-import 'package:flutter_foreground_task/flutter_foreground_task.dart' as fgtask;
-
 class HomePage extends StatefulWidget {
   final String startupSortAlgorithm;
   final bool startupNotificationToggledOn;
@@ -79,12 +77,6 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     this.watchlist,
   );
 
-  // todo
-  /// Receives data sent from the TaskHandler
-  void _onReceiveTaskData(Object data) {
-    debugPrint('_onReceiveTaskData');
-  }
-
   @override
   void initState() {
     loadLastUpdatedTime();
@@ -93,16 +85,10 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     WidgetsBinding.instance.addObserver(this);
 
     super.initState();
-
-    // Add a callback to receive data sent from the TaskHandler.
-    fgtask.FlutterForegroundTask.addTaskDataCallback(_onReceiveTaskData);
   }
 
   @override
   void dispose() {
-    // Remove a callback to receive data sent from the TaskHandler.
-    fgtask.FlutterForegroundTask.removeTaskDataCallback(_onReceiveTaskData);
-
     super.dispose();
     WidgetsBinding.instance.removeObserver(
         this); // ! possibly why you cant terminate and still have work
