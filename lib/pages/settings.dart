@@ -162,16 +162,14 @@ class _SettingsPageState extends State<SettingsPage> {
 
         /* if foreground service was previously on */
         if (isForegroundServiceOn) {
-          await NotificationService.terminateScheduledNotifications();
           await NotificationService.terminateForegroundService();
         }
 
         await prefs.setBool('isForegroundServiceOn', true);
-
         await NotificationService.startForegroundService();
 
-        NotificationService.createScheduledProgression(notificationQuantity,
-            notification1, notification2, notification3); // todo
+        await NotificationService.createScheduledProgression(
+            notificationQuantity, notification1, notification2, notification3);
       }
     } else {
       final bool isForegroundServiceOn =
@@ -179,8 +177,7 @@ class _SettingsPageState extends State<SettingsPage> {
 
       /* if foreground service was previously on */
       if (isForegroundServiceOn) {
-        NotificationService.terminateForegroundService();
-        // NotificationService.terminateScheduledNotifications();
+        await NotificationService.terminateForegroundService();
       }
 
       prefs.setBool('isForegroundServiceOn', false);

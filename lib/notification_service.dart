@@ -149,13 +149,9 @@ class NotificationService {
     );
   }
 
-  /* terminates the foreground service */
+  /* terminates the foreground service and terminates all previous scheduled notifications */
   static terminateForegroundService() async {
     AndroidForegroundService.stopForeground(1);
-  }
-
-  /* terminates all previous scheduled notifications */
-  static terminateScheduledNotifications() {
     AwesomeNotifications().cancelAll();
   }
 
