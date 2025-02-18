@@ -13,9 +13,6 @@ import 'package:disable_battery_optimization/disable_battery_optimization.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // * local notifications
-  await NotificationService.init();
-
   // * preferences
   final SharedPreferences prefs = await SharedPreferences.getInstance();
 
@@ -54,6 +51,9 @@ Future<void> main() async {
 
   // * database
   List<StockEntity> watchlist = await DatabaseRepository.getStockSymbols();
+
+  // * foreground service
+  await NotificationService.init();
 
   runApp(MyApp(
     startupSortAlgorithm,

@@ -6,38 +6,37 @@ import 'package:stock_alert/database_repository.dart';
 import 'package:stock_alert/pages/homePageWidgets/stock_entity.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+/// Use this method to detect when a new notification or a schedule is created
+@pragma("vm:entry-point")
+Future<void> onNotificationCreatedMethod(
+    ReceivedNotification receivedNotification) async {}
+
+/* triggers on notification displayed */
+@pragma("vm:entry-point")
+Future onNotificationDisplayedMethod(
+    ReceivedNotification receivedNotification) async {
+  /* if scheduled notification; begin pulling data from watchlist */
+  /* 18 = starting at 3, 5 days a week, 3 possible daily reminders */
+  if (receivedNotification.id! >= 3 && receivedNotification.id! <= 18) {
+    DatabaseRepository.updateWatchlist();
+  }
+}
+
+/// Use this method to detect if the user dismissed a notification
+@pragma("vm:entry-point")
+Future<void> onDismissActionReceivedMethod(
+    ReceivedAction receivedAction) async {}
+
+/// Use this method to detect when the user taps on a notification or action button
+@pragma("vm:entry-point")
+Future<void> onActionReceivedMethod(ReceivedAction receivedAction) async {}
+
 class NotificationService {
   /* initializes local notifications */
   static Future init() async {
     await channelCreation();
     await createListeners();
   }
-
-  /// Use this method to detect when a new notification or a schedule is created
-  @pragma("vm:entry-point")
-  static Future<void> onNotificationCreatedMethod(
-      ReceivedNotification receivedNotification) async {}
-
-  /* triggers on notification displayed */
-  @pragma("vm:entry-point")
-  static Future onNotificationDisplayedMethod(
-      ReceivedNotification receivedNotification) async {
-    /* if scheduled notification; begin pulling data from watchlist */
-    /* 18 = starting at 3, 5 days a week, 3 possible daily reminders */
-    if (receivedNotification.id! >= 3 && receivedNotification.id! <= 18) {
-      DatabaseRepository.updateWatchlist();
-    }
-  }
-
-  /// Use this method to detect if the user dismissed a notification
-  @pragma("vm:entry-point")
-  static Future<void> onDismissActionReceivedMethod(
-      ReceivedAction receivedAction) async {}
-
-  /// Use this method to detect when the user taps on a notification or action button
-  @pragma("vm:entry-point")
-  static Future<void> onActionReceivedMethod(
-      ReceivedAction receivedAction) async {}
 
   /* creates the event listeners for the notifications */
   static Future createListeners() async {
@@ -52,19 +51,18 @@ class NotificationService {
   /* creates the notification channels */
   static Future channelCreation() async {
     await AwesomeNotifications().initialize(
-      null,
+      'resource://drawable/foreground_service_icon',
       [
         NotificationChannel(
           groupKey: 'foreground_service',
           channelKey: 'foreground_service',
           channelName: 'Foreground Service',
           channelDescription: 'Foreground service',
-          icon: 'resource://drawable/foreground_service_icon',
           defaultPrivacy: NotificationPrivacy.Public,
           playSound: false,
           enableVibration: false,
           locked: true,
-          importance: NotificationImportance.Max,
+          importance: NotificationImportance.High,
         ),
         NotificationChannel(
           groupKey: 'schedule_triggered',
@@ -82,7 +80,7 @@ class NotificationService {
           channelName: 'Update Progression',
           channelDescription: 'Progression on pulling updated ticker data',
           icon: 'resource://drawable/update_icon',
-          importance: NotificationImportance.Default,
+          importance: NotificationImportance.Low,
           playSound: false,
           enableVibration: false,
         ),
@@ -125,6 +123,7 @@ class NotificationService {
       NotificationPermission.Sound,
       NotificationPermission.Vibration,
       NotificationPermission.Light,
+      NotificationPermission.PreciseAlarms,
     ];
 
     // Check if the basic permission was granted by the user
@@ -200,9 +199,6 @@ class NotificationService {
     TimeOfDay notification2,
     TimeOfDay notification3,
   ) async {
-    debugPrint(
-        'createScheduledProgression ... quanitiyReminders: $quanitiyReminders');
-
     String easternTimeZone = 'America/New_York';
 
     int counterID = 3;
