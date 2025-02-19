@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:awesome_notifications/android_foreground_service.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:stock_alert/database_repository.dart';
@@ -133,25 +132,10 @@ class NotificationService {
   }
 
   /* starts the foreground service */
-  static startForegroundService() async {
-    AndroidForegroundService.startAndroidForegroundService(
-      foregroundStartMode: ForegroundStartMode.stick,
-      foregroundServiceType: ForegroundServiceType.dataSync,
-      content: NotificationContent(
-        id: 1,
-        title: 'Stock Alert is active...',
-        channelKey: 'foreground_service',
-        category: NotificationCategory.Service,
-        autoDismissible: false,
-        locked: true,
-        icon: 'resource://drawable/foreground_service_icon',
-      ),
-    );
-  }
+  static startForegroundService() async {}
 
   /* terminates the foreground service and terminates all previous scheduled notifications */
   static terminateForegroundService() async {
-    AndroidForegroundService.stopForeground(1);
     AwesomeNotifications().cancelAll();
   }
 
