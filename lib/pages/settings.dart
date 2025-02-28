@@ -117,6 +117,7 @@ class _SettingsPageState extends State<SettingsPage> {
   /* saves all current settings into device preferences; async storage */
   savePreferences() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
+
     prefs.setBool('notificationToggle', notificationToggledOn);
     prefs.setDouble('thresholdValue', thresholdValue);
     prefs.setInt('notificationQuantity', notificationQuantity);
@@ -166,10 +167,11 @@ class _SettingsPageState extends State<SettingsPage> {
         }
 
         await prefs.setBool('isForegroundServiceOn', true);
-        await NotificationService.startForegroundService();
 
+        await NotificationService.startForegroundService();
         await NotificationService.createScheduledProgression(
-            notificationQuantity, notification1, notification2, notification3);
+          notificationQuantity,
+        );
       }
     } else {
       final bool isForegroundServiceOn =

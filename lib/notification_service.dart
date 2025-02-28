@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:stock_alert/database_repository.dart';
 import 'package:stock_alert/pages/homePageWidgets/stock_entity.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:workmanager/workmanager.dart';
 
 /// Use this method to detect when a new notification or a schedule is created
 @pragma("vm:entry-point")
@@ -30,11 +31,88 @@ Future<void> onDismissActionReceivedMethod(
 @pragma("vm:entry-point")
 Future<void> onActionReceivedMethod(ReceivedAction receivedAction) async {}
 
+@pragma(
+    'vm:entry-point') // Mandatory if the App is obfuscated or using Flutter 3.1+
+void callbackDispatcher() {
+  debugPrint('** callbackDispatcher **');
+
+  Workmanager().executeTask((task, inputData) async {
+    debugPrint(
+        "***************** Native called background task: $task"); //simpleTask will be emitted here.
+    debugPrint(
+        "***************** Native called background inputData: $inputData"); //simpleTask will be emitted here.
+    debugPrint('***** ${inputData!['counterID']}');
+    debugPrint('***** ${inputData['dayCounter']}');
+    debugPrint('***** ${inputData['notificationNum']}');
+
+    String easternTimeZone = 'America/New_York';
+    final int notificationNum = inputData['notificationNum'];
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    late int todHours;
+    late int todMinutes;
+
+    /* Reminder number 1-3 */
+    if (notificationNum == 1) {
+      todHours = prefs.getInt('tod1Hours')!;
+      todMinutes = prefs.getInt('tod1Minutes')!;
+    } else if (notificationNum == 2) {
+      todHours = prefs.getInt('tod2Hours')!;
+      todMinutes = prefs.getInt('tod2Minutes')!;
+    } else {
+      todHours = prefs.getInt('tod3Hours')!;
+      todMinutes = prefs.getInt('tod3Minutes')!;
+    }
+
+    final int counterID = inputData['counterID'];
+    final int weekdayValue = inputData['dayCounter'];
+
+    debugPrint('** todHours: $todHours');
+    debugPrint('** todMinutes: $todMinutes');
+    debugPrint('** weekdayValue: $weekdayValue');
+
+    AwesomeNotifications().createNotification(
+      content: NotificationContent(
+        id: counterID,
+        channelKey: 'schedule_triggered',
+        color: const Color.fromARGB(255, 70, 130, 180),
+        actionType: ActionType.Default,
+        category: NotificationCategory.Reminder,
+        title: 'Updating watchlist',
+        timeoutAfter: const Duration(seconds: 1),
+      ),
+      schedule: NotificationCalendar(
+        preciseAlarm: true,
+        timeZone: easternTimeZone,
+        allowWhileIdle: true,
+        repeats: true,
+        hour: todHours,
+        minute: todMinutes,
+        second: 0,
+        weekday: weekdayValue,
+      ),
+    );
+
+    return Future.value(true);
+  });
+}
+
 class NotificationService {
   /* initializes local notifications */
   static Future init() async {
+    debugPrint('** init 1 **');
+
     await channelCreation();
     await createListeners();
+
+    debugPrint('** init 2 **');
+
+    Workmanager().initialize(
+      callbackDispatcher,
+    );
+
+    debugPrint('** init 3 **');
   }
 
   /* creates the event listeners for the notifications */
@@ -137,36 +215,7 @@ class NotificationService {
   /* terminates the foreground service and terminates all previous scheduled notifications */
   static terminateForegroundService() async {
     AwesomeNotifications().cancelAll();
-  }
-
-  /* creates scheduled notification */
-  static notificationGenerator(
-    String easternTimeZone,
-    int notificationID,
-    int weekdayValue,
-    TimeOfDay tod,
-  ) {
-    AwesomeNotifications().createNotification(
-      content: NotificationContent(
-        id: notificationID,
-        channelKey: 'schedule_triggered',
-        color: const Color.fromARGB(255, 70, 130, 180),
-        actionType: ActionType.Default,
-        category: NotificationCategory.Reminder,
-        title: 'Updating watchlist',
-        timeoutAfter: const Duration(seconds: 1),
-      ),
-      schedule: NotificationCalendar(
-        preciseAlarm: true,
-        timeZone: easternTimeZone,
-        allowWhileIdle: true,
-        repeats: true,
-        hour: tod.hour,
-        minute: tod.minute,
-        second: 0,
-        weekday: weekdayValue,
-      ),
-    );
+    Workmanager().cancelAll();
   }
 
   /* 
@@ -175,82 +224,178 @@ class NotificationService {
   */
   static createScheduledProgression(
     int quanitiyReminders,
-    TimeOfDay notification1,
-    TimeOfDay notification2,
-    TimeOfDay notification3,
   ) async {
-    String easternTimeZone = 'America/New_York';
+    // String easternTimeZone = 'America/New_York';
 
     int counterID = 3;
     int dayCounter = 1;
 
     /* scheduled daily reminder 1 */
     /* monday */
-    notificationGenerator(
-        easternTimeZone, counterID, dayCounter, notification1);
+    Workmanager().registerOneOffTask(
+      "Monday1",
+      "ReminderNotification",
+      inputData: {
+        'counterID': counterID,
+        'dayCounter': dayCounter,
+        'notificationNum': 1,
+      },
+    );
+
     counterID++;
     dayCounter++;
 
     /* tuesday */
-    notificationGenerator(
-        easternTimeZone, counterID, dayCounter, notification1);
+    Workmanager().registerOneOffTask(
+      "Tuesday1",
+      "ReminderNotification",
+      inputData: {
+        'counterID': counterID,
+        'dayCounter': dayCounter,
+        'notificationNum': 1,
+      },
+    );
+
     counterID++;
     dayCounter++;
 
     /* wednesday */
-    notificationGenerator(
-        easternTimeZone, counterID, dayCounter, notification1);
+    Workmanager().registerOneOffTask(
+      "Wed1",
+      "ReminderNotification",
+      inputData: {
+        'counterID': counterID,
+        'dayCounter': dayCounter,
+        'notificationNum': 1,
+      },
+    );
+
     counterID++;
     dayCounter++;
 
     /* thursday */
-    notificationGenerator(
-        easternTimeZone, counterID, dayCounter, notification1);
+    Workmanager().registerOneOffTask(
+      "Thursday1",
+      "ReminderNotification",
+      inputData: {
+        'counterID': counterID,
+        'dayCounter': dayCounter,
+        'notificationNum': 1,
+      },
+    );
+
     counterID++;
     dayCounter++;
 
     /* friday */
-    notificationGenerator(
-        easternTimeZone, counterID, dayCounter, notification1);
+    Workmanager().registerOneOffTask(
+      "Friday1",
+      "ReminderNotification",
+      inputData: {
+        'counterID': counterID,
+        'dayCounter': dayCounter,
+        'notificationNum': 1,
+      },
+    );
+
     counterID++;
     dayCounter = 1;
 
     // ! testing start
-    // notificationGenerator(easternTimeZone, counterID, 6, notification1);
+    // Workmanager().registerOneOffTask(
+    //   "Saturday1",
+    //   "ReminderNotification",
+    //   inputData: {
+    //     'counterID': counterID,
+    //     'dayCounter': 6,
+    //     'notificationNum': 1,
+    //   },
+    // );
+
     // counterID++;
-    // notificationGenerator(easternTimeZone, counterID, 7, notification1);
+
+    // Workmanager().registerOneOffTask(
+    //   "Sunday1",
+    //   "ReminderNotification",
+    //   inputData: {
+    //     'counterID': counterID,
+    //     'dayCounter': 7,
+    //     'notificationNum': 1,
+    //   },
+    // );
+
     // counterID++;
     // ! testing end
 
     /* scheduled daily reminder 2 */
     if (quanitiyReminders >= 2) {
       /* monday */
-      notificationGenerator(
-          easternTimeZone, counterID, dayCounter, notification2);
+      Workmanager().registerOneOffTask(
+        "Monday2",
+        "ReminderNotification",
+        inputData: {
+          'counterID': counterID,
+          'dayCounter': dayCounter,
+          'notificationNum': 2,
+        },
+      );
+
       counterID++;
       dayCounter++;
 
       /* tuesday */
-      notificationGenerator(
-          easternTimeZone, counterID, dayCounter, notification2);
+      Workmanager().registerOneOffTask(
+        "Tuesday2",
+        "ReminderNotification",
+        inputData: {
+          'counterID': counterID,
+          'dayCounter': dayCounter,
+          'notificationNum': 2,
+        },
+      );
+
       counterID++;
       dayCounter++;
 
       /* wednesday */
-      notificationGenerator(
-          easternTimeZone, counterID, dayCounter, notification2);
+      Workmanager().registerOneOffTask(
+        "Wed2",
+        "ReminderNotification",
+        inputData: {
+          'counterID': counterID,
+          'dayCounter': dayCounter,
+          'notificationNum': 2,
+        },
+      );
+
       counterID++;
       dayCounter++;
 
       /* thursday */
-      notificationGenerator(
-          easternTimeZone, counterID, dayCounter, notification2);
+      Workmanager().registerOneOffTask(
+        "Thursday2",
+        "ReminderNotification",
+        inputData: {
+          'counterID': counterID,
+          'dayCounter': dayCounter,
+          'notificationNum': 2,
+        },
+      );
+
       counterID++;
       dayCounter++;
 
       /* friday */
-      notificationGenerator(
-          easternTimeZone, counterID, dayCounter, notification2);
+      Workmanager().registerOneOffTask(
+        "Friday2",
+        "ReminderNotification",
+        inputData: {
+          'counterID': counterID,
+          'dayCounter': dayCounter,
+          'notificationNum': 2,
+        },
+      );
+
       counterID++;
       dayCounter = 1;
     }
@@ -258,32 +403,71 @@ class NotificationService {
     /* scheduled daily reminder 3 */
     if (quanitiyReminders == 3) {
       /* monday */
-      notificationGenerator(
-          easternTimeZone, counterID, dayCounter, notification3);
+      Workmanager().registerOneOffTask(
+        "Monday3",
+        "ReminderNotification",
+        inputData: {
+          'counterID': counterID,
+          'dayCounter': dayCounter,
+          'notificationNum': 3,
+        },
+      );
+
       counterID++;
       dayCounter++;
 
       /* tuesday */
-      notificationGenerator(
-          easternTimeZone, counterID, dayCounter, notification3);
+      Workmanager().registerOneOffTask(
+        "Tuesday3",
+        "ReminderNotification",
+        inputData: {
+          'counterID': counterID,
+          'dayCounter': dayCounter,
+          'notificationNum': 3,
+        },
+      );
+
       counterID++;
       dayCounter++;
 
       /* wednesday */
-      notificationGenerator(
-          easternTimeZone, counterID, dayCounter, notification3);
+      Workmanager().registerOneOffTask(
+        "Wed3",
+        "ReminderNotification",
+        inputData: {
+          'counterID': counterID,
+          'dayCounter': dayCounter,
+          'notificationNum': 3,
+        },
+      );
+
       counterID++;
       dayCounter++;
 
       /* thursday */
-      notificationGenerator(
-          easternTimeZone, counterID, dayCounter, notification3);
+      Workmanager().registerOneOffTask(
+        "Thursday3",
+        "ReminderNotification",
+        inputData: {
+          'counterID': counterID,
+          'dayCounter': dayCounter,
+          'notificationNum': 3,
+        },
+      );
+
       counterID++;
       dayCounter++;
 
       /* friday */
-      notificationGenerator(
-          easternTimeZone, counterID, dayCounter, notification3);
+      Workmanager().registerOneOffTask(
+        "Friday3",
+        "ReminderNotification",
+        inputData: {
+          'counterID': counterID,
+          'dayCounter': dayCounter,
+          'notificationNum': 3,
+        },
+      );
     }
   }
 
