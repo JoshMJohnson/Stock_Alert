@@ -42,19 +42,9 @@ void startCallback() {
 @pragma(
     'vm:entry-point') // Mandatory if the App is obfuscated or using Flutter 3.1+
 void callbackDispatcher() {
-  debugPrint('** callbackDispatcher **');
-
   Workmanager().executeTask((task, inputData) async {
-    debugPrint(
-        "***************** Native called background task: $task"); //simpleTask will be emitted here.
-    debugPrint(
-        "***************** Native called background inputData: $inputData"); //simpleTask will be emitted here.
-    debugPrint('***** counterID: ${inputData!['counterID']}');
-    debugPrint('***** dayCounter: ${inputData['dayCounter']}');
-    debugPrint('***** notificationNum: ${inputData['notificationNum']}');
-
     String easternTimeZone = 'America/New_York';
-    final int notificationNum = inputData['notificationNum'];
+    final int notificationNum = inputData!['notificationNum'];
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
@@ -75,10 +65,6 @@ void callbackDispatcher() {
 
     final int counterID = inputData['counterID'];
     final int weekdayValue = inputData['dayCounter'];
-
-    debugPrint('** todHours: $todHours');
-    debugPrint('** todMinutes: $todMinutes');
-    debugPrint('** weekdayValue: $weekdayValue');
 
     AwesomeNotifications().createNotification(
       content: NotificationContent(
@@ -118,8 +104,6 @@ class NotificationService extends TaskHandler {
 
   @override
   Future<void> onStart(DateTime timestamp, fgtask.TaskStarter starter) async {
-    debugPrint('** onStart **');
-
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
     final int quanitiyReminders = prefs.getInt('notificationQuantity')!;
