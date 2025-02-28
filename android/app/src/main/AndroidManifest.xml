@@ -4,13 +4,12 @@
     <uses-permission android:name="android.permission.VIBRATE"/>
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
     <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY"/>
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <!-- <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM"/> -->
     <uses-permission android:name="android.permission.USE_EXACT_ALARM"/>
     <uses-permission android:name="android.permission.SET_ALWAYS_FINISH"/>
 
@@ -19,13 +18,14 @@
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
 
-        <!-- <service 
-            android:name="me.carda.awesome_notifications.core.services.ForegroundService"
-            android:enabled="true"            
-            android:exported="true"
-            android:stopWithTask="false"
-            android:foregroundServiceType="dataSync"
-            tools:replace="android:foregroundServiceType,android:exported,android:stopWithTask"/> -->
+        <service 
+            android:name="com.pravera.flutter_foreground_task.service.ForegroundService"
+            android:foregroundServiceType="specialUse"
+            android:exported="true" />
+
+        <meta-data
+            android:name="com.stock_alert.service.ServiceIcon"
+            android:resource="@drawable/foreground_service_icon" />
 
         <activity
             android:name=".MainActivity"

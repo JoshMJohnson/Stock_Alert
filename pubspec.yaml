@@ -45,6 +45,7 @@ dependencies:
   flutter_launcher_icons: ^0.13.1
   disable_battery_optimization: ^1.1.1
   workmanager: ^0.5.2
+  flutter_foreground_task: ^8.17.0
 
 flutter_launcher_icons:
   android: true
