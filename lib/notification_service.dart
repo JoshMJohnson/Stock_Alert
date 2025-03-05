@@ -407,7 +407,7 @@ class NotificationService extends TaskHandler {
           channelName: 'Update Triggered (Required)',
           channelDescription: 'Necessary for notification handling',
           icon: 'resource://drawable/update_icon',
-          importance: NotificationImportance.Default,
+          importance: NotificationImportance.Max,
           playSound: false,
           enableVibration: false,
         ),
@@ -417,7 +417,7 @@ class NotificationService extends TaskHandler {
           channelName: 'Update Progression',
           channelDescription: 'Progression on pulling updated ticker data',
           icon: 'resource://drawable/update_icon',
-          importance: NotificationImportance.Low,
+          importance: NotificationImportance.Max,
           playSound: false,
           enableVibration: false,
         ),
@@ -489,6 +489,9 @@ class NotificationService extends TaskHandler {
   /* updates the current progress bar */
   static void updateProgressBar(
       int notificationID, int currentProgress, int totalTickersPulling) async {
+    /* dismisses previous out-of-date notifications */
+    await AwesomeNotifications().dismissAllNotifications();
+
     /* still pulling; reached api limit; delaying */
     if (currentProgress < totalTickersPulling) {
       double progress = currentProgress / totalTickersPulling * 100;
@@ -555,6 +558,12 @@ class NotificationService extends TaskHandler {
   /* creates bear and bull display text notifications */
   static createBearBullNotifications(List<StockEntity> bullTickerList,
       List<StockEntity> bearTickerList) async {
+    /* dismisses the updated notification if bear or bull is triggering */
+    if (bullTickerList.isNotEmpty || bearTickerList.isNotEmpty) {
+      /* dismisses previous out-of-date notifications */
+      await AwesomeNotifications().dismissAllNotifications();
+    }
+
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     int notificationId = prefs.getInt('bearBullNotificationID')!;
 
