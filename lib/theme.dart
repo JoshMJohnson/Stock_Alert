@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 // * light theme
-// todo
 ThemeData lightMode = ThemeData(
   brightness: Brightness.light,
   fontFamily: 'EBGaramond',

@@ -1,7 +1,9 @@
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stock_alert/notification_service.dart';
 import 'package:stock_alert/pages/homePageWidgets/stock_entity.dart';
+import 'package:workmanager/workmanager.dart';
 
 import 'pages/home.dart';
 import './theme.dart';
@@ -9,6 +11,62 @@ import 'package:stock_alert/database_repository.dart';
 import 'package:flutter/services.dart';
 
 import 'package:disable_battery_optimization/disable_battery_optimization.dart';
+
+@pragma('vm:entry-point')
+void callbackDispatcher() {
+  debugPrint('**** callbackDispatcher ****');
+
+  Workmanager().executeTask(
+    (task, inputData) async {
+      String easternTimeZone = 'America/New_York';
+      final int notificationNum = inputData!['notificationNum'];
+
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+
+      late int todHours;
+      late int todMinutes;
+
+      /* Reminder number 1-3 */
+      if (notificationNum == 1) {
+        todHours = prefs.getInt('tod1Hours')!;
+        todMinutes = prefs.getInt('tod1Minutes')!;
+      } else if (notificationNum == 2) {
+        todHours = prefs.getInt('tod2Hours')!;
+        todMinutes = prefs.getInt('tod2Minutes')!;
+      } else {
+        todHours = prefs.getInt('tod3Hours')!;
+        todMinutes = prefs.getInt('tod3Minutes')!;
+      }
+
+      final int counterID = inputData['counterID'];
+      final int weekdayValue = inputData['dayCounter'];
+
+      AwesomeNotifications().createNotification(
+        content: NotificationContent(
+          id: counterID,
+          channelKey: 'schedule_triggered',
+          color: const Color.fromARGB(255, 70, 130, 180),
+          actionType: ActionType.Default,
+          category: NotificationCategory.Reminder,
+          title: 'Updating watchlist',
+          timeoutAfter: const Duration(seconds: 1),
+        ),
+        schedule: NotificationCalendar(
+          preciseAlarm: true,
+          timeZone: easternTimeZone,
+          allowWhileIdle: true,
+          repeats: true,
+          hour: todHours,
+          minute: todMinutes,
+          second: 0,
+          weekday: weekdayValue,
+        ),
+      );
+
+      return Future.value(true);
+    },
+  );
+}
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -55,16 +113,22 @@ Future<void> main() async {
   // * foreground service
   await NotificationService.init();
 
-  runApp(MyApp(
-    startupSortAlgorithm,
-    startupNotificationToggledOn,
-    startupThresholdValue,
-    startupNotificationQuantity,
-    startupNotification1,
-    startupNotification2,
-    startupNotification3,
-    watchlist,
-  ));
+  Workmanager().initialize(
+    callbackDispatcher,
+  );
+
+  runApp(
+    MyApp(
+      startupSortAlgorithm,
+      startupNotificationToggledOn,
+      startupThresholdValue,
+      startupNotificationQuantity,
+      startupNotification1,
+      startupNotification2,
+      startupNotification3,
+      watchlist,
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

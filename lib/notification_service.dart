@@ -8,91 +8,15 @@ import 'package:stock_alert/pages/homePageWidgets/stock_entity.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:workmanager/workmanager.dart';
 
-/// Use this method to detect when a new notification or a schedule is created
-@pragma("vm:entry-point")
-Future<void> onNotificationCreatedMethod(
-    ReceivedNotification receivedNotification) async {}
-
-/* triggers on notification displayed */
-@pragma("vm:entry-point")
-Future onNotificationDisplayedMethod(
-    ReceivedNotification receivedNotification) async {
-  /* if scheduled notification; begin pulling data from watchlist */
-  /* 18 = starting at 3, 5 days a week, 3 possible daily reminders */
-  if (receivedNotification.id! >= 3 && receivedNotification.id! <= 18) {
-    DatabaseRepository.updateWatchlist();
-  }
-}
-
-/// Use this method to detect if the user dismissed a notification
-@pragma("vm:entry-point")
-Future<void> onDismissActionReceivedMethod(
-    ReceivedAction receivedAction) async {}
-
-/// Use this method to detect when the user taps on a notification or action button
-@pragma("vm:entry-point")
-Future<void> onActionReceivedMethod(ReceivedAction receivedAction) async {}
-
 // The callback function should always be a top-level or static function.
 @pragma('vm:entry-point')
 void startCallback() {
-  fgtask.FlutterForegroundTask.setTaskHandler(NotificationService());
+  debugPrint('****** startCallback *******');
+
+  fgtask.FlutterForegroundTask.setTaskHandler(AlarmHandler());
 }
 
-@pragma(
-    'vm:entry-point') // Mandatory if the App is obfuscated or using Flutter 3.1+
-void callbackDispatcher() {
-  Workmanager().executeTask((task, inputData) async {
-    String easternTimeZone = 'America/New_York';
-    final int notificationNum = inputData!['notificationNum'];
-
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-
-    late int todHours;
-    late int todMinutes;
-
-    /* Reminder number 1-3 */
-    if (notificationNum == 1) {
-      todHours = prefs.getInt('tod1Hours')!;
-      todMinutes = prefs.getInt('tod1Minutes')!;
-    } else if (notificationNum == 2) {
-      todHours = prefs.getInt('tod2Hours')!;
-      todMinutes = prefs.getInt('tod2Minutes')!;
-    } else {
-      todHours = prefs.getInt('tod3Hours')!;
-      todMinutes = prefs.getInt('tod3Minutes')!;
-    }
-
-    final int counterID = inputData['counterID'];
-    final int weekdayValue = inputData['dayCounter'];
-
-    AwesomeNotifications().createNotification(
-      content: NotificationContent(
-        id: counterID,
-        channelKey: 'schedule_triggered',
-        color: const Color.fromARGB(255, 70, 130, 180),
-        actionType: ActionType.Default,
-        category: NotificationCategory.Reminder,
-        title: 'Updating watchlist',
-        timeoutAfter: const Duration(seconds: 1),
-      ),
-      schedule: NotificationCalendar(
-        preciseAlarm: true,
-        timeZone: easternTimeZone,
-        allowWhileIdle: true,
-        repeats: true,
-        hour: todHours,
-        minute: todMinutes,
-        second: 0,
-        weekday: weekdayValue,
-      ),
-    );
-
-    return Future.value(true);
-  });
-}
-
-class NotificationService extends TaskHandler {
+class AlarmHandler extends TaskHandler {
   @override
   Future<void> onDestroy(DateTime timestamp) async {
     AwesomeNotifications().cancelAll();
@@ -104,6 +28,8 @@ class NotificationService extends TaskHandler {
 
   @override
   Future<void> onStart(DateTime timestamp, fgtask.TaskStarter starter) async {
+    debugPrint('*********** onStart ***********');
+
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
     final int quanitiyReminders = prefs.getInt('notificationQuantity')!;
@@ -351,16 +277,40 @@ class NotificationService extends TaskHandler {
       );
     }
   }
+}
+
+class NotificationService {
+  /// Use this method to detect when a new notification or a schedule is created
+  @pragma("vm:entry-point")
+  static Future<void> onNotificationCreatedMethod(
+      ReceivedNotification receivedNotification) async {}
+
+/* triggers on notification displayed */
+  @pragma("vm:entry-point")
+  static Future onNotificationDisplayedMethod(
+      ReceivedNotification receivedNotification) async {
+    /* if scheduled notification; begin pulling data from watchlist */
+    /* 18 = starting at 3, 5 days a week, 3 possible daily reminders */
+    if (receivedNotification.id! >= 3 && receivedNotification.id! <= 18) {
+      DatabaseRepository.updateWatchlist();
+    }
+  }
+
+  /// Use this method to detect if the user dismissed a notification
+  @pragma("vm:entry-point")
+  static Future<void> onDismissActionReceivedMethod(
+      ReceivedAction receivedAction) async {}
+
+  /// Use this method to detect when the user taps on a notification or action button
+  @pragma("vm:entry-point")
+  static Future<void> onActionReceivedMethod(
+      ReceivedAction receivedAction) async {}
 
   /* initializes local notifications */
   static Future init() async {
     await channelCreation();
     await createListeners();
     await initService();
-
-    Workmanager().initialize(
-      callbackDispatcher,
-    );
   }
 
   static Future initService() async {
@@ -471,14 +421,17 @@ class NotificationService extends TaskHandler {
 
   /* starts the foreground service */
   static startForegroundService() async {
+    debugPrint('** startForegroundService **************');
+
     await fgtask.FlutterForegroundTask.startService(
-        serviceId: 1,
-        notificationTitle: 'Stock Alert is active...',
-        notificationText: 'Keeping you updated on the stock market',
-        notificationIcon: const fgtask.NotificationIcon(
-          metaDataName: 'com.stock_alert.service.ServiceIcon',
-        ),
-        callback: startCallback);
+      serviceId: 1,
+      notificationTitle: 'Stock Alert is active...',
+      notificationText: 'Keeping you updated on the stock market',
+      notificationIcon: const fgtask.NotificationIcon(
+        metaDataName: 'com.stock_alert.service.ServiceIcon',
+      ),
+      callback: startCallback,
+    );
   }
 
   /* terminates the foreground service and terminates all previous scheduled notifications */
