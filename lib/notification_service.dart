@@ -2,309 +2,204 @@ import 'dart:async';
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_foreground_task/flutter_foreground_task.dart' as fgtask;
-import 'package:flutter_foreground_task/task_handler.dart';
 import 'package:stock_alert/database_repository.dart';
 import 'package:stock_alert/pages/homePageWidgets/stock_entity.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:workmanager/workmanager.dart';
 
 // The callback function should always be a top-level or static function.
 @pragma('vm:entry-point')
 void startCallback() {
-  debugPrint('****** startCallback *******');
-
-  fgtask.FlutterForegroundTask.setTaskHandler(AlarmHandler());
+  fgtask.FlutterForegroundTask.setTaskHandler(NotificationService());
 }
 
-class AlarmHandler extends TaskHandler {
-  @override
-  Future<void> onDestroy(DateTime timestamp) async {
-    AwesomeNotifications().cancelAll();
-    Workmanager().cancelAll();
+/// Use this method to detect when a new notification or a schedule is created
+@pragma("vm:entry-point")
+Future<void> onNotificationCreatedMethod(
+    ReceivedNotification receivedNotification) async {}
+
+/* triggers on notification displayed */
+@pragma("vm:entry-point")
+Future onNotificationDisplayedMethod(
+    ReceivedNotification receivedNotification) async {
+  /* if scheduled notification; begin pulling data from watchlist */
+  /* 18 = starting at 3, 5 days a week, 3 possible daily reminders */
+  if (receivedNotification.id! >= 3 && receivedNotification.id! <= 18) {
+    DatabaseRepository.updateWatchlist();
   }
+}
+
+/// Use this method to detect if the user dismissed a notification
+@pragma("vm:entry-point")
+Future<void> onDismissActionReceivedMethod(
+    ReceivedAction receivedAction) async {}
+
+/// Use this method to detect when the user taps on a notification or action button
+@pragma("vm:entry-point")
+Future<void> onActionReceivedMethod(ReceivedAction receivedAction) async {}
+
+class NotificationService extends fgtask.TaskHandler {
+  @override
+  Future<void> onDestroy(DateTime timestamp) async {}
 
   @override
   void onRepeatEvent(DateTime timestamp) {}
 
   @override
   Future<void> onStart(DateTime timestamp, fgtask.TaskStarter starter) async {
-    debugPrint('*********** onStart ***********');
+    String easternTimeZone = 'America/New_York';
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    final int quanitiyReminders = prefs.getInt('notificationQuantity')!;
+    final int notificationQuantity = prefs.getInt('notificationQuantity') ?? 3;
+
+    int tod1Hours = prefs.getInt('tod1Hours')!;
+    int tod1Minutes = prefs.getInt('tod1Minutes')!;
+    int tod2Hours = prefs.getInt('tod2Hours')!;
+    int tod2Minutes = prefs.getInt('tod2Minutes')!;
+    int tod3Hours = prefs.getInt('tod3Hours')!;
+    int tod3Minutes = prefs.getInt('tod3Minutes')!;
+
+    debugPrint('tod1Hours: $tod1Hours ... tod1Minutes: $tod1Minutes');
+    debugPrint('tod2Hours: $tod2Hours ... tod2Minutes: $tod2Minutes');
+    debugPrint('tod3Hours: $tod3Hours ... tod3Minutes: $tod3Minutes');
+
+    TimeOfDay notification1TOD =
+        TimeOfDay(hour: tod1Hours, minute: tod1Minutes);
+    TimeOfDay notification2TOD =
+        TimeOfDay(hour: tod2Hours, minute: tod2Minutes);
+    TimeOfDay notification3TOD =
+        TimeOfDay(hour: tod3Hours, minute: tod3Minutes);
+
+    debugPrint(
+        'notification1TOD.minute: ${notification1TOD.hour} ... notification1TOD.minute: ${notification1TOD.minute}');
+    debugPrint(
+        'notification2TOD.minute: ${notification2TOD.hour} ... notification2TOD.minute: ${notification2TOD.minute}');
+    debugPrint(
+        'notification3TOD.minute: ${notification3TOD.hour} ... notification3TOD.minute: ${notification3TOD.minute}');
 
     int counterID = 3;
     int dayCounter = 1;
 
     /* scheduled daily reminder 1 */
     /* monday */
-    Workmanager().registerOneOffTask(
-      "Monday1",
-      "ReminderNotification",
-      inputData: {
-        'counterID': counterID,
-        'dayCounter': dayCounter,
-        'notificationNum': 1,
-      },
-    );
+    notificationGenerator(
+        easternTimeZone, counterID, dayCounter, notification1TOD);
 
     counterID++;
     dayCounter++;
 
     /* tuesday */
-    Workmanager().registerOneOffTask(
-      "Tuesday1",
-      "ReminderNotification",
-      inputData: {
-        'counterID': counterID,
-        'dayCounter': dayCounter,
-        'notificationNum': 1,
-      },
-    );
+    notificationGenerator(
+        easternTimeZone, counterID, dayCounter, notification1TOD);
 
     counterID++;
     dayCounter++;
 
     /* wednesday */
-    Workmanager().registerOneOffTask(
-      "Wed1",
-      "ReminderNotification",
-      inputData: {
-        'counterID': counterID,
-        'dayCounter': dayCounter,
-        'notificationNum': 1,
-      },
-    );
+    notificationGenerator(
+        easternTimeZone, counterID, dayCounter, notification1TOD);
 
     counterID++;
     dayCounter++;
 
     /* thursday */
-    Workmanager().registerOneOffTask(
-      "Thursday1",
-      "ReminderNotification",
-      inputData: {
-        'counterID': counterID,
-        'dayCounter': dayCounter,
-        'notificationNum': 1,
-      },
-    );
+    notificationGenerator(
+        easternTimeZone, counterID, dayCounter, notification1TOD);
 
     counterID++;
     dayCounter++;
 
     /* friday */
-    Workmanager().registerOneOffTask(
-      "Friday1",
-      "ReminderNotification",
-      inputData: {
-        'counterID': counterID,
-        'dayCounter': dayCounter,
-        'notificationNum': 1,
-      },
-    );
+    notificationGenerator(
+        easternTimeZone, counterID, dayCounter, notification1TOD);
 
     counterID++;
-    dayCounter = 1;
+    dayCounter++;
 
     // ! testing start
-    // Workmanager().registerOneOffTask(
-    //   "Saturday1",
-    //   "ReminderNotification",
-    //   inputData: {
-    //     'counterID': counterID,
-    //     'dayCounter': 6,
-    //     'notificationNum': 1,
-    //   },
-    // );
-
+    // notificationGenerator(easternTimeZone, counterID, 6, notification1);
     // counterID++;
-
-    // Workmanager().registerOneOffTask(
-    //   "Sunday1",
-    //   "ReminderNotification",
-    //   inputData: {
-    //     'counterID': counterID,
-    //     'dayCounter': 7,
-    //     'notificationNum': 1,
-    //   },
-    // );
-
+    // notificationGenerator(easternTimeZone, counterID, 7, notification1);
     // counterID++;
     // ! testing end
 
     /* scheduled daily reminder 2 */
-    if (quanitiyReminders >= 2) {
+    if (notificationQuantity >= 2) {
+      int dayCounter = 1;
+
       /* monday */
-      Workmanager().registerOneOffTask(
-        "Monday2",
-        "ReminderNotification",
-        inputData: {
-          'counterID': counterID,
-          'dayCounter': dayCounter,
-          'notificationNum': 2,
-        },
-      );
+      notificationGenerator(
+          easternTimeZone, counterID, dayCounter, notification2TOD);
 
       counterID++;
       dayCounter++;
 
       /* tuesday */
-      Workmanager().registerOneOffTask(
-        "Tuesday2",
-        "ReminderNotification",
-        inputData: {
-          'counterID': counterID,
-          'dayCounter': dayCounter,
-          'notificationNum': 2,
-        },
-      );
+      notificationGenerator(
+          easternTimeZone, counterID, dayCounter, notification2TOD);
 
       counterID++;
       dayCounter++;
 
       /* wednesday */
-      Workmanager().registerOneOffTask(
-        "Wed2",
-        "ReminderNotification",
-        inputData: {
-          'counterID': counterID,
-          'dayCounter': dayCounter,
-          'notificationNum': 2,
-        },
-      );
+      notificationGenerator(
+          easternTimeZone, counterID, dayCounter, notification2TOD);
 
       counterID++;
       dayCounter++;
 
       /* thursday */
-      Workmanager().registerOneOffTask(
-        "Thursday2",
-        "ReminderNotification",
-        inputData: {
-          'counterID': counterID,
-          'dayCounter': dayCounter,
-          'notificationNum': 2,
-        },
-      );
+      notificationGenerator(
+          easternTimeZone, counterID, dayCounter, notification2TOD);
 
       counterID++;
       dayCounter++;
 
       /* friday */
-      Workmanager().registerOneOffTask(
-        "Friday2",
-        "ReminderNotification",
-        inputData: {
-          'counterID': counterID,
-          'dayCounter': dayCounter,
-          'notificationNum': 2,
-        },
-      );
+      notificationGenerator(
+          easternTimeZone, counterID, dayCounter, notification2TOD);
 
       counterID++;
-      dayCounter = 1;
+      dayCounter++;
     }
 
-    /* scheduled daily reminder 3 */
-    if (quanitiyReminders == 3) {
+    /* scheduled daily reminder 2 */
+    if (notificationQuantity == 3) {
+      int dayCounter = 1;
+
       /* monday */
-      Workmanager().registerOneOffTask(
-        "Monday3",
-        "ReminderNotification",
-        inputData: {
-          'counterID': counterID,
-          'dayCounter': dayCounter,
-          'notificationNum': 3,
-        },
-      );
+      notificationGenerator(
+          easternTimeZone, counterID, dayCounter, notification3TOD);
 
       counterID++;
       dayCounter++;
 
       /* tuesday */
-      Workmanager().registerOneOffTask(
-        "Tuesday3",
-        "ReminderNotification",
-        inputData: {
-          'counterID': counterID,
-          'dayCounter': dayCounter,
-          'notificationNum': 3,
-        },
-      );
+      notificationGenerator(
+          easternTimeZone, counterID, dayCounter, notification3TOD);
 
       counterID++;
       dayCounter++;
 
       /* wednesday */
-      Workmanager().registerOneOffTask(
-        "Wed3",
-        "ReminderNotification",
-        inputData: {
-          'counterID': counterID,
-          'dayCounter': dayCounter,
-          'notificationNum': 3,
-        },
-      );
+      notificationGenerator(
+          easternTimeZone, counterID, dayCounter, notification3TOD);
 
       counterID++;
       dayCounter++;
 
       /* thursday */
-      Workmanager().registerOneOffTask(
-        "Thursday3",
-        "ReminderNotification",
-        inputData: {
-          'counterID': counterID,
-          'dayCounter': dayCounter,
-          'notificationNum': 3,
-        },
-      );
+      notificationGenerator(
+          easternTimeZone, counterID, dayCounter, notification3TOD);
 
       counterID++;
       dayCounter++;
 
       /* friday */
-      Workmanager().registerOneOffTask(
-        "Friday3",
-        "ReminderNotification",
-        inputData: {
-          'counterID': counterID,
-          'dayCounter': dayCounter,
-          'notificationNum': 3,
-        },
-      );
+      notificationGenerator(
+          easternTimeZone, counterID, dayCounter, notification3TOD);
     }
   }
-}
-
-class NotificationService {
-  /// Use this method to detect when a new notification or a schedule is created
-  @pragma("vm:entry-point")
-  static Future<void> onNotificationCreatedMethod(
-      ReceivedNotification receivedNotification) async {}
-
-/* triggers on notification displayed */
-  @pragma("vm:entry-point")
-  static Future onNotificationDisplayedMethod(
-      ReceivedNotification receivedNotification) async {
-    /* if scheduled notification; begin pulling data from watchlist */
-    /* 18 = starting at 3, 5 days a week, 3 possible daily reminders */
-    if (receivedNotification.id! >= 3 && receivedNotification.id! <= 18) {
-      DatabaseRepository.updateWatchlist();
-    }
-  }
-
-  /// Use this method to detect if the user dismissed a notification
-  @pragma("vm:entry-point")
-  static Future<void> onDismissActionReceivedMethod(
-      ReceivedAction receivedAction) async {}
-
-  /// Use this method to detect when the user taps on a notification or action button
-  @pragma("vm:entry-point")
-  static Future<void> onActionReceivedMethod(
-      ReceivedAction receivedAction) async {}
 
   /* initializes local notifications */
   static Future init() async {
@@ -421,8 +316,6 @@ class NotificationService {
 
   /* starts the foreground service */
   static startForegroundService() async {
-    debugPrint('** startForegroundService **************');
-
     await fgtask.FlutterForegroundTask.startService(
       serviceId: 1,
       notificationTitle: 'Stock Alert is active...',
@@ -436,7 +329,38 @@ class NotificationService {
 
   /* terminates the foreground service and terminates all previous scheduled notifications */
   static terminateForegroundService() async {
+    await AwesomeNotifications().cancelAll();
     await fgtask.FlutterForegroundTask.stopService();
+  }
+
+  /* creates scheduled notification */
+  static notificationGenerator(
+    String easternTimeZone,
+    int notificationID,
+    int weekdayValue,
+    TimeOfDay tod,
+  ) {
+    AwesomeNotifications().createNotification(
+      content: NotificationContent(
+        id: notificationID,
+        channelKey: 'schedule_triggered',
+        color: const Color.fromARGB(255, 70, 130, 180),
+        actionType: ActionType.Default,
+        category: NotificationCategory.Reminder,
+        title: 'Updating watchlist',
+        timeoutAfter: const Duration(seconds: 1),
+      ),
+      schedule: NotificationCalendar(
+        preciseAlarm: true,
+        timeZone: easternTimeZone,
+        allowWhileIdle: true,
+        repeats: true,
+        hour: tod.hour,
+        minute: tod.minute,
+        second: 0,
+        weekday: weekdayValue,
+      ),
+    );
   }
 
   /* updates the current progress bar */
