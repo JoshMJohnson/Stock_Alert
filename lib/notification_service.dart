@@ -42,10 +42,7 @@ class NotificationService extends fgtask.TaskHandler {
   Future<void> onDestroy(DateTime timestamp) async {}
 
   @override
-  void onRepeatEvent(DateTime timestamp) {}
-
-  @override
-  Future<void> onStart(DateTime timestamp, fgtask.TaskStarter starter) async {
+  void onRepeatEvent(DateTime timestamp) async {
     String easternTimeZone = 'America/New_York';
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -59,23 +56,12 @@ class NotificationService extends fgtask.TaskHandler {
     int tod3Hours = prefs.getInt('tod3Hours')!;
     int tod3Minutes = prefs.getInt('tod3Minutes')!;
 
-    debugPrint('tod1Hours: $tod1Hours ... tod1Minutes: $tod1Minutes');
-    debugPrint('tod2Hours: $tod2Hours ... tod2Minutes: $tod2Minutes');
-    debugPrint('tod3Hours: $tod3Hours ... tod3Minutes: $tod3Minutes');
-
     TimeOfDay notification1TOD =
         TimeOfDay(hour: tod1Hours, minute: tod1Minutes);
     TimeOfDay notification2TOD =
         TimeOfDay(hour: tod2Hours, minute: tod2Minutes);
     TimeOfDay notification3TOD =
         TimeOfDay(hour: tod3Hours, minute: tod3Minutes);
-
-    debugPrint(
-        'notification1TOD.minute: ${notification1TOD.hour} ... notification1TOD.minute: ${notification1TOD.minute}');
-    debugPrint(
-        'notification2TOD.minute: ${notification2TOD.hour} ... notification2TOD.minute: ${notification2TOD.minute}');
-    debugPrint(
-        'notification3TOD.minute: ${notification3TOD.hour} ... notification3TOD.minute: ${notification3TOD.minute}');
 
     int counterID = 3;
     int dayCounter = 1;
@@ -201,6 +187,9 @@ class NotificationService extends fgtask.TaskHandler {
     }
   }
 
+  @override
+  Future<void> onStart(DateTime timestamp, fgtask.TaskStarter starter) async {}
+
   /* initializes local notifications */
   static Future init() async {
     await channelCreation();
@@ -224,7 +213,7 @@ class NotificationService extends fgtask.TaskHandler {
         playSound: false,
       ),
       foregroundTaskOptions: fgtask.ForegroundTaskOptions(
-        eventAction: fgtask.ForegroundTaskEventAction.nothing(),
+        eventAction: fgtask.ForegroundTaskEventAction.once(),
         autoRunOnBoot: true,
         allowWakeLock: true,
       ),
