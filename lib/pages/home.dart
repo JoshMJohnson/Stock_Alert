@@ -82,16 +82,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     loadLastUpdatedTime();
     updateWatchlistData();
 
-    WidgetsBinding.instance.addObserver(this);
-
     super.initState();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    WidgetsBinding.instance.removeObserver(
-        this); // ! possibly why you cant terminate and still have work
   }
 
   @override

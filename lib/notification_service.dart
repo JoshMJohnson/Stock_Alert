@@ -37,9 +37,14 @@ Future<void> onDismissActionReceivedMethod(
 @pragma("vm:entry-point")
 Future<void> onActionReceivedMethod(ReceivedAction receivedAction) async {}
 
-class NotificationService extends fgtask.TaskHandler {
+class NotificationService extends fgtask.TaskHandler
+    with WidgetsBindingObserver {
+  /* executes when foreground service is terminated */ // todo
   @override
-  Future<void> onDestroy(DateTime timestamp) async {}
+  Future<void> onDestroy(DateTime timestamp) async {
+    debugPrint('*** onDestroy ***');
+    WidgetsBinding.instance.removeObserver(this);
+  }
 
   @override
   void onRepeatEvent(DateTime timestamp) async {
@@ -103,9 +108,9 @@ class NotificationService extends fgtask.TaskHandler {
     dayCounter++;
 
     // ! testing start
-    // notificationGenerator(easternTimeZone, counterID, 6, notification1);
+    // notificationGenerator(easternTimeZone, counterID, 6, notification1TOD);
     // counterID++;
-    // notificationGenerator(easternTimeZone, counterID, 7, notification1);
+    // notificationGenerator(easternTimeZone, counterID, 7, notification1TOD);
     // counterID++;
     // ! testing end
 
@@ -187,8 +192,12 @@ class NotificationService extends fgtask.TaskHandler {
     }
   }
 
+  /* executes when foreground service is started */ // todo
   @override
-  Future<void> onStart(DateTime timestamp, fgtask.TaskStarter starter) async {}
+  Future<void> onStart(DateTime timestamp, fgtask.TaskStarter starter) async {
+    debugPrint('*** onStart ***');
+    WidgetsBinding.instance.addObserver(this);
+  }
 
   /* initializes local notifications */
   static Future init() async {
