@@ -171,8 +171,8 @@ class _SettingsPageState extends State<SettingsPage>
 
         await prefs.setBool('isForegroundServiceOn', true);
 
-        await NotificationService.startForegroundService();
         await NotificationService.scheduleReminders();
+        await NotificationService.startForegroundService();
       }
     } else {
       final bool isForegroundServiceOn =
