@@ -360,10 +360,10 @@ class NotificationService {
     dayCounter++;
 
     // ! testing start
-    notificationGenerator(easternTimeZone, counterID, 6, notification1TOD);
-    counterID++;
-    notificationGenerator(easternTimeZone, counterID, 7, notification1TOD);
-    counterID++;
+    // notificationGenerator(easternTimeZone, counterID, 6, notification1TOD);
+    // counterID++;
+    // notificationGenerator(easternTimeZone, counterID, 7, notification1TOD);
+    // counterID++;
     // ! testing end
 
     /* scheduled daily reminder 2 */
