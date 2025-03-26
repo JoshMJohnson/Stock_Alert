@@ -280,12 +280,11 @@ class NotificationService {
 
   /* starts the foreground service */
   static startForegroundService() async {
-    AndroidForegroundService.startAndroidForegroundService(
+    await AndroidForegroundService.startAndroidForegroundService(
       foregroundStartMode: ForegroundStartMode.stick,
       foregroundServiceType: ForegroundServiceType.dataSync,
       content: NotificationContent(
         id: 1,
-        body: 'Keeping you updated on the stock market!',
         title: 'Stock Alert is active...',
         channelKey: 'foreground_service',
         category: NotificationCategory.Service,
