@@ -31,7 +31,8 @@ class SettingsPage extends StatefulWidget {
           notificationQuantity, notification1, notification2, notification3);
 }
 
-class _SettingsPageState extends State<SettingsPage> {
+class _SettingsPageState extends State<SettingsPage>
+    with WidgetsBindingObserver {
   bool notificationToggledOn;
   double thresholdValue;
   int notificationQuantity;
@@ -164,11 +165,14 @@ class _SettingsPageState extends State<SettingsPage> {
         /* if foreground service was previously on */
         if (isForegroundServiceOn) {
           await NotificationService.terminateForegroundService();
+        } else {
+          WidgetsBinding.instance.addObserver(this);
         }
 
         await prefs.setBool('isForegroundServiceOn', true);
 
         await NotificationService.startForegroundService();
+        await NotificationService.scheduleReminders();
       }
     } else {
       final bool isForegroundServiceOn =
@@ -177,6 +181,7 @@ class _SettingsPageState extends State<SettingsPage> {
       /* if foreground service was previously on */
       if (isForegroundServiceOn) {
         await NotificationService.terminateForegroundService();
+        WidgetsBinding.instance.removeObserver(this);
       }
 
       prefs.setBool('isForegroundServiceOn', false);

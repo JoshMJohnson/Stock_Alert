@@ -18,10 +18,13 @@
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
 
-        <service 
-            android:name="com.pravera.flutter_foreground_task.service.ForegroundService"
+         <service 
+            android:name="me.carda.awesome_notifications.core.services.ForegroundService"
+            android:enabled="true"            
+            android:exported="true"
+            android:stopWithTask="false"
             android:foregroundServiceType="dataSync"
-            android:exported="true" />
+            tools:replace="android:foregroundServiceType,android:exported,android:stopWithTask"/>
             
         <meta-data
             android:name="com.stock_alert.service.ServiceIcon"

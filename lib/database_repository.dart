@@ -295,11 +295,11 @@ class DatabaseRepository {
       NotificationService.createBearBullNotifications(bullStocks, bearStocks);
     }
     // ! testing start
-    // else {
-    //   List<StockEntity> bullStocks = await getBullStocks();
-    //   List<StockEntity> bearStocks = await getBearStocks();
-    //   NotificationService.createBearBullNotifications(bullStocks, bearStocks);
-    // }
+    else {
+      List<StockEntity> bullStocks = await getBullStocks();
+      List<StockEntity> bearStocks = await getBearStocks();
+      NotificationService.createBearBullNotifications(bullStocks, bearStocks);
+    }
     // ! testing end
   }
 
