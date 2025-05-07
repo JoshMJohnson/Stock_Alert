@@ -147,13 +147,12 @@ class _SettingsPageState extends State<SettingsPage>
 
     if (notificationToggledOn) {
       /* notifications are turned on */
-      bool isAllowedToSendNotification =
-          await NotificationService.checkPermissions();
+      bool arePermissionsGranted = await NotificationService.checkPermissions();
 
-      if (!isAllowedToSendNotification && !permissionsChecked) {
+      if (!arePermissionsGranted && !permissionsChecked) {
         await NotificationService.requestPermissions();
         updateNotificationSettings(true);
-      } else if (!isAllowedToSendNotification && permissionsChecked) {
+      } else if (!arePermissionsGranted && permissionsChecked) {
         setState(() {
           notificationToggledOn = false;
           prefs.setBool('notificationToggle', false);

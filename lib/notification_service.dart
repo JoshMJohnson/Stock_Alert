@@ -1,42 +1,95 @@
 import 'dart:async';
-import 'package:awesome_notifications/awesome_notifications.dart';
+import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
+import 'package:awesome_notifications/android_foreground_service.dart';
+// import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+// import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+// import 'package:permission_handler/permission_handler.dart';
 import 'package:stock_alert/database_repository.dart';
 import 'package:stock_alert/pages/homePageWidgets/stock_entity.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:awesome_notifications/android_foreground_service.dart';
-
-/// Use this method to detect when a new notification or a schedule is created
-@pragma("vm:entry-point")
-Future<void> onNotificationCreatedMethod(
-    ReceivedNotification receivedNotification) async {}
-
-/* triggers on notification displayed */
-@pragma("vm:entry-point")
-Future onNotificationDisplayedMethod(
-    ReceivedNotification receivedNotification) async {
-  /* if scheduled notification; begin pulling data from watchlist */
-  /* 18 = starting at 3, 5 days a week, 3 possible daily reminders */
-  if (receivedNotification.id! >= 3 && receivedNotification.id! <= 18) {
-    DatabaseRepository.updateWatchlist();
-  }
-}
-
-/// Use this method to detect if the user dismissed a notification
-@pragma("vm:entry-point")
-Future<void> onDismissActionReceivedMethod(
-    ReceivedAction receivedAction) async {}
-
-/// Use this method to detect when the user taps on a notification or action button
-@pragma("vm:entry-point")
-Future<void> onActionReceivedMethod(ReceivedAction receivedAction) async {}
+import 'package:awesome_notifications/awesome_notifications.dart';
 
 class NotificationService {
+  /// Use this method to detect when a new notification or a schedule is created
+  @pragma("vm:entry-point")
+  static Future<void> onNotificationCreatedMethod(
+      ReceivedNotification receivedNotification) async {}
+
+  /* triggers on notification displayed */
+  @pragma("vm:entry-point")
+  static Future onNotificationDisplayedMethod(
+      ReceivedNotification receivedNotification) async {}
+
+  /// Use this method to detect if the user dismissed a notification
+  @pragma("vm:entry-point")
+  static Future<void> onDismissActionReceivedMethod(
+      ReceivedAction receivedAction) async {}
+
+  /// Use this method to detect when the user taps on a notification or action button
+  @pragma("vm:entry-point")
+  static Future<void> onActionReceivedMethod(
+      ReceivedAction receivedAction) async {}
+
+  /* callback for notificationtrigger in background */
+  @pragma('vm:entry-point')
+  static triggeredNotification(int notificationID) async {
+    debugPrint('triggeredNotification');
+
+    // AwesomeNotifications().createNotification(
+    //   content: NotificationContent(
+    //     id: notificationID,
+    //     channelKey: 'schedule_triggered',
+    //     color: const Color.fromARGB(255, 70, 130, 180),
+    //     actionType: ActionType.Default,
+    //     category: NotificationCategory.Reminder,
+    //     title: 'Updating watchlist',
+    //     timeoutAfter: const Duration(seconds: 1),
+    //   ),
+    // );
+
+    if (notificationID >= 3 && notificationID <= 5) {
+      debugPrint('got here');
+      // todo may need to move the DatabaseRepo call code directly here
+      DatabaseRepository.updateWatchlist();
+
+      await AndroidAlarmManager.oneShotAt(
+        DateTime.now().add(const Duration(days: 1)),
+        notificationID,
+        triggeredNotification,
+        exact: true,
+        wakeup: true,
+        allowWhileIdle: true,
+        rescheduleOnReboot: true,
+        alarmClock: true,
+      );
+    }
+  }
+
   /* initializes local notifications */
   static Future init() async {
     await channelCreation();
     await createListeners();
+    await AndroidAlarmManager.initialize();
+    // await initLocalNotifications();
   }
+
+  /* initializes the local notification plugin */
+  // static Future initLocalNotifications() async {
+  //   FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+  //       FlutterLocalNotificationsPlugin();
+
+  //   // initialise the plugin. app_icon needs to be a added as a drawable resource to the Android head project
+  //   const AndroidInitializationSettings initializationSettingsAndroid =
+  //       AndroidInitializationSettings('foreground_service_icon');
+
+  //   const InitializationSettings initializationSettings =
+  //       InitializationSettings(
+  //     android: initializationSettingsAndroid,
+  //   );
+
+  //   await flutterLocalNotificationsPlugin.initialize(initializationSettings);
+  // }
 
   /* creates the event listeners for the notifications */
   static Future createListeners() async {
@@ -113,6 +166,7 @@ class NotificationService {
   /* checks device settings if notifications are allowed */
   static Future<bool> checkPermissions() async {
     return await AwesomeNotifications().isNotificationAllowed();
+    // return await Permission.scheduleExactAlarm.isGranted;
   }
 
   /* promps user request for permissions */
@@ -130,16 +184,28 @@ class NotificationService {
     await AwesomeNotifications().requestPermissionToSendNotifications(
       permissions: permissionList,
     );
+
+    // await Permission.scheduleExactAlarm.request(); /* exact alarm permission */
+
+    /* notification permission */
+    // FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+    //     FlutterLocalNotificationsPlugin();
+
+    // flutterLocalNotificationsPlugin
+    //     .resolvePlatformSpecificImplementation<
+    //         AndroidFlutterLocalNotificationsPlugin>()!
+    //     .requestNotificationsPermission();
   }
 
   /* starts the foreground service */
   static startForegroundService() async {
     await AndroidForegroundService.startAndroidForegroundService(
       foregroundStartMode: ForegroundStartMode.stick,
-      foregroundServiceType: ForegroundServiceType.dataSync,
+      foregroundServiceType: ForegroundServiceType.manifest,
       content: NotificationContent(
         id: 1,
-        title: 'Stock Alert is active...',
+        title: 'Stock Alert is active',
+        body: 'Keeping you updated on the stock market',
         channelKey: 'foreground_service',
         category: NotificationCategory.Service,
       ),
@@ -148,13 +214,15 @@ class NotificationService {
 
   /* terminates the foreground service and terminates all previous scheduled notifications */
   static terminateForegroundService() async {
-    await AwesomeNotifications().cancelAll();
+    await AndroidAlarmManager.cancel(3);
+    await AndroidAlarmManager.cancel(4);
+    await AndroidAlarmManager.cancel(5);
     await AndroidForegroundService.stopForeground(1);
   }
 
-  /* schedules the reminders when save was pressed within settings page */ // todo
+  /* schedules the reminders when save was pressed within settings page */
   static scheduleReminders() async {
-    String easternTimeZone = 'America/New_York';
+    debugPrint('scheduleReminders');
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
@@ -167,165 +235,96 @@ class NotificationService {
     int tod3Hours = prefs.getInt('tod3Hours')!;
     int tod3Minutes = prefs.getInt('tod3Minutes')!;
 
-    TimeOfDay notification1TOD =
-        TimeOfDay(hour: tod1Hours, minute: tod1Minutes);
-    TimeOfDay notification2TOD =
-        TimeOfDay(hour: tod2Hours, minute: tod2Minutes);
-    TimeOfDay notification3TOD =
-        TimeOfDay(hour: tod3Hours, minute: tod3Minutes);
-
     int counterID = 3;
-    int dayCounter = 1;
 
     /* scheduled daily reminder 1 */
-    /* monday */
-    notificationGenerator(
-        easternTimeZone, counterID, dayCounter, notification1TOD);
-
+    notificationGenerator(counterID, tod1Hours, tod1Minutes);
     counterID++;
-    dayCounter++;
-
-    /* tuesday */
-    notificationGenerator(
-        easternTimeZone, counterID, dayCounter, notification1TOD);
-
-    counterID++;
-    dayCounter++;
-
-    /* wednesday */
-    notificationGenerator(
-        easternTimeZone, counterID, dayCounter, notification1TOD);
-
-    counterID++;
-    dayCounter++;
-
-    /* thursday */
-    notificationGenerator(
-        easternTimeZone, counterID, dayCounter, notification1TOD);
-
-    counterID++;
-    dayCounter++;
-
-    /* friday */
-    notificationGenerator(
-        easternTimeZone, counterID, dayCounter, notification1TOD);
-
-    counterID++;
-    dayCounter++;
-
-    // ! testing start
-    // notificationGenerator(easternTimeZone, counterID, 6, notification1TOD);
-    // counterID++;
-    // notificationGenerator(easternTimeZone, counterID, 7, notification1TOD);
-    // counterID++;
-    // ! testing end
 
     /* scheduled daily reminder 2 */
     if (notificationQuantity >= 2) {
-      int dayCounter = 1;
-
-      /* monday */
-      notificationGenerator(
-          easternTimeZone, counterID, dayCounter, notification2TOD);
-
+      notificationGenerator(counterID, tod2Hours, tod2Minutes);
       counterID++;
-      dayCounter++;
-
-      /* tuesday */
-      notificationGenerator(
-          easternTimeZone, counterID, dayCounter, notification2TOD);
-
-      counterID++;
-      dayCounter++;
-
-      /* wednesday */
-      notificationGenerator(
-          easternTimeZone, counterID, dayCounter, notification2TOD);
-
-      counterID++;
-      dayCounter++;
-
-      /* thursday */
-      notificationGenerator(
-          easternTimeZone, counterID, dayCounter, notification2TOD);
-
-      counterID++;
-      dayCounter++;
-
-      /* friday */
-      notificationGenerator(
-          easternTimeZone, counterID, dayCounter, notification2TOD);
-
-      counterID++;
-      dayCounter++;
     }
 
     /* scheduled daily reminder 2 */
     if (notificationQuantity == 3) {
-      int dayCounter = 1;
-
-      /* monday */
-      notificationGenerator(
-          easternTimeZone, counterID, dayCounter, notification3TOD);
-
-      counterID++;
-      dayCounter++;
-
-      /* tuesday */
-      notificationGenerator(
-          easternTimeZone, counterID, dayCounter, notification3TOD);
-
-      counterID++;
-      dayCounter++;
-
-      /* wednesday */
-      notificationGenerator(
-          easternTimeZone, counterID, dayCounter, notification3TOD);
-
-      counterID++;
-      dayCounter++;
-
-      /* thursday */
-      notificationGenerator(
-          easternTimeZone, counterID, dayCounter, notification3TOD);
-
-      counterID++;
-      dayCounter++;
-
-      /* friday */
-      notificationGenerator(
-          easternTimeZone, counterID, dayCounter, notification3TOD);
+      notificationGenerator(counterID, tod3Hours, tod3Minutes);
     }
   }
 
   /* creates scheduled notification */
-  static notificationGenerator(
-    String easternTimeZone,
-    int notificationID,
-    int weekdayValue,
-    TimeOfDay tod,
-  ) {
-    AwesomeNotifications().createNotification(
-      content: NotificationContent(
-        id: notificationID,
-        channelKey: 'schedule_triggered',
-        color: const Color.fromARGB(255, 70, 130, 180),
-        actionType: ActionType.Default,
-        category: NotificationCategory.Reminder,
-        title: 'Updating watchlist',
-        timeoutAfter: const Duration(seconds: 1),
-      ),
-      schedule: NotificationCalendar(
-        preciseAlarm: true,
-        timeZone: easternTimeZone,
-        allowWhileIdle: true,
-        repeats: true,
-        hour: tod.hour,
-        minute: tod.minute,
-        second: 0,
-        weekday: weekdayValue,
-      ),
+  static notificationGenerator(int notificationID, int hour, int minute) async {
+    debugPrint('notificationGenerator');
+
+    /* date time variables */
+    DateTime currentDateTime = DateTime.now();
+    DateTime currentDateTimePlus1Day = currentDateTime.add(
+      const Duration(days: 1),
     );
+
+    /* sets alarm dateTime */
+    DateTime triggerTime = DateTime(
+      currentDateTime.year,
+      currentDateTime.month,
+      currentDateTime.day,
+      hour,
+      minute,
+      0,
+      0,
+      0,
+    );
+
+    bool hasHourMinutePassedToday = currentDateTime.compareTo(triggerTime) > 0;
+
+    if (hasHourMinutePassedToday) {
+      /* alarm time is in the past for current day */
+      triggerTime = DateTime(
+        currentDateTimePlus1Day.year,
+        currentDateTimePlus1Day.month,
+        currentDateTimePlus1Day.day,
+        hour,
+        minute,
+        0,
+        0,
+        0,
+      );
+    }
+
+    debugPrint('hour: ${triggerTime.hour} ... minute: ${triggerTime.minute}');
+
+    await AndroidAlarmManager.oneShotAt(
+      triggerTime,
+      notificationID,
+      triggeredNotification,
+      exact: true,
+      wakeup: true,
+      allowWhileIdle: true,
+      rescheduleOnReboot: true,
+      alarmClock: true,
+    );
+
+    // AwesomeNotifications().createNotification(
+    //   content: NotificationContent(
+    //     id: notificationID,
+    //     channelKey: 'schedule_triggered',
+    //     color: const Color.fromARGB(255, 70, 130, 180),
+    //     actionType: ActionType.Default,
+    //     category: NotificationCategory.Reminder,
+    //     title: 'Updating watchlist',
+    //     timeoutAfter: const Duration(seconds: 1),
+    //   ),
+    //   schedule: NotificationCalendar(
+    //     preciseAlarm: true,
+    //     timeZone: easternTimeZone,
+    //     allowWhileIdle: true,
+    //     repeats: true,
+    //     hour: tod.hour,
+    //     minute: tod.minute,
+    //     second: 0,
+    //     weekday: weekdayValue,
+    //   ),
+    // );
   }
 
   /* updates the current progress bar */
@@ -398,8 +397,10 @@ class NotificationService {
   }
 
   /* creates bear and bull display text notifications */
-  static createBearBullNotifications(List<StockEntity> bullTickerList,
-      List<StockEntity> bearTickerList) async {
+  static createBearBullNotifications(
+    List<StockEntity> bullTickerList,
+    List<StockEntity> bearTickerList,
+  ) async {
     /* dismisses the updated notification if bear or bull is triggering */
     if (bullTickerList.isNotEmpty || bearTickerList.isNotEmpty) {
       /* dismisses previous out-of-date notifications */
