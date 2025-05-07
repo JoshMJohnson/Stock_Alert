@@ -82,7 +82,7 @@ class QuantityNotificationsSelector extends StatelessWidget {
           child: Align(
             alignment: Alignment.bottomRight,
             child: Text(
-              'Eastern Daylight Time (EDT)',
+              'Local Time Zone',
               textScaler: TextScaler.noScaling,
               style: TextStyle(
                 color: Theme.of(context).textTheme.bodyMedium!.color,
