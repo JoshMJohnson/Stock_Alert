@@ -194,7 +194,7 @@ class DatabaseRepository {
   /* updates all watchlist stock tickers data */
   static Future updateWatchlist() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    int notificationID = prefs.getInt('bearBullNotificationID') ?? 18;
+    int notificationID = prefs.getInt('bearBullNotificationID') ?? 5;
     notificationID++;
 
     /* update all stock data on watchlist */
