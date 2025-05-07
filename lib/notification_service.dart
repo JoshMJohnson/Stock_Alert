@@ -1,10 +1,8 @@
 import 'dart:async';
 import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 import 'package:awesome_notifications/android_foreground_service.dart';
-// import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-// import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-// import 'package:permission_handler/permission_handler.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:stock_alert/database_repository.dart';
 import 'package:stock_alert/pages/homePageWidgets/stock_entity.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -36,18 +34,6 @@ class NotificationService {
   static triggeredNotification(int notificationID) async {
     debugPrint('triggeredNotification');
 
-    // AwesomeNotifications().createNotification(
-    //   content: NotificationContent(
-    //     id: notificationID,
-    //     channelKey: 'schedule_triggered',
-    //     color: const Color.fromARGB(255, 70, 130, 180),
-    //     actionType: ActionType.Default,
-    //     category: NotificationCategory.Reminder,
-    //     title: 'Updating watchlist',
-    //     timeoutAfter: const Duration(seconds: 1),
-    //   ),
-    // );
-
     if (notificationID >= 3 && notificationID <= 5) {
       debugPrint('got here');
       // todo may need to move the DatabaseRepo call code directly here
@@ -71,25 +57,7 @@ class NotificationService {
     await channelCreation();
     await createListeners();
     await AndroidAlarmManager.initialize();
-    // await initLocalNotifications();
   }
-
-  /* initializes the local notification plugin */
-  // static Future initLocalNotifications() async {
-  //   FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-  //       FlutterLocalNotificationsPlugin();
-
-  //   // initialise the plugin. app_icon needs to be a added as a drawable resource to the Android head project
-  //   const AndroidInitializationSettings initializationSettingsAndroid =
-  //       AndroidInitializationSettings('foreground_service_icon');
-
-  //   const InitializationSettings initializationSettings =
-  //       InitializationSettings(
-  //     android: initializationSettingsAndroid,
-  //   );
-
-  //   await flutterLocalNotificationsPlugin.initialize(initializationSettings);
-  // }
 
   /* creates the event listeners for the notifications */
   static Future createListeners() async {
@@ -166,7 +134,6 @@ class NotificationService {
   /* checks device settings if notifications are allowed */
   static Future<bool> checkPermissions() async {
     return await AwesomeNotifications().isNotificationAllowed();
-    // return await Permission.scheduleExactAlarm.isGranted;
   }
 
   /* promps user request for permissions */
@@ -177,7 +144,6 @@ class NotificationService {
       NotificationPermission.Sound,
       NotificationPermission.Vibration,
       NotificationPermission.Light,
-      NotificationPermission.PreciseAlarms,
     ];
 
     // Check if the basic permission was granted by the user
@@ -185,16 +151,7 @@ class NotificationService {
       permissions: permissionList,
     );
 
-    // await Permission.scheduleExactAlarm.request(); /* exact alarm permission */
-
-    /* notification permission */
-    // FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-    //     FlutterLocalNotificationsPlugin();
-
-    // flutterLocalNotificationsPlugin
-    //     .resolvePlatformSpecificImplementation<
-    //         AndroidFlutterLocalNotificationsPlugin>()!
-    //     .requestNotificationsPermission();
+    await Permission.scheduleExactAlarm.request(); /* exact alarm permission */
   }
 
   /* starts the foreground service */
@@ -222,8 +179,6 @@ class NotificationService {
 
   /* schedules the reminders when save was pressed within settings page */
   static scheduleReminders() async {
-    debugPrint('scheduleReminders');
-
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
     final int notificationQuantity = prefs.getInt('notificationQuantity') ?? 3;
@@ -255,8 +210,6 @@ class NotificationService {
 
   /* creates scheduled notification */
   static notificationGenerator(int notificationID, int hour, int minute) async {
-    debugPrint('notificationGenerator');
-
     /* date time variables */
     DateTime currentDateTime = DateTime.now();
     DateTime currentDateTimePlus1Day = currentDateTime.add(
@@ -291,8 +244,6 @@ class NotificationService {
       );
     }
 
-    debugPrint('hour: ${triggerTime.hour} ... minute: ${triggerTime.minute}');
-
     await AndroidAlarmManager.oneShotAt(
       triggerTime,
       notificationID,
@@ -303,28 +254,6 @@ class NotificationService {
       rescheduleOnReboot: true,
       alarmClock: true,
     );
-
-    // AwesomeNotifications().createNotification(
-    //   content: NotificationContent(
-    //     id: notificationID,
-    //     channelKey: 'schedule_triggered',
-    //     color: const Color.fromARGB(255, 70, 130, 180),
-    //     actionType: ActionType.Default,
-    //     category: NotificationCategory.Reminder,
-    //     title: 'Updating watchlist',
-    //     timeoutAfter: const Duration(seconds: 1),
-    //   ),
-    //   schedule: NotificationCalendar(
-    //     preciseAlarm: true,
-    //     timeZone: easternTimeZone,
-    //     allowWhileIdle: true,
-    //     repeats: true,
-    //     hour: tod.hour,
-    //     minute: tod.minute,
-    //     second: 0,
-    //     weekday: weekdayValue,
-    //   ),
-    // );
   }
 
   /* updates the current progress bar */
