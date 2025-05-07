@@ -36,7 +36,6 @@ class NotificationService {
 
     if (notificationID >= 3 && notificationID <= 5) {
       debugPrint('got here');
-      // todo may need to move the DatabaseRepo call code directly here
       DatabaseRepository.updateWatchlist();
 
       await AndroidAlarmManager.oneShotAt(
