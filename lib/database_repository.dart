@@ -46,17 +46,17 @@ class DatabaseRepository {
 
   /* calls the twelve data API for a stock symbol and updates database row with updated info */
   static Future retrieveStockDataFromTwelveDataAPI(String tickerSymbol) async {
-    final tickerURL = Uri.parse(
-        'https://api.twelvedata.com/quote?symbol=$tickerSymbol&apikey=$apiCode');
-    final tickerData = await http.get(tickerURL);
-
-    /* prevents crashing. if error code 524; problem with Twelve Data API */
+    /* if error code 524; problem with Twelve Data API */
     Map<String, dynamic> tickerJSON;
 
-    /* cannot connect to site */
     try {
+      final tickerURL = Uri.parse(
+          'https://api.twelvedata.com/quote?symbol=$tickerSymbol&apikey=$apiCode');
+      final tickerData = await http.get(tickerURL);
+
       tickerJSON = json.decode(tickerData.body) as Map<String, dynamic>;
     } catch (e) {
+      /* cannot connect to site */
       return 500;
     }
 

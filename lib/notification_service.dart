@@ -35,7 +35,6 @@ class NotificationService {
     debugPrint('triggeredNotification');
 
     if (notificationID >= 3 && notificationID <= 5) {
-      debugPrint('got here');
       DatabaseRepository.updateWatchlist();
 
       await AndroidAlarmManager.oneShotAt(
