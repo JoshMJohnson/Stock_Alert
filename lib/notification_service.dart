@@ -32,13 +32,15 @@ class NotificationService {
   /* callback for notificationtrigger in background */
   @pragma('vm:entry-point')
   static triggeredNotification(int notificationID) async {
-    debugPrint('triggeredNotification');
-
     if (notificationID >= 3 && notificationID <= 5) {
-      DatabaseRepository.updateWatchlist();
+      await DatabaseRepository.updateWatchlist();
+
+      DateTime nextScheduledDate = DateTime.now().add(const Duration(days: 1));
+
+      await Future.delayed(const Duration(minutes: 1));
 
       await AndroidAlarmManager.oneShotAt(
-        DateTime.now().add(const Duration(days: 1)),
+        nextScheduledDate,
         notificationID,
         triggeredNotification,
         exact: true,
