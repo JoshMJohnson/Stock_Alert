@@ -52,6 +52,25 @@ class NotificationService {
     }
   }
 
+  /* refreshes the foreground service to keep alive in background */
+  @pragma('vm:entry-point')
+  static resetForegroundService() async {
+    /* cancel currently running foreground service */
+    await AndroidForegroundService.stopForeground(1);
+
+    /* reset foreground service */
+    AndroidForegroundService.startAndroidForegroundService(
+      foregroundStartMode: ForegroundStartMode.stick,
+      foregroundServiceType: ForegroundServiceType.manifest,
+      content: NotificationContent(
+        id: 1,
+        title: 'Stock Alert is active...',
+        channelKey: 'foreground_service',
+        category: NotificationCategory.Service,
+      ),
+    );
+  }
+
   /* initializes local notifications */
   static Future init() async {
     await channelCreation();
@@ -156,25 +175,47 @@ class NotificationService {
 
   /* starts the foreground service */
   static startForegroundService() async {
-    await AndroidForegroundService.startAndroidForegroundService(
+    /* begin foreground service */
+    AndroidForegroundService.startAndroidForegroundService(
       foregroundStartMode: ForegroundStartMode.stick,
       foregroundServiceType: ForegroundServiceType.manifest,
       content: NotificationContent(
         id: 1,
-        title: 'Stock Alert is active',
-        body: 'Keeping you updated on the stock market',
+        title: 'Stock Alert is active...',
         channelKey: 'foreground_service',
         category: NotificationCategory.Service,
       ),
+    );
+
+    /* schedule periodic foreground service refreshing */
+    DateTime nextMidnight = DateTime.now().add(const Duration(days: 1));
+    nextMidnight = DateTime(
+      nextMidnight.year,
+      nextMidnight.month,
+      nextMidnight.day,
+      0,
+      0,
+      0,
+      0,
+      0,
+    );
+
+    await AndroidAlarmManager.periodic(
+      const Duration(days: 1),
+      6,
+      resetForegroundService,
+      startAt: nextMidnight,
     );
   }
 
   /* terminates the foreground service and terminates all previous scheduled notifications */
   static terminateForegroundService() async {
-    await AndroidAlarmManager.cancel(3);
-    await AndroidAlarmManager.cancel(4);
-    await AndroidAlarmManager.cancel(5);
-    await AndroidForegroundService.stopForeground(1);
+    await AndroidAlarmManager.cancel(3); /* reminder 1 isolate */
+    await AndroidAlarmManager.cancel(4); /* reminder 2 isolate */
+    await AndroidAlarmManager.cancel(5); /* reminder 3 isolate */
+
+    await AndroidForegroundService.stopForeground(1); /* foreground service */
+    await AndroidAlarmManager.cancel(6); /* foreground service isolate */
   }
 
   /* schedules the reminders when save was pressed within settings page */
