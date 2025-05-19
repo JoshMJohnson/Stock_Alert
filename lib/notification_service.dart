@@ -8,6 +8,8 @@ import 'package:stock_alert/pages/homePageWidgets/stock_entity.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
 
+import 'package:intl/intl.dart';
+
 class NotificationService {
   /// Use this method to detect when a new notification or a schedule is created
   @pragma("vm:entry-point")
@@ -32,8 +34,15 @@ class NotificationService {
   /* callback for notificationtrigger in background */
   @pragma('vm:entry-point')
   static triggeredNotification(int notificationID) async {
+    DateTime currentDateTime = DateTime.now();
+    String currentDayOfWeek = DateFormat('EEEE').format(currentDateTime);
+
+    /* if reminder triggers */
     if (notificationID >= 3 && notificationID <= 5) {
-      await DatabaseRepository.updateWatchlist();
+      /* if week day; update watchlist */
+      if (currentDayOfWeek != 'Sunday' && currentDayOfWeek != 'Saturday') {
+        await DatabaseRepository.updateWatchlist();
+      }
 
       DateTime nextScheduledDate = DateTime.now().add(const Duration(days: 1));
 
