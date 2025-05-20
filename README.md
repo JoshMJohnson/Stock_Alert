@@ -18,17 +18,17 @@ Developed using the Flutter framework which uses the Dart programming language.<
 
 <br>
 
-<img src="/project_screenshots/bear_bull_notifications.jpg" alt="Bear/Bull notifications" width="250" height="500" align="left">
-<img src="/project_screenshots/updating_watchlist_notification.jpg" alt="Updating watchlist" width="250" height="500" align="right">
+<img src="/project_screenshots/bear_bull_notifications.jpg" alt="Bear/Bull notifications" width="40%" height="500" align="left">
+<img src="/project_screenshots/updating_watchlist_notification.jpg" alt="Updating watchlist" width="40%" height="500" align="right">
 
 <br>
 
-<img src="/project_screenshots/settings_light.png" alt="Settings page light mode" width="250" height="500" align="left">
-<img src="/project_screenshots/settings_dark.png" alt="Settings page dark mode" width="250" height="500" align="right">
+<img src="/project_screenshots/settings_light.png" alt="Settings page light mode" width="40%" height="500" align="left">
+<img src="/project_screenshots/settings_dark.png" alt="Settings page dark mode" width="40%" height="500" align="right">
 
 <br>
 
-<img src="/project_screenshots/popup.png" alt="Popup" width="250" height="500" align="left">
-<img src="/project_screenshots/error_popup.png" alt="Error popup" width="250" height="500" align="right">
+<img src="/project_screenshots/popup.png" alt="Popup" width="40%" height="500" align="left">
+<img src="/project_screenshots/error_popup.png" alt="Error popup" width="40%" height="500" align="right">
 
 </div>
