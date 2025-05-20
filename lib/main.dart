@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter/services.dart';
+import 'package:disable_battery_optimization/disable_battery_optimization.dart';
+
 import 'package:stock_alert/notification_service.dart';
 import 'package:stock_alert/pages/homePageWidgets/stock_entity.dart';
 import 'pages/home.dart';
 import './theme.dart';
 import 'package:stock_alert/database_repository.dart';
-import 'package:flutter/services.dart';
-import 'package:disable_battery_optimization/disable_battery_optimization.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

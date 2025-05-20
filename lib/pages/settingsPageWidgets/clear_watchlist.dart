@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:stock_alert/database_repository.dart';
 
 class ClearWatchlist extends StatelessWidget {

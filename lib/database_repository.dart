@@ -2,11 +2,11 @@ import 'dart:async';
 import 'package:path/path.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:stock_alert/notification_service.dart';
-import 'package:stock_alert/pages/homePageWidgets/stock_entity.dart';
-
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+
+import 'package:stock_alert/notification_service.dart';
+import 'package:stock_alert/pages/homePageWidgets/stock_entity.dart';
 
 /* handles database interations */
 class DatabaseRepository {
