@@ -2,10 +2,8 @@
 
 <div align='center'>
 
-<i>Still in development</i>
-
-Provides stock alerts of major day changes in the market.<br>
-Developed using the Flutter framework and programmed using the Dart language.<br>
+Keeps you updated on the stock market by alerting you when major changes happen on you watchlist.<br><br>
+Developed using the Flutter framework which uses the Dart programming language.<br>
 
 </div>
 
