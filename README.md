@@ -9,7 +9,7 @@ Developed using the Flutter framework which uses the Dart programming language.<
 
 <hr>
 
-<h2 align='center'>Preview</h2>
+<h2 align='center'>Project Screenshots</h2>
 
 <div align='center'>
 
