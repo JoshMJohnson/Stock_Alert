@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:stock_alert/pages/homePageWidgets/stock_entity.dart';
-import '../ticker.dart';
 
 class StockWatchlist extends StatelessWidget {
   final Function() updateWatchlistData;
@@ -33,14 +32,6 @@ class StockWatchlist extends StatelessWidget {
             return ListTile(
               contentPadding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
               dense: true,
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) =>
-                          TickerPage(removeTicker, watchlist[index]),
-                    )).then((_) => updateWatchlistData());
-              },
               leading: Switch(
                 activeColor: const Color(0xFFA5D6A7),
                 activeTrackColor: Colors.black,
