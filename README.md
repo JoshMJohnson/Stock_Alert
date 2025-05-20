@@ -33,6 +33,8 @@ Developed using the Flutter framework which uses the Dart programming language.<
 
 </div>
 
+<hr>
+
 <!-- footer section -->
 <div align="center">
     <p>:arrow_up: <a href="#chart_with_upwards_trend-stock-alert-chart_with_downwards_trend">Back to top</a> :arrow_up:</p>
