@@ -84,8 +84,6 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     loadLastUpdatedTime();
     updateWatchlistData();
 
-    debugPrint('initState *******************');
-
     WidgetsBinding.instance
         .addObserver(this); /* used to indicate app going to the foreground */
   }
@@ -95,15 +93,12 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   void didChangeAppLifecycleState(AppLifecycleState state) {
     /* if bringing app into foreground focus from background */
     if (state == AppLifecycleState.resumed) {
-      debugPrint('*************************** resumed');
       refreshHomePage();
     }
   }
 
   @override
   void dispose() {
-    debugPrint('dispose *******************');
-
     WidgetsBinding.instance.removeObserver(
         this); /* stops checking for when app goes to the foreground */
 
