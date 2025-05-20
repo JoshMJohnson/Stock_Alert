@@ -31,8 +31,7 @@ class SettingsPage extends StatefulWidget {
           notificationQuantity, notification1, notification2, notification3);
 }
 
-class _SettingsPageState extends State<SettingsPage>
-    with WidgetsBindingObserver {
+class _SettingsPageState extends State<SettingsPage> {
   bool notificationToggledOn;
   double thresholdValue;
   int notificationQuantity;
@@ -41,12 +40,13 @@ class _SettingsPageState extends State<SettingsPage>
   TimeOfDay notification3;
 
   _SettingsPageState(
-      this.notificationToggledOn,
-      this.thresholdValue,
-      this.notificationQuantity,
-      this.notification1,
-      this.notification2,
-      this.notification3);
+    this.notificationToggledOn,
+    this.thresholdValue,
+    this.notificationQuantity,
+    this.notification1,
+    this.notification2,
+    this.notification3,
+  );
 
   /* updates the notification on/off toggle */
   void updateNotificationToggle(bool isToggledOn) {
@@ -164,8 +164,6 @@ class _SettingsPageState extends State<SettingsPage>
         /* if foreground service was previously on */
         if (isForegroundServiceOn) {
           await NotificationService.terminateForegroundService();
-        } else {
-          WidgetsBinding.instance.addObserver(this);
         }
 
         await prefs.setBool('isForegroundServiceOn', true);
@@ -180,7 +178,6 @@ class _SettingsPageState extends State<SettingsPage>
       /* if foreground service was previously on */
       if (isForegroundServiceOn) {
         await NotificationService.terminateForegroundService();
-        WidgetsBinding.instance.removeObserver(this);
       }
 
       prefs.setBool('isForegroundServiceOn', false);
