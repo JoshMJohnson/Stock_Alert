@@ -28,7 +28,7 @@ Developed using the Flutter framework which uses the Dart programming language.<
 
 <br>
 
-<img src="/project_screenshots/bear_bull_notifications_temp.png" alt="Bear/Bull notifications" width="40%" height="500" align="left">
+<img src="/project_screenshots/bear_bull_notifications.png" alt="Bear/Bull notifications" width="40%" height="500" align="left">
 <img src="/project_screenshots/updating_watchlist_notification.jpg" alt="Updating watchlist" width="40%" height="500" align="right">
 
 </div>
