@@ -33,9 +33,4 @@ Developed using the Flutter framework and programmed using the Dart language.<br
 <img src="/project_screenshots/popup.png" alt="Popup" width="250" height="500" align="left">
 <img src="/project_screenshots/error_popup.png" alt="Error popup" width="250" height="500" align="right">
 
-<br>
-
-<img src="/project_screenshots/ticker_light.png" alt="Ticker page light mode" width="250" height="500" align="left">
-<img src="/project_screenshots/ticker_dark.png" alt="Ticker page dark mode" width="250" height="500" align="right">
-
 </div>
