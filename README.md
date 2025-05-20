@@ -32,10 +32,3 @@ Developed using the Flutter framework which uses the Dart programming language.<
 <img src="/project_screenshots/updating_watchlist_notification.png" alt="Updating watchlist" width="40%" height="500" align="right">
 
 </div>
-
-<hr>
-
-<!-- footer section -->
-<div align="center">
-    <p>:arrow_up: <a href="#chart_with_upwards_trend-stock-alert-chart_with_downwards_trend">Back to top</a> :arrow_up:</p>
-</div>
