@@ -2,7 +2,7 @@
 
 <div align='center'>
 
-Keeps you updated on the stock market by alerting you when major changes happen on you watchlist.<br><br>
+Keeps you updated on the stock market by alerting you when major changes happen on your watchlist.<br><br>
 Developed using the Flutter framework which uses the Dart programming language.<br>
 
 </div>
