@@ -13,8 +13,8 @@ Developed using the Flutter framework which uses the Dart programming language.<
 
 <div align='center'>
 
-<img src="/project_screenshots/home_light.png" alt="Home page light mode" width="50%" height="500" align="left">
-<img src="/project_screenshots/home_dark.png" alt="Home page dark mode" width="50%" height="500" align="right">
+<img src="/project_screenshots/home_light.png" alt="Home page light mode" width="40%" height="500" align="left">
+<img src="/project_screenshots/home_dark.png" alt="Home page dark mode" width="40%" height="500" align="right">
 
 <br>
 
