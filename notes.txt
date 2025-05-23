@@ -1,19 +1,2 @@
-Post-Release (non-essential):
-
-Bugs
-- Ticker page stock exchange logo responsive (example: NASDAQ, NYSE)
-- Ticker page description
-- Loading into Ticker page from loading app from closed glitches quickly
-    dimension issues
-
 Additional Features
-- Company logo on ticker page
-- Turn off battery optimization for foreground service delay prevention
-- Widget option of watchlist
-- Display industries company is envolved in on ticker page
-- Implement an first time app use intro directions
-    - use flutter name: IntroductionScreen
-
-Possible Future
-- Possibly use http flutter request to access stock tickers directly somehow
-    - Allows app to go on app store
+- Widget option to quickly add to watchlist from outside the app similar to the weather app widget
