@@ -92,11 +92,8 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   /* identifies app changing states */
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    debugPrint('didChangeAppLifecycleState');
-
     /* if bringing app into foreground focus from background */
     if (state == AppLifecycleState.resumed) {
-      debugPrint('didChangeAppLifecycleState inside if statement');
       refreshHomePage();
     }
   }
@@ -110,8 +107,6 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   }
 
   void loadLastUpdatedTime() async {
-    debugPrint('loadLastUpdatedTime');
-
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.reload();
 
@@ -125,8 +120,6 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
         lastUpdatedMinutes != null &&
         lastUpdatedMonth != null &&
         lastUpdatedDay != null) {
-      debugPrint('*** inside loadLastUpdatedTime if statement');
-
       TimeOfDay lastUpdatedTime = TimeOfDay(
         hour: lastUpdatedHours,
         minute: lastUpdatedMinutes,
@@ -142,7 +135,6 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
 
       setState(() {
         lastUpdatedTimeDateDisplay = lastUpdatedTimeDateDisplay;
-        debugPrint('lastUpdatedTimeDateDisplay: $lastUpdatedTimeDateDisplay');
       });
     }
   }
@@ -646,7 +638,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
             ),
           ),
           Text(
-            'Last Updated: $lastUpdatedTimeDateDisplay', // ! doesnt refresh
+            'Last Updated: $lastUpdatedTimeDateDisplay',
             textScaler: TextScaler.noScaling,
             style: TextStyle(
               color: Theme.of(context).textTheme.bodyMedium!.color,

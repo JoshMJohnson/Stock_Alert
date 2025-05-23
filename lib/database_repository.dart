@@ -359,7 +359,7 @@ class DatabaseRepository {
     double high52Week = double.parse(weeks52['high']);
 
     String companyName = tickerJSON['name'];
-    String companyDescription = 'Here is company description'; // todo
+    String companyDescription = 'Here is company description';
     String exchange = tickerJSON['exchange'];
 
     final db = await database;
