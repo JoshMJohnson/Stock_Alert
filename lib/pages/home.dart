@@ -81,8 +81,9 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   void initState() {
     super.initState();
 
-    loadLastUpdatedTime();
-    updateWatchlistData();
+    // loadLastUpdatedTime();
+    // updateWatchlistData();
+    refreshHomePage();
 
     WidgetsBinding.instance
         .addObserver(this); /* used to indicate app going to the foreground */
@@ -91,8 +92,11 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   /* identifies app changing states */
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
+    debugPrint('didChangeAppLifecycleState');
+
     /* if bringing app into foreground focus from background */
     if (state == AppLifecycleState.resumed) {
+      debugPrint('didChangeAppLifecycleState inside if statement');
       refreshHomePage();
     }
   }
@@ -106,18 +110,23 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   }
 
   void loadLastUpdatedTime() async {
+    debugPrint('loadLastUpdatedTime');
+
     final SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.reload();
 
     /* last updated time stamp */
-    final int? lastUpdatedHours = prefs.getInt('lastUpdatedHours');
-    final int? lastUpdatedMinutes = prefs.getInt('lastUpdatedMinutes');
-    final int? lastUpdatedMonth = prefs.getInt('lastUpdatedMonth');
-    final int? lastUpdatedDay = prefs.getInt('lastUpdatedDay');
+    int? lastUpdatedHours = prefs.getInt('lastUpdatedHours');
+    int? lastUpdatedMinutes = prefs.getInt('lastUpdatedMinutes');
+    int? lastUpdatedMonth = prefs.getInt('lastUpdatedMonth');
+    int? lastUpdatedDay = prefs.getInt('lastUpdatedDay');
 
     if (lastUpdatedHours != null &&
         lastUpdatedMinutes != null &&
         lastUpdatedMonth != null &&
         lastUpdatedDay != null) {
+      debugPrint('*** inside loadLastUpdatedTime if statement');
+
       TimeOfDay lastUpdatedTime = TimeOfDay(
         hour: lastUpdatedHours,
         minute: lastUpdatedMinutes,
@@ -130,6 +139,11 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
 
       lastUpdatedTimeDateDisplay +=
           helperFunctions.standardTimeConvertionHandler(lastUpdatedTime);
+
+      setState(() {
+        lastUpdatedTimeDateDisplay = lastUpdatedTimeDateDisplay;
+        debugPrint('lastUpdatedTimeDateDisplay: $lastUpdatedTimeDateDisplay');
+      });
     }
   }
 
@@ -348,7 +362,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   }
 
   /* refresh watchlist and last updated after notification triggered */
-  void refreshHomePage() async {
+  void refreshHomePage() {
     /* refresh 'Last Updated' display */
     loadLastUpdatedTime();
 
@@ -632,7 +646,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
             ),
           ),
           Text(
-            'Last Updated: $lastUpdatedTimeDateDisplay',
+            'Last Updated: $lastUpdatedTimeDateDisplay', // ! doesnt refresh
             textScaler: TextScaler.noScaling,
             style: TextStyle(
               color: Theme.of(context).textTheme.bodyMedium!.color,
