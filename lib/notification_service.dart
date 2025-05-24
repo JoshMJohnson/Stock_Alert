@@ -61,6 +61,14 @@ class NotificationService {
     }
   }
 
+  /* refreshes the foreground service to keep alive in background */
+  @pragma('vm:entry-point')
+  static resetForegroundService() async {
+    /* reset the foreground service */
+    await AndroidForegroundService.stopForeground(1); /* foreground service */
+    NotificationService.foregroundServiceNotification();
+  }
+
   /* initializes local notifications */
   static Future init() async {
     await channelCreation();
@@ -163,9 +171,8 @@ class NotificationService {
     await Permission.scheduleExactAlarm.request(); /* exact alarm permission */
   }
 
-  /* starts the foreground service */
-  static startForegroundService() async {
-    /* begin foreground service */
+  /* begins foreground service */
+  static foregroundServiceNotification() {
     AndroidForegroundService.startAndroidForegroundService(
       foregroundStartMode: ForegroundStartMode.stick,
       foregroundServiceType: ForegroundServiceType.manifest,
@@ -178,12 +185,38 @@ class NotificationService {
     );
   }
 
+  /* starts the foreground service process */
+  static startForegroundService() async {
+    foregroundServiceNotification();
+
+    /* schedule periodic foreground service refreshing */
+    DateTime resetTime = DateTime.now().add(const Duration(days: 1));
+    resetTime = DateTime(
+      resetTime.year,
+      resetTime.month,
+      resetTime.day,
+      4,
+      0,
+      0,
+      0,
+      0,
+    ); /* currently set at 4 am */
+
+    await AndroidAlarmManager.periodic(
+      const Duration(days: 1),
+      6,
+      resetForegroundService,
+      startAt: resetTime,
+    );
+  }
+
   /* terminates the foreground service and terminates all previous scheduled notifications */
   static terminateForegroundService() async {
     await AndroidAlarmManager.cancel(3); /* reminder 1 isolate */
     await AndroidAlarmManager.cancel(4); /* reminder 2 isolate */
     await AndroidAlarmManager.cancel(5); /* reminder 3 isolate */
 
+    await AndroidAlarmManager.cancel(6); /* foreground service isolate */
     await AndroidForegroundService.stopForeground(1); /* foreground service */
   }
 
