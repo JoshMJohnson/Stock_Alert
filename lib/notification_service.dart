@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
-// import 'package:awesome_notifications/android_foreground_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_foreground_task/flutter_foreground_task.dart'
     as fgservice;
@@ -14,43 +13,39 @@ import 'package:stock_alert/database_repository.dart';
 import 'package:stock_alert/pages/homePageWidgets/stock_entity.dart';
 
 class NotificationService extends fgservice.TaskHandler {
-  /* required function for Awesome Notifications but unused */
+  /* required function for Awesome Notifications; unused */
   @pragma("vm:entry-point")
   static Future<void> onNotificationCreatedMethod(
       ReceivedNotification receivedNotification) async {}
 
-  /* required function for Awesome Notifications but unused */
+  /* required function for Awesome Notifications; unused */
   @pragma("vm:entry-point")
   static Future onNotificationDisplayedMethod(
       ReceivedNotification receivedNotification) async {}
 
-  /* required function for Awesome Notifications but unused */
+  /* required function for Awesome Notifications; unused */
   @pragma("vm:entry-point")
   static Future<void> onDismissActionReceivedMethod(
       ReceivedAction receivedAction) async {}
 
-  /* required function for Awesome Notifications but unused */
+  /* required function for Awesome Notifications; unused */
   @pragma("vm:entry-point")
   static Future<void> onActionReceivedMethod(
       ReceivedAction receivedAction) async {}
 
-  /* required function for the foreground service */
+  /* required function for the foreground service; unused */
   @override
   Future<void> onDestroy(DateTime timestamp) {
-    // TODO: implement onDestroy
     throw UnimplementedError();
   }
 
-  /* required function for the foreground service */
+  /* required function for the foreground service; unused */
   @override
-  void onRepeatEvent(DateTime timestamp) {
-    // TODO: implement onRepeatEvent
-  }
+  void onRepeatEvent(DateTime timestamp) {}
 
-  /* required function for the foreground service */
+  /* required function for the foreground service; unused */
   @override
   Future<void> onStart(DateTime timestamp, fgservice.TaskStarter starter) {
-    // TODO: implement onStart
     throw UnimplementedError();
   }
 
@@ -86,14 +81,10 @@ class NotificationService extends fgservice.TaskHandler {
 
   /* initializes local notifications */
   static Future init() async {
-    debugPrint('init - begin');
-
     await channelCreation();
     await createListeners();
     await AndroidAlarmManager.initialize();
     fgservice.FlutterForegroundTask.initCommunicationPort();
-
-    debugPrint('init - end');
   }
 
   /* creates the event listeners for the notifications */
@@ -111,17 +102,6 @@ class NotificationService extends fgservice.TaskHandler {
     await AwesomeNotifications().initialize(
       'resource://drawable/foreground_service_icon',
       [
-        // NotificationChannel(
-        //   groupKey: 'foreground_service',
-        //   channelKey: 'foreground_service',
-        //   channelName: 'Foreground Service',
-        //   channelDescription: 'Foreground service',
-        //   defaultPrivacy: NotificationPrivacy.Public,
-        //   playSound: false,
-        //   enableVibration: false,
-        //   locked: true,
-        //   importance: NotificationImportance.Max,
-        // ),
         NotificationChannel(
           groupKey: 'schedule_triggered',
           channelKey: 'schedule_triggered',
@@ -167,6 +147,7 @@ class NotificationService extends fgservice.TaskHandler {
       ],
     );
 
+    /* foreground service notification channel init */
     fgservice.FlutterForegroundTask.init(
       androidNotificationOptions: fgservice.AndroidNotificationOptions(
         channelId: 'foreground_service',
@@ -176,6 +157,7 @@ class NotificationService extends fgservice.TaskHandler {
         playSound: false,
         enableVibration: false,
         channelImportance: NotificationChannelImportance.MAX,
+        priority: fgservice.NotificationPriority.MAX,
       ),
       iosNotificationOptions: const fgservice.IOSNotificationOptions(
         showNotification: false,
@@ -184,7 +166,7 @@ class NotificationService extends fgservice.TaskHandler {
       foregroundTaskOptions: fgservice.ForegroundTaskOptions(
         eventAction: fgservice.ForegroundTaskEventAction.nothing(),
         autoRunOnBoot: true,
-        autoRunOnMyPackageReplaced: true,
+        autoRunOnMyPackageReplaced: false,
         allowWakeLock: true,
         allowWifiLock: true,
       ),
@@ -216,28 +198,14 @@ class NotificationService extends fgservice.TaskHandler {
 
   /* starts the foreground service process */
   static startForegroundService() async {
-    debugPrint('startForegroundService - start');
-
-    // AndroidForegroundService.startAndroidForegroundService(
-    //   foregroundStartMode: ForegroundStartMode.stick,
-    //   foregroundServiceType: ForegroundServiceType.manifest,
-    //   content: NotificationContent(
-    //     id: 1,
-    //     title: 'Stock Alert is active...',
-    //     channelKey: 'foreground_service',
-    //     category: NotificationCategory.Service,
-    //   ),
-    // );
-
     fgservice.FlutterForegroundTask.startService(
+      serviceId: 1,
       notificationTitle: 'Stock Alert is active...',
       notificationText: 'Keeping you updated on the stock market...',
       notificationIcon: const fgservice.NotificationIcon(
         metaDataName: "com.stock_alert.service.ServiceIcon",
       ),
     );
-
-    debugPrint('startForegroundService - end');
   }
 
   /* terminates the foreground service and terminates all previous scheduled notifications */
@@ -246,15 +214,12 @@ class NotificationService extends fgservice.TaskHandler {
     await AndroidAlarmManager.cancel(4); /* reminder 2 isolate */
     await AndroidAlarmManager.cancel(5); /* reminder 3 isolate */
 
-    // await AndroidForegroundService.stopForeground(1); /* foreground service */
     await fgservice.FlutterForegroundTask
         .stopService(); /* foreground service */
   }
 
   /* schedules the reminders when save was pressed within settings page */
   static scheduleReminders() async {
-    debugPrint('scheduleReminders - start');
-
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
     final int notificationQuantity = prefs.getInt('notificationQuantity') ?? 3;

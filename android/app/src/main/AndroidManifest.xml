@@ -26,28 +26,13 @@
             android:foregroundServiceType="specialUse"
             tools:replace="android:foregroundServiceType,android:exported,android:stopWithTask"/> -->
 
+        <!-- foreground service plugin -->
         <service 
             android:name="com.pravera.flutter_foreground_task.service.ForegroundService"
             android:foregroundServiceType="specialUse"
             android:exported="true" />
 
-            <!-- <service
-                android:name="com.dexterous.flutterlocalnotifications.ForegroundService"
-                android:exported="false"
-                android:stopWithTask="false"
-                android:foregroundServiceType="specialUse"/> -->
-
-            <!-- <receiver android:exported="false" android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationReceiver" />
-            <receiver android:exported="false" android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationBootReceiver">
-                <intent-filter>
-                    <action android:name="android.intent.action.BOOT_COMPLETED"/>
-                    <action android:name="android.intent.action.MY_PACKAGE_REPLACED"/>
-                    <action android:name="android.intent.action.QUICKBOOT_POWERON" />
-                    <action android:name="com.htc.intent.action.QUICKBOOT_POWERON"/>
-                </intent-filter>
-            </receiver>  -->
-
-            <!-- android alarm manager plus plugin -->
+        <!-- android alarm manager plus plugin -->
         <service
             android:name="dev.fluttercommunity.plus.androidalarmmanager.AlarmService"
             android:permission="android.permission.BIND_JOB_SERVICE"
@@ -64,6 +49,7 @@
             </intent-filter>
         </receiver>
                         
+        <!-- foreground service icon -->
         <meta-data
             android:name="com.stock_alert.service.ServiceIcon"
             android:resource="@drawable/foreground_service_icon" />
