@@ -18,22 +18,26 @@
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
 
-         <service 
+         <!-- <service 
             android:name="me.carda.awesome_notifications.core.services.ForegroundService"
             android:enabled="true"            
             android:exported="true"
             android:stopWithTask="false"
             android:foregroundServiceType="specialUse"
-            tools:replace="android:foregroundServiceType,android:exported,android:stopWithTask"/>
+            tools:replace="android:foregroundServiceType,android:exported,android:stopWithTask"/> -->
 
-            <!-- local notifications plugin -->
+        <service 
+            android:name="com.pravera.flutter_foreground_task.service.ForegroundService"
+            android:foregroundServiceType="specialUse"
+            android:exported="true" />
+
             <!-- <service
                 android:name="com.dexterous.flutterlocalnotifications.ForegroundService"
                 android:exported="false"
                 android:stopWithTask="false"
-                android:foregroundServiceType="specialUse"/>
+                android:foregroundServiceType="specialUse"/> -->
 
-            <receiver android:exported="false" android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationReceiver" />
+            <!-- <receiver android:exported="false" android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationReceiver" />
             <receiver android:exported="false" android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationBootReceiver">
                 <intent-filter>
                     <action android:name="android.intent.action.BOOT_COMPLETED"/>
@@ -41,24 +45,24 @@
                     <action android:name="android.intent.action.QUICKBOOT_POWERON" />
                     <action android:name="com.htc.intent.action.QUICKBOOT_POWERON"/>
                 </intent-filter>
-            </receiver> -->
+            </receiver>  -->
 
             <!-- android alarm manager plus plugin -->
-            <service
-                android:name="dev.fluttercommunity.plus.androidalarmmanager.AlarmService"
-                android:permission="android.permission.BIND_JOB_SERVICE"
-                android:exported="false"/>
-            <receiver
-                android:name="dev.fluttercommunity.plus.androidalarmmanager.AlarmBroadcastReceiver"
-                android:exported="false"/>
-            <receiver
-                android:name="dev.fluttercommunity.plus.androidalarmmanager.RebootBroadcastReceiver"
-                android:enabled="false"
-                android:exported="false">
-                <intent-filter>
-                    <action android:name="android.intent.action.BOOT_COMPLETED" />
-                </intent-filter>
-            </receiver>
+        <service
+            android:name="dev.fluttercommunity.plus.androidalarmmanager.AlarmService"
+            android:permission="android.permission.BIND_JOB_SERVICE"
+            android:exported="false"/>
+        <receiver
+            android:name="dev.fluttercommunity.plus.androidalarmmanager.AlarmBroadcastReceiver"
+            android:exported="false"/>
+        <receiver
+            android:name="dev.fluttercommunity.plus.androidalarmmanager.RebootBroadcastReceiver"
+            android:enabled="false"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
                         
         <meta-data
             android:name="com.stock_alert.service.ServiceIcon"
