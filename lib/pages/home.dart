@@ -578,7 +578,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
               ).then((_) => settingsToHomeHandler());
             },
             child: Container(
-              margin: const EdgeInsets.fromLTRB(0, 0, 35, 0),
+              margin: const EdgeInsets.only(right: 35),
               child: Icon(
                 Icons.settings,
                 size: 40,
@@ -608,46 +608,48 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
       ),
       child: Padding(
         padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-        child: Column(children: [
-          Image.asset(
-            'assets/bear_bull_fighting.png',
-            width: double.infinity,
-            height: 200,
-            fit: BoxFit.fill,
-          ),
-          TickerInputFields(
-            tickerFieldHandler,
-            addTicker,
-            removeTicker,
-            currentTicker,
-            tickerTextController,
-            watchlist,
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-            child: SortInputFields(
-              sortChangeHandler,
-              sortAlgorithm,
+        child: Column(
+          children: [
+            Image.asset(
+              'assets/bear_bull_fighting.png',
+              width: double.infinity,
+              height: 200,
+              fit: BoxFit.fill,
             ),
-          ),
-          Expanded(
-            child: StockWatchlist(
-              updateWatchlistData,
+            TickerInputFields(
+              tickerFieldHandler,
+              addTicker,
               removeTicker,
-              updateActiveTracking,
+              currentTicker,
+              tickerTextController,
               watchlist,
             ),
-          ),
-          Text(
-            'Last Updated: $lastUpdatedTimeDateDisplay',
-            textScaler: TextScaler.noScaling,
-            style: TextStyle(
-              color: Theme.of(context).textTheme.bodyMedium!.color,
-              fontSize: 18,
-              fontWeight: FontWeight.w600,
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+              child: SortInputFields(
+                sortChangeHandler,
+                sortAlgorithm,
+              ),
             ),
-          )
-        ]),
+            Expanded(
+              child: StockWatchlist(
+                updateWatchlistData,
+                removeTicker,
+                updateActiveTracking,
+                watchlist,
+              ),
+            ),
+            Text(
+              'Last Updated: $lastUpdatedTimeDateDisplay',
+              textScaler: TextScaler.noScaling,
+              style: TextStyle(
+                color: Theme.of(context).textTheme.bodyMedium!.color,
+                fontSize: 18,
+                fontWeight: FontWeight.w600,
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
