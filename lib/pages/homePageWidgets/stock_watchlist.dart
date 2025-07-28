@@ -129,6 +129,7 @@ class StockWatchlist extends StatelessWidget {
           separatorBuilder: (context, index) {
             return Divider(
               color: Theme.of(context).dividerColor,
+              height: 0,
             );
           },
         ));
