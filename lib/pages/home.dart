@@ -384,7 +384,8 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     String section3Body =
         'The switch on the left side of each stock on the watchlist '
         'determines if that ticker symbol will be included in the bear/bull notifications '
-        '(i.e. Turns on/off alerts for that ticker specifically).';
+        '(i.e. Turns on/off alerts for that ticker specifically).'
+        '\n\nToggled off stocks will still be updated on watchlist';
 
     showDialog(
       context: context,
@@ -410,6 +411,40 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border(
+                      bottom: BorderSide(
+                        color: (Theme.of(context).cardTheme.color)!,
+                      ),
+                    ),
+                  ),
+                  child: Text(
+                    section3Header,
+                    textScaler: TextScaler.noScaling,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Theme.of(context).textTheme.bodyMedium!.color,
+                      fontSize: 22,
+                      fontWeight: FontWeight.w700,
+                      fontStyle: FontStyle.normal,
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: Text(
+                    section3Body,
+                    textScaler: TextScaler.noScaling,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Theme.of(context).textTheme.bodyMedium!.color,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                      fontStyle: FontStyle.normal,
+                    ),
+                  ),
+                ),
                 Container(
                   decoration: BoxDecoration(
                     border: Border(
@@ -468,40 +503,6 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                   padding: const EdgeInsets.all(20),
                   child: Text(
                     section2Body,
-                    textScaler: TextScaler.noScaling,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Theme.of(context).textTheme.bodyMedium!.color,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
-                      fontStyle: FontStyle.normal,
-                    ),
-                  ),
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                    border: Border(
-                      bottom: BorderSide(
-                        color: (Theme.of(context).cardTheme.color)!,
-                      ),
-                    ),
-                  ),
-                  child: Text(
-                    section3Header,
-                    textScaler: TextScaler.noScaling,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Theme.of(context).textTheme.bodyMedium!.color,
-                      fontSize: 22,
-                      fontWeight: FontWeight.w700,
-                      fontStyle: FontStyle.normal,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: Text(
-                    section3Body,
                     textScaler: TextScaler.noScaling,
                     textAlign: TextAlign.center,
                     style: TextStyle(
