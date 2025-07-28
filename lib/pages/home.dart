@@ -540,53 +540,56 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   /* header widget */
   AppBar header(BuildContext context) {
     return AppBar(
-        leadingWidth: 80,
-        leading: IconButton(
-          onPressed: showInfoDialog,
-          icon: Icon(
-            Icons.info_outline,
-            size: 40,
-            color: Theme.of(context).iconTheme.color,
-          ),
+      toolbarHeight: 40,
+      leadingWidth: 80,
+      leading: IconButton(
+        padding: EdgeInsets.zero,
+        onPressed: showInfoDialog,
+        icon: Icon(
+          Icons.info_outline,
+          size: 40,
+          color: Theme.of(context).iconTheme.color,
         ),
-        title: Text(
-          'Stock Alert',
-          textScaler: TextScaler.noScaling,
-          style: TextStyle(
-            color: Theme.of(context).textTheme.headlineMedium!.color,
-            fontSize: 28,
-            fontWeight: FontWeight.w900,
-          ),
+      ),
+      title: Text(
+        'Stock Alert',
+        textScaler: TextScaler.noScaling,
+        style: TextStyle(
+          color: Theme.of(context).textTheme.headlineMedium!.color,
+          fontSize: 28,
+          fontWeight: FontWeight.w900,
         ),
-        centerTitle: true,
-        backgroundColor: Theme.of(context).colorScheme.background,
-        actions: [
-          GestureDetector(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => SettingsPage(
-                    notificationToggledOn,
-                    thresholdValue,
-                    notificationQuantity,
-                    notification1,
-                    notification2,
-                    notification3,
-                  ),
+      ),
+      centerTitle: true,
+      backgroundColor: Theme.of(context).colorScheme.background,
+      actions: [
+        GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => SettingsPage(
+                  notificationToggledOn,
+                  thresholdValue,
+                  notificationQuantity,
+                  notification1,
+                  notification2,
+                  notification3,
                 ),
-              ).then((_) => settingsToHomeHandler());
-            },
-            child: Container(
-              margin: const EdgeInsets.only(right: 35),
-              child: Icon(
-                Icons.settings,
-                size: 40,
-                color: Theme.of(context).iconTheme.color,
               ),
+            ).then((_) => settingsToHomeHandler());
+          },
+          child: Container(
+            margin: const EdgeInsets.only(right: 35),
+            child: Icon(
+              Icons.settings,
+              size: 40,
+              color: Theme.of(context).iconTheme.color,
             ),
           ),
-        ]);
+        ),
+      ],
+    );
   }
 
   /* body widget of home page */
