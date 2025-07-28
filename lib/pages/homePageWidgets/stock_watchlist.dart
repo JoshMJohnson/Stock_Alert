@@ -30,7 +30,7 @@ class StockWatchlist extends StatelessWidget {
           itemCount: watchlist.length,
           itemBuilder: (context, index) {
             return ListTile(
-              contentPadding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+              contentPadding: const EdgeInsets.symmetric(horizontal: 10),
               dense: true,
               leading: Switch(
                 activeColor: const Color(0xFFA5D6A7),

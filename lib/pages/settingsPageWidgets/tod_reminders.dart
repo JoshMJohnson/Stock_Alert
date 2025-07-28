@@ -60,7 +60,7 @@ class TODReminders extends StatelessWidget {
                 changeTODHandler(todID);
               },
               child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+                padding: const EdgeInsets.all(5),
                 child: getCurrentTOD(context, todID),
               ),
             )

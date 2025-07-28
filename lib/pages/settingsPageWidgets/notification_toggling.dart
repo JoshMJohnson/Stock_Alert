@@ -11,7 +11,7 @@ class NotificationToggle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+      margin: const EdgeInsets.only(bottom: 10),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -45,7 +45,7 @@ class NotificationToggle extends StatelessWidget {
               ],
             ),
             Padding(
-                padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                padding: const EdgeInsets.only(left: 10),
                 child: Row(
                   children: [
                     Radio(

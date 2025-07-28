@@ -39,7 +39,7 @@ class SaveButton extends StatelessWidget {
         foregroundColor: Theme.of(context).buttonTheme.colorScheme!.primary,
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+        padding: const EdgeInsets.all(5),
         child: Text(
           'Save\nSettings',
           textScaler: TextScaler.noScaling,

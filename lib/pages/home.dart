@@ -610,7 +610,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
         ),
       ),
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+        padding: const EdgeInsets.symmetric(horizontal: 10),
         child: Column(
           children: [
             Image.asset(
@@ -628,7 +628,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
               watchlist,
             ),
             Padding(
-              padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+              padding: const EdgeInsets.symmetric(vertical: 5),
               child: SortInputFields(
                 sortChangeHandler,
                 sortAlgorithm,
