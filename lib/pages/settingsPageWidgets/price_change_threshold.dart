@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class PriceChangeThreshold extends StatelessWidget {
   final Function(double) sliderActionHandler;
@@ -10,9 +11,9 @@ class PriceChangeThreshold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 10),
-      child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
         Text(
           'Day Change\nThreshold (%):',
           textScaler: TextScaler.noScaling,
@@ -21,27 +22,37 @@ class PriceChangeThreshold extends StatelessWidget {
               fontSize: 20,
               fontWeight: FontWeight.w600),
         ),
-        Column(children: [
-          Slider(
-              value: thresholdValue,
-              max: 10,
-              min: 2,
-              thumbColor: Theme.of(context).sliderTheme.thumbColor,
-              activeColor: Theme.of(context).sliderTheme.activeTrackColor,
-              inactiveColor: Theme.of(context).sliderTheme.inactiveTrackColor,
-              onChanged: (value) {
-                sliderActionHandler(value);
-              }),
-          Text(
-            '$thresholdValue',
-            textScaler: TextScaler.noScaling,
-            style: TextStyle(
-                color: Theme.of(context).textTheme.bodyMedium!.color,
-                fontSize: 20,
-                fontWeight: FontWeight.normal),
-          )
-        ])
-      ]),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 10),
+          child: Column(
+            children: [
+              SizedBox(
+                height: 35,
+                child: Slider(
+                  value: thresholdValue,
+                  max: 10,
+                  min: 2,
+                  thumbColor: Theme.of(context).sliderTheme.thumbColor,
+                  activeColor: Theme.of(context).sliderTheme.activeTrackColor,
+                  inactiveColor:
+                      Theme.of(context).sliderTheme.inactiveTrackColor,
+                  onChanged: (value) {
+                    sliderActionHandler(value);
+                  },
+                ),
+              ),
+              Text(
+                '$thresholdValue',
+                textScaler: TextScaler.noScaling,
+                style: TextStyle(
+                    color: Theme.of(context).textTheme.bodyMedium!.color,
+                    fontSize: 20,
+                    fontWeight: FontWeight.normal),
+              )
+            ],
+          ),
+        )
+      ],
     );
   }
 }

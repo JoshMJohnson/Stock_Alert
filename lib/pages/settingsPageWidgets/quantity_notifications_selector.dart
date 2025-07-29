@@ -78,18 +78,15 @@ class QuantityNotificationsSelector extends StatelessWidget {
             ),
           ],
         ),
-        Container(
-          margin: const EdgeInsets.only(top: 10),
-          child: Align(
-            alignment: Alignment.bottomRight,
-            child: Text(
-              'Local Time Zone',
-              textScaler: TextScaler.noScaling,
-              style: TextStyle(
-                color: Theme.of(context).textTheme.bodyMedium!.color,
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
-              ),
+        Align(
+          alignment: Alignment.bottomRight,
+          child: Text(
+            'Local Time Zone',
+            textScaler: TextScaler.noScaling,
+            style: TextStyle(
+              color: Theme.of(context).textTheme.bodyMedium!.color,
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
             ),
           ),
         ),

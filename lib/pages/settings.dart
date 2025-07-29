@@ -247,7 +247,7 @@ class _SettingsPageState extends State<SettingsPage> {
       ),
       child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
           child: Column(children: [
             NotificationToggle(
               updateNotificationToggle: updateNotificationToggle,
@@ -265,12 +265,15 @@ class _SettingsPageState extends State<SettingsPage> {
               notification2: notification2,
               notification3: notification3,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                const ClearWatchlist(),
-                SaveButton(saveButtonHandler),
-              ],
+            Padding(
+              padding: const EdgeInsets.only(top: 15),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  const ClearWatchlist(),
+                  SaveButton(saveButtonHandler),
+                ],
+              ),
             )
           ]),
         ),
