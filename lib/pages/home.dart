@@ -616,7 +616,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
             Image.asset(
               'assets/bear_bull_fighting.png',
               width: double.infinity,
-              height: 200,
+              height: 160,
               fit: BoxFit.fill,
             ),
             TickerInputFields(
