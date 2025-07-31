@@ -30,7 +30,7 @@ if (keystorePropertiesFile.exists()) {
 
 android {
     namespace "com.example.stock_alert"
-    compileSdk 34
+    compileSdk 36
     ndkVersion "27.0.12077973"
 
     compileOptions {
@@ -50,7 +50,7 @@ android {
     defaultConfig {
         applicationId "com.joshjohnsonhub.stock_alert"
         minSdkVersion 23
-        targetSdkVersion 34
+        targetSdkVersion 36
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }

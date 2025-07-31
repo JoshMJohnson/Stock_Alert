@@ -531,9 +531,12 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: header(context),
-      body: homeBody(context),
+    return SafeArea(
+      top: false,
+      child: Scaffold(
+        appBar: header(context),
+        body: homeBody(context),
+      ),
     );
   }
 

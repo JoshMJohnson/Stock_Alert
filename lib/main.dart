@@ -10,7 +10,11 @@ import './theme.dart';
 import 'package:stock_alert/database_repository.dart';
 
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding
+      .ensureInitialized(); // ensures Flutter binding is initialized
+  SystemChrome.setEnabledSystemUIMode(
+    SystemUiMode.edgeToEdge,
+  ); // edge-to-edge enabled since required for Android 16+
 
   // * preferences
   final SharedPreferences prefs = await SharedPreferences.getInstance();
