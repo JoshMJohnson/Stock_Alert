@@ -610,7 +610,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
         ),
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10),
+        padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
         child: Column(
           children: [
             Image.asset(
@@ -634,14 +634,6 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                 sortAlgorithm,
               ),
             ),
-            Expanded(
-              child: StockWatchlist(
-                updateWatchlistData,
-                removeTicker,
-                updateActiveTracking,
-                watchlist,
-              ),
-            ),
             Text(
               'Last Updated: $lastUpdatedTimeDateDisplay',
               textScaler: TextScaler.noScaling,
@@ -650,7 +642,15 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                 fontSize: 18,
                 fontWeight: FontWeight.w600,
               ),
-            )
+            ),
+            Expanded(
+              child: StockWatchlist(
+                updateWatchlistData,
+                removeTicker,
+                updateActiveTracking,
+                watchlist,
+              ),
+            ),
           ],
         ),
       ),

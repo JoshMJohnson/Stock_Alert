@@ -20,8 +20,11 @@ Future<void> main() async {
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
       systemNavigationBarColor: Colors.transparent,
+      systemNavigationBarContrastEnforced: false,
     ),
   ); // sets navigation bar to be transparent
+
+  SystemChrome.restoreSystemUIOverlays();
 
   // * preferences
   final SharedPreferences prefs = await SharedPreferences.getInstance();
