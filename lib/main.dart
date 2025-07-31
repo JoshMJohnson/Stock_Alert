@@ -12,9 +12,16 @@ import 'package:stock_alert/database_repository.dart';
 Future<void> main() async {
   WidgetsFlutterBinding
       .ensureInitialized(); // ensures Flutter binding is initialized
+
   SystemChrome.setEnabledSystemUIMode(
     SystemUiMode.edgeToEdge,
   ); // edge-to-edge enabled since required for Android 16+
+
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(
+      systemNavigationBarColor: Colors.transparent,
+    ),
+  ); // sets navigation bar to be transparent
 
   // * preferences
   final SharedPreferences prefs = await SharedPreferences.getInstance();

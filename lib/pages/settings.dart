@@ -193,12 +193,9 @@ class _SettingsPageState extends State<SettingsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      top: false,
-      child: Scaffold(
-        appBar: header(context),
-        body: settingsBody(),
-      ),
+    return Scaffold(
+      appBar: header(context),
+      body: settingsBody(),
     );
   }
 
